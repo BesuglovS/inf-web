@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.2. Подпрограммы и рекурсия | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="page-title">9.2. Подпрограммы и рекурсия</h1>
+        <p class="page-subtitle">Раздел 9. Алгоритмы и программирование (продолжение)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#functions">Функции в Python</a></li>
+                <li><a href="#params">Параметры и возврат значений</a></li>
+                <li><a href="#scope">Локальные и глобальные переменные</a></li>
+                <li><a href="#recursion">Рекурсивные алгоритмы</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="functions">
+            <h2 class="card-title">Функции в Python</h2>
+            <p><strong>Функция</strong> — это именованный блок кода, который можно вызывать многократно.</p>
+            <p>Определение функции начинается с ключевого слова <strong>def</strong>:</p>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def имя_функции(параметры):
+    """документация (необязательно)"""
+    тело функции
+    return результат</pre>
+
+            <h3>Пример:</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def say_hello(name):
+    \"""Приветствие.\"""
+    print(f"Привет, {name}!")
+
+say_hello("Анна")  # Привет, Анна!</pre>
+        </div>
+
+        <div class="card" id="params">
+            <h2 class="card-title">Параметры и возврат значений</h2>
+            <h3>Функция с параметрами:</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def sum_two(a, b):
+    return a + b
+
+result = sum_two(5, 3)  # 8</pre>
+
+            <h3>Несколько параметров:</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def max_of_three(x, y, z):
+    \"""Возвращает максимум из трёх чисел.\"""
+    if x >= y and x >= z:
+        return x
+    elif y >= z:
+        return y
+    else:
+        return z</pre>
+
+            <h3>Параметры по умолчанию:</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def power(x, n=2):
+    \"""Возводит x в степень n (по умолчанию квадрат).\"""
+    return x ** n
+
+print(power(5))     # 25
+print(power(5, 3))  # 125</pre>
+        </div>
+
+        <div class="card" id="scope">
+            <h2 class="card-title">Локальные и глобальные переменные</h2>
+            <p><strong>Глобальные переменные</strong> — объявлены вне функций, доступны везде.</p>
+            <p><strong>Локальные переменные</strong> — объявлены внутри функции, доступны только в ней.</p>
+
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">x = 10  # глобальная переменная
+
+def func():
+    x = 5  # локальная переменная (не изменяет глобальную!)
+    print("Внутри:", x)
+
+func()
+print("Снаружи:", x)
+
+# Вывод:
+# Внутри: 5
+# Снаружи: 10</pre>
+
+            <div class="info-box"><strong>Важно:</strong> Для изменения глобальной переменной внутри функции используется ключевое слово <code>global</code>.</div>
+        </div>
+
+        <div class="card" id="recursion">
+            <h2 class="card-title">Рекурсивные алгоритмы</h2>
+            <p><strong>Рекурсия</strong> — это способ решения задачи, при котором функция вызывает саму себя.</p>
+            <p>Рекурсивная функция должна содержать:</p>
+            <ul class="content-list">
+                <li><strong>Базовый случай</strong> — условие прекращения рекурсии</li>
+                <li><strong>Рекурсивный шаг</strong> — вызов функции с изменёнными параметрами</li>
+            </ul>
+
+            <h3>Пример: вычисление факториала</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def factorial(n):
+    \"""Вычисляет n! рекурсивно.\"""
+    # Базовый случай
+    if n <= 1:
+        return 1
+    # Рекурсивный шаг
+    return n * factorial(n - 1)
+
+print(factorial(5))  # 120</pre>
+
+            <h3>Пример: числа Фибоначчи</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def fibonacci(n):
+    \"""Возвращает n-е число Фибоначчи.\"""
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...
+print(fibonacci(7))  # 13</pre>
+
+            <div class="warning-box"><strong>Внимание:</strong> Рекурсия требует осторожности! Слишком глубокая рекурсия может привести к переполнению стека. Для задач с простыми циклами лучше использовать итеративные алгоритмы.</div>
+        </div>
+    </main>
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.1. Системы счисления | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">4.1. Системы счисления</h1>
+        <p class="page-subtitle">Раздел 4. Математические основы информатики (6 часов)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+<li><a href="#systems">Понятие системы счисления</a></li>
+<li><a href="#decimal">Десятичная система счисления</a></li>
+<li><a href="#binary">Двоичная система счисления</a></li>
+<li><a href="#octal">Восьмеричная система</a></li>
+<li><a href="#hex">Шестнадцатеричная система</a></li>
+<li><a href="#arithmetic">Арифметические операции</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="systems">
+            <h2 class="card-title">Понятие системы счисления</h2>
+            <p><strong>Система счисления</strong> — это знаковая система, в которой числа записываются по определённым правилам с помощью символов некоторого алфавита, называемых <strong>цифрами</strong>.</p>
+            <h3>Виды систем счисления:</h3>
+            <table><tr><th>Тип</th><th>Описание</th><th>Примеры</th></tr><tr><td><strong>Непозиционные</strong></td><td>Значение цифры не зависит от её позиции</td><td>Римская (I, V, X, L, C, D, M)</td></tr><tr><td><strong>Позиционные</strong></td><td>Значение цифры зависит от позиции (разряда)</td><td>Десятичная, двоичная, 8-ричная, 16-ричная</td></tr></table>
+            <div class="info-box"><strong>Важно:</strong> В позиционных системах счисления основание равно количеству используемых цифр.</div>
+        </div>
+        <div class="card" id="decimal">
+            <h2 class="card-title">Десятичная система счисления</h2>
+            <p><strong>Десятичная система</strong> (основание 10) — привычная нам система. Использует цифры: <strong>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</strong>.</p>
+            <p>Любое число можно представить в виде суммы разрядных слагаемых:</p>
+            <div class="info-box"><strong>Пример:</strong> 2357 = 2×10³ + 3×10² + 5×10¹ + 7×10⁰ = 2000 + 300 + 50 + 7</div>
+        </div>
+        <div class="card" id="binary">
+            <h2 class="card-title">Двоичная система счисления</h2>
+            <p><strong>Двоичная система</strong> (основание 2) — используется в компьютерах. Цифры: <strong>0, 1</strong>.</p>
+            <p><strong>Пример:</strong> 1101₂ = 1×2³ + 1×2² + 0×2¹ + 1×2⁰ = 8 + 4 + 0 + 1 = 13₁₀</p>
+            <h3>Таблица степеней числа 2:</h3>
+            <table><tr><th>Степень</th><td>2⁰</td><td>2¹</td><td>2²</td><td>2³</td><td>2⁴</td><td>2⁵</td><td>2⁶</td><td>2⁷</td><td>2⁸</td><td>2⁹</td><td>2¹⁰</td></tr><tr><th>Знач.</th><td>1</td><td>2</td><td>4</td><td>8</td><td>16</td><td>32</td><td>64</td><td>128</td><td>256</td><td>512</td><td>1024</td></tr></table>
+        </div>
+        <div class="card" id="octal">
+            <h2 class="card-title">Восьмеричная система</h2>
+            <p><strong>Восьмеричная система</strong> (основание 8). Цифры: <strong>0–7</strong>.</p>
+            <p><strong>Пример:</strong> 237₈ = 2×8² + 3×8¹ + 7×8⁰ = 128 + 24 + 7 = 159₁₀</p>
+        </div>
+        <div class="card" id="hex">
+            <h2 class="card-title">Шестнадцатеричная система</h2>
+            <p><strong>Шестнадцатеричная система</strong> (основание 16). Цифры: <strong>0–9, A, B, C, D, E, F</strong>, где A=10, B=11, C=12, D=13, E=14, F=15.</p>
+            <p><strong>Пример:</strong> 3F₁₆ = 3×16¹ + 15×16⁰ = 48 + 15 = 63₁₀</p>
+            <div class="info-box"><strong>Применение:</strong> 16-ричная система удобна для представления цветов RGB, MAC-адресов, Unicode.</div>
+        </div>
+        <div class="card" id="arithmetic">
+            <h2 class="card-title">Арифметические операции</h2>
+            <h3>Сложение в двоичной системе:</h3>
+            <table><tr><th>0+0=0</th><th>0+1=1</th><th>1+0=1</th><th>1+1=10 (0, перенос 1)</th></tr></table>
+            <p><strong>Пример:</strong> 1011₂ + 1101₂ = 11000₂</p>
+            <h3>Перевод между системами:</h3>
+            <ul class="content-list"><li><strong>В десятичную:</strong> развёрнутая форма числа</li><li><strong>Из десятичной:</strong> деление на основание</li><li><strong>Между 2, 8, 16:</strong> через триады и тетрады</li></ul>
+            <div class="interactive-block"><h4>🔢 Калькулятор систем счисления</h4><div style="display:flex;flex-wrap:wrap;gap:10px;"><div><label>Число:</label><input type="text" id="num-input" value="255"></div><div><label>Из:</label><select id="base-from"><option value="2">2</option><option value="8">8</option><option value="10" selected>10</option><option value="16">16</option></select></div><div><label>В:</label><select id="base-to"><option value="2">2</option><option value="8">8</option><option value="10">10</option><option value="16" selected>16</option></select></div></div><button class="btn" onclick="convertBase()">Перевести</button><div id="base-result" class="result-box"></div></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

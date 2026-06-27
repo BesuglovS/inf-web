@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2. Элементы математической логики | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="page-title">4.2. Элементы математической логики</h1>
+        <p class="page-subtitle">Раздел 4. Математические основы информатики (7 часов)</p>
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+<li><a href="#statements">Высказывания</a></li>
+<li><a href="#logic_ops">Логические операции</a></li>
+<li><a href="#truth_tables">Таблицы истинности</a></li>
+<li><a href="#laws">Законы алгебры логики</a></li>
+<li><a href="#interactive">Калькулятор логики</a></li>
+            </ol>
+        </div>
+        <div class="card" id="statements">
+            <h2 class="card-title">Высказывания</h2>
+            <p><strong>Высказывание</strong> — это предложение, относительно которого можно сказать, истинно оно или ложно.</p>
+            <table><tr><th>Пример высказывания</th><th>Значение</th></tr><tr><td>«Москва — столица России»</td><td>Истина</td></tr><tr><td>«2 × 2 = 5»</td><td>Ложь</td></tr><tr><td>«Который час?»</td><td>Не высказывание</td></tr></table>
+            <div class="info-box"><strong>Свойства:</strong> Высказывание должно быть повествовательным, иметь значение Истина или Ложь.</div>
+        </div>
+        <div class="card" id="logic_ops">
+            <h2 class="card-title">Логические операции</h2>
+            <h3>Конъюнкция (И, AND, ∧)</h3><p>Истинна, когда оба высказывания истинны.</p>
+            <h3>Дизъюнкция (ИЛИ, OR, ∨)</h3><p>Истинна, когда хотя бы одно высказывание истинно.</p>
+            <h3>Инверсия (НЕ, NOT, ¬)</h3><p>Меняет значение на противоположное.</p>
+            <h3>Импликация (следование, →)</h3><p>A → B ложна только когда A истинно, а B ложно.</p>
+        </div>
+        <div class="card" id="truth_tables">
+            <h2 class="card-title">Таблицы истинности</h2>
+            <table><tr><th>A</th><th>B</th><th>A∧B</th><th>A∨B</th><th>¬A</th><th>A→B</th></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr></table>
+            <div class="info-box"><strong>Приоритет:</strong> Сначала ¬, затем ∧, затем ∨. Скобки меняют порядок.</div>
+        </div>
+        <div class="card" id="laws">
+            <h2 class="card-title">Законы алгебры логики</h2>
+            <table><tr><th>Закон</th><th>Формула</th></tr><tr><td>Переместительный</td><td>A∧B = B∧A, A∨B = B∨A</td></tr><tr><td>Сочетательный</td><td>(A∧B)∧C = A∧(B∧C)</td></tr><tr><td>Распределительный</td><td>A∧(B∨C) = (A∧B)∨(A∧C)</td></tr><tr><td>де Моргана</td><td>¬(A∧B)=¬A∨¬B, ¬(A∨B)=¬A∧¬B</td></tr><tr><td>Двойного отриц.</td><td>¬(¬A) = A</td></tr></table>
+        </div>
+        <div class="card" id="interactive">
+            <h2 class="card-title">Калькулятор логики</h2>
+            <div class="interactive-block"><h4>🧮 Калькулятор логических выражений</h4><div style="display:flex;flex-wrap:wrap;gap:10px;"><div><label>A:</label><select id="logic-a"><option value="1">Истина (1)</option><option value="0">Ложь (0)</option></select></div><div><label>B:</label><select id="logic-b"><option value="1">Истина (1)</option><option value="0">Ложь (0)</option></select></div><div><label>Операция:</label><select id="logic-op"><option value="and">Конъюнкция</option><option value="or">Дизъюнкция</option><option value="xor">XOR</option><option value="imp">Импликация</option></select></div></div><button class="btn" onclick="calcLogic()">Вычислить</button><div id="logic-result" class="result-box"></div></div>
+        </div>
+    </main>
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

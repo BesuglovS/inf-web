@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.2 Программы и данные | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+        <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">1.2. Программы и данные</h1>
+        <p class="page-subtitle">Раздел 1. Цифровая грамотность (4 часа)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#software">Программное обеспечение</a></li>
+                <li><a href="#os">Операционная система</a></li>
+                <li><a href="#fs">Файловая система</a></li>
+                <li><a href="#archive">Архивация данных</a></li>
+                <li><a href="#viruses">Компьютерные вирусы и защита</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="software">
+            <h2 class="card-title">Программное обеспечение (ПО)</h2>
+            <p><strong>Программа</strong> — это последовательность команд, которые выполняет компьютер. Совокупность всех программ называется <strong>программным обеспечением</strong>.</p>
+
+            <h3 class="section-subtitle">Виды программного обеспечения:</h3>
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">Системное ПО</div>
+                    <span class="scheme-label">ОС, драйверы, утилиты</span>
+                </div>
+                <div class="scheme-arrow">+</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Прикладное ПО</div>
+                    <span class="scheme-label">Приложения для пользователя</span>
+                </div>
+                <div class="scheme-arrow">+</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Системы программирования</div>
+                    <span class="scheme-label">Для создания программ</span>
+                </div>
+            </div>
+
+            <table>
+                <tr><th>Вид ПО</th><th>Назначение</th><th>Примеры</th></tr>
+                <tr><td><strong>Системное</strong></td><td>Обеспечивает работу компьютера и запуск других программ</td><td>Windows, Linux, macOS, драйверы</td></tr>
+                <tr><td><strong>Прикладное</strong></td><td>Решение конкретных задач пользователя</td><td>Word, Excel, браузер, игры</td></tr>
+                <tr><td><strong>Системы программирования</strong></td><td>Создание новых программ</td><td>Python, Pascal, C++, среда разработки</td></tr>
+            </table>
+        </div>
+
+        <div class="card" id="os">
+            <h2 class="card-title">Операционная система</h2>
+            <p><strong>Операционная система (ОС)</strong> — главная программа, которая управляет работой компьютера. Она запускается сразу после включения.</p>
+
+            <h3 class="section-subtitle">Функции ОС:</h3>
+            <ul class="content-list">
+                <li><strong>Управление устройствами</strong> — процессором, памятью, дисками</li>
+                <li><strong>Организация файловой системы</strong> — хранение и доступ к данным</li>
+                <li><strong>Запуск программ</strong> — загрузка и выполнение приложений</li>
+                <li><strong>Пользовательский интерфейс</strong> — взаимодействие с пользователем (графический или командный)</li>
+                <li><strong>Обеспечение безопасности</strong> — разграничение доступа, защита от сбоев</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Примеры ОС:</strong> Microsoft Windows (10, 11), Linux (Ubuntu, Debian), macOS, Android, iOS.
+            </div>
+        </div>
+
+        <div class="card" id="fs">
+            <h2 class="card-title">Файловая система</h2>
+            <p><strong>Файл</strong> — это поименованная область данных на диске. Каждый файл имеет <strong>имя</strong> и <strong>расширение</strong>, которое указывает на тип данных.</p>
+
+            <table>
+                <tr><th>Расширение</th><th>Тип файла</th><th>Программа для открытия</th></tr>
+                <tr><td>.txt</td><td>Текстовый документ</td><td>Блокнот</td></tr>
+                <tr><td>.docx</td><td>Документ Word</td><td>Microsoft Word</td></tr>
+                <tr><td>.xlsx</td><td>Электронная таблица</td><td>Microsoft Excel</td></tr>
+                <tr><td>.pptx</td><td>Презентация</td><td>Microsoft PowerPoint</td></tr>
+                <tr><td>.jpg, .png</td><td>Графический файл</td><td>Просмотрщик изображений</td></tr>
+                <tr><td>.mp3, .wav</td><td>Аудиофайл</td><td>Аудиоплеер</td></tr>
+                <tr><td>.mp4, .avi</td><td>Видеофайл</td><td>Видеоплеер</td></tr>
+                <tr><td>.exe</td><td>Исполняемый файл (программа)</td><td>Запускается ОС</td></tr>
+                <tr><td>.zip, .rar</td><td>Архив</td><td>ZIP-архиватор</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Иерархическая структура файловой системы</h3>
+            <p>Файлы объединяются в <strong>папки (каталоги)</strong>. Папки могут вкладываться друг в друга, образуя иерархическую структуру — <strong>дерево папок</strong>.</p>
+
+            <div class="info-box">
+                <strong>Пример пути к файлу:</strong><br>
+                <code>C:\Пользователи\Ученик\Документы\Реферат.docx</code><br>
+                где <strong>C:</strong> — диск, <strong>Пользователи\Ученик\Документы</strong> — путь к папке, <strong>Реферат.docx</strong> — имя файла.
+            </div>
+
+            <h3 class="section-subtitle">Основные операции с файлами и папками:</h3>
+            <ul class="content-list">
+                <li>📄 <strong>Создать</strong> — новый файл или папку</li>
+                <li>✂️ <strong>Копировать</strong> — создать копию в другом месте</li>
+                <li>📂 <strong>Переместить</strong> — изменить расположение</li>
+                <li>✏️ <strong>Переименовать</strong> — изменить имя</li>
+                <li>🗑️ <strong>Удалить</strong> — переместить в корзину или стереть</li>
+            </ul>
+        </div>
+
+        <div class="card" id="archive">
+            <h2 class="card-title">Архивация данных</h2>
+            <p><strong>Архивация</strong> — это сжатие файлов для уменьшения их объёма. Архивные файлы имеют расширения .zip, .rar, .7z и др.</p>
+
+            <h3 class="section-subtitle">Зачем нужна архивация:</h3>
+            <ul class="content-list">
+                <li>Экономия места на диске</li>
+                <li>Удобство передачи нескольких файлов одним архивом</li>
+                <li>Уменьшение времени загрузки в Интернет</li>
+                <li>Создание резервных копий</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Важно:</strong> Некоторые типы файлов (изображения, видео, музыка) уже имеют сжатие, поэтому архивация может почти не уменьшить их размер. Текстовые документы и программы сжимаются очень хорошо.
+            </div>
+        </div>
+
+        <div class="card" id="viruses">
+            <h2 class="card-title">Компьютерные вирусы и защита</h2>
+            <p><strong>Компьютерный вирус</strong> — это вредоносная программа, которая может самокопироваться и наносить вред данным или работе компьютера.</p>
+
+            <h3 class="section-subtitle">Виды вредоносных программ:</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Тип</th><th>Описание</th></tr>
+                    <tr><td>Вирусы</td><td>Внедряются в другие программы, размножаются</td></tr>
+                    <tr><td>Черви</td><td>Распространяются через сеть самостоятельно</td></tr>
+                    <tr><td>Трояны</td><td>Маскируются под полезные программы</td></tr>
+                    <tr><td>Шпионское ПО</td><td>Собирает данные о пользователе</td></tr>
+                    <tr><td>Рекламное ПО</td><td>Показывает навязчивую рекламу</td></tr>
+                    <tr><td>Программы-вымогатели</td><td>Шифруют данные и требуют выкуп</td></tr>
+                </table>
+            </div>
+
+            <h3 class="section-subtitle">Меры защиты:</h3>
+            <ul class="content-list">
+                <li>Установить <strong>антивирусное ПО</strong> (Kaspersky, Dr.Web, Avast и др.)</li>
+                <li>Регулярно обновлять программы и ОС</li>
+                <li>Не открывать подозрительные письма и ссылки</li>
+                <li>Не скачивать программы с непроверенных сайтов</li>
+                <li>Использовать файрвол (межсетевой экран)</li>
+                <li>Регулярно делать резервное копирование важных данных</li>
+            </ul>
+
+            <div class="interactive-block">
+                <h4>🔐 Проверка надёжности пароля</h4>
+                <p style="font-size:0.9rem; margin-bottom:10px;">Надёжный пароль — один из способов защиты ваших данных.</p>
+                <label for="password-input">Введите пароль:</label>
+                <input type="text" id="password-input" placeholder="Например: MyP@ssw0rd2024" oninput="checkPasswordStrength()">
+                <div id="password-result" class="result-box"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

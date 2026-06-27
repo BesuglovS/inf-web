@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2 Компьютерная графика | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+        <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">3.2. Компьютерная графика</h1>
+        <p class="page-subtitle">Раздел 3. Информационные технологии (3 часа)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#gfx">Что такое компьютерная графика?</a></li>
+                <li><a href="#raster">Растровая графика</a></li>
+                <li><a href="#vector">Векторная графика</a></li>
+                <li><a href="#models">Цветовые модели</a></li>
+                <li><a href="#formats">Форматы графических файлов</a></li>
+                <li><a href="#editors">Графические редакторы</a></li>
+                <li><a href="#digital">Цифровое фото и обработка изображений</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="gfx">
+            <h2 class="card-title">Что такое компьютерная графика?</h2>
+            <p><strong>Компьютерная графика</strong> — это область информатики, занимающаяся созданием и обработкой изображений с помощью компьютера.</p>
+            <p>Изображения могут быть как двумерными (2D), так и трёхмерными (3D).</p>
+
+            <div class="info-box">
+                <strong>Области применения компьютерной графики:</strong> дизайн, архитектура, медицина, наука, инженерия, кино, игры, реклама, образование, полиграфия.
+            </div>
+        </div>
+
+        <div class="card" id="raster">
+            <h2 class="card-title">Растровая графика</h2>
+            <p><strong>Растровое изображение</strong> состоит из множества точек — <strong>пикселей</strong>. Каждый пиксель имеет свой цвет.</p>
+
+            <h3 class="section-subtitle">Характеристики растровой графики:</h3>
+            <table>
+                <tr><th>Характеристика</th><th>Описание</th></tr>
+                <tr><td><strong>Разрешение</strong></td><td>Количество пикселей (ширина × высота)</td></tr>
+                <tr><td><strong>Глубина цвета</strong></td><td>Количество бит на пиксель (определяет количество цветов)</td></tr>
+                <tr><td><strong>Размер файла</strong></td><td>Пропорционален разрешению и глубине цвета</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Достоинства и недостатки:</h3>
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box" style="background:var(--success);">✅ Достоинства</div>
+                    <span class="scheme-label">Фотореалистичность<br>Тонкие цветовые переходы</span>
+                </div>
+                <div class="scheme-arrow">vs</div>
+                <div class="scheme-item">
+                    <div class="scheme-box" style="background:var(--danger);">❌ Недостатки</div>
+                    <span class="scheme-label">Теряет качество при<br>масштабировании</span>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>Важно:</strong> При увеличении растрового изображения появляется <strong>пикселизация</strong> — изображение становится размытым, видны отдельные квадратики-пиксели.
+            </div>
+        </div>
+
+        <div class="card" id="vector">
+            <h2 class="card-title">Векторная графика</h2>
+            <p><strong>Векторное изображение</strong> описывается математическими формулами — линиями, кривыми, геометрическими фигурами.</p>
+
+            <h3 class="section-subtitle">Характеристики векторной графики:</h3>
+            <table>
+                <tr><th>Характеристика</th><th>Описание</th></tr>
+                <tr><td><strong>Элементы</strong></td><td>Точки, линии, кривые (сплайны), многоугольники</td></tr>
+                <tr><td><strong>Свойства</strong></td><td>Цвет заливки, цвет и толщина контура, прозрачность</td></tr>
+                <tr><td><strong>Размер файла</strong></td><td>Обычно меньше растрового; зависит от сложности</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Достоинства и недостатки:</h3>
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box" style="background:var(--success);">✅ Достоинства</div>
+                    <span class="scheme-label">Масштабируется без<br>потери качества</span>
+                </div>
+                <div class="scheme-arrow">vs</div>
+                <div class="scheme-item">
+                    <div class="scheme-box" style="background:var(--danger);">❌ Недостатки</div>
+                    <span class="scheme-label">Сложно передавать<br>фотореалистичные сцены</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>Интересно:</strong> Векторная графика используется для создания логотипов, иконок, шрифтов, чертежей, схем. Её можно масштабировать до любого размера без потери качества.
+            </div>
+        </div>
+
+        <div class="card" id="models">
+            <h2 class="card-title">Цветовые модели</h2>
+
+            <h3 class="section-subtitle">Модель RGB (Red, Green, Blue)</h3>
+            <p>Аддитивная цветовая модель. Цвет образуется смешением красного, зелёного и синего света. Используется для экранов (мониторы, телефоны, телевизоры).</p>
+            <ul class="content-list">
+                <li>R (0–255) + G (0–255) + B (0–255) = любой цвет</li>
+                <li>RGB(0,0,0) = чёрный, RGB(255,255,255) = белый</li>
+                <li>Глубина: 24 бита (8 бит × 3 канала)</li>
+            </ul>
+
+            <h3 class="section-subtitle">Модель CMYK (Cyan, Magenta, Yellow, Key)</h3>
+            <p>Субтрактивная цветовая модель. Используется в полиграфии (печати). Цвет образуется смешением красок.</p>
+            <ul class="content-list">
+                <li><strong>C</strong> — голубой, <strong>M</strong> — пурпурный, <strong>Y</strong> — жёлтый, <strong>K</strong> — чёрный</li>
+                <li>Бумага отражает свет; краски поглощают часть спектра</li>
+            </ul>
+
+            <div class="interactive-block">
+                <h4>🎨 RGB-палитра</h4>
+                <p style="font-size:0.9rem;">Перемещайте ползунки, чтобы увидеть, как из трёх базовых цветов образуются новые:</p>
+                <div>
+                    <label for="rgb-r2">Red (R): <span id="rgb-r-val2">128</span></label>
+                    <input type="range" class="rgb-slider" id="rgb-r2" min="0" max="255" value="128" oninput="document.getElementById('rgb-r-val2').textContent=this.value; updateRGB2();">
+                </div>
+                <div>
+                    <label for="rgb-g2">Green (G): <span id="rgb-g-val2">50</span></label>
+                    <input type="range" class="rgb-slider" id="rgb-g2" min="0" max="255" value="50" oninput="document.getElementById('rgb-g-val2').textContent=this.value; updateRGB2();">
+                </div>
+                <div>
+                    <label for="rgb-b2">Blue (B): <span id="rgb-b-val2">200</span></label>
+                    <input type="range" class="rgb-slider" id="rgb-b2" min="0" max="255" value="200" oninput="document.getElementById('rgb-b-val2').textContent=this.value; updateRGB2();">
+                </div>
+                <div class="rgb-preview" id="rgb-preview2"></div>
+                <div id="rgb-info2">RGB(128, 50, 200)</div>
+            </div>
+        </div>
+
+        <div class="card" id="formats">
+            <h2 class="card-title">Форматы графических файлов</h2>
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Формат</th><th>Тип</th><th>Сжатие</th><th>Особенности</th></tr>
+                    <tr><td><strong>BMP</strong></td><td>Растровый</td><td>Без сжатия</td><td>Большой размер, используется в Windows</td></tr>
+                    <tr><td><strong>JPEG (.jpg)</strong></td><td>Растровый</td><td>С потерями</td><td>Фотографии, малый размер, теряет качество</td></tr>
+                    <tr><td><strong>PNG</strong></td><td>Растровый</td><td>Без потерь</td><td>Поддерживает прозрачность, для веба</td></tr>
+                    <tr><td><strong>GIF</strong></td><td>Растровый</td><td>Без потерь</td><td>256 цветов, анимация</td></tr>
+                    <tr><td><strong>TIFF</strong></td><td>Растровый</td><td>Без потерь</td><td>Для полиграфии, большой размер</td></tr>
+                    <tr><td><strong>SVG</strong></td><td>Векторный</td><td>-</td><td>Масштабируемый, для веба</td></tr>
+                    <tr><td><strong>WEBP</strong></td><td>Растровый</td><td>С и без потерь</td><td>Современный формат для веба</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>Совет:</strong> Для фотографий в Интернете используйте JPEG (хорошее качество при малом размере). Для изображений с текстом или прозрачностью — PNG. Для иконок и логотипов — SVG.
+            </div>
+        </div>
+
+        <div class="card" id="editors">
+            <h2 class="card-title">Графические редакторы</h2>
+            <p><strong>Графический редактор</strong> — это программа для создания, редактирования и обработки изображений.</p>
+
+            <table>
+                <tr><th>Название</th><th>Тип</th><th>Платформа</th></tr>
+                <tr><td><strong>Adobe Photoshop</strong></td><td>Растровый</td><td>Windows, macOS</td></tr>
+                <tr><td><strong>GIMP</strong></td><td>Растровый</td><td>Windows, macOS, Linux (бесплатный)</td></tr>
+                <tr><td><strong>Paint.NET</strong></td><td>Растровый</td><td>Windows (бесплатный)</td></tr>
+                <tr><td><strong>Krita</strong></td><td>Растровый</td><td>Windows, macOS, Linux (бесплатный)</td></tr>
+                <tr><td><strong>Adobe Illustrator</strong></td><td>Векторный</td><td>Windows, macOS</td></tr>
+                <tr><td><strong>Inkscape</strong></td><td>Векторный</td><td>Windows, macOS, Linux (бесплатный)</td></tr>
+                <tr><td><strong>CorelDRAW</strong></td><td>Векторный</td><td>Windows</td></tr>
+                <tr><td><strong>Figma</strong></td><td>Векторный</td><td>Веб-сервис (бесплатный)</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Основные операции в графическом редакторе:</h3>
+            <ul class="content-list">
+                <li>✏️ <strong>Рисование</strong> — кисть, карандаш, фигуры</li>
+                <li>✂️ <strong>Выделение</strong> — прямоугольная, круглая, «волшебная палочка»</li>
+                <li>🖌️ <strong>Заливка</strong> — сплошная, градиентная</li>
+                <li>📐 <strong>Трансформация</strong> — поворот, масштабирование, искривление</li>
+                <li>🔧 <strong>Коррекция</strong> — яркость, контраст, цветовой баланс</li>
+                <li>🎭 <strong>Фильтры и эффекты</strong> — размытие, резкость, стилизация</li>
+                <li>🧹 <strong>Удаление дефектов</strong> — штамп, восстанавливающая кисть</li>
+            </ul>
+        </div>
+
+        <div class="card" id="digital">
+            <h2 class="card-title">Цифровое фото и обработка изображений</h2>
+            <p>Цифровые фотографии создаются с помощью <strong>цифровых камер</strong> и <strong>смартфонов</strong>. Качество фото зависит от:</p>
+
+            <ul class="content-list">
+                <li><strong>Разрешения матрицы</strong> — мегапиксели (Мп). 1 Мп = 1 000 000 пикселей</li>
+                <li><strong>Светосилы объектива</strong></li>
+                <li><strong>Качества оптики</strong></li>
+                <li><strong>Настроек камеры</strong> — ISO, выдержка, диафрагма</li>
+            </ul>
+
+            <h3 class="section-subtitle">Этапы обработки цифрового фото:</h3>
+            <ol class="content-list" style="margin-left:20px;">
+                <li><strong>Кадрирование</strong> — обрезка лишних частей</li>
+                <li><strong>Коррекция экспозиции</strong> — осветление/затемнение</li>
+                <li><strong>Цветокоррекция</strong> — баланс белого, насыщенность</li>
+                <li><strong>Ретушь</strong> — удаление дефектов, шумов</li>
+                <li><strong>Добавление эффектов</strong> — фильтры, текстуры</li>
+                <li><strong>Сохранение в нужном формате</strong></li>
+            </ol>
+
+            <div class="warning-box">
+                <strong>Важно:</strong> При обработке фотографий всегда сохраняйте оригинал! Используйте формат RAW (если камера поддерживает) или сохраняйте копию в формате без потерь (TIFF, PNG).
+            </div>
+
+            <div class="interactive-block">
+                <h4>📷 Расчёт объёма цифрового фото</h4>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <div style="flex:1; min-width:100px;">
+                        <label for="photo-mp">Мегапиксели (Мп):</label>
+                        <input type="number" id="photo-mp" value="12" min="1" max="200" step="0.1">
+                    </div>
+                    <div style="flex:1; min-width:140px;">
+                        <label for="photo-format">Формат сжатия:</label>
+                        <select id="photo-format">
+                            <option value="bmp">BMP (без сжатия) — 24 бит</option>
+                            <option value="png">PNG (без потерь) — ~50%</option>
+                            <option value="jpg-hi" selected>JPEG (высокое кач-во) — ~10%</option>
+                            <option value="jpg-med">JPEG (среднее кач-во) — ~5%</option>
+                            <option value="jpg-low">JPEG (низкое кач-во) — ~2%</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn" onclick="calcPhotoVolume()">Рассчитать объём</button>
+                <div id="photo-volume-result" class="result-box"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

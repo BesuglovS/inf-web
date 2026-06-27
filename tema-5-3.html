@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3. Алгоритмические конструкции | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+<div class="header-top"><h1><a href="index.html">📘 Информатика 7–9 классы</a></h1><a href="index.html" class="home-link">🏠 Главная</a></div>
+<nav><ul><li><a href="7-klass.html">📗 7 класс</a></li><li><a href="8-klass.html">📘 8 класс</a></li><li><a href="9-klass.html">📕 9 класс</a></li></ul></nav>
+</header>
+<main>
+<h1 class="page-title">5.3. Алгоритмические конструкции</h1>
+<p class="page-subtitle">Раздел 5. Основы алгоритмизации и программирования (5 часов)</p>
+<div class="toc"><div class="toc-title">📋 Содержание темы:</div><ol><li><a href="#branch">Ветвление (if-elif-else)</a></li><li><a href="#for">Цикл for (со счётчиком)</a></li><li><a href="#while">Цикл while (с условием)</a></li><li><a href="#practical">Практические задачи</a></li></ol></div>
+<div class="card" id="branch"><h2 class="card-title">Ветвление (if-elif-else)</h2><h3>Условный оператор if</h3><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">if условие:
+    действие_1
+else:
+    действие_2</pre><h3>Пример:</h3><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">x = int(input('Введите число: '))
+if x &gt; 0:
+    print('Положительное')
+elif x &lt; 0:
+    print('Отрицательное')
+else:
+    print('Ноль')</pre><h3>Логические операторы:</h3><table><tr><th>Оператор</th><th>Описание</th></tr><tr><td><code>and</code></td><td>И (оба условия истинны)</td></tr><tr><td><code>or</code></td><td>ИЛИ (хотя бы одно истинно)</td></tr><tr><td><code>not</code></td><td>НЕ (отрицание)</td></tr></table></div><div class="card" id="for"><h2 class="card-title">Цикл for (со счётчиком)</h2><h3>Цикл for</h3><p>Используется, когда известно количество повторений.</p><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">for i in range(N):
+    print(i)</pre><h3>Функция range():</h3><table><tr><th>Вызов</th><th>Результат</th></tr><tr><td><code>range(5)</code></td><td>0, 1, 2, 3, 4</td></tr><tr><td><code>range(2, 6)</code></td><td>2, 3, 4, 5</td></tr><tr><td><code>range(1, 10, 2)</code></td><td>1, 3, 5, 7, 9</td></tr></table></div><div class="card" id="while"><h2 class="card-title">Цикл while (с условием)</h2><h3>Цикл while</h3><p>Выполняется, пока условие истинно.</p><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">i = 1
+while i &lt;= 5:
+    print(i)
+    i += 1</pre><div class="warning-box"><strong>Внимание:</strong> Убедитесь, что условие цикла когда-нибудь станет ложным, иначе возникнет бесконечный цикл!</div></div><div class="card" id="practical"><h2 class="card-title">Практические задачи</h2><div class="interactive-block"><h4>🧪 Тренажёр алгоритмических конструкций</h4><p>Мысленно выполните алгоритм:</p><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">s = 0
+for i in range(1, 6):
+    s = s + i
+print(s)</pre><p>Чему равно s? <button class="btn" onclick="document.getElementById('ans51').style.display='block'">Показать ответ</button></p><div id="ans51" class="result-box" style="display:none;">s = 15 (сумма чисел от 1 до 5)</div></div></div>
+</main>
+<footer><p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p><p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p></footer>
+<script src="js/scripts.js"></script>
+</body>
+</html>

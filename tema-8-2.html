@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.2. Информационная безопасность | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="page-title">8.2. Информационная безопасность</h1>
+        <p class="page-subtitle">Раздел 8. Коммуникационные технологии (5 часов)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#threats">Угрозы информационной безопасности</a></li>
+                <li><a href="#protection">Защита информации</a></li>
+                <li><a href="#crypto">Шифрование</a></li>
+                <li><a href="#safe">Безопасное поведение в сети</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="threats">
+            <h2 class="card-title">Угрозы информационной безопасности</h2>
+            <table>
+                <tr><th>Угроза</th><th>Описание</th></tr>
+                <tr><td><strong>Вирусы</strong></td><td>Вредоносные программы, самокопируются</td></tr>
+                <tr><td><strong>Фишинг</strong></td><td>Кража паролей через поддельные сайты</td></tr>
+                <tr><td><strong>Кибербуллинг</strong></td><td>Травля в Интернете</td></tr>
+                <tr><td><strong>Шпионское ПО</strong></td><td>Сбор данных о пользователе</td></tr>
+                <tr><td><strong>Программы-вымогатели</strong></td><td>Шифруют файлы и требуют выкуп</td></tr>
+            </table>
+        </div>
+
+        <div class="card" id="protection">
+            <h2 class="card-title">Защита информации</h2>
+            <h3>Основные меры защиты:</h3>
+            <ul class="content-list">
+                <li><strong>Антивирусное ПО</strong> — Kaspersky, Dr.Web, Avast</li>
+                <li><strong>Брандмауэр</strong> (файрвол) — контроль сетевого трафика</li>
+                <li><strong>Регулярные обновления</strong> — закрытие уязвимостей</li>
+                <li><strong>Резервное копирование</strong> — сохранение копий данных</li>
+                <li><strong>Сложные пароли</strong> — не менее 8 символов, буквы+цифры+символы</li>
+                <li><strong>Двухфакторная аутентификация</strong></li>
+            </ul>
+        </div>
+
+        <div class="card" id="crypto">
+            <h2 class="card-title">Шифрование</h2>
+            <p><strong>Шифрование</strong> — преобразование информации для скрытия от посторонних.</p>
+            <h3>Виды шифрования:</h3>
+            <ul class="content-list">
+                <li><strong>Симметричное</strong> — один ключ для шифрования и расшифровки</li>
+                <li><strong>Асимметричное</strong> — открытый и закрытый ключи</li>
+            </ul>
+            <p><strong>Электронная (цифровая) подпись</strong> — аналог собственноручной подписи, подтверждает авторство.</p>
+            <div class="interactive-block">
+                <h4>🔐 Простое шифрование (Шифр Цезаря)</h4>
+                <p style="font-size:0.9rem;">Введите текст и сдвиг:</p>
+                <input type="text" id="cipher-input" value="ПРИВЕТ" placeholder="Текст">
+                <input type="number" id="cipher-shift" value="3" min="1" max="33" style="width:70px;">
+                <button class="btn" onclick="caesarCipher()">Зашифровать</button>
+                <div id="cipher-result" class="result-box"></div>
+            </div>
+        </div>
+
+        <div class="card" id="safe">
+            <h2 class="card-title">Безопасное поведение в сети</h2>
+            <ul class="content-list">
+                <li>Не сообщайте личные данные незнакомцам</li>
+                <li>Не переходите по подозрительным ссылкам</li>
+                <li>Используйте разные пароли для разных сервисов</li>
+                <li>Не скачивайте файлы из непроверенных источников</li>
+                <li>Проверяйте безопасность сайта (https://)</li>
+                <li>Не открывайте вложения от неизвестных отправителей</li>
+                <li>Соблюдайте сетевой этикет</li>
+            </ul>
+            <div class="warning-box"><strong>Помните:</strong> В Интернете информация может оставаться навсегда. Думайте, прежде чем публиковать!</div>
+        </div>
+    </main>
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

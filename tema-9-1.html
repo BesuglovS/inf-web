@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.1. Массивы и строки | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="page-title">9.1. Массивы и строки</h1>
+        <p class="page-subtitle">Раздел 9. Алгоритмы и программирование (продолжение)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#arrays">Одномерные массивы</a></li>
+                <li><a href="#array_ops">Операции с массивами</a></li>
+                <li><a href="#sorting">Поиск и сортировка</a></li>
+                <li><a href="#strings">Обработка строк</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="arrays">
+            <h2 class="card-title">Одномерные массивы</h2>
+            <p><strong>Массив</strong> — это структура данных, хранящая набор элементов одного типа.</p>
+            <p>В Python массив реализуется с помощью <strong>списка</strong> (list).</p>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;"># Создание массива
+a = [1, 2, 3, 4, 5]
+
+# Доступ к элементам
+print(a[0])   # 1 (первый элемент)
+print(a[-1])  # 5 (последний элемент)
+
+# Длина массива
+n = len(a)    # 5</pre>
+            <h3>Способы создания массива:</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;"># Пустой массив
+a = []
+
+# Массив из N нулей
+n = 10
+a = [0] * n
+
+# Заполнение с клавиатуры
+a = [int(x) for x in input().split()]
+
+# Ввод N чисел
+n = int(input())
+a = []
+for i in range(n):
+    a.append(int(input()))</pre>
+        </div>
+
+        <div class="card" id="array_ops">
+            <h2 class="card-title">Операции с массивами</h2>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">a = [3, 1, 4, 1, 5]
+
+# Перебор элементов
+for x in a:
+    print(x)
+
+# Перебор с индексами
+for i in range(len(a)):
+    print(a[i])
+
+# Сумма элементов
+s = sum(a)
+
+# Максимум / минимум
+mx = max(a)
+mn = min(a)
+
+# Добавление элемента
+a.append(9)
+
+# Удаление по индексу
+a.pop(2)</pre>
+        </div>
+
+        <div class="card" id="sorting">
+            <h2 class="card-title">Поиск и сортировка</h2>
+            <h3>Линейный поиск:</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">a = [3, 1, 4, 1, 5, 9, 2, 6]
+x = 5
+found = False
+for i in range(len(a)):
+    if a[i] == x:
+        print(f'Найден на позиции {i}')
+        found = True
+        break</pre>
+
+            <h3>Сортировка:</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">a = [3, 1, 4, 1, 5, 9, 2, 6]
+
+# По возрастанию
+a.sort()
+
+# По убыванию
+a.sort(reverse=True)</pre>
+            <p><strong>Пузырьковая сортировка</strong> — простейший алгоритм сортировки (O(n²)).</p>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">for i in range(len(a)):
+    for j in range(len(a)-1-i):
+        if a[j] > a[j+1]:
+            a[j], a[j+1] = a[j+1], a[j]</pre>
+        </div>
+
+        <div class="card" id="strings">
+            <h2 class="card-title">Обработка строк</h2>
+            <p><strong>Строка</strong> — это последовательность символов. В Python строки неизменяемы.</p>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">s = "Привет, мир!"
+
+# Длина строки
+print(len(s))
+
+# Доступ по индексу
+print(s[0])     # П
+print(s[-1])    # !
+
+# Срез строки
+print(s[0:6])   # Привет
+
+# Поиск подстроки
+print(s.find("мир"))    # 8
+
+# Замена
+print(s.replace("мир", "Python"))</pre>
+            <h3>Полезные методы строк:</h3>
+            <table>
+                <tr><th>Метод</th><th>Описание</th></tr>
+                <tr><td><code>s.upper()</code></td><td>Верхний регистр</td></tr>
+                <tr><td><code>s.lower()</code></td><td>Нижний регистр</td></tr>
+                <tr><td><code>s.strip()</code></td><td>Удаление пробелов</td></tr>
+                <tr><td><code>s.split()</code></td><td>Разделение на части</td></tr>
+                <tr><td><code>' '.join(list)</code></td><td>Склеивание из списка</td></tr>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

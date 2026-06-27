@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.4. Обработка числовых данных | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="page-title">5.4. Обработка числовых данных</h1>
+        <p class="page-subtitle">Раздел 5. Основы алгоритмизации и программирования (3 часа)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#divisibility">Проверка делимости</a></li>
+                <li><a href="#minmax">Поиск максимума и минимума</a></li>
+                <li><a href="#sum">Вычисление суммы последовательности</a></li>
+                <li><a href="#digits">Выделение цифр числа</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="divisibility">
+            <h2 class="card-title">Проверка делимости</h2>
+            <p>В Python проверка делимости выполняется с помощью оператора <code>%</code> (остаток от деления). Если <code>a % b == 0</code>, то a делится на b без остатка.</p>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = int(input())
+if n % 2 == 0:
+    print('Чётное')
+else:
+    print('Нечётное')</pre>
+            <h3 class="section-subtitle">Проверка на простоту:</h3>
+            <p>Натуральное число называется <strong>простым</strong>, если оно имеет ровно два делителя: 1 и само себя.</p>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = int(input())
+is_prime = True
+for i in range(2, int(n**0.5) + 1):
+    if n % i == 0:
+        is_prime = False
+        break
+print('Простое' if is_prime else 'Составное')</pre>
+        </div>
+
+        <div class="card" id="minmax">
+            <h2 class="card-title">Поиск максимума и минимума</h2>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;"># Поиск максимума из N чисел
+max_val = int(input())
+for i in range(4):
+    x = int(input())
+    if x > max_val:
+        max_val = x
+print('Максимум:', max_val)</pre>
+            <p>Для поиска минимума замените <code>&gt;</code> на <code>&lt;</code>.</p>
+        </div>
+
+        <div class="card" id="sum">
+            <h2 class="card-title">Вычисление суммы последовательности</h2>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = int(input('Сколько чисел? '))
+s = 0
+for i in range(n):
+    x = int(input())
+    s += x
+print('Сумма:', s)</pre>
+            <h3 class="section-subtitle">Сумма цифр числа:</h3>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = int(input())
+s = 0
+while n > 0:
+    s += n % 10
+    n //= 10
+print('Сумма цифр:', s)</pre>
+        </div>
+
+        <div class="card" id="digits">
+            <h2 class="card-title">Выделение цифр числа</h2>
+            <p>Для выделения цифр числа используются операции <code>%</code> (остаток) и <code>//</code> (целочисленное деление).</p>
+            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = 12345
+while n > 0:
+    digit = n % 10   # последняя цифра
+    print(digit, end=' ')
+    n = n // 10        # отбрасываем последнюю цифру
+# Вывод: 5 4 3 2 1</pre>
+            <div class="info-box"><strong>Обратный порядок:</strong> Чтобы получить цифры в прямом порядке, можно сохранить их в список и перевернуть.</div>
+        </div>
+    </main>
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

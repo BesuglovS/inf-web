@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.2. Формулы, функции и диаграммы | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="page-title">7.2. Формулы, функции и диаграммы</h1>
+        <p class="page-subtitle">Раздел 7. Обработка числовой информации в электронных таблицах (7 часов)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#formulas">Формулы в электронных таблицах</a></li>
+                <li><a href="#functions">Встроенные функции</a></li>
+                <li><a href="#sort">Сортировка и фильтрация</a></li>
+                <li><a href="#charts">Диаграммы и визуализация</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="formulas">
+            <h2 class="card-title">Формулы в электронных таблицах</h2>
+            <p>Формула — это выражение, которое вычисляет значение ячейки. Все формулы начинаются с <strong>«=»</strong>.</p>
+            <h3 class="section-subtitle">Арифметические операторы:</h3>
+            <table>
+                <tr><th>Оператор</th><th>Действие</th><th>Пример</th></tr>
+                <tr><td>+</td><td>Сложение</td><td>=A1+B1</td></tr>
+                <tr><td>-</td><td>Вычитание</td><td>=A1-B1</td></tr>
+                <tr><td>*</td><td>Умножение</td><td>=A1*B1</td></tr>
+                <tr><td>/</td><td>Деление</td><td>=A1/B1</td></tr>
+                <tr><td>^</td><td>Возведение в степень</td><td>=A1^2</td></tr>
+            </table>
+        </div>
+
+        <div class="card" id="functions">
+            <h2 class="card-title">Встроенные функции</h2>
+            <p>Функция — это готовая формула для выполнения определённых операций.</p>
+            <h3 class="section-subtitle">Математические функции:</h3>
+            <table>
+                <tr><th>Функция</th><th>Назначение</th><th>Пример</th></tr>
+                <tr><td><strong>=СУММ()</strong></td><td>Сумма чисел</td><td>=СУММ(A1:A10)</td></tr>
+                <tr><td><strong>=МИН()</strong></td><td>Минимальное значение</td><td>=МИН(A1:A10)</td></tr>
+                <tr><td><strong>=МАКС()</strong></td><td>Максимальное значение</td><td>=МАКС(A1:A10)</td></tr>
+                <tr><td><strong>=СРЗНАЧ()</strong></td><td>Среднее арифметическое</td><td>=СРЗНАЧ(A1:A10)</td></tr>
+                <tr><td><strong>=СЧЁТ()</strong></td><td>Количество чисел</td><td>=СЧЁТ(A1:A10)</td></tr>
+            </table>
+            <h3 class="section-subtitle">Логические функции:</h3>
+            <p><strong>=ЕСЛИ(условие; значение_да; значение_нет)</strong> — выполняет проверку условия.</p>
+            <p><strong>Пример:</strong> =ЕСЛИ(A1>5; "Больше 5"; "Меньше или равно 5")</p>
+        </div>
+
+        <div class="card" id="sort">
+            <h2 class="card-title">Сортировка и фильтрация</h2>
+            <h3 class="section-subtitle">Сортировка:</h3>
+            <p>Упорядочивание данных по возрастанию или убыванию. Можно сортировать по одному или нескольким столбцам.</p>
+            <ul class="content-list">
+                <li><strong>По возрастанию:</strong> 1, 2, 3, ... или А, Б, В, ...</li>
+                <li><strong>По убыванию:</strong> 10, 9, 8, ...</li>
+            </ul>
+            <h3 class="section-subtitle">Фильтрация:</h3>
+            <p>Отбор данных, удовлетворяющих заданным условиям. Автофильтр позволяет показать только нужные строки.</p>
+        </div>
+
+        <div class="card" id="charts">
+            <h2 class="card-title">Диаграммы и визуализация</h2>
+            <p><strong>Диаграмма</strong> — это графическое представление числовых данных.</p>
+            <h3 class="section-subtitle">Типы диаграмм:</h3>
+            <table>
+                <tr><th>Тип</th><th>Назначение</th></tr>
+                <tr><td><strong>Гистограмма</strong></td><td>Сравнение значений в разных категориях</td></tr>
+                <tr><td><strong>Круговая</strong></td><td>Показывает доли частей в целом</td></tr>
+                <tr><td><strong>График</strong></td><td>Отображает изменение данных во времени</td></tr>
+                <tr><td><strong>Линейчатая</strong></td><td>Сравнение значений (горизонтальные столбцы)</td></tr>
+                <tr><td><strong>Точечная</strong></td><td>Показывает взаимосвязь между двумя переменными</td></tr>
+            </table>
+            <div class="info-box"><strong>Элементы диаграммы:</strong> заголовок, оси, легенда, подписи данных, сетка.</div>
+        </div>
+    </main>
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.2. Графы и табличные модели | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="page-title">6.2. Графы и табличные модели</h1>
+        <p class="page-subtitle">Раздел 6. Моделирование и формализация (5 часов)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#graphs">Графы и их элементы</a></li>
+                <li><a href="#types_graph">Виды графов</a></li>
+                <li><a href="#matrix">Матрица смежности</a></li>
+                <li><a href="#trees">Деревья решений</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="graphs">
+            <h2 class="card-title">Графы и их элементы</h2>
+            <p><strong>Граф</strong> — это совокупность вершин (узлов) и соединяющих их рёбер.</p>
+            <h3 class="section-subtitle">Основные понятия:</h3>
+            <table>
+                <tr><th>Понятие</th><th>Описание</th></tr>
+                <tr><td><strong>Вершина</strong> (узел)</td><td>Элемент графа, обозначающий объект</td></tr>
+                <tr><td><strong>Ребро</strong> (дуга)</td><td>Связь между двумя вершинами</td></tr>
+                <tr><td><strong>Путь</strong></td><td>Последовательность рёбер, соединяющая вершины</td></tr>
+                <tr><td><strong>Цикл</strong></td><td>Замкнутый путь (начало = конец)</td></tr>
+                <tr><td><strong>Степень вершины</strong></td><td>Количество рёбер, инцидентных вершине</td></tr>
+            </table>
+        </div>
+
+        <div class="card" id="types_graph">
+            <h2 class="card-title">Виды графов</h2>
+            <h3 class="section-subtitle">Ориентированный граф (орграф):</h3>
+            <p>Рёбра имеют направление, обозначаемое стрелками. Используется для представления односторонних связей.</p>
+            <p><strong>Пример:</strong> Схема дорог с односторонним движением.</p>
+
+            <h3 class="section-subtitle">Неориентированный граф:</h3>
+            <p>Рёбра не имеют направления. Связь между вершинами двусторонняя.</p>
+            <p><strong>Пример:</strong> Схема метро, социальные связи.</p>
+
+            <h3 class="section-subtitle">Взвешенный граф:</h3>
+            <p>Каждому ребру присвоено число — <strong>вес</strong> (расстояние, стоимость, время).</p>
+            <p><strong>Пример:</strong> Карта дорог с указанием расстояний между городами.</p>
+        </div>
+
+        <div class="card" id="matrix">
+            <h2 class="card-title">Матрица смежности</h2>
+            <p><strong>Матрица смежности</strong> — это таблица, которая описывает связи между вершинами графа.</p>
+            <p>Если в графе N вершин, матрица имеет размер N×N. Элемент a<sub>ij</sub> = 1, если есть ребро между вершинами i и j, иначе 0.</p>
+            <h3 class="section-subtitle">Пример матрицы смежности для 3 вершин:</h3>
+            <table>
+                <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+                <tr><td>A</td><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>B</td><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>C</td><td>1</td><td>0</td><td>0</td></tr>
+            </table>
+            <p>Этот граф имеет рёбра: A-B, A-C.</p>
+        </div>
+
+        <div class="card" id="trees">
+            <h2 class="card-title">Деревья решений</h2>
+            <p><strong>Дерево</strong> — это связный граф без циклов. В дереве между любыми двумя вершинами существует единственный путь.</p>
+            <p><strong>Дерево решений</strong> — граф, отображающий последовательность вариантов выбора.</p>
+            <div class="info-box"><strong>Пример:</strong> Задача о составлении обедов. Есть 2 супа (борщ, уха) и 3 вторых блюда (котлеты, рыба, курица). Дерево решений показывает 2 × 3 = 6 возможных комбинаций.</div>
+            <p><strong>Корень дерева</strong> — начальная вершина, <strong>листья</strong> — вершины без потомков.</p>
+        </div>
+    </main>
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

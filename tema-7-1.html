@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.1. Электронные таблицы | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="page-title">7.1. Электронные таблицы</h1>
+        <p class="page-subtitle">Раздел 7. Обработка числовой информации в электронных таблицах (7 часов)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#intro">Понятие электронной таблицы</a></li>
+                <li><a href="#interface">Интерфейс и основные элементы</a></li>
+                <li><a href="#data">Типы данных</a></li>
+                <li><a href="#addressing">Адресация ячеек</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="intro">
+            <h2 class="card-title">Понятие электронной таблицы</h2>
+            <p><strong>Электронная таблица</strong> (ЭТ) — это программа для обработки и визуализации числовых данных, организованных в виде таблицы.</p>
+            <p><strong>Примеры:</strong> Microsoft Excel, Google Sheets, LibreOffice Calc.</p>
+            <div class="info-box"><strong>Основное назначение:</strong> автоматизация вычислений, анализ данных, построение диаграмм, численное моделирование.</div>
+        </div>
+
+        <div class="card" id="interface">
+            <h2 class="card-title">Интерфейс и основные элементы</h2>
+            <table>
+                <tr><th>Элемент</th><th>Описание</th></tr>
+                <tr><td><strong>Ячейка</strong></td><td>Пересечение строки и столбца. Адрес: A1, B2, C3</td></tr>
+                <tr><td><strong>Строка</strong></td><td>Нумеруется числами (1, 2, 3, ...)</td></tr>
+                <tr><td><strong>Столбец</strong></td><td>Обозначается буквами (A, B, C, ..., Z, AA, AB, ...)</td></tr>
+                <tr><td><strong>Диапазон</strong></td><td>Группа ячеек. Обозначение: A1:B10</td></tr>
+                <tr><td><strong>Лист</strong></td><td>Отдельная страница рабочей книги</td></tr>
+                <tr><td><strong>Строка формул</strong></td><td>Панель для ввода и редактирования формул</td></tr>
+            </table>
+        </div>
+
+        <div class="card" id="data">
+            <h2 class="card-title">Типы данных в ячейках</h2>
+            <table>
+                <tr><th>Тип данных</th><th>Описание</th><th>Пример</th></tr>
+                <tr><td><strong>Число</strong></td><td>Целое или вещественное число</td><td>42, 3.14, -5</td></tr>
+                <tr><td><strong>Текст</strong></td><td>Строка символов</td><td>"Итого", "Название"</td></tr>
+                <tr><td><strong>Формула</strong></td><td>Выражение, начинающееся с =</td><td>=A1+B1</td></tr>
+                <tr><td><strong>Дата/время</strong></td><td>Календарная дата или время</td><td>01.01.2024</td></tr>
+            </table>
+            <div class="info-box"><strong>Важно:</strong> Формула всегда начинается со знака «=». В формуле можно использовать числа, ссылки на ячейки, функции и операторы.</div>
+        </div>
+
+        <div class="card" id="addressing">
+            <h2 class="card-title">Адресация ячеек</h2>
+            <h3 class="section-subtitle">Относительная адресация</h3>
+            <p><strong>A1</strong> — при копировании формулы адрес изменяется относительно нового положения.</p>
+            <p><strong>Пример:</strong> Если в ячейке C1 записана формула =A1+B1, то при копировании в C2 получим =A2+B2.</p>
+
+            <h3 class="section-subtitle">Абсолютная адресация</h3>
+            <p><strong>$A$1</strong> — при копировании адрес не изменяется.</p>
+            <p><strong>Пример:</strong> Формула =A1*$B$1 при копировании сохранит ссылку на B1.</p>
+
+            <h3 class="section-subtitle">Смешанная адресация</h3>
+            <p><strong>$A1</strong> — фиксирован столбец, <strong>A$1</strong> — фиксирована строка.</p>
+
+            <table>
+                <tr><th>Запись</th><th>Столбец</th><th>Строка</th></tr>
+                <tr><td>A1</td><td>Относительный</td><td>Относительная</td></tr>
+                <tr><td>$A$1</td><td>Абсолютный</td><td>Абсолютная</td></tr>
+                <tr><td>$A1</td><td>Абсолютный</td><td>Относительная</td></tr>
+                <tr><td>A$1</td><td>Относительный</td><td>Абсолютная</td></tr>
+            </table>
+
+            <div class="interactive-block">
+                <h4>🧮 Имитация адресации</h4>
+                <p style="font-size:0.9rem;">Введите формулу (например: A1+B1):</p>
+                <input type="text" id="formula-input" value="A1+B1" placeholder="Введите формулу">
+                <button class="btn" onclick="simulateAddressing()">Показать при копировании</button>
+                <div id="addressing-result" class="result-box"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

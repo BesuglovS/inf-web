@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.1 Текстовые документы | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+        <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">3.1. Текстовые документы</h1>
+        <p class="page-subtitle">Раздел 3. Информационные технологии (2 часа)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#textdoc">Текстовые документы и их виды</a></li>
+                <li><a href="#editors">Текстовые редакторы и процессоры</a></li>
+                <li><a href="#format">Форматирование текста</a></li>
+                <li><a href="#struct">Структура документа</a></li>
+                <li><a href="#insert">Вставка объектов</a></li>
+                <li><a href="#tools">Инструменты проверки и редактирования</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="textdoc">
+            <h2 class="card-title">Текстовые документы и их виды</h2>
+            <p><strong>Текстовый документ</strong> — это информация, представленная в текстовой форме и зафиксированная на носителе (бумажном или электронном).</p>
+
+            <h3 class="section-subtitle">Виды текстовых документов:</h3>
+            <ul class="content-list">
+                <li><strong>Простые</strong> — содержат только текст (блокнот, .txt)</li>
+                <li><strong>Форматированные</strong> — текст с оформлением (шрифты, цвета, стили) — .docx, .odt</li>
+                <li><strong>Гипертекстовые</strong> — веб-страницы (.html, .htm)</li>
+                <li><strong>Структурированные</strong> — статьи, рефераты, отчёты с оглавлением, списками, таблицами</li>
+            </ul>
+
+            <table>
+                <tr><th>Формат</th><th>Описание</th><th>Программа</th></tr>
+                <tr><td>.txt</td><td>Простой текст без форматирования</td><td>Блокнот</td></tr>
+                <tr><td>.docx</td><td>Документ Word (Open XML)</td><td>MS Word, LibreOffice</td></tr>
+                <tr><td>.odt</td><td>Open Document Text</td><td>LibreOffice, OpenOffice</td></tr>
+                <tr><td>.pdf</td><td>Portable Document Format</td><td>Adobe Acrobat, браузер</td></tr>
+                <tr><td>.rtf</td><td>Rich Text Format</td><td>WordPad, MS Word</td></tr>
+            </table>
+        </div>
+
+        <div class="card" id="editors">
+            <h2 class="card-title">Текстовые редакторы и процессоры</h2>
+            <p><strong>Текстовый редактор</strong> — программа для создания и редактирования текста (обычно простого).</p>
+            <p><strong>Текстовый процессор</strong> — более мощная программа, позволяющая форматировать текст, вставлять изображения, таблицы и другие объекты.</p>
+
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">Редакторы</div>
+                    <span class="scheme-label">Блокнот, Notepad++</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Процессоры</div>
+                    <span class="scheme-label">MS Word, LibreOffice Writer</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Онлайн-сервисы</div>
+                    <span class="scheme-label">Google Документы</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>Примеры:</strong> Microsoft Word, LibreOffice Writer, Google Документы, Блокнот, Notepad++, Sublime Text.
+            </div>
+        </div>
+
+        <div class="card" id="format">
+            <h2 class="card-title">Форматирование текста</h2>
+            <p><strong>Форматирование</strong> — это изменение внешнего вида текста без изменения его содержания.</p>
+
+            <h3 class="section-subtitle">Параметры форматирования символов:</h3>
+            <table>
+                <tr><th>Параметр</th><th>Описание</th><th>Пример</th></tr>
+                <tr><td>Шрифт</td><td>Гарнитура шрифта</td><td>Arial, Times New Roman, Courier New</td></tr>
+                <tr><td>Размер</td><td>Высота шрифта в пунктах (pt)</td><td>12 pt, 14 pt</td></tr>
+                <tr><td>Начертание</td><td>Обычный, полужирный, курсив, подчёркнутый</td><td><b>Ж</b> <i>К</i> <u>Ч</u></td></tr>
+                <tr><td>Цвет</td><td>Цвет текста</td><td><span style="color:#e74c3c;">Красный</span>, <span style="color:#2980b9;">Синий</span></td></tr>
+                <tr><td>Эффекты</td><td>Зачёркнутый, надстрочный, подстрочный</td><td><s>Зачёркнуто</s>, X², H₂O</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Параметры форматирования абзацев:</h3>
+            <ul class="content-list">
+                <li><strong>Выравнивание</strong> — по левому краю, по центру, по правому краю, по ширине</li>
+                <li><strong>Отступ первой строки (красная строка)</strong></li>
+                <li><strong>Междустрочный интервал</strong> — одинарный, полуторный, двойной</li>
+                <li><strong>Отступы слева и справа</strong></li>
+                <li><strong>Интервалы между абзацами</strong></li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Важно:</strong> При форматировании документа важно соблюдать <strong>единообразие</strong> — одинаковые элементы должны выглядеть одинаково. Для этого используются <strong>стили</strong>.
+            </div>
+        </div>
+
+        <div class="card" id="struct">
+            <h2 class="card-title">Структура документа</h2>
+            <p>Сложный текстовый документ обычно имеет следующую структуру:</p>
+
+            <ol class="content-list" style="margin-left:20px;">
+                <li><strong>Титульный лист</strong> — название работы, автор, дата</li>
+                <li><strong>Содержание (оглавление)</strong> — список разделов с номерами страниц</li>
+                <li><strong>Введение</strong> — цель и задачи работы</li>
+                <li><strong>Основная часть</strong> — разделы и подразделы с текстом, таблицами, изображениями</li>
+                <li><strong>Заключение</strong> — выводы по работе</li>
+                <li><strong>Список литературы</strong> — источники, использованные при написании</li>
+                <li><strong>Приложения</strong> — дополнительные материалы</li>
+            </ol>
+
+            <h3 class="section-subtitle">Нумерация страниц:</h3>
+            <p>Страницы документа нумеруются. Обычно номер страницы размещается в <strong>колонтитуле</strong> (верхнем или нижнем) и не указывается на титульной странице.</p>
+
+            <div class="info-box">
+                <strong>Колонтитулы</strong> — это области в верхней и нижней части страницы, содержащие повторяющуюся информацию (номер страницы, название раздела, дату).
+            </div>
+        </div>
+
+        <div class="card" id="insert">
+            <h2 class="card-title">Вставка объектов в текстовый документ</h2>
+            <p>Текстовый процессор позволяет вставлять в документ различные объекты:</p>
+
+            <table>
+                <tr><th>Объект</th><th>Назначение</th></tr>
+                <tr><td>📊 <strong>Таблица</strong></td><td>Представление данных в структурированном виде</td></tr>
+                <tr><td>🖼️ <strong>Изображение</strong></td><td>Иллюстрация текста (фото, рисунок, схема)</td></tr>
+                <tr><td>📐 <strong>Фигура</strong></td><td>Простые геометрические фигуры, стрелки, блок-схемы</td></tr>
+                <tr><td>📝 <strong>Надпись</strong></td><td>Текст в произвольном месте страницы</td></tr>
+                <tr><td>🔗 <strong>Гиперссылка</strong></td><td>Ссылка на веб-страницу или другой документ</td></tr>
+                <tr><td>📑 <strong>Сноска</strong></td><td>Примечание внизу страницы</td></tr>
+                <tr><td>📈 <strong>Диаграмма</strong></td><td>Графическое представление числовых данных</td></tr>
+            </table>
+        </div>
+
+        <div class="card" id="tools">
+            <h2 class="card-title">Инструменты проверки и редактирования</h2>
+
+            <h3 class="section-subtitle">Проверка орфографии и грамматики:</h3>
+            <ul class="content-list">
+                <li>Автоматическая проверка правописания (красное подчёркивание — ошибки)</li>
+                <li>Проверка грамматики и стиля (синее/зелёное подчёркивание)</li>
+                <li>Автозамена часто встречающихся опечаток</li>
+                <li>Расстановка переносов</li>
+            </ul>
+
+            <h3 class="section-subtitle">Полезные инструменты:</h3>
+            <ul class="content-list">
+                <li><strong>Поиск и замена</strong> — быстрое нахождение и замена слов или фраз</li>
+                <li><strong>Подсчёт слов</strong> — количество символов, слов, страниц</li>
+                <li><strong>Сохранение в разных форматах</strong> — .docx, .pdf, .txt, .html</li>
+                <li><strong>Рецензирование</strong> — отслеживание изменений, примечания (для совместной работы)</li>
+            </ul>
+
+            <div class="interactive-block">
+                <h4>🔍 Проверка читаемости текста (индекс удобочитаемости)</h4>
+                <p style="font-size:0.9rem;">Чтобы оценить, насколько сложен текст, можно использовать формулу:</p>
+                <div class="info-box" style="font-size:0.9rem;">
+                    <strong>Индекс Флеша-Кинкейда:</strong> 206.835 − 1.015 × (слова / предложения) − 84.6 × (слоги / слова)<br>
+                    <em>Высокий → легкий текст, Низкий → сложный текст</em>
+                </div>
+                <p style="font-size:0.9rem;">Введите текст для проверки:</p>
+                <textarea id="readability-text" rows="4" style="width:100%; border:1px solid var(--border); border-radius:6px; padding:8px; font-size:0.9rem; resize:vertical;">Информатика — это наука о методах и процессах сбора, хранения, обработки, передачи, анализа и оценки информации. Она изучает способы применения компьютерных технологий для решения различных задач.</textarea>
+                <button class="btn" onclick="checkReadability()">Проверить читаемость</button>
+                <div id="readability-result" class="result-box"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

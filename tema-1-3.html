@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.3 Компьютерные сети | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+        <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">1.3. Компьютерные сети</h1>
+        <p class="page-subtitle">Раздел 1. Цифровая грамотность (2 часа)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#net">Что такое компьютерная сеть?</a></li>
+                <li><a href="#internet">Интернет и Всемирная паутина</a></li>
+                <li><a href="#web">Веб-страницы и браузеры</a></li>
+                <li><a href="#search">Поиск информации в Интернете</a></li>
+                <li><a href="#email">Электронная почта</a></li>
+                <li><a href="#safety">Безопасность в сети</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="net">
+            <h2 class="card-title">Что такое компьютерная сеть?</h2>
+            <p><strong>Компьютерная сеть</strong> — это система, объединяющая несколько компьютеров для обмена данными и совместного использования ресурсов.</p>
+
+            <h3 class="section-subtitle">Виды сетей по охвату:</h3>
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">LAN</div>
+                    <span class="scheme-label">Локальная сеть<br>(здание, офис)</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">WAN</div>
+                    <span class="scheme-label">Глобальная сеть<br>(Интернет)</span>
+                </div>
+            </div>
+
+            <table>
+                <tr><th>Тип сети</th><th>Описание</th><th>Примеры</th></tr>
+                <tr><td><strong>LAN</strong> (Local Area Network)</td><td>Соединяет компьютеры в одном здании или на небольшой территории</td><td>Сеть в школе, офисе, дома</td></tr>
+                <tr><td><strong>WAN</strong> (Wide Area Network)</td><td>Объединяет компьютеры по всему миру</td><td>Интернет</td></tr>
+                <tr><td><strong>PAN</strong> (Personal Area Network)</td><td>Персональная сеть для подключения устройств одного пользователя</td><td>Bluetooth, Wi-Fi Direct</td></tr>
+            </table>
+
+            <div class="info-box">
+                <strong>Для работы сети необходимы:</strong> сетевые устройства (маршрутизаторы, коммутаторы), кабели или беспроводные соединения (Wi-Fi), сетевые протоколы (правила передачи данных).
+            </div>
+        </div>
+
+        <div class="card" id="internet">
+            <h2 class="card-title">Интернет и Всемирная паутина</h2>
+            <p><strong>Интернет</strong> — это глобальная компьютерная сеть, объединяющая миллионы устройств по всему миру.</p>
+            <p><strong>Всемирная паутина (World Wide Web, WWW)</strong> — это служба Интернета, позволяющая получать доступ к веб-страницам через гиперссылки.</p>
+
+            <h3 class="section-subtitle">Как устроен Интернет:</h3>
+            <ul class="content-list">
+                <li><strong>IP-адрес (IPv4)</strong> — уникальный адрес устройства в сети (например, 192.168.1.1)</li>
+                <li><strong>Доменное имя</strong> — удобное для запоминания имя сайта (например, yandex.ru)</li>
+                <li><strong>DNS-сервер</strong> — преобразует доменное имя в IP-адрес</li>
+                <li><strong>Протокол HTTP/HTTPS</strong> — правила передачи веб-страниц</li>
+            </ul>
+        </div>
+
+        <div class="card" id="ipv4">
+            <h2 class="card-title">IP-адрес (IPv4)</h2>
+            <p><strong>IP-адрес версии 4 (IPv4)</strong> — это уникальный 32-битный номер, который присваивается каждому устройству в компьютерной сети для его идентификации.</p>
+
+            <p>IP-адрес состоит из <strong>четырёх октетов</strong> (байтов), каждый октет — 8 бит. Всего <strong>32 бита</strong>.</p>
+
+            <h3 class="section-subtitle">Формы представления IP-адреса:</h3>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Форма записи</th><th>Пример</th><th>Описание</th></tr>
+                    <tr>
+                        <td><strong>Десятично-точечная</strong><br>(dotted decimal)</td>
+                        <td><code>192.168.1.1</code></td>
+                        <td>Основная форма. Каждый октет записывается десятичным числом от 0 до 255, октеты разделяются точками. Наиболее удобна для человека.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Двоичная</strong><br>(бинарная)</td>
+                        <td><code>11000000.10101000.00000001.00000001</code></td>
+                        <td>Каждый октет представлен 8 двоичными цифрами (битами). Именно в таком виде адрес «понимает» компьютер.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Шестнадцатеричная</strong></td>
+                        <td><code>C0.A8.01.01</code></td>
+                        <td>Каждый октет записывается двумя шестнадцатеричными цифрами. Используется в некоторых технических документах.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Десятичная (целочисленная)</strong></td>
+                        <td><code>3232235777</code></td>
+                        <td>Весь 32-битный адрес представлен одним десятичным числом. Вычисляется переводом всей двоичной последовательности в десятичную систему.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="section-subtitle">Как перевести IP-адрес из десятично-точечной формы в двоичную:</h3>
+            <ol class="content-list">
+                <li>Разделите адрес на 4 октета (по числу точек)</li>
+                <li>Каждое число от 0 до 255 переведите в 8-битный двоичный код</li>
+                <li>Запишите октеты через точку</li>
+            </ol>
+
+            <div class="interactive-block">
+                <h4>🧮 Конвертер IP-адреса (IPv4)</h4>
+                <p style="font-size:0.9rem;">Введите IP-адрес в десятично-точечной форме (например, 192.168.1.1):</p>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                    <input type="text" id="ip-input" value="192.168.1.1" style="flex:1; min-width:120px; padding:6px 10px; border:1px solid #ccc; border-radius:6px; font-family:monospace;">
+                    <button class="btn" onclick="convertIP()">Преобразовать</button>
+                </div>
+                <div id="ip-result" class="result-box" style="font-family:monospace;"></div>
+            </div>
+
+            <div class="info-box">
+                <strong>Важно:</strong> Всего в протоколе IPv4 существует около <strong>4,3 миллиарда</strong> (2³²) уникальных адресов. Из-за роста числа устройств адресов IPv4 стало не хватать, поэтому был разработан протокол IPv6 (128-битные адреса).
+            </div>
+        </div>
+
+        <div class="card" id="web">
+            <h2 class="card-title">Веб-страницы и браузеры</h2>
+            <p><strong>Веб-страница</strong> — это документ в Интернете, созданный на языке <strong>HTML</strong> (HyperText Markup Language).</p>
+            <p><strong>Веб-сайт</strong> — это совокупность связанных веб-страниц, объединённых общей темой.</p>
+            <p><strong>Браузер</strong> — программа для просмотра веб-страниц.</p>
+
+            <h3 class="section-subtitle">Популярные браузеры:</h3>
+            <ul class="content-list">
+                <li>Google Chrome</li>
+                <li>Mozilla Firefox</li>
+                <li>Microsoft Edge</li>
+                <li>Safari (на устройствах Apple)</li>
+                <li>Opera</li>
+                <li>Яндекс.Браузер</li>
+            </ul>
+
+            <h3 class="section-subtitle">Структура веб-адреса:</h3>
+            <div class="info-box">
+                <code>https://www.example.com/folder/page.html</code><br>
+                — <strong>https://</strong> — протокол<br>
+                — <strong>www.example.com</strong> — доменное имя сайта<br>
+                — <strong>/folder/page.html</strong> — путь к конкретной странице
+            </div>
+        </div>
+
+        <div class="card" id="search">
+            <h2 class="card-title">Поиск информации в Интернете</h2>
+            <p><strong>Поисковая система</strong> — это веб-сервис, который помогает находить информацию в Интернете по ключевым словам.</p>
+
+            <h3 class="section-subtitle">Популярные поисковые системы:</h3>
+            <ul class="content-list">
+                <li>Яндекс (yandex.ru)</li>
+                <li>Google (google.ru)</li>
+                <li>Bing (bing.com)</li>
+                <li>Mail.ru (go.mail.ru)</li>
+            </ul>
+
+            <h3 class="section-subtitle">Правила эффективного поиска:</h3>
+            <ul class="content-list">
+                <li>Формулируйте запрос чётко и конкретно</li>
+                <li>Используйте несколько ключевых слов</li>
+                <li>Для точной фразы используйте кавычки: <code>"информационные процессы"</code></li>
+                <li>Для исключения слов используйте минус: <code>компьютер -игры</code></li>
+                <li>Используйте фильтры поиска (по дате, типу файла, региону)</li>
+            </ul>
+        </div>
+
+        <div class="card" id="email">
+            <h2 class="card-title">Электронная почта</h2>
+            <p><strong>Электронная почта (e-mail)</strong> — это служба обмена сообщениями через Интернет.</p>
+
+            <h3 class="section-subtitle">Структура адреса электронной почты:</h3>
+            <div class="info-box" style="text-align:center; font-size:1.1rem;">
+                <strong>имя_пользователя</strong> @ <strong>домен</strong><br>
+                <span style="font-size:0.9rem;color:var(--text-light);">например: ivanov@mail.ru</span>
+            </div>
+
+            <h3 class="section-subtitle">Основные возможности e-mail:</h3>
+            <ul class="content-list">
+                <li>📧 Отправка и получение текстовых сообщений</li>
+                <li>📎 Прикрепление файлов (документов, изображений)</li>
+                <li>📁 Создание папок для сортировки писем</li>
+                <li>📋 Адресная книга для хранения контактов</li>
+                <li>🔍 Поиск по письмам</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Важно:</strong> Не открывайте письма и вложения от незнакомых отправителей — это может быть фишинговая атака!
+            </div>
+        </div>
+
+        <div class="card" id="safety">
+            <h2 class="card-title">Безопасность в сети</h2>
+
+            <h3 class="section-subtitle">Основные угрозы:</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Угроза</th><th>Описание</th><th>Как защититься</th></tr>
+                    <tr><td>Фишинг</td><td>Поддельные сайты, собирающие пароли</td><td>Проверять адрес сайта в строке браузера</td></tr>
+                    <tr><td>Кибербуллинг</td><td>Травля и оскорбления в сети</td><td>Не отвечать, заблокировать, сообщить взрослым</td></tr>
+                    <tr><td>Вредоносное ПО</td><td>Программы, наносящие вред</td><td>Использовать антивирус, не скачивать с подозрительных сайтов</td></tr>
+                    <tr><td>Кража личных данных</td><td>Мошенники получают доступ к аккаунтам</td><td>Использовать сложные пароли и двухфакторную аутентификацию</td></tr>
+                </table>
+            </div>
+
+            <h3 class="section-subtitle">Правила безопасного поведения в сети:</h3>
+            <ul class="content-list">
+                <li>Не сообщайте никому свои пароли</li>
+                <li>Не публикуйте личную информацию (адрес, телефон) в открытом доступе</li>
+                <li>Используйте разные пароли для разных сайтов</li>
+                <li>Будьте осторожны с незнакомцами в социальных сетях</li>
+                <li>Не переходите по подозрительным ссылкам</li>
+                <li>Соблюдайте <strong>сетевой этикет</strong>: уважайте собеседников, не распространяйте ложную информацию</li>
+                <li>Регулярно обновляйте программное обеспечение</li>
+            </ul>
+
+            <div class="danger-box">
+                <strong>Запомните:</strong> Если что-то в Интернете вызывает у вас беспокойство — сразу расскажите об этом родителям или учителю!
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

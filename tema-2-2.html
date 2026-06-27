@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.2 Представление информации | Информатика 7–9 классы</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+        <header>
+        <div class="header-top">
+            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
+            <a href="index.html" class="home-link">🏠 Главная</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="7-klass.html">📗 7 класс</a></li>
+                <li><a href="8-klass.html">📘 8 класс</a></li>
+                <li><a href="9-klass.html">📕 9 класс</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">2.2. Представление информации</h1>
+        <p class="page-subtitle">Раздел 2. Теоретические основы информатики (7 часов)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#alphabet">Алфавит и кодирование</a></li>
+                <li><a href="#binary">Двоичное кодирование</a></li>
+                <li><a href="#units">Единицы измерения информации</a></li>
+                <li><a href="#text">Кодирование текстовой информации</a></li>
+                <li><a href="#image">Кодирование графической информации</a></li>
+                <li><a href="#audio">Кодирование звуковой информации</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="alphabet">
+            <h2 class="card-title">Алфавит и кодирование</h2>
+            <p><strong>Алфавит</strong> — это конечный набор символов (знаков), используемых для представления информации.</p>
+            <p><strong>Мощность алфавита (N)</strong> — количество символов в алфавите.</p>
+            <p><strong>Кодирование</strong> — это преобразование информации из одной формы представления в другую.</p>
+
+            <h3 class="section-subtitle">Примеры алфавитов:</h3>
+            <table>
+                <tr><th>Алфавит</th><th>Символы</th><th>Мощность</th></tr>
+                <tr><td>Русский</td><td>А, Б, ..., Я (33 буквы)</td><td>33</td></tr>
+                <tr><td>Латинский</td><td>A, B, ..., Z (26 букв)</td><td>26</td></tr>
+                <tr><td>Десятичный</td><td>0, 1, 2, ..., 9</td><td>10</td></tr>
+                <tr><td>Двоичный</td><td>0, 1</td><td>2</td></tr>
+            </table>
+
+            <div class="info-box">
+                <strong>Важно:</strong> Чем больше мощность алфавита, тем больше информации несёт один символ.
+            </div>
+        </div>
+
+        <div class="card" id="binary">
+            <h2 class="card-title">Двоичное кодирование</h2>
+            <p>Компьютер использует <strong>двоичный алфавит</strong>, состоящий всего из двух символов: <strong>0</strong> и <strong>1</strong>.</p>
+            <p>Каждый символ двоичного алфавита называется <strong>бит</strong> (от англ. <em>binary digit</em> — двоичная цифра).</p>
+
+            <h3 class="section-subtitle">Почему именно двоичное кодирование?</h3>
+            <ul class="content-list">
+                <li>Два состояния легко реализовать технически: есть ток / нет тока, намагничено / не намагничено</li>
+                <li>Надёжность — два состояния легко различить</li>
+                <li>Простота вычислений — двоичная арифметика проще десятичной</li>
+            </ul>
+
+            <h3 class="section-subtitle">Двоичная система счисления</h3>
+            <p>Любое число можно представить в двоичном виде. Каждая позиция (разряд) — это степень числа 2:</p>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Степень</th><td>2⁷</td><td>2⁶</td><td>2⁵</td><td>2⁴</td><td>2³</td><td>2²</td><td>2¹</td><td>2⁰</td></tr>
+                    <tr><th>Значение</th><td>128</td><td>64</td><td>32</td><td>16</td><td>8</td><td>4</td><td>2</td><td>1</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>Пример:</strong> Число 13₁₀ = 1101₂ (1×8 + 1×4 + 0×2 + 1×1 = 8 + 4 + 0 + 1 = 13)
+            </div>
+        </div>
+
+        <div class="card" id="units">
+            <h2 class="card-title">Единицы измерения информации</h2>
+            <p><strong>Бит</strong> — минимальная единица измерения информации. Он может принимать значение 0 или 1.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Название</th><th>Обозначение</th><th>Значение</th><th>Примерный объём</th></tr>
+                    <tr><td>Бит</td><td>б</td><td>0 или 1</td><td>-</td></tr>
+                    <tr><td>Байт</td><td>Б</td><td>8 бит</td><td>1 символ текста</td></tr>
+                    <tr><td>Килобайт</td><td>Кбайт</td><td>1024 байта</td><td>1 страница текста</td></tr>
+                    <tr><td>Мегабайт</td><td>Мбайт</td><td>1024 Кбайта</td><td>1 книга (500 стр.)</td></tr>
+                    <tr><td>Гигабайт</td><td>Гбайт</td><td>1024 Мбайта</td><td>Фильм в HD-качестве</td></tr>
+                    <tr><td>Терабайт</td><td>Тбайт</td><td>1024 Гбайта</td><td>1000 фильмов</td></tr>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <strong>Запомните соотношения:</strong><br>
+                1 байт = 8 бит<br>
+                1 Кбайт = 1024 байта = 2¹⁰ байт<br>
+                1 Мбайт = 1024 Кбайта = 2²⁰ байт<br>
+                1 Гбайт = 1024 Мбайта = 2³⁰ байт
+            </div>
+
+            <div class="interactive-block">
+                <h4>🧮 Конвертер единиц информации</h4>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <div style="flex:1; min-width:200px;">
+                        <label for="convert-value">Значение:</label>
+                        <input type="number" id="convert-value" value="1" min="0" step="any">
+                    </div>
+                    <div style="flex:1; min-width:150px;">
+                        <label for="convert-from">Из:</label>
+                        <select id="convert-from">
+                            <option value="bit">Бит</option>
+                            <option value="byte" selected>Байт</option>
+                            <option value="kb">Кбайт</option>
+                            <option value="mb">Мбайт</option>
+                            <option value="gb">Гбайт</option>
+                        </select>
+                    </div>
+                    <div style="flex:1; min-width:150px;">
+                        <label for="convert-to">В:</label>
+                        <select id="convert-to">
+                            <option value="bit">Бит</option>
+                            <option value="byte">Байт</option>
+                            <option value="kb" selected>Кбайт</option>
+                            <option value="mb">Мбайт</option>
+                            <option value="gb">Гбайт</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn" onclick="convertInfoUnits()">Конвертировать</button>
+                <div id="convert-result" class="result-box"></div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>📝 Расчёт информационного объёма текста</h4>
+                <label for="text-input">Введите текст:</label>
+                <input type="text" id="text-input" placeholder="Например: Привет!" style="max-width:100%;">
+                <label for="encoding-select">Кодировка:</label>
+                <select id="encoding-select">
+                    <option value="utf8">ASCII / UTF-8 (1 байт на символ)</option>
+                    <option value="unicode">Unicode / UTF-16 (2 байта на символ)</option>
+                </select>
+                <button class="btn" onclick="calcTextVolume()">Рассчитать объём</button>
+                <div id="text-volume-result" class="result-box"></div>
+            </div>
+        </div>
+
+        <div class="card" id="text">
+            <h2 class="card-title">Кодирование текстовой информации</h2>
+            <p>Для кодирования текста каждому символу алфавита ставится в соответствие уникальный двоичный код.</p>
+
+            <h3 class="section-subtitle">Таблицы кодировки:</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Кодировка</th><th>Размер</th><th>Особенности</th></tr>
+                    <tr><td><strong>ASCII</strong></td><td>7 бит (128 символов)</td><td>Латинские буквы, цифры, знаки. Базовая кодировка.</td></tr>
+                    <tr><td><strong>Windows-1251</strong></td><td>8 бит (256 символов)</td><td>Поддерживает русские буквы.</td></tr>
+                    <tr><td><strong>Unicode (UTF-8)</strong></td><td>Переменная (1–4 байта)</td><td>Стандарт, поддерживающий все языки мира. Самая распространённая кодировка в Интернете.</td></tr>
+                    <tr><td><strong>Unicode (UTF-16)</strong></td><td>2 или 4 байта</td><td>Используется в Windows и Java.</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>Интересно:</strong> В кодировке ASCII буква 'A' имеет код 65₁₀ = 01000001₂, буква 'a' — 97₁₀ = 01100001₂. Разница — 32, что равно 2⁵.
+            </div>
+        </div>
+
+        <div class="card" id="image">
+            <h2 class="card-title">Кодирование графической информации</h2>
+            <p>Изображение на экране состоит из <strong>пикселей</strong> (picture element) — минимальных точек изображения.</p>
+
+            <h3 class="section-subtitle">Основные характеристики:</h3>
+            <ul class="content-list">
+                <li><strong>Разрешение</strong> — количество пикселей по ширине и высоте (например, 1920×1080)</li>
+                <li><strong>Глубина цвета</strong> — количество бит, отводимых на кодирование цвета одного пикселя</li>
+                <li><strong>Цветовая модель RGB</strong> — каждый цвет образуется смешением трёх базовых цветов: <span style="color:#e74c3c;">Red</span>, <span style="color:#27ae60;">Green</span>, <span style="color:#2980b9;">Blue</span></li>
+            </ul>
+
+            <h3 class="section-subtitle">Цветовые режимы:</h3>
+            <table>
+                <tr><th>Глубина цвета</th><th>Количество цветов</th><th>Описание</th></tr>
+                <tr><td>1 бит</td><td>2</td><td>Чёрно-белое изображение</td></tr>
+                <tr><td>8 бит</td><td>256</td><td>Индексированные цвета</td></tr>
+                <tr><td>16 бит</td><td>65 536</td><td>High Color</td></tr>
+                <tr><td>24 бита</td><td>16 777 216</td><td>True Color (8 бит на канал RGB)</td></tr>
+                <tr><td>32 бита</td><td>16 777 216 + альфа-канал</td><td>True Color с прозрачностью</td></tr>
+            </table>
+
+            <div class="info-box">
+                <strong>Формула объёма изображения:</strong><br>
+                V = Ширина × Высота × Глубина цвета (бит)
+            </div>
+
+            <div class="interactive-block">
+                <h4>🎨 RGB-палитра</h4>
+                <p style="font-size:0.9rem;">Перемещайте ползунки, чтобы увидеть, как из трёх базовых цветов образуются новые:</p>
+                <div>
+                    <label for="rgb-r">Red (R): <span id="rgb-r-val">0</span></label>
+                    <input type="range" class="rgb-slider" id="rgb-r" min="0" max="255" value="100" oninput="document.getElementById('rgb-r-val').textContent=this.value; updateRGB();">
+                </div>
+                <div>
+                    <label for="rgb-g">Green (G): <span id="rgb-g-val">0</span></label>
+                    <input type="range" class="rgb-slider" id="rgb-g" min="0" max="255" value="150" oninput="document.getElementById('rgb-g-val').textContent=this.value; updateRGB();">
+                </div>
+                <div>
+                    <label for="rgb-b">Blue (B): <span id="rgb-b-val">0</span></label>
+                    <input type="range" class="rgb-slider" id="rgb-b" min="0" max="255" value="200" oninput="document.getElementById('rgb-b-val').textContent=this.value; updateRGB();">
+                </div>
+                <div class="rgb-preview" id="rgb-preview"></div>
+                <div id="rgb-info">RGB(100, 150, 200) | HEX: #6496C8 | Глубина: 24 бит (8 бит на канал)</div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>🖼️ Расчёт объёма изображения</h4>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <div style="flex:1; min-width:120px;">
+                        <label for="img-width">Ширина (пиксели):</label>
+                        <input type="number" id="img-width" value="1920" min="1">
+                    </div>
+                    <div style="flex:1; min-width:120px;">
+                        <label for="img-height">Высота (пиксели):</label>
+                        <input type="number" id="img-height" value="1080" min="1">
+                    </div>
+                    <div style="flex:1; min-width:140px;">
+                        <label for="img-depth">Глубина цвета (бит):</label>
+                        <input type="number" id="img-depth" value="24" min="1" max="32">
+                    </div>
+                </div>
+                <button class="btn" onclick="calcImageVolume()">Рассчитать объём</button>
+                <div id="img-volume-result" class="result-box"></div>
+            </div>
+        </div>
+
+        <div class="card" id="audio">
+            <h2 class="card-title">Кодирование звуковой информации</h2>
+            <p>Звук — это волна. Для хранения в компьютере звуковой сигнал преобразуется в цифровую форму с помощью <strong>дискретизации</strong>.</p>
+
+            <h3 class="section-subtitle">Параметры оцифровки звука:</h3>
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">Частота дискретизации</div>
+                    <span class="scheme-label">Измерений в секунду (Гц)</span>
+                </div>
+                <div class="scheme-arrow">×</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Разрядность</div>
+                    <span class="scheme-label">Бит на измерение</span>
+                </div>
+                <div class="scheme-arrow">×</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Количество каналов</div>
+                    <span class="scheme-label">Моно / Стерео</span>
+                </div>
+            </div>
+
+            <table>
+                <tr><th>Параметр</th><th>Описание</th><th>Пример</th></tr>
+                <tr><td><strong>Частота дискретизации</strong></td><td>Количество измерений сигнала в секунду (Гц)</td><td>44100 Гц (качество CD)</td></tr>
+                <tr><td><strong>Разрядность</strong></td><td>Количество бит на одно измерение</td><td>16 бит, 24 бита</td></tr>
+                <tr><td><strong>Количество каналов</strong></td><td>Моно (1) или Стерео (2)</td><td>2 стерео</td></tr>
+            </table>
+
+            <div class="info-box">
+                <strong>Формула объёма звукового файла:</strong><br>
+                V = Частота × Разрядность × Каналы × Время (секунды)
+            </div>
+
+            <div class="interactive-block">
+                <h4>🎵 Расчёт объёма звукового файла</h4>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <div style="flex:1; min-width:130px;">
+                        <label for="audio-freq">Частота (Гц):</label>
+                        <input type="number" id="audio-freq" value="44100" min="8000" max="192000">
+                    </div>
+                    <div style="flex:1; min-width:130px;">
+                        <label for="audio-depth">Разрядность (бит):</label>
+                        <input type="number" id="audio-depth" value="16" min="8" max="32">
+                    </div>
+                    <div style="flex:1; min-width:100px;">
+                        <label for="audio-channels">Каналы:</label>
+                        <input type="number" id="audio-channels" value="2" min="1" max="8">
+                    </div>
+                    <div style="flex:1; min-width:100px;">
+                        <label for="audio-seconds">Время (с):</label>
+                        <input type="number" id="audio-seconds" value="60" min="1" max="3600">
+                    </div>
+                </div>
+                <button class="btn" onclick="calcAudioVolume()">Рассчитать объём</button>
+                <div id="audio-volume-result" class="result-box"></div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>📡 Расчёт скорости передачи данных</h4>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <div style="flex:1; min-width:130px;">
+                        <label for="speed-volume">Объём данных:</label>
+                        <input type="number" id="speed-volume" value="100" min="0.001" step="any">
+                    </div>
+                    <div style="flex:1; min-width:120px;">
+                        <label for="speed-unit">Единица:</label>
+                        <select id="speed-unit">
+                            <option value="bit">Бит</option>
+                            <option value="byte">Байт</option>
+                            <option value="kb" selected>Кбайт</option>
+                            <option value="mb">Мбайт</option>
+                        </select>
+                    </div>
+                    <div style="flex:1; min-width:100px;">
+                        <label for="speed-time">Время (с):</label>
+                        <input type="number" id="speed-time" value="10" min="0.1" step="any">
+                    </div>
+                </div>
+                <button class="btn" onclick="calcSpeed()">Рассчитать скорость</button>
+                <div id="speed-result" class="result-box"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
