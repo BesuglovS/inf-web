@@ -1,27 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2.1 Информация и информационные процессы | Информатика 7 класс</title>
+    <meta name="description" content="Понятие информации, виды информации, аналоговые и цифровые сигналы, хранение, передача и обработка данных. Свойства информации — теоретические основы информатики.">
+    <meta property="og:title" content="2.1 Информация и информационные процессы">
+    <meta property="og:description" content="Понятие информации, виды информации, хранение, передача и обработка данных. Свойства информации — теоретические основы информатики.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
         <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
+</header>
 
-    <main>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="7-klass.html">7 класс</a>
+            <span class="separator">/</span>
+            <span class="current">2.1 Информация и информационные процессы</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">2.1. Информация и информационные процессы</h1>
         <p class="page-subtitle">Раздел 2. Теоретические основы информатики (4 часа)</p>
 
@@ -30,10 +43,12 @@
             <ol>
                 <li><a href="#concept">Понятие информации</a></li>
                 <li><a href="#types">Виды информации</a></li>
+                <li><a href="#signals">Информация и сигна́лы</a></li>
                 <li><a href="#storage">Хранение информации</a></li>
                 <li><a href="#transfer">Передача информации</a></li>
                 <li><a href="#processing">Обработка информации</a></li>
                 <li><a href="#properties">Свойства информации</a></li>
+                <li><a href="#nature">Информация в природе</a></li>
             </ol>
         </div>
 
@@ -68,6 +83,36 @@
                 <li><strong>Видеоинформация</strong> — движущиеся изображения</li>
                 <li><strong>Комбинированная (мультимедиа)</strong> — сочетание разных форм</li>
             </ul>
+        </div>
+
+        <div class="card" id="signals">
+            <h2 class="card-title">Информация и сигна́лы</h2>
+            <p><strong>Сигна́л</strong> — это физический процесс, параметры которого несут информацию. Например, электрический ток в кабеле или свет в оптоволоконном кабеле — это сигналы, передающие данные.</p>
+
+            <h3 class="section-subtitle">Аналоговые и дискретные сигна́лы:</h3>
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">Аналоговый</div>
+                    <span class="scheme-label">Изменяется непрерывно</span>
+                </div>
+                <div class="scheme-arrow">vs</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Дискретный (цифровой)</div>
+                    <span class="scheme-label">Изменяется скачками</span>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Тип</th><th>Пример</th><th>Характеристика</th></tr>
+                    <tr><td><strong>Аналоговый</strong></td><td>Голос человека, звуковой файл</td><td>Принимает бесконечное число значений; точность зависит от прибора</td></tr>
+                    <tr><td><strong>Дискретный</strong></td><td>Текст в компьютере, MP3-файл</td><td>Принимает конечное число значений; точность определяется разрядностью</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>Для справки:</strong> Компьютер работает с дискретными (цифровыми) сигналами. Аналоговые сигналы (голос, музыка) преобразуются в цифровые с помощью <strong>АЦП (аналого-цифрового преобразователя)</strong>, а обратно — с помощью <strong>ЦАП</strong>.
+            </div>
         </div>
 
         <div class="card" id="storage">
@@ -130,16 +175,19 @@
 
         <div class="card" id="properties">
             <h2 class="card-title">Свойства информации</h2>
+
+            <h3 class="section-subtitle">Основные свойства:</h3>
             <div class="table-wrap">
                 <table>
-                    <tr><th>Свойство</th><th>Описание</th></tr>
-                    <tr><td><strong>Объективность</strong></td><td>Информация не зависит от чьего-либо мнения</td></tr>
-                    <tr><td><strong>Достоверность</strong></td><td>Информация отражает истинное положение дел</td></tr>
-                    <tr><td><strong>Полнота</strong></td><td>Информации достаточно для принятия решения</td></tr>
-                    <tr><td><strong>Актуальность</strong></td><td>Информация важна в данный момент времени</td></tr>
-                    <tr><td><strong>Понятность</strong></td><td>Информация выражена на языке, доступном получателю</td></tr>
-                    <tr><td><strong>Полезность</strong></td><td>Информация помогает достичь цели</td></tr>
-                    <tr><td><strong>Достоверность</strong></td><td>Информация получена из надёжного источника</td></tr>
+                    <tr><th>Свойство</th><th>Описание</th><th>Пример нарушения</th></tr>
+                    <tr><td><strong>Объективность</strong></td><td>Информация не зависит от чьего-либо мнения</td><td>Личное мнение выдаётся за факт</td></tr>
+                    <tr><td><strong>Достоверность</strong></td><td>Информация отражает истинное положение дел</td><td>Непроверенные данные в новостях</td></tr>
+                    <tr><td><strong>Полнота</strong></td><td>Информации достаточно для принятия решения</td><td>Частичные данные о погоде</td></tr>
+                    <tr><td><strong>Актуальность</strong></td><td>Информация важна в данный момент времени</td><td>Расписание прошлого года</td></tr>
+                    <tr><td><strong>Понятность</strong></td><td>Информация выражена на языке, доступном получателю</td><td>Научная статья для ребёнка</td></tr>
+                    <tr><td><strong>Полезность</strong></td><td>Информация помогает достичь цели</td><td>Случайные данные без связи с задачей</td></tr>
+                    <tr><td><strong>Доступность</strong></td><td>Информацию можно получить при необходимости</td><td>Данные за закрытым паролем</td></tr>
+                    <tr><td><strong>Ценность</strong></td><td>Информация представляет интерес для получателя</td><td>Данные, не имеющие отношения к задаче</td></tr>
                 </table>
             </div>
 
@@ -147,13 +195,52 @@
                 <strong>Запомните:</strong> Информация становится знанием только после её осмысления и проверки! Не вся информация в Интернете является достоверной.
             </div>
         </div>
+
+        <div class="card" id="nature">
+            <h2 class="card-title">Информация в природе</h2>
+            <p>Информация играет важнейшую роль в живой природе — от передачи сигналов между клетками до эволюции видов.</p>
+
+            <h3 class="section-subtitle">Примеры информационных процессов в природе:</h3>
+            <ul class="content-list">
+                <li><strong>Генетическая информация</strong> — ДНК содержит инструкции для построения организма. Это аналог «программы» живого существа.</li>
+                <li><strong>Нервные сигналы</strong> — организм передаёт информацию по нервным волокнам в виде электрических импульсов (дискретных сигналов).</li>
+                <li><strong>Животные сигналы</strong> — пчёлы «танцем» передают направление к цветам, птицы поют для привлечения партнёра.</li>
+                <li><strong>Эволюция</strong> — информация передаётся из поколения в поколение через гены. Мутации — это «ошибки» копирования информации.</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Интересный факт:</strong> В одной клетке человека содержится около 3 миллиардов пар нуклеотидов ДНК. Если растянуть ДНК одного человека, она составит approximately 2 метра — но упакована в клетку диаметром всего 6 микрометров!
+            </div>
+
+            <div class="warning-box">
+                <strong>Ключевая мысль:</strong> Информационные процессы — не только «изобретение» человека. Природа использует их миллиарды лет: передача, хранение, обработка и поиск информации происходят постоянно в каждом живом организме.
+            </div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="2-1"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="2-1">Отметить как изученное</button>
+        </div>
+        <div class="topic-nav">
+            <a href="tema-1-3.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">1.3 Компьютерные сети</span>
+            </a>
+            <a href="tema-2-2.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">2.2 Представление информации</span>
+            </a>
+        </div>
     </main>
 
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
-    </footer>
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

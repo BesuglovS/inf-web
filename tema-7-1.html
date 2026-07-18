@@ -1,26 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7.1. Электронные таблицы | Информатика 7–9 классы</title>
+    <meta name="description" content="Электронные таблицы — понятие, интерфейс, типы данных, адресация ячеек. Информатика 9 класс.">
+    <meta property="og:title" content="7.1. Электронные таблицы | Информатика 7–9 классы">
+    <meta property="og:description" content="Электронные таблицы — понятие, интерфейс, типы данных, адресация ячеек. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Электронные таблицы</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
         <h1 class="page-title">7.1. Электронные таблицы</h1>
         <p class="page-subtitle">Раздел 7. Обработка числовой информации в электронных таблицах (7 часов)</p>
 
@@ -31,6 +45,8 @@
                 <li><a href="#interface">Интерфейс и основные элементы</a></li>
                 <li><a href="#data">Типы данных</a></li>
                 <li><a href="#addressing">Адресация ячеек</a></li>
+                <li><a href="#format">Форматирование и условное форматирование</a></li>
+                <li><a href="#practice">Практические задания</a></li>
             </ol>
         </div>
 
@@ -95,11 +111,106 @@
                 <div id="addressing-result" class="result-box"></div>
             </div>
         </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="7-1"></div>
+
+        <div class="card" id="format">
+            <h2 class="card-title">Форматирование и условное форматирование</h2>
+
+            <h3 class="section-subtitle">Форматирование ячеек:</h3>
+            <table>
+                <tr><th>Параметр</th><th>Возможности</th></tr>
+                <tr><td><strong>Числовой формат</strong></td><td>Целые, дробные, денежные, проценты, даты</td></tr>
+                <tr><td><strong>Шрифт</strong></td><td>Название, размер, цвет, жирный, курсив, подчёркивание</td></tr>
+                <tr><td><strong>Выравнивание</strong></td><td>По горизонтали (влево/по центру/вправо), по вертикали</td></tr>
+                <tr><td><strong>Границы</strong></td><td>Обводка ячеек линиями</td></tr>
+                <tr><td><strong>Заливка</strong></td><td>Фоновый цвет ячеек</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Условное форматирование:</h3>
+            <p>Автоматическое изменение внешнего вида ячеек в зависимости от значений.</p>
+            <ul class="content-list">
+                <li><strong>Цветовая шкала</strong> — градиент цвета от минимального до максимального значения</li>
+                <li><strong>Набор значков</strong> — значки (стрелки, флажки, звёзды) в зависимости от условия</li>
+                <li><strong>Правила выделения</strong> — выделение ячеек больше/меньше заданного значения</li>
+            </ul>
+            <p><strong>Пример:</strong> Выделить красным все оценки «2», зелёным — все «5».</p>
+
+            <h3 class="section-subtitle">Валидация данных:</h3>
+            <p>Ограничение типа данных, которые можно ввести в ячейку:</p>
+            <ul class="content-list">
+                <li>Только целые числа от 1 до 100</li>
+                <li>Список допустимых значений (выпадающий список)</li>
+                <li>Дата в пределах определённого диапазона</li>
+                <li>Длина текста не более N символов</li>
+            </ul>
+        </div>
+
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задания</h2>
+
+            <div class="interactive-block">
+                <h4>Задание 1. Адресация</h4>
+                <p>В ячейке D2 записана формула <code>=A1+$B$2*C1</code>. Какая формула будет в D5 после копирования?</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;"><code>=A4+$B$2*C4</code> — A1→A4 (относительная), $B$2→$B$2 (абсолютная), C1→C4 (относительная).</div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 2. Типы данных</h4>
+                <p>Определите тип данных для каждого значения:</p>
+                <ol>
+                    <li>=СУММ(A1:A10)</li>
+                    <li>01.03.2024</li>
+                    <li>"Итого по классу"</li>
+                    <li>3,14159</li>
+                </ol>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <ol>
+                        <li>Формула</li>
+                        <li>Дата/время</li>
+                        <li>Текст</li>
+                        <li>Число (вещественное)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 3. Практическая задача</h4>
+                <p>Составьте таблицу успеваемости 5 учеников (Имя, Математика, Русский, Информатика, Средний балл). Какой формулой вычислить средний балл?</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <p>Формула среднего балла: <code>=СРЗНАЧ(B2:D2)</code> или <code>=(B2+C2+D2)/3</code></p>
+                    <p>Для автоматического заполнения — протяните формулу вниз на остальные строки.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="7-1"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="7-1">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-6-2.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">6.2 Графы</span>
+            </a>
+            <a href="tema-7-2.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">7.2 Формулы, функции и диаграммы</span>
+            </a>
+        </div>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

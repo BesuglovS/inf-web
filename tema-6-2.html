@@ -1,26 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>6.2. Графы и табличные модели | Информатика 7–9 классы</title>
+    <meta name="description" content="Графы и табличные модели — элементы графа, виды графов, матрица смежности, деревья решений. Информатика 9 класс.">
+    <meta property="og:title" content="6.2. Графы и табличные модели | Информатика 7–9 классы">
+    <meta property="og:description" content="Графы и табличные модели — элементы графа, виды графов, матрица смежности, деревья решений. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Графы и табличные модели</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
         <h1 class="page-title">6.2. Графы и табличные модели</h1>
         <p class="page-subtitle">Раздел 6. Моделирование и формализация (5 часов)</p>
 
@@ -31,6 +45,8 @@
                 <li><a href="#types_graph">Виды графов</a></li>
                 <li><a href="#matrix">Матрица смежности</a></li>
                 <li><a href="#trees">Деревья решений</a></li>
+                <li><a href="#algorithms">Алгоритмы на графах</a></li>
+                <li><a href="#practice">Практические задания</a></li>
             </ol>
         </div>
 
@@ -83,12 +99,133 @@
             <p><strong>Дерево решений</strong> — граф, отображающий последовательность вариантов выбора.</p>
             <div class="info-box"><strong>Пример:</strong> Задача о составлении обедов. Есть 2 супа (борщ, уха) и 3 вторых блюда (котлеты, рыба, курица). Дерево решений показывает 2 × 3 = 6 возможных комбинаций.</div>
             <p><strong>Корень дерева</strong> — начальная вершина, <strong>листья</strong> — вершины без потомков.</p>
+
+            <h3 class="section-subtitle">Свойства деревьев:</h3>
+            <ul class="content-list">
+                <li>Количество рёбер = количество вершин − 1</li>
+                <li>Между любыми двумя вершинами — ровно один путь</li>
+                <li>Добавление любого ребра создаёт цикл</li>
+                <li>Удаление любого ребра разрывает связность</li>
+            </ul>
+        </div>
+
+        <div class="card" id="algorithms">
+            <h2 class="card-title">Алгоритмы на графах</h2>
+
+            <h3 class="section-subtitle">Обход в ширину (BFS)</h3>
+            <p>Обходит граф «по уровням»: сначала все соседи начальной вершины, затем их соседи и т.д.</p>
+            <pre class="code-block">from collections import deque
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+    visited.add(start)
+    order = []
+
+    while queue:
+        vertex = queue.popleft()
+        order.append(vertex)
+        for neighbor in graph[vertex]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+    return order</pre>
+            <p><strong>Применение:</strong> поиск кратчайшего пути в невзвешенном графе, проверка связности.</p>
+
+            <h3 class="section-subtitle">Обход в глубину (DFS)</h3>
+            <p>Идёт «вглубь» по графу, пока не упрётся в тупик, затем возвращается.</p>
+            <pre class="code-block">def dfs(graph, vertex, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(vertex)
+    order = [vertex]
+    for neighbor in graph[vertex]:
+        if neighbor not in visited:
+            order.extend(dfs(graph, neighbor, visited))
+    return order</pre>
+            <p><strong>Применение:</strong> поиск циклов, проверка двусвязности, топологическая сортировка.</p>
+
+            <h3 class="section-subtitle">Алгоритм Дейкстры (кратчайший путь)</h3>
+            <p>Находит кратчайший путь от одной вершины до всех остальных во взвешенном графе с неотрицательными весами.</p>
+            <pre class="code-block">import heapq
+
+def dijkstra(graph, start):
+    distances = {v: float('inf') for v in graph}
+    distances[start] = 0
+    heap = [(0, start)]
+
+    while heap:
+        dist, vertex = heapq.heappop(heap)
+        if dist > distances[vertex]:
+            continue
+        for neighbor, weight in graph[vertex]:
+            new_dist = dist + weight
+            if new_dist < distances[neighbor]:
+                distances[neighbor] = new_dist
+                heapq.heappush(heap, (new_dist, neighbor))
+    return distances</pre>
+            <p><strong>Применение:</strong> навигаторы, маршрутизация сетевого трафика.</p>
+        </div>
+
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задания</h2>
+
+            <div class="interactive-block">
+                <h4>Задание 1. Построение графа</h4>
+                <p>По заданной матрице смежности постройте граф и определите степень каждой вершины:</p>
+                <table><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><td>A</td><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><td>B</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>C</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>D</td><td>0</td><td>1</td><td>1</td><td>0</td></tr></table>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">Степени: A=2, B=2, C=2, D=2. Граф является циклическим: A-B-D-C-A.</div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 2. Дерево решений</h4>
+                <p>Составьте дерево решений для задачи: За обед можно выбрать один из 2 супов и одно из 3 горячих блюд. Сколько различных комбинаций обеда возможно?</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">2 × 3 = 6 различных комбинаций. Корень дерева → 2 ветви (супы) → от каждой ветви по 3 ветви (горячие блюда) → 6 листьев (комбинаций).</div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 3. Кратчайший путь</h4>
+                <p>По таблице расстояний найдите кратчайший путь из Москвы в Казань (с возможной пересадкой в С-Петербурге).</p>
+                <table><tr><th></th><th>Москва</th><th>С-Петербург</th><th>Казань</th></tr><tr><td><strong>Москва</strong></td><td>0</td><td>700</td><td>820</td></tr><tr><td><strong>С-Петербург</strong></td><td>700</td><td>0</td><td>1 500</td></tr><tr><td><strong>Казань</strong></td><td>820</td><td>1 500</td><td>0</td></tr></table>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">Прямой путь: 820 км. Через С-Петербург: 700 + 1 500 = 2 200 км. Кратчайший: <strong>прямой — 820 км</strong>.</div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 4. Матрица смежности → список рёбер</h4>
+                <p>Преобразуйте матрицу смежности в список рёбер:</p>
+                <table><tr><th></th><th>1</th><th>2</th><th>3</th></tr><tr><td><strong>1</strong></td><td>0</td><td>1</td><td>1</td></tr><tr><td><strong>2</strong></td><td>1</td><td>0</td><td>1</td></tr><tr><td><strong>3</strong></td><td>1</td><td>1</td><td>0</td></tr></table>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">Рёбра: (1-2), (1-3), (2-3). Это полный граф K₃ (треугольник).</div>
+            </div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="6-2"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="6-2">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-6-1.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">6.1 Моделирование</span>
+            </a>
+            <a href="tema-7-1.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">7.1 Электронные таблицы</span>
+            </a>
         </div>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

@@ -1,27 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.3 Компьютерные сети | Информатика 7–9 классы</title>
+    <meta name="description" content="Компьютерные сети, Интернет, IP-адреса, DNS, веб-страницы, браузеры, поиск информации, электронная почта, мессенджеры, безопасность и сетевой этикет.">
+    <meta property="og:title" content="1.3 Компьютерные сети">
+    <meta property="og:description" content="Компьютерные сети, Интернет, IP-адреса, веб-страницы, поисковые системы, электронная почта и безопасность в сети.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
         <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
+</header>
 
-    <main>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="7-klass.html">7 класс</a>
+            <span class="separator">/</span>
+            <span class="current">1.3 Компьютерные сети</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">1.3. Компьютерные сети</h1>
         <p class="page-subtitle">Раздел 1. Цифровая грамотность (2 часа)</p>
 
@@ -30,9 +43,13 @@
             <ol>
                 <li><a href="#net">Что такое компьютерная сеть?</a></li>
                 <li><a href="#internet">Интернет и Всемирная паутина</a></li>
+                <li><a href="#ipv4">IP-адрес (IPv4)</a></li>
+                <li><a href="#dns">Доменная система имён (DNS)</a></li>
                 <li><a href="#web">Веб-страницы и браузеры</a></li>
                 <li><a href="#search">Поиск информации в Интернете</a></li>
                 <li><a href="#email">Электронная почта</a></li>
+                <li><a href="#communications">Сервисы Интернет-коммуникаций</a></li>
+                <li><a href="#netiquette">Сетевой этикет</a></li>
                 <li><a href="#safety">Безопасность в сети</a></li>
             </ol>
         </div>
@@ -78,6 +95,18 @@
                 <li><strong>DNS-сервер</strong> — преобразует доменное имя в IP-адрес</li>
                 <li><strong>Протокол HTTP/HTTPS</strong> — правила передачи веб-страниц</li>
             </ul>
+
+            <h3 class="section-subtitle">Структура URL-адреса:</h3>
+            <div class="info-box">
+                <code>https://www.example.com/folder/page.html</code><br>
+                — <strong>https://</strong> — протокол (HTTPS = защищённый)<br>
+                — <strong>www.example.com</strong> — доменное имя сервера<br>
+                — <strong>/folder/page.html</strong> — путь к конкретной странице на сервере
+            </div>
+
+            <div class="info-box">
+                <strong>Историческая справка:</strong> Интернет зародился в 1969 году как проект ARPANET, объединявший всего 4 университета США. Сегодня в Интернете более 5 миллиардов пользователей.
+            </div>
         </div>
 
         <div class="card" id="ipv4">
@@ -133,6 +162,49 @@
 
             <div class="info-box">
                 <strong>Важно:</strong> Всего в протоколе IPv4 существует около <strong>4,3 миллиарда</strong> (2³²) уникальных адресов. Из-за роста числа устройств адресов IPv4 стало не хватать, поэтому был разработан протокол IPv6 (128-битные адреса).
+            </div>
+        </div>
+
+        <div class="card" id="dns">
+            <h2 class="card-title">Доменная система имён (DNS)</h2>
+            <p><strong>DNS (Domain Name System)</strong> — система, которая преобразует удобные для человека доменные имена (например, yandex.ru) в IP-адреса, которые понимает компьютер.</p>
+
+            <h3 class="section-subtitle">Иерархия доменов:</h3>
+            <p>Домены имеют иерархическую структуру:</p>
+
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">.ru, .com, .org</div>
+                    <span class="scheme-label">Домены верхнего уровня</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">yandex.ru, mail.ru</div>
+                    <span class="scheme-label">Домены второго уровня</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">mail.yandex.ru</div>
+                    <span class="scheme-label">Домены третьего уровня</span>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Домены верхнего уровня:</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Тип</th><th>Домен</th><th>Значение</th></tr>
+                    <tr><td><strong>Административные</strong></td><td>.gov</td><td>Государственные организации</td></tr>
+                    <tr><td></td><td>.edu</td><td>Образовательные учреждения</td></tr>
+                    <tr><td></td><td>.org</td><td>Некоммерческие организации</td></tr>
+                    <tr><td></td><td>.com</td><td>Коммерческие организации</td></tr>
+                    <tr><td><strong>Географические</strong></td><td>.ru, .рф</td><td>Россия</td></tr>
+                    <tr><td></td><td>.by</td><td>Беларусь</td></tr>
+                    <tr><td></td><td>.de</td><td>Германия</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>Как работает DNS:</strong> Когда вы вводите <code>yandex.ru</code> в браузере, компьютер отправляет запрос на DNS-сервер, который возвращает IP-адрес Яндекса. Без DNS пришлось бы запоминать числовые адреса всех сайтов!
             </div>
         </div>
 
@@ -207,42 +279,114 @@
             </div>
         </div>
 
+        <div class="card" id="communications">
+            <h2 class="card-title">Сервисы Интернет-коммуникаций</h2>
+            <p>Помимо поиска информации, Интернет предоставляет множество способов общения:</p>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Сервис</th><th>Описание</th><th>Примеры</th></tr>
+                    <tr><td><strong>Электронная почта</strong></td><td>Обмен письмами и файлами</td><td>Mail.ru, Gmail, Яндекс.Почта</td></tr>
+                    <tr><td><strong>Мессенджеры</strong></td><td>Мгновенный обмен сообщениями</td><td>Telegram, WhatsApp, Discord</td></tr>
+                    <tr><td><strong>Видеоконференцсвязь</strong></td><td>Видео- и аудиозвонки, совместная работа</td><td>Zoom, Skype, Google Meet</td></tr>
+                    <tr><td><strong>Социальные сети</strong></td><td>Общение, обмен контентом, группы по интересам</td><td>ВКонтакте, Одноклассники</td></tr>
+                </table>
+            </div>
+
+            <h3 class="section-subtitle">Мессенджеры:</h3>
+            <p><strong>Мессенджер</strong> — приложение для мгновенного обмена текстовыми и голосовыми сообщениями, видеозвонков, пересылки файлов. Мессенджеры работают быстрее электронной почты и удобны для группового общения.</p>
+
+            <h3 class="section-subtitle">Видеоконференцсвязь:</h3>
+            <p><strong>Видеоконференцсвязь (ВКС)</strong> — технология видеосвязи, широко применяемая в дистанционном обучении. На онлайн-уроке вы можете отвечать на вопросы учителя, слушать объяснения, работать в группе и получать учебные материалы.</p>
+
+            <div class="info-box">
+                <strong>Важно:</strong> При регистрации в любой онлайн-сервисе vous создаёте <strong>аккаунт</strong> (учётную запись) — указываете <strong>логин</strong> (имя пользователя) и <strong>пароль</strong>. Логин и пароль — ключи от вашего аккаунта!
+            </div>
+        </div>
+
+        <div class="card" id="netiquette">
+            <h2 class="card-title">Сетевой этикет (netiquette)</h2>
+            <p><strong>Сетевой этикет</strong> — это правила поведения в Интернете, которые помогают общаться вежливо и эффективно.</p>
+
+            <h3 class="section-subtitle">Основные правила:</h3>
+            <ul class="content-list">
+                <li>Идентифицируйте себя — представляйтесь при первом обращении</li>
+                <li>Знайте и уважайте своего адресата</li>
+                <li>Пишите грамотно и кратко, давайте чёткий ответ на вопрос</li>
+                <li>Не используйте КАПС (заглавные буквы) — это воспринимается как крик</li>
+                <li>Не отправляйте спам (рассылку ненужных сообщений)</li>
+                <li>Уважайте авторское право — не копируйте чужие работы без ссылки</li>
+                <li>Не публикуйте личную информацию других людей без их разрешения</li>
+                <li>Будьте терпимы к различиям во мнениях</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Запомните:</strong> В Интернете вы не анонимны — ваши сообщения могут быть сохранены и использованы против вас. Относитесь к своим словам в сети так же ответственно, как и в реальной жизни.
+            </div>
+        </div>
+
         <div class="card" id="safety">
             <h2 class="card-title">Безопасность в сети</h2>
+
+            <h3 class="section-subtitle">Правила формирования пароля:</h3>
+            <ul class="content-list">
+                <li>Пароль должен содержать <strong>не менее 8 символов</strong></li>
+                <li>Используйте комбинацию букв, цифр и знаков препинания</li>
+                <li>Не используйте личные данные (дата рождения, имя питомца)</li>
+                <li>Не совпадайте пароль с логином</li>
+                <li>Используйте <strong>разные пароли</strong> для разных сайтов</li>
+            </ul>
 
             <h3 class="section-subtitle">Основные угрозы:</h3>
             <div class="table-wrap">
                 <table>
                     <tr><th>Угроза</th><th>Описание</th><th>Как защититься</th></tr>
-                    <tr><td>Фишинг</td><td>Поддельные сайты, собирающие пароли</td><td>Проверять адрес сайта в строке браузера</td></tr>
-                    <tr><td>Кибербуллинг</td><td>Травля и оскорбления в сети</td><td>Не отвечать, заблокировать, сообщить взрослым</td></tr>
-                    <tr><td>Вредоносное ПО</td><td>Программы, наносящие вред</td><td>Использовать антивирус, не скачивать с подозрительных сайтов</td></tr>
-                    <tr><td>Кража личных данных</td><td>Мошенники получают доступ к аккаунтам</td><td>Использовать сложные пароли и двухфакторную аутентификацию</td></tr>
+                    <tr><td><strong>Фишинг</strong></td><td>Поддельные сайты, собирающие пароли</td><td>Проверять адрес сайта в строке браузера</td></tr>
+                    <tr><td><strong>Кибербуллинг</strong></td><td>Травля и оскорбления в сети</td><td>Не отвечать, заблокировать, сообщить взрослым</td></tr>
+                    <tr><td><strong>Вредоносное ПО</strong></td><td>Программы, наносящие вред</td><td>Антивирус, не скачивать с подозрительных сайтов</td></tr>
+                    <tr><td><strong>Кража данных</strong></td><td>Мошенники получают доступ к аккаунтам</td><td>Сложные пароли и двухфакторная аутентификация</td></tr>
                 </table>
             </div>
 
-            <h3 class="section-subtitle">Правила безопасного поведения в сети:</h3>
+            <h3 class="section-subtitle">Правила безопасного поведения:</h3>
             <ul class="content-list">
                 <li>Не сообщайте никому свои пароли</li>
                 <li>Не публикуйте личную информацию (адрес, телефон) в открытом доступе</li>
-                <li>Используйте разные пароли для разных сайтов</li>
-                <li>Будьте осторожны с незнакомцами в социальных сетях</li>
                 <li>Не переходите по подозрительным ссылкам</li>
-                <li>Соблюдайте <strong>сетевой этикет</strong>: уважайте собеседников, не распространяйте ложную информацию</li>
+                <li>Будьте осторожны с незнакомцами в социальных сетях</li>
                 <li>Регулярно обновляйте программное обеспечение</li>
+                <li>Соблюдайте <strong>сетевой этикет</strong>: уважайте собеседников</li>
             </ul>
 
             <div class="danger-box">
                 <strong>Запомните:</strong> Если что-то в Интернете вызывает у вас беспокойство — сразу расскажите об этом родителям или учителю!
             </div>
         </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="1-3"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="1-3">Отметить как изученное</button>
+        </div>
+        <div class="topic-nav">
+            <a href="tema-1-2.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">1.2 Программы и данные</span>
+            </a>
+            <a href="tema-2-1.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">2.1 Информация и информационные процессы</span>
+            </a>
+        </div>
     </main>
 
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
-    </footer>
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

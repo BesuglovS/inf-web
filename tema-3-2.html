@@ -1,27 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3.2 Компьютерная графика | Информатика 7–9 классы</title>
+    <meta name="description" content="Тема 3.2 — Компьютерная графика: растровая и векторная графика, цветовые модели RGB и CMYK, форматы графических файлов, графические редакторы, цифровое фото.">
+    <meta property="og:title" content="3.2 Компьютерная графика | Информатика 7–9 классы">
+    <meta property="og:description" content="Тема 3.2 — Компьютерная графика: растровая и векторная графика, цветовые модели RGB и CMYK, форматы графических файлов, графические редакторы, цифровое фото.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
         <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
+</header>
 
-    <main>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="7-klass.html">7 класс</a>
+            <span class="separator">/</span>
+            <span class="current">3.2. Компьютерная графика</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">3.2. Компьютерная графика</h1>
         <p class="page-subtitle">Раздел 3. Информационные технологии (3 часа)</p>
 
@@ -34,7 +47,9 @@
                 <li><a href="#models">Цветовые модели</a></li>
                 <li><a href="#formats">Форматы графических файлов</a></li>
                 <li><a href="#editors">Графические редакторы</a></li>
+                <li><a href="#layers">Слои в графическом редакторе</a></li>
                 <li><a href="#digital">Цифровое фото и обработка изображений</a></li>
+                <li><a href="#fractals">Фрактальные изображения</a></li>
             </ol>
         </div>
 
@@ -194,6 +209,35 @@
             </ul>
         </div>
 
+        <div class="card" id="layers">
+            <h2 class="card-title">Слои в графическом редакторе</h2>
+            <p><strong>Слой</strong> — это отдельный элемент изображения, который можно редактировать независимо от других.</p>
+
+            <h3 class="section-subtitle">Зачем нужны слои?</h3>
+            <ul class="content-list">
+                <li>Работа с элементами по отдельности, не затрагивая остальные</li>
+                <li>Легко перемещать, изменять размер и удалять отдельные элементы</li>
+                <li>Изменять порядок наложения элементов</li>
+                <li>Применять эффекты к отдельным частям изображения</li>
+                <li>Работать в группе — каждый участник отвечает за свой слой</li>
+            </ul>
+
+            <h3 class="section-subtitle">Типы слоёв:</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Тип</th><th>Описание</th></tr>
+                    <tr><td><strong>Фоновый</strong></td><td>Нижний слой, обычно заблокирован</td></tr>
+                    <tr><td><strong>Обычный</strong></td><td>Содержит изображения или рисунки</td></tr>
+                    <tr><td><strong>Текстовый</strong></td><td>Содержит текст (редактируемый)</td></tr>
+                    <tr><td><strong>Корректирующий</strong></td><td>Изменяет цвета и яркость нижележащих слоёв</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>Совет:</strong> Всегда давайте слоям осмысленные имена («Фон», «Текст», «Логотип») — это упрощает работу в сложных проектах.
+            </div>
+        </div>
+
         <div class="card" id="digital">
             <h2 class="card-title">Цифровое фото и обработка изображений</h2>
             <p>Цифровые фотографии создаются с помощью <strong>цифровых камер</strong> и <strong>смартфонов</strong>. Качество фото зависит от:</p>
@@ -241,13 +285,51 @@
                 <div id="photo-volume-result" class="result-box"></div>
             </div>
         </div>
+
+        <div class="card" id="fractals">
+            <h2 class="card-title">Фрактальные изображения</h2>
+            <p><strong>Фрактал</strong> — это самоподобная фигура: её мелкие части по форме напоминают всю фигуру целиком. Фракталы строятся математическими формулами и создаются компьютером.</p>
+
+            <h3 class="section-subtitle">Свойства фракталов:</h3>
+            <ul class="content-list">
+                <li><strong>Самоподобие</strong> — часть фрактала похожа на целое</li>
+                <li><strong>Несложная формула</strong> — множество Мандельброта, множество Жюлиа строятся простыми итерациями</li>
+                <li><strong>Фрактальная размерность</strong> — не целое число (1 ≤ D ≤ 2)</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Примеры фракталов:</strong> Снежинка Коха, Треугольник Серпинского, Ковёр Серпинского, Множество Мандельброта. Фракталы используются в компьютерной графике для генерации реалистичных ландшафтов, облаков и деревьев.
+            </div>
+
+            <div class="warning-box">
+                <strong>Ключевая мысль:</strong> Фракталы — наглядный пример того, как из простых математических правил возникают сложные и красивые структуры. Природа тоже «использует» фракталы — ветви деревьев, береговые линии, облака.
+            </div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="3-2"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="3-2">Отметить как изученное</button>
+        </div>
+        <div class="topic-nav">
+            <a href="tema-3-1.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">3.1 Текстовые документы</span>
+            </a>
+            <a href="tema-3-3.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">3.3 Мультимедийные презентации</span>
+            </a>
+        </div>
     </main>
 
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
-    </footer>
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

@@ -1,81 +1,113 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Информатика 7–9 классы — Главная</title>
+    <meta name="description" content="Учебный сайт по информатике для 7–9 классов. Материалы по программированию, алгоритмам, электронным таблицам и информационной безопасности на основе ФРП.">
+    <meta name="keywords" content="информатика, 7 класс, 8 класс, 9 класс, программирование, Python, алгоритмы, ФГОС, учебный сайт">
+    <meta property="og:title" content="Информатика 7–9 классы — Учебный сайт">
+    <meta property="og:description" content="Учебный сайт по информатике для 7–9 классов на основе Федеральной рабочей программы (базовый уровень).">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inf-web.example.com/">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="canonical" href="https://inf-web.example.com/">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Информатика 7–9 классы",
+        "description": "Учебный сайт по информатике для 7–9 классов на основе Федеральной рабочей программы (базовый уровень).",
+        "provider": {
+            "@type": "Organization",
+            "name": "Информатика 7–9 классы"
+        },
+        "educationalLevel": "Основное общее образование",
+        "inLanguage": "ru",
+        "hasCourseInstance": [
+            {"@type": "CourseInstance", "name": "7 класс", "courseMode": "online"},
+            {"@type": "CourseInstance", "name": "8 класс", "courseMode": "online"},
+            {"@type": "CourseInstance", "name": "9 класс", "courseMode": "online"}
+        ]
+    }
+    </script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
+
     </header>
 
-    <main>
+    <main id="main-content">
         <div class="hero">
             <h2>Информатика. Основная школа (7–9 классы)</h2>
             <p>Учебный сайт по информатике для 7–9 классов. Материалы подготовлены на основе Федеральной рабочей программы основного общего образования (базовый уровень).</p>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:30px;">
-            
-            <div class="theme-card" style="text-align:center;padding:30px 20px;">
-                <div style="font-size:3rem;margin-bottom:10px;">📗</div>
-                <h3 style="font-size:1.4rem;margin-bottom:12px;">7 класс</h3>
-                <p style="color:var(--text-light);margin-bottom:8px;">34 часа</p>
-                <ul style="list-style:none;padding:0;text-align:left;font-size:0.9rem;color:var(--text-light);">
-                    <li>• Цифровая грамотность (8 ч)</li>
-                    <li>• Теоретические основы информатики (11 ч)</li>
-                    <li>• Информационные технологии (13 ч)</li>
-                </ul>
-                <br>
-                <a href="7-klass.html" class="btn">Перейти к темам</a>
-            </div>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
 
-            <div class="theme-card" style="text-align:center;padding:30px 20px;">
-                <div style="font-size:3rem;margin-bottom:10px;">📘</div>
-                <h3 style="font-size:1.4rem;margin-bottom:12px;">8 класс</h3>
-                <p style="color:var(--text-light);margin-bottom:8px;">34 часа</p>
-                <ul style="list-style:none;padding:0;text-align:left;font-size:0.9rem;color:var(--text-light);">
-                    <li>• Математические основы информатики (13 ч)</li>
-                    <li>• Основы алгоритмизации и программирования (19 ч)</li>
+        <div class="class-grid">
+            <a href="7-klass.html" class="theme-card class-card">
+                <div class="class-icon">7</div>
+                <h3>7 класс</h3>
+                <p class="class-hours">34 часа</p>
+                <ul class="section-list">
+                    <li>Цифровая грамотность (8 ч)</li>
+                    <li>Теоретические основы информатики (11 ч)</li>
+                    <li>Информационные технологии (13 ч)</li>
                 </ul>
-                <br>
-                <a href="8-klass.html" class="btn">Перейти к темам</a>
-            </div>
+            </a>
 
-            <div class="theme-card" style="text-align:center;padding:30px 20px;">
-                <div style="font-size:3rem;margin-bottom:10px;">📕</div>
-                <h3 style="font-size:1.4rem;margin-bottom:12px;">9 класс</h3>
-                <p style="color:var(--text-light);margin-bottom:8px;">34 часа</p>
-                <ul style="list-style:none;padding:0;text-align:left;font-size:0.9rem;color:var(--text-light);">
-                    <li>• Моделирование и формализация (10 ч)</li>
-                    <li>• Электронные таблицы (14 ч)</li>
-                    <li>• Коммуникационные технологии (10 ч)</li>
-                    <li>• Алгоритмы и программирование</li>
+            <a href="8-klass.html" class="theme-card class-card">
+                <div class="class-icon">8</div>
+                <h3>8 класс</h3>
+                <p class="class-hours">34 часа</p>
+                <ul class="section-list">
+                    <li>Математические основы информатики (13 ч)</li>
+                    <li>Основы алгоритмизации и программирования (19 ч)</li>
                 </ul>
-                <br>
-                <a href="9-klass.html" class="btn">Перейти к темам</a>
-            </div>
+            </a>
 
+            <a href="9-klass.html" class="theme-card class-card">
+                <div class="class-icon">9</div>
+                <h3>9 класс</h3>
+                <p class="class-hours">34 часа</p>
+                <ul class="section-list">
+                    <li>Моделирование и формализация (10 ч)</li>
+                    <li>Электронные таблицы (14 ч)</li>
+                    <li>Коммуникационные технологии (10 ч)</li>
+                    <li>Алгоритмы и программирование (продолжение)</li>
+                </ul>
+            </a>
         </div>
     </main>
 
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+
     <footer>
         <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | Учебный сайт</p>
+        <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
     </footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
 </body>
 </html>

@@ -1,27 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3.3 Мультимедийные презентации | Информатика 7 класс</title>
+    <meta name="description" content="Тема 3.3 — Мультимедийные презентации: понятие мультимедиа, компьютерные презентации, дизайн и структура, анимация и эффекты, правила создания презентаций.">
+    <meta property="og:title" content="3.3 Мультимедийные презентации | Информатика 7 класс">
+    <meta property="og:description" content="Тема 3.3 — Мультимедийные презентации: понятие мультимедиа, компьютерные презентации, дизайн и структура, анимация и эффекты, правила создания презентаций.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
         <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
+</header>
 
-    <main>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="7-klass.html">7 класс</a>
+            <span class="separator">/</span>
+            <span class="current">3.3. Мультимедийные презентации</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">3.3. Мультимедийные презентации</h1>
         <p class="page-subtitle">Раздел 3. Информационные технологии (3 часа)</p>
 
@@ -32,6 +45,8 @@
                 <li><a href="#present">Компьютерные презентации</a></li>
                 <li><a href="#design">Дизайн и структура презентации</a></li>
                 <li><a href="#effects">Анимация и эффекты</a></li>
+                <li><a href="#sound">Звук в презентациях</a></li>
+                <li><a href="#video">Видео в презентациях</a></li>
                 <li><a href="#rules">Правила создания презентации</a></li>
                 <li><a href="#tools">Инструменты для создания презентаций</a></li>
             </ol>
@@ -181,6 +196,83 @@
             </div>
         </div>
 
+        <div class="card" id="sound">
+            <h2 class="card-title">Звук в презентациях</h2>
+            <p>Звуковое сопровождение делает презентацию более живой и запоминающейся.</p>
+
+            <h3 class="section-subtitle">Форматы звуковых файлов:</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Формат</th><th>Сжатие</th><th>Особенности</th></tr>
+                    <tr><td><strong>MP3</strong></td><td>С потерями</td><td>Самый распространённый, малый размер</td></tr>
+                    <tr><td><strong>WAV</strong></td><td>Без сжатия</td><td>Высокое качество, большой размер</td></tr>
+                    <tr><td><strong>AAC</strong></td><td>С потерями</td><td>Лучшее качество, чем MP3, при том же размере</td></tr>
+                    <tr><td><strong>OGG</strong></td><td>С потерями</td><td>Бесплатный формат, хорошее качество</td></tr>
+                </table>
+            </div>
+
+            <h3 class="section-subtitle">Рекомендации:</h3>
+            <ul class="content-list">
+                <li>Используйте короткие звуковые фрагменты (5–15 секунд) для фона</li>
+                <li>Не перекрывайте звуком голос докладчика</li>
+                <li>Проверяйте громкость на месте выступления</li>
+                <li>Используйте формат MP3 для баланса качества и размера</li>
+            </ul>
+
+            <div class="interactive-block">
+                <h4>🎵 Калькулятор объёма звукового файла</h4>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <div style="flex:1; min-width:120px;">
+                        <label for="pres-sound-freq">Частота (Гц):</label>
+                        <input type="number" id="pres-sound-freq" value="44100" min="8000" max="192000">
+                    </div>
+                    <div style="flex:1; min-width:100px;">
+                        <label for="pres-sound-depth">Бит:</label>
+                        <input type="number" id="pres-sound-depth" value="16" min="8" max="32">
+                    </div>
+                    <div style="flex:1; min-width:100px;">
+                        <label for="pres-sound-ch">Каналы:</label>
+                        <input type="number" id="pres-sound-ch" value="2" min="1" max="8">
+                    </div>
+                    <div style="flex:1; min-width:100px;">
+                        <label for="pres-sound-dur">Время (с):</label>
+                        <input type="number" id="pres-sound-dur" value="10" min="1" max="3600">
+                    </div>
+                </div>
+                <button class="btn" onclick="calcPresSound()">Рассчитать объём</button>
+                <div id="pres-sound-result" class="result-box"></div>
+            </div>
+        </div>
+
+        <div class="card" id="video">
+            <h2 class="card-title">Видео в презентациях</h2>
+            <p>Видеоролики делают презентацию наглядной и убедительной.</p>
+
+            <h3 class="section-subtitle">Форматы видеофайлов:</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Формат</th><th>Особенности</th></tr>
+                    <tr><td><strong>MP4</strong></td><td>Самый распространённый, поддерживается всеми программами</td></tr>
+                    <tr><td><strong>WEBM</strong></td><td>Бесплатный формат, хорошо работает в вебе</td></tr>
+                    <tr><td><strong>AVI</strong></td><td>Старый формат, большой размер</td></tr>
+                    <tr><td><strong>MOV</strong></td><td>Формат Apple, хорошее качество</td></tr>
+                </table>
+            </div>
+
+            <h3 class="section-subtitle">Рекомендации:</h3>
+            <ul class="content-list">
+                <li>Видео должно быть коротким (1–2 минуты)</li>
+                <li>Используйте формат MP4 для максимальной совместимости</li>
+                <li>Разрешение — не более 1920×1080 (Full HD)</li>
+                <li>Проверяйте, что видео воспроизводится на компьютере, где будет выступление</li>
+                <li>Имейте ссылку на видео в Интернете на случай, если файл не откроется</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Совет:</strong> Вставляйте видео через меню «Вставка → Видео» в PowerPoint или Google Презентациях. Так оно будет частью презентации и не потребует отдельного проигрывателя.
+            </div>
+        </div>
+
         <div class="card" id="rules">
             <h2 class="card-title">Правила создания эффективной презентации</h2>
 
@@ -242,13 +334,31 @@
                 <strong>Совет:</strong> Для школьных проектов отлично подойдут <strong>Google Презентации</strong> (бесплатно, доступно с любого устройства) или <strong>Canva</strong> (красивые шаблоны, не требует установки).
             </div>
         </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="3-3"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="3-3">Отметить как изученное</button>
+        </div>
+        <div class="topic-nav">
+            <a href="tema-3-2.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">3.2 Компьютерная графика</span>
+            </a>
+            <a href="7-klass.html" class="nav-next">
+                <span class="nav-label">Все темы 7 класса &rarr;</span>
+                <span class="nav-title">7 класс — Оглавление</span>
+            </a>
+        </div>
     </main>
 
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
-    </footer>
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

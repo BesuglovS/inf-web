@@ -1,26 +1,39 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5.4. Обработка числовых данных | Информатика 7–9 классы</title>
+    <meta name="description" content="Обработка числовых данных в Python: проверка делимости, поиск максимума и минимума, сумма последовательности, выделение цифр числа, среднее арифметическое, типовые задачи ОГЭ.">
+    <meta property="og:title" content="5.4 Обработка числовых данных | Информатика 8 класс">
+    <meta property="og:description" content="Обработка числовых данных в Python: проверка делимости, поиск максимума и минимума, сумма последовательности, выделение цифр числа.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+    <a href="index.html">Главная</a>
+    <span class="separator">/</span>
+    <a href="8-klass.html">8 класс</a>
+    <span class="separator">/</span>
+    <span class="current">5.4 Обработка числовых данных</span>
+</nav>
+<div class="progress-text"></div>
+<div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">5.4. Обработка числовых данных</h1>
         <p class="page-subtitle">Раздел 5. Основы алгоритмизации и программирования (3 часа)</p>
 
@@ -31,73 +44,598 @@
                 <li><a href="#minmax">Поиск максимума и минимума</a></li>
                 <li><a href="#sum">Вычисление суммы последовательности</a></li>
                 <li><a href="#digits">Выделение цифр числа</a></li>
+                <li><a href="#average">Среднее арифметическое</a></li>
+                <li><a href="#sequences">Обработка последовательностей</a></li>
+                <li><a href="#oge">Типовые задачи ОГЭ</a></li>
+                <li><a href="#practice">Практические задания</a></li>
             </ol>
         </div>
 
+        <!-- 1. Проверка делимости -->
         <div class="card" id="divisibility">
             <h2 class="card-title">Проверка делимости</h2>
             <p>В Python проверка делимости выполняется с помощью оператора <code>%</code> (остаток от деления). Если <code>a % b == 0</code>, то a делится на b без остатка.</p>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = int(input())
+
+            <h3 class="section-subtitle">Оператор % (остаток от деления):</h3>
+            <table>
+                <tr><th>Выражение</th><th>Результат</th><th>Пояснение</th></tr>
+                <tr><td><code>10 % 3</code></td><td>1</td><td>10 = 3 × 3 + 1</td></tr>
+                <tr><td><code>15 % 5</code></td><td>0</td><td>15 делится на 5 без остатка</td></tr>
+                <tr><td><code>7 % 2</code></td><td>1</td><td>7 — нечётное число</td></tr>
+                <tr><td><code>100 % 10</code></td><td>0</td><td>Последняя цифра 100 — ноль</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Проверка на чётность и нечётность:</h3>
+            <pre class="code-block">n = int(input('Введите число: '))
 if n % 2 == 0:
-    print('Чётное')
+    print(n, '— чётное число')
 else:
-    print('Нечётное')</pre>
+    print(n, '— нечётное число')</pre>
+            <div class="info-box"><strong>Совет:</strong> Число чётное тогда и только тогда, когда оно делится на 2 без остатка, то есть <code>n % 2 == 0</code>.</div>
+
+            <h3 class="section-subtitle">Проверка делимости на несколько чисел:</h3>
+            <pre class="code-block">n = int(input('Введите число: '))
+if n % 3 == 0 and n % 5 == 0:
+    print('Делится и на 3, и на 5')
+elif n % 3 == 0:
+    print('Делится на 3')
+elif n % 5 == 0:
+    print('Делится на 5')
+else:
+    print('Не делится ни на 3, ни на 5')</pre>
+
             <h3 class="section-subtitle">Проверка на простоту:</h3>
-            <p>Натуральное число называется <strong>простым</strong>, если оно имеет ровно два делителя: 1 и само себя.</p>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = int(input())
+            <p>Натуральное число называется <strong>простым</strong>, если оно больше 1 и имеет ровно два делителя: 1 и само себя.</p>
+            <p>Для проверки достаточно перебрать делители от 2 до √n:</p>
+            <pre class="code-block">n = int(input('Введите число: '))
 is_prime = True
-for i in range(2, int(n**0.5) + 1):
-    if n % i == 0:
-        is_prime = False
-        break
-print('Простое' if is_prime else 'Составное')</pre>
+if n &lt;= 1:
+    is_prime = False
+else:
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            is_prime = False
+            break
+
+if is_prime:
+    print(n, '— простое число')
+else:
+    print(n, '— составное число')</pre>
+
+            <div class="warning-box"><strong>Почему до √n?</strong> Если у числа n есть делитель больше √n, то обязательно есть и делитель меньше √n. Поэтому достаточно проверить числа до √n. Это значительно ускоряет работу программы!</div>
+
+            <h3 class="section-subtitle">Таблица простых чисел от 2 до 50:</h3>
+            <p>2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47</p>
         </div>
 
+        <!-- 2. Поиск максимума и минимума -->
         <div class="card" id="minmax">
             <h2 class="card-title">Поиск максимума и минимума</h2>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;"># Поиск максимума из N чисел
-max_val = int(input())
-for i in range(4):
-    x = int(input())
+            <p>Для поиска максимального или минимального значения среди нескольких чисел используется алгоритм «текущий экстремум»: запоминаем первое число как предполагаемый максимум (минимум) и сравниваем с каждым следующим.</p>
+
+            <h3 class="section-subtitle">Поиск максимума из N чисел:</h3>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+max_val = int(input('Число 1: '))
+for i in range(1, n):
+    x = int(input(f'Число {i + 1}: '))
     if x > max_val:
         max_val = x
 print('Максимум:', max_val)</pre>
-            <p>Для поиска минимума замените <code>&gt;</code> на <code>&lt;</code>.</p>
-        </div>
 
-        <div class="card" id="sum">
-            <h2 class="card-title">Вычисление суммы последовательности</h2>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = int(input('Сколько чисел? '))
-s = 0
+            <h3 class="section-subtitle">Поиск минимума из N чисел:</h3>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+min_val = int(input('Число 1: '))
+for i in range(1, n):
+    x = int(input(f'Число {i + 1}: '))
+    if x &lt; min_val:
+        min_val = x
+print('Минимум:', min_val)</pre>
+
+            <div class="info-box"><strong>Схема алгоритма:</strong> 1) Считать первое число и запомнить его как текущий максимум. 2) Считать следующее число. 3) Если оно больше текущего максимума — обновить максимум. 4) Повторять шаги 2–3 для всех оставшихся чисел.</div>
+
+            <h3 class="section-subtitle">Поиск максимума и минимума одновременно:</h3>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+a = int(input('Число 1: '))
+max_val = a
+min_val = a
+for i in range(1, n):
+    x = int(input(f'Число {i + 1}: '))
+    if x > max_val:
+        max_val = x
+    if x &lt; min_val:
+        min_val = x
+print('Максимум:', max_val)
+print('Минимум:', min_val)</pre>
+
+            <h3 class="section-subtitle">Встроенные функции min() и max():</h3>
+            <p>Python предоставляет встроенные функции <code>min()</code> и <code>max()</code>, которые находят минимум и максимум:</p>
+            <pre class="code-block"># Через ввод
+n = int(input('Сколько чисел? '))
+numbers = []
 for i in range(n):
     x = int(input())
+    numbers.append(x)
+print('Максимум:', max(numbers))
+print('Минимум:', min(numbers))
+
+# Прямой вызов
+print(max(3, 7, 2, 9, 1))   # 9
+print(min(3, 7, 2, 9, 1))   # 2</pre>
+
+            <div class="warning-box"><strong>Важно:</strong> На экзамене по ОГЭ функции <code>min()</code> и <code>max()</code> обычно использовать нельзя — нужно показывать алгоритм поиска вручную с помощью цикла и условного оператора.</div>
+        </div>
+
+        <!-- 3. Вычисление суммы последовательности -->
+        <div class="card" id="sum">
+            <h2 class="card-title">Вычисление суммы последовательности</h2>
+            <p>Для вычисления суммы используется переменная-аккумулятор, которая изначально равна 0, а затем к ней прибавляется каждое число из последовательности.</p>
+
+            <h3 class="section-subtitle">Сумма N чисел:</h3>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+s = 0
+for i in range(n):
+    x = int(input(f'Число {i + 1}: '))
     s += x
 print('Сумма:', s)</pre>
+
             <h3 class="section-subtitle">Сумма цифр числа:</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = int(input())
+            <p>Чтобы найти сумму цифр числа, последовательно выделяем последнюю цифру операцией <code>% 10</code> и отбрасываем её операцией <code>// 10</code>:</p>
+            <pre class="code-block">n = int(input('Введите число: '))
 s = 0
 while n > 0:
     s += n % 10
     n //= 10
 print('Сумма цифр:', s)</pre>
+
+            <div class="info-box"><strong>Пример выполнения:</strong> Пусть n = 456. <br>
+            n=456 → s = 0+6 = 6, n = 45<br>
+            n=45 → s = 6+5 = 11, n = 4<br>
+            n=4 → s = 11+4 = 15, n = 0<br>
+            Результат: сумма цифр = 15</div>
+
+            <h3 class="section-subtitle">Произведение цифр числа:</h3>
+            <pre class="code-block">n = int(input('Введите число: '))
+p = 1
+while n > 0:
+    p *= n % 10
+    n //= 10
+print('Произведение цифр:', p)</pre>
+
+            <div class="warning-box"><strong>Внимание:</strong> При вычислении произведения переменная-аккумулятор должна быть равна 1, а не 0! Иначе результат всегда будет 0.</div>
+
+            <h3 class="section-subtitle">Количество чётных цифр числа:</h3>
+            <pre class="code-block">n = int(input('Введите число: '))
+k = 0
+while n > 0:
+    if n % 10 % 2 == 0:
+        k += 1
+    n //= 10
+print('Количество чётных цифр:', k)</pre>
         </div>
 
+        <!-- 4. Выделение цифр числа -->
         <div class="card" id="digits">
             <h2 class="card-title">Выделение цифр числа</h2>
             <p>Для выделения цифр числа используются операции <code>%</code> (остаток) и <code>//</code> (целочисленное деление).</p>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">n = 12345
+
+            <h3 class="section-subtitle">Классический способ — цифры в обратном порядке:</h3>
+            <pre class="code-block">n = 12345
 while n > 0:
     digit = n % 10   # последняя цифра
     print(digit, end=' ')
-    n = n // 10        # отбрасываем последнюю цифру
+    n = n // 10       # отбрасываем последнюю цифру
 # Вывод: 5 4 3 2 1</pre>
-            <div class="info-box"><strong>Обратный порядок:</strong> Чтобы получить цифры в прямом порядке, можно сохранить их в список и перевернуть.</div>
+
+            <p>Оператор <code>n % 10</code> возвращает последнюю цифру числа, а <code>n // 10</code> отбрасывает её.</p>
+
+            <div class="info-box"><strong>Почему цифры идут в обратном порядке?</strong> Операция <code>% 10</code> всегда извлекает последнюю цифру. Чтобы получить цифры в прямом порядке, нужно сначала определить количество цифр, а затем делить на соответствующую степень 10.</div>
+
+            <h3 class="section-subtitle">Цифры в прямом порядке:</h3>
+            <pre class="code-block">n = 12345
+
+# Сначала найдём количество цифр
+temp = n
+k = 0
+while temp > 0:
+    temp //= 10
+    k += 1
+
+# Теперь извлекаем цифры слева направо
+div = 10 ** (k - 1)
+while div > 0:
+    digit = n // div
+    print(digit, end=' ')
+    n = n % div
+    div //= 10
+# Вывод: 1 2 3 4 5</pre>
+
+            <h3 class="section-subtitle">Подсчёт количества цифр:</h3>
+            <pre class="code-block">n = int(input('Введите число: '))
+k = 0
+while n > 0:
+    n = n // 10
+    k += 1
+print('Количество цифр:', k)</pre>
+
+            <h3 class="section-subtitle">Перевёрнутое число:</h3>
+            <pre class="code-block">n = 12345
+reversed_n = 0
+while n > 0:
+    reversed_n = reversed_n * 10 + n % 10
+    n //= 10
+print('Перевёрнутое число:', reversed_n)
+# Вывод: 54321</pre>
+
+            <div class="warning-box"><strong>Важно:</strong> При перевороте числа, оканчивающегося на нули (например, 1200), результат будет без начальных нулей (21), потому что числа не хранят ведущие нули.</div>
+
+            <h3 class="section-subtitle">Проверка на палиндром:</h3>
+            <pre class="code-block">n = int(input('Введите число: '))
+original = n
+reversed_n = 0
+temp = n
+while temp > 0:
+    reversed_n = reversed_n * 10 + temp % 10
+    temp //= 10
+
+if original == reversed_n:
+    print('Число является палиндромом')
+else:
+    print('Число не является палиндромом')</pre>
         </div>
+
+        <!-- 5. Среднее арифметическое -->
+        <div class="card" id="average">
+            <h2 class="card-title">Среднее арифметическое</h2>
+            <p>Среднее арифметическое нескольких чисел — это их сумма, делённая на количество чисел:</p>
+            <p style="text-align:center; font-size:1.1em;"><strong>среднее = (a₁ + a₂ + … + aₙ) / n</strong></p>
+
+            <h3 class="section-subtitle">Среднее арифметическое N чисел:</h3>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+s = 0
+for i in range(n):
+    x = int(input(f'Число {i + 1}: '))
+    s += x
+average = s / n
+print('Среднее арифметическое:', average)</pre>
+
+            <h3 class="section-subtitle">Целочисленное и вещественное деление:</h3>
+            <p>В Python есть два оператора деления:</p>
+            <table>
+                <tr><th>Оператор</th><th>Название</th><th>Пример</th><th>Результат</th></tr>
+                <tr><td><code>/</code></td><td>Обычное деление</td><td><code>7 / 2</code></td><td>3.5</td></tr>
+                <tr><td><code>//</code></td><td>Целочисленное деление</td><td><code>7 // 2</code></td><td>3</td></tr>
+            </table>
+
+            <pre class="code-block"># Обычное деление — результат float
+print(10 / 3)    # 3.3333333333333335
+print(10 / 5)    # 2.0
+
+# Целочисленное деление — результат int
+print(10 // 3)   # 3
+print(10 // 5)   # 2</pre>
+
+            <div class="warning-box"><strong>Распространённая ошибка:</strong> При вычислении среднего арифметического целых чисел результат может быть дробным. Если использовать целочисленное деление <code>//</code>, дробная часть отбрасывается. Для точного результата используйте обычное деление <code>/</code>.</div>
+
+            <h3 class="section-subtitle">Среднее арифметическое чётных чисел:</h3>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+s = 0
+count = 0
+for i in range(n):
+    x = int(input(f'Число {i + 1}: '))
+    if x % 2 == 0:
+        s += x
+        count += 1
+if count > 0:
+    print('Среднее арифметическое чётных:', s / count)
+else:
+    print('Чётных чисел нет')</pre>
+
+            <div class="info-box"><strong>Схема вычисления среднего:</strong> 1) Инициализировать сумму s = 0 и счётчик count = 0. 2) Для каждого числа: если оно удовлетворяет условию, прибавить к s и увеличить count. 3) Результат = s / count. Не забудьте проверить, что count ≠ 0!</div>
+        </div>
+
+        <!-- 6. Обработка последовательностей -->
+        <div class="card" id="sequences">
+            <h2 class="card-title">Обработка последовательностей</h2>
+            <p>Последовательность чисел — это набор чисел, которые обрабатываются одно за другим. Рассмотрим типовые задачи обработки последовательностей.</p>
+
+            <h3 class="section-subtitle">Подсчёт элементов по признаку:</h3>
+            <p>Задача: подсчитать количество чисел, оканчивающихся на 3:</p>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+k = 0
+for i in range(n):
+    x = int(input(f'Число {i + 1}: '))
+    if x % 10 == 3:
+        k += 1
+print('Числа, оканчивающиеся на 3:', k)</pre>
+
+            <h3 class="section-subtitle">Нахождение первого и последнего элемента:</h3>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+first = int(input('Число 1: '))
+last = first
+for i in range(1, n):
+    x = int(input(f'Число {i + 1}: '))
+    last = x
+print('Первый элемент:', first)
+print('Последний элемент:', last)</pre>
+
+            <h3 class="section-subtitle">Паттерн «сигнальное значение» (sentinel value):</h3>
+            <p>Если количество чисел заранее неизвестно, используется «сигнальное значение» —特殊ое число, означающее конец ввода (например, 0 или -1):</p>
+            <pre class="code-block">k = 0
+a = int(input('Число (или 0 для окончания): '))
+while a != 0:
+    if a % 10 == 3:
+        k += 1
+    a = int(input('Число (или 0 для окончания): '))
+print('Числа, оканчивающиеся на 3:', k)</pre>
+
+            <div class="warning-box"><strong>Внимание:</strong> Сигнальное значение не должно входить в обрабатываемую последовательность! Если в последовательности могут встречаться нули, выберите другое сигнальное значение (например, -1).</div>
+
+            <h3 class="section-subtitle">Первое число, удовлетворяющее условию:</h3>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+found = False
+for i in range(n):
+    x = int(input(f'Число {i + 1}: '))
+    if not found and x % 7 == 0:
+        print('Первое число, делящееся на 7:', x)
+        found = True
+
+if not found:
+    print('Чисел, делящихся на 7, нет')</pre>
+
+            <h3 class="section-subtitle">Сумма чётных и произведение нечётных:</h3>
+            <pre class="code-block">n = int(input('Сколько чисел? '))
+sum_even = 0
+product_odd = 1
+has_odd = False
+for i in range(n):
+    x = int(input(f'Число {i + 1}: '))
+    if x % 2 == 0:
+        sum_even += x
+    else:
+        product_odd *= x
+        has_odd = True
+print('Сумма чётных:', sum_even)
+if has_odd:
+    print('Произведение нечётных:', product_odd)
+else:
+    print('Нечётных чисел нет')</pre>
+        </div>
+
+        <!-- 7. Типовые задачи ОГЭ -->
+        <div class="card" id="oge">
+            <h2 class="card-title">Типовые задачи ОГЭ</h2>
+            <p>Разберём несколько задач, которые часто встречаются в КИМ по информатике.</p>
+
+            <h3 class="section-subtitle">Задача 1. Трёхзначные числа, делящиеся на 3</h3>
+            <div class="info-box"><strong>Условие:</strong> Сколько существует трёхзначных чисел, которые делятся на 3?</div>
+            <pre class="code-block">count = 0
+for n in range(100, 1000):
+    if n % 3 == 0:
+        count += 1
+print('Количество:', count)
+# Результат: 300</pre>
+            <p><strong>Аналитическое решение:</strong> Первое трёхзначное число, делящееся на 3 — это 102. Последнее — 999. Таких чисел: (999 − 102) / 3 + 1 = 300.</p>
+
+            <h3 class="section-subtitle">Задача 2. Количество цифр в числе</h3>
+            <div class="info-box"><strong>Условие:</strong> Дано натуральное число N. Определите количество цифр в этом числе.</div>
+            <pre class="code-block">n = int(input('Введите число: '))
+k = 0
+while n > 0:
+    n = n // 10
+    k += 1
+print('Количество цифр:', k)</pre>
+            <p><strong>Пример:</strong> n = 58349. Цикл: 58349 → 5834 → 583 → 58 → 5 → 0. Результат: 5 цифр.</p>
+
+            <h3 class="section-subtitle">Задача 3. Проверка на палиндром</h3>
+            <div class="info-box"><strong>Условие:</strong> Дано натуральное число. Является ли оно палиндромом (читается одинаково слева направо и справа налево)?</div>
+            <pre class="code-block">n = int(input('Введите число: '))
+original = n
+reversed_n = 0
+temp = n
+while temp > 0:
+    reversed_n = reversed_n * 10 + temp % 10
+    temp //= 10
+
+if original == reversed_n:
+    print('Является палиндромом')
+else:
+    print('Не является палиндромом')</pre>
+            <p><strong>Пример:</strong> n = 1221. Переворот: 1→12→122→1221. 1221 == 1221 → палиндром.<br>
+            n = 1234. Переворот: 4→43→432→4321. 1234 ≠ 4321 → не палиндром.</p>
+
+            <h3 class="section-subtitle">Задача 4. Первая цифра числа</h3>
+            <div class="info-box"><strong>Условие:</strong> Дано натуральное число. Найдите его первую (старшую) цифру.</div>
+            <pre class="code-block">n = int(input('Введите число: '))
+while n >= 10:
+    n = n // 10
+print('Первая цифра:', n)</pre>
+            <p>Цикл отбрасывает последнюю цифру, пока не останется одно число.</p>
+
+            <h3 class="section-subtitle">Задача 5. Максимальная цифра числа</h3>
+            <div class="info-box"><strong>Условие:</strong> Дано натуральное число. Найдите максимальную цифру в его записи.</div>
+            <pre class="code-block">n = int(input('Введите число: '))
+max_digit = 0
+while n > 0:
+    d = n % 10
+    if d > max_digit:
+        max_digit = d
+    n //= 10
+print('Максимальная цифра:', max_digit)</pre>
+            <p><strong>Пример:</strong> n = 83527. Цифры: 7, 2, 5, 3, 8. Максимум = 8.</p>
+
+            <div class="warning-box"><strong>Совет по ОГЭ:</strong> При решении задач на обработку чисел всегда определяйте: 1) Какое переменные нужны (аккумулятор суммы, счётчик, текущий экстремум). 2) Какое условие проверяется. 3) Как изменяется число на каждом шаге цикла.</div>
+        </div>
+
+        <!-- 8. Практические задания -->
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задания</h2>
+
+            <div class="interactive-block">
+                <h4>🧪 Задание 1. Выполните алгоритм мысленно</h4>
+                <pre class="code-block">n = 4729
+s = 0
+while n > 0:
+    s += n % 10
+    n //= 10
+print(s)</pre>
+                <p>Чему равно s? <button class="btn" onclick="document.getElementById('ans541').style.display='block'">Показать ответ</button></p>
+                <div id="ans541" class="result-box" style="display:none;">
+                    <p>Программа вычисляет сумму цифр числа 4729:</p>
+                    <table>
+                        <tr><th>Шаг</th><th>n</th><th>n % 10</th><th>s</th></tr>
+                        <tr><td>Начало</td><td>4729</td><td>—</td><td>0</td></tr>
+                        <tr><td>1</td><td>472</td><td>9</td><td>9</td></tr>
+                        <tr><td>2</td><td>47</td><td>2</td><td>11</td></tr>
+                        <tr><td>3</td><td>4</td><td>7</td><td>18</td></tr>
+                        <tr><td>4</td><td>0</td><td>4</td><td>22</td></tr>
+                    </table>
+                    <p>Результат: <strong>s = 22</strong></p>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>🧪 Задание 2. Определите результат</h4>
+                <pre class="code-block">n = 38562
+max_d = 0
+while n > 0:
+    d = n % 10
+    if d > max_d:
+        max_d = d
+    n //= 10
+print('max =', max_d)</pre>
+                <p><button class="btn" onclick="document.getElementById('ans542').style.display='block'">Показать ответ</button></p>
+                <div id="ans542" class="result-box" style="display:none;">
+                    <p>Программа находит максимальную цифру в числе 38562:</p>
+                    <table>
+                        <tr><th>Шаг</th><th>n</th><th>d = n % 10</th><th>max_d</th></tr>
+                        <tr><td>Начало</td><td>38562</td><td>—</td><td>0</td></tr>
+                        <tr><td>1</td><td>3856</td><td>2</td><td>2</td></tr>
+                        <tr><td>2</td><td>385</td><td>6</td><td>6</td></tr>
+                        <tr><td>3</td><td>38</td><td>5</td><td>6</td></tr>
+                        <tr><td>4</td><td>3</td><td>8</td><td>8</td></tr>
+                        <tr><td>5</td><td>0</td><td>3</td><td>8</td></tr>
+                    </table>
+                    <p>Результат: <strong>max = 8</strong></p>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>🧪 Задание 3. Найдите ошибку</h4>
+                <p>Программа должна найти количество чётных цифр числа, но она работает неправильно. Найдите и исправьте ошибку.</p>
+                <pre class="code-block">n = 2473
+k = 0
+while n > 0:
+    if n % 10 / 2 == 0:
+        k += 1
+    n //= 10
+print('Чётных цифр:', k)</pre>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <p>Ошибка: вместо <code>n % 10 / 2 == 0</code> нужно использовать <code>n % 10 % 2 == 0</code>. Деление на 2 не проверяет чётность!</p>
+                    <pre class="code-block">n = 2473
+k = 0
+while n > 0:
+    if n % 10 % 2 == 0:   # ← исправлено
+        k += 1
+    n //= 10
+print('Чётных цифр:', k)
+# Результат: 2 (цифры 2 и 4)</pre>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>🧪 Задание 4. Напишите программу</h4>
+                <p>Напишите программу, которая находит среднее арифметическое всех нечётных чисел из N введённых чисел.</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать решение</button>
+                <div class="result-box" style="display:none;">
+                    <pre class="code-block">n = int(input('Сколько чисел? '))
+s = 0
+count = 0
+for i in range(n):
+    x = int(input(f'Число {i + 1}: '))
+    if x % 2 != 0:
+        s += x
+        count += 1
+if count > 0:
+    print('Среднее арифметическое нечётных:', s / count)
+else:
+    print('Нечётных чисел нет')</pre>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>🧪 Задание 5. Напишите программу</h4>
+                <p>Напишите программу, которая определяет, является ли заданное натуральное число числом Армстронга (сумма его цифр в собственных степенях равна самому числу). Например, 153 = 1³ + 5³ + 3³.</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать решение</button>
+                <div class="result-box" style="display:none;">
+                    <pre class="code-block">n = int(input('Введите число: '))
+original = n
+s = 0
+k = 0
+temp = n
+while temp > 0:
+    temp //= 10
+    k += 1
+
+temp = n
+while temp > 0:
+    digit = temp % 10
+    s += digit ** k
+    temp //= 10
+
+if s == original:
+    print('Число Армстронга')
+else:
+    print('Не является числом Армстронга')</pre>
+                    <div class="info-box"><strong>Примеры чисел Армстронга:</strong><br>
+                    153 = 1³ + 5³ + 3³ = 1 + 125 + 27 = 153 ✓<br>
+                    370 = 3³ + 7³ + 0³ = 27 + 343 + 0 = 370 ✓<br>
+                    9474 = 9⁴ + 4⁴ + 7⁴ + 4⁴ = 6561 + 256 + 2401 + 256 = 9474 ✓</div>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>🧪 Задание 6. Сложная задача</h4>
+                <p>Напишите программу, которая для заданного числа N выводит все его делители в порядке возрастания.</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать решение</button>
+                <div class="result-box" style="display:none;">
+                    <pre class="code-block">n = int(input('Введите число: '))
+for i in range(1, n + 1):
+    if n % i == 0:
+        print(i, end=' ')
+# Пример для n = 36: 1 2 3 4 6 9 12 18 36</pre>
+                    <div class="info-box"><strong>Оптимизация:</strong> Делители всегда идут парами: если i — делитель n, то n//i — тоже. Можно проверять только до √n:</div>
+                    <pre class="code-block">import math
+n = int(input('Введите число: '))
+divisors = []
+for i in range(1, int(math.sqrt(n)) + 1):
+    if n % i == 0:
+        divisors.append(i)
+        if i != n // i:
+            divisors.append(n // i)
+divisors.sort()
+print('Делители:', divisors)</pre>
+                </div>
+            </div>
+        </div>
+
+<div class="quiz-block dynamic-quiz" data-topic="5-4"></div>
+<div style="text-align:center; margin-top:20px;">
+    <button class="btn progress-btn" data-topic="5-4">Отметить как изученное</button>
+</div>
+
+<nav class="topic-nav">
+    <a href="tema-5-3.html" class="prev-link">← 5.3 Алгоритмические конструкции</a>
+    <a href="tema-6-1.html" class="next-link">6.1 Моделирование и формализация →</a>
+</nav>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

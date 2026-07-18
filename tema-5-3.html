@@ -1,39 +1,293 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5.3. Алгоритмические конструкции | Информатика 7–9 классы</title>
+    <meta name="description" content="Алгоритмические конструкции Python: ветвление if-elif-else, циклы for и while, оператор break, вложенные конструкции.">
+    <meta property="og:title" content="5.3 Алгоритмические конструкции | Информатика 8 класс">
+    <meta property="og:description" content="Алгоритмические конструкции Python: ветвление, циклы, оператор break.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
 <header>
-<div class="header-top"><h1><a href="index.html">📘 Информатика 7–9 классы</a></h1><a href="index.html" class="home-link">🏠 Главная</a></div>
-<nav><ul><li><a href="7-klass.html">📗 7 класс</a></li><li><a href="8-klass.html">📘 8 класс</a></li><li><a href="9-klass.html">📕 9 класс</a></li></ul></nav>
+<div class="header-top"><a href="index.html" class="site-title">Информатика 7–9 классы</a></div>
+<nav aria-label="Основная навигация"><ul><li><a href="7-klass.html">7 класс</a></li><li><a href="8-klass.html">8 класс</a></li><li><a href="9-klass.html">9 класс</a></li></ul></nav>
 </header>
-<main>
+<main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+    <a href="index.html">Главная</a>
+    <span class="separator">/</span>
+    <a href="8-klass.html">8 класс</a>
+    <span class="separator">/</span>
+    <span class="current">5.3 Алгоритмические конструкции</span>
+</nav>
+<div class="progress-text"></div>
+<div class="progress-bar-container"><div class="progress-bar"></div></div>
 <h1 class="page-title">5.3. Алгоритмические конструкции</h1>
 <p class="page-subtitle">Раздел 5. Основы алгоритмизации и программирования (5 часов)</p>
-<div class="toc"><div class="toc-title">📋 Содержание темы:</div><ol><li><a href="#branch">Ветвление (if-elif-else)</a></li><li><a href="#for">Цикл for (со счётчиком)</a></li><li><a href="#while">Цикл while (с условием)</a></li><li><a href="#practical">Практические задачи</a></li></ol></div>
-<div class="card" id="branch"><h2 class="card-title">Ветвление (if-elif-else)</h2><h3>Условный оператор if</h3><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">if условие:
-    действие_1
+
+<div class="toc"><div class="toc-title">📋 Содержание темы:</div><ol>
+<li><a href="#branch">Ветвление (if-elif-else)</a></li>
+<li><a href="#nested">Вложенные ветвления</a></li>
+<li><a href="#for">Цикл for (со счётчиком)</a></li>
+<li><a href="#while">Цикл while (с условием)</a></li>
+<li><a href="#postcondition">Цикл с постусловием (while True + break)</a></li>
+<li><a href="#nested_loops">Вложенные циклы</a></li>
+<li><a href="#practical">Практические задачи</a></li>
+</ol></div>
+
+<div class="card" id="branch">
+<h2 class="card-title">Ветвление (if-elif-else)</h2>
+<h3 class="section-subtitle">Условный оператор if</h3>
+<pre class="code-block">if условие:
+    группа_операторов_1
 else:
-    действие_2</pre><h3>Пример:</h3><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">x = int(input('Введите число: '))
+    группа_операторов_2</pre>
+<p>Если условие истинно (<code>True</code>), выполняется блок после <code>if</code>. Иначе — блок после <code>else</code>.</p>
+
+<h3 class="section-subtitle">Пример:</h3>
+<pre class="code-block">x = int(input('Введите число: '))
 if x &gt; 0:
     print('Положительное')
 elif x &lt; 0:
     print('Отрицательное')
 else:
-    print('Ноль')</pre><h3>Логические операторы:</h3><table><tr><th>Оператор</th><th>Описание</th></tr><tr><td><code>and</code></td><td>И (оба условия истинны)</td></tr><tr><td><code>or</code></td><td>ИЛИ (хотя бы одно истинно)</td></tr><tr><td><code>not</code></td><td>НЕ (отрицание)</td></tr></table></div><div class="card" id="for"><h2 class="card-title">Цикл for (со счётчиком)</h2><h3>Цикл for</h3><p>Используется, когда известно количество повторений.</p><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">for i in range(N):
-    print(i)</pre><h3>Функция range():</h3><table><tr><th>Вызов</th><th>Результат</th></tr><tr><td><code>range(5)</code></td><td>0, 1, 2, 3, 4</td></tr><tr><td><code>range(2, 6)</code></td><td>2, 3, 4, 5</td></tr><tr><td><code>range(1, 10, 2)</code></td><td>1, 3, 5, 7, 9</td></tr></table></div><div class="card" id="while"><h2 class="card-title">Цикл while (с условием)</h2><h3>Цикл while</h3><p>Выполняется, пока условие истинно.</p><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">i = 1
+    print('Ноль')</pre>
+
+<h3 class="section-subtitle">Неполная форма (без else):</h3>
+<pre class="code-block">if x % 2 == 0:
+    print(x, '— чётное число')</pre>
+
+<h3 class="section-subtitle">Логические операторы в условиях:</h3>
+<table><tr><th>Оператор</th><th>Описание</th><th>Пример</th></tr>
+<tr><td><code>and</code></td><td>И (оба условия истинны)</td><td><code>x &gt; 0 and x &lt; 100</code></td></tr>
+<tr><td><code>or</code></td><td>ИЛИ (хотя бы одно истинно)</td><td><code>x == 0 or x == 1</code></td></tr>
+<tr><td><code>not</code></td><td>НЕ (отрицание)</td><td><code>not (x &gt; 0)</code></td></tr>
+</table>
+
+<div class="warning-box"><strong>Важно:</strong> В Python <strong>отступы</strong> (обычно 4 пробела) определяют границы блоков кода. Все команды внутри блока должны иметь одинаковый отступ!</div>
+
+<h3 class="section-subtitle">Каскадное ветвление elif:</h3>
+<p>Когда нужно проверить несколько условий последовательно:</p>
+<pre class="code-block">mark = int(input('Оценка: '))
+if mark == 5:
+    print('Отлично')
+elif mark == 4:
+    print('Хорошо')
+elif mark == 3:
+    print('Удовлетворительно')
+else:
+    print('Неудовлетворительно')</pre>
+</div>
+
+<div class="card" id="nested">
+<h2 class="card-title">Вложенные ветвления</h2>
+<p>Внутри условного оператора могут находиться любые операторы, включая другие условные:</p>
+<pre class="code-block">a = float(input('Введите a: '))
+b = float(input('Введите b: '))
+c = float(input('Введите c: '))
+d = b * b - 4 * a * c
+
+if d &lt; 0:
+    print('Корней нет')
+else:
+    if d == 0:
+        x = -b / 2 / a
+        print('Корень уравнения x =', round(x, 4))
+    else:
+        x1 = (-b + d**0.5) / 2 / a
+        x2 = (-b - d**0.5) / 2 / a
+        print('Корни уравнения:')
+        print('x1 =', round(x1, 4))
+        print('x2 =', round(x2, 4))</pre>
+</div>
+
+<div class="card" id="for">
+<h2 class="card-title">Цикл for (со счётчиком)</h2>
+<p>Используется, когда <strong>известно количество повторений</strong>.</p>
+<pre class="code-block">for i in range(N):
+    тело_цикла</pre>
+
+<h3 class="section-subtitle">Функция range():</h3>
+<table><tr><th>Вызов</th><th>Генерирует числа</th><th>Количество</th></tr>
+<tr><td><code>range(5)</code></td><td>0, 1, 2, 3, 4</td><td>5 чисел</td></tr>
+<tr><td><code>range(2, 6)</code></td><td>2, 3, 4, 5</td><td>4 числа</td></tr>
+<tr><td><code>range(1, 10, 2)</code></td><td>1, 3, 5, 7, 9</td><td>5 чисел (с шагом 2)</td></tr>
+<tr><td><code>range(10, 0, -1)</code></td><td>10, 9, 8, …, 1</td><td>10 чисел (обратный отсчёт)</td></tr>
+<tr><td><code>range(0)</code></td><td>(пусто)</td><td>0 чисел</td></tr>
+</table>
+
+<div class="info-box"><strong>Правило range(start, stop, step):</strong> Числа идут от start до stop-1 с шагом step. Если step не указан, он равен 1.</div>
+
+<h3 class="section-subtitle">Примеры:</h3>
+<pre class="code-block"># Сумма чисел от 1 до 100
+s = 0
+for i in range(1, 101):
+    s = s + i
+print('Сумма:', s)   # 5050
+
+# Вывод чётных чисел от 2 до 20
+for i in range(2, 21, 2):
+    print(i, end=' ')
+# Результат: 2 4 6 8 10 12 14 16 18 20</pre>
+</div>
+
+<div class="card" id="while">
+<h2 class="card-title">Цикл while (с предусловием)</h2>
+<p>Выполняется, <strong>пока условие истинно</strong>. Проверка условия — перед каждым повторением.</p>
+<pre class="code-block">while условие:
+    тело_цикла</pre>
+
+<h3 class="section-subtitle">Пример:</h3>
+<pre class="code-block">i = 1
 while i &lt;= 5:
     print(i)
-    i += 1</pre><div class="warning-box"><strong>Внимание:</strong> Убедитесь, что условие цикла когда-нибудь станет ложным, иначе возникнет бесконечный цикл!</div></div><div class="card" id="practical"><h2 class="card-title">Практические задачи</h2><div class="interactive-block"><h4>🧪 Тренажёр алгоритмических конструкций</h4><p>Мысленно выполните алгоритм:</p><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">s = 0
+    i += 1
+# Результат: 1 2 3 4 5</pre>
+
+<div class="warning-box"><strong>Внимание:</strong> Убедитесь, что условие цикла когда-нибудь станет ложным! Иначе возникнет <strong>бесконечный цикл</strong>.</div>
+
+<h3 class="section-subtitle">Алгоритм Евклида (НОД):</h3>
+<pre class="code-block">a = int(input('a = '))
+b = int(input('b = '))
+while a != b:
+    if a &gt; b:
+        a = a - b
+    else:
+        b = b - a
+print('НОД =', a)</pre>
+<p>Цикл повторяется, пока a ≠ b. На каждом шаге большее число уменьшается на меньшее.</p>
+</div>
+
+<div class="card" id="postcondition">
+<h2 class="card-title">Цикл с постусловием (while True + break)</h2>
+<p>В Python нет отдельного цикла с постусловием (как <code>repeat-until</code> в других языках), но его можно организовать с помощью <code>while True</code> и оператора <code>break</code>:</p>
+<pre class="code-block">while True:
+    тело_цикла
+    if условие_выхода:
+        break</pre>
+
+<div class="info-box"><strong>Оператор break</strong> немедленно прерывает цикл и передаёт управление на строку после тела цикла.</div>
+
+<h3 class="section-subtitle">Пример — подсчёт цифр в числе:</h3>
+<pre class="code-block">n = int(input('Введите число: '))
+k = 0
+while True:
+    n = n // 10
+    k += 1
+    if n == 0:
+        break
+print('Количество цифр:', k)</pre>
+
+<h3 class="section-subtitle">Пример — обработка последовательности:</h3>
+<pre class="code-block">k = 0
+a = int(input('Число (или 0 для окончания): '))
+while True:
+    if a == 0:
+        break
+    if a % 10 == 3:
+        k += 1
+    a = int(input('Число (или 0 для окончания): '))
+print('Числа, оканчивающиеся на 3:', k)</pre>
+</div>
+
+<div class="card" id="nested_loops">
+<h2 class="card-title">Вложенные циклы</h2>
+<p>Цикл может находиться внутри другого цикла:</p>
+<pre class="code-block"># Таблица умножения
+for i in range(1, 10):
+    for j in range(1, 10):
+        print(f'{i*j:4d}', end='')
+    print()</pre>
+
+<div class="info-box"><strong>Внутренний цикл</strong> выполняется полностью для каждого значения внешнего. Если внешний цикл имеет N итераций, а внутренний — M, то тело внутреннего цикла выполнится N × M раз.</div>
+</div>
+
+<div class="card" id="practical">
+<h2 class="card-title">Практические задачи</h2>
+
+<div class="interactive-block">
+<h4>🧪 Задание 1. Выполните алгоритм мысленно</h4>
+<pre class="code-block">s = 0
 for i in range(1, 6):
     s = s + i
-print(s)</pre><p>Чему равно s? <button class="btn" onclick="document.getElementById('ans51').style.display='block'">Показать ответ</button></p><div id="ans51" class="result-box" style="display:none;">s = 15 (сумма чисел от 1 до 5)</div></div></div>
+print(s)</pre>
+<p>Чему равно s? <button class="btn" onclick="document.getElementById('ans531').style.display='block'">Показать ответ</button></p>
+<div id="ans531" class="result-box" style="display:none;">s = 1 + 2 + 3 + 4 + 5 = <strong>15</strong></div>
+</div>
+
+<div class="interactive-block">
+<h4>🧪 Задание 2. Определите результат</h4>
+<pre class="code-block">n = 12345
+k = 0
+while n &gt; 0:
+    n = n // 10
+    k += 1
+print('k =', k)</pre>
+<p><button class="btn" onclick="document.getElementById('ans532').style.display='block'">Показать ответ</button></p>
+<div id="ans532" class="result-box" style="display:none;">
+<p>Программа считает количество цифр в числе:</p>
+<table><tr><th>Шаг</th><th>n</th><th>k</th></tr>
+<tr><td>Начало</td><td>12345</td><td>0</td></tr>
+<tr><td>1</td><td>1234</td><td>1</td></tr>
+<tr><td>2</td><td>123</td><td>2</td></tr>
+<tr><td>3</td><td>12</td><td>3</td></tr>
+<tr><td>4</td><td>1</td><td>4</td></tr>
+<tr><td>5</td><td>0</td><td>5</td></tr>
+</table>
+<p>Результат: <strong>k = 5</strong></p>
+</div>
+</div>
+
+<div class="interactive-block">
+<h4>🧪 Задание 3. Найдите ошибку</h4>
+<p>В этом коде бесконечный цикл. Как его исправить?</p>
+<pre class="code-block">i = 1
+while i &lt;= 5:
+    print(i)</pre>
+<button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+<div class="result-box" style="display:none;">
+<p>Переменная <code>i</code> не изменяется внутри цикла, поэтому условие <code>i &lt;= 5</code> всегда истинно.</p>
+<pre class="code-block">i = 1
+while i &lt;= 5:
+    print(i)
+    i += 1    # ← добавить эту строку</pre>
+</div>
+</div>
+
+<div class="interactive-block">
+<h4>🧪 Задание 4. Напишите программу</h4>
+<p>Напишите программу, которая выводит все числа от 1 до 50, делящиеся на 3, но не делящиеся на 5.</p>
+<button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать решение</button>
+<div class="result-box" style="display:none;">
+<pre class="code-block">for i in range(1, 51):
+    if i % 3 == 0 and i % 5 != 0:
+        print(i, end=' ')
+# Результат: 3 6 9 12 18 21 24 27 33 36 39 42 48</pre>
+</div>
+</div>
+</div>
+
+<div class="quiz-block dynamic-quiz" data-topic="5-3"></div>
+<div style="text-align:center; margin-top:20px;">
+    <button class="btn progress-btn" data-topic="5-3">Отметить как изученное</button>
+</div>
+
+<nav class="topic-nav">
+    <a href="tema-5-2.html" class="prev-link">← 5.2 Язык программирования Python</a>
+    <a href="tema-5-4.html" class="next-link">5.4 Обработка числовых данных →</a>
+</nav>
 </main>
-<footer><p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p><p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p></footer>
-<script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+<script src="js/scripts.js" defer></script>
+<script src="js/quiz.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.4. Структуры данных | Информатика 7–9 классы</title>
+    <meta name="description" content="Структуры данных в Python — стек, очередь, связный список, деревья, словари и множества. Информатика 9 класс.">
+    <meta property="og:title" content="9.4. Структуры данных | Информатика 7–9 классы">
+    <meta property="og:description" content="Структуры данных в Python — стек, очередь, связный список, деревья, словари и множества. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
+    <header>
+        <div class="header-top">
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+        </div>
+        <nav aria-label="Основная навигация">
+            <ul>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
+            </ul>
+        </nav>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Структуры данных</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
+        <h1 class="page-title">9.4. Структуры данных</h1>
+        <p class="page-subtitle">Раздел 9. Алгоритмы и программирование (продолжение)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#stack">Стек</a></li>
+                <li><a href="#queue">Очередь</a></li>
+                <li><a href="#linked_list">Связный список</a></li>
+                <li><a href="#trees">Деревья</a></li>
+                <li><a href="#dict_set">Словари и множества</a></li>
+                <li><a href="#practice">Практические задачи</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="stack">
+            <h2 class="card-title">Стек</h2>
+            <p><strong>Стек</strong> (stack) — структура данных, работающая по принципу LIFO (Last In, First Out) — «последним пришёл, первым вышел».</p>
+
+            <h3>Основные операции:</h3>
+            <ul class="content-list">
+                <li><code>push(x)</code> — добавление элемента в вершину</li>
+                <li><code>pop()</code> — удаление и возврат элемента из вершины</li>
+                <li><code>peek()</code> — просмотр элемента без удаления</li>
+                <li><code>is_empty()</code> — проверка на пустоту</li>
+            </ul>
+
+            <h3>Реализация на списках:</h3>
+            <pre class="code-block">stack = []
+
+# Добавление (push)
+stack.append(1)
+stack.append(2)
+stack.append(3)
+print(stack)  # [1, 2, 3]
+
+# Извлечение (pop)
+top = stack.pop()
+print(top)    # 3
+print(stack)  # [1, 2]
+
+# Просмотр вершины
+print(stack[-1])  # 2
+
+# Проверка на пустоту
+print(len(stack) == 0)  # False</pre>
+
+            <h3>Применение стека:</h3>
+            <pre class="code-block"># Проверка баланса скобок
+def is_balanced(expr):
+    """Проверяет правильность расстановки скобок."""
+    stack = []
+    matching = {')': '(', ']': '[', '}': '{'}
+    for char in expr:
+        if char in '([{':
+            stack.append(char)
+        elif char in ')]}':
+            if not stack or stack[-1] != matching[char]:
+                return False
+            stack.pop()
+    return len(stack) == 0
+
+print(is_balanced("({[]})"))  # True
+print(is_balanced("({[})"))   # False</pre>
+        </div>
+
+        <div class="card" id="queue">
+            <h2 class="card-title">Очередь</h2>
+            <p><strong>Очередь</strong> (queue) — структура данных, работающая по принципу FIFO (First In, First Out) — «первым пришёл, первым вышел».</p>
+
+            <h3>Основные операции:</h3>
+            <ul class="content-list">
+                <li><code>enqueue(x)</code> — добавление в конец</li>
+                <li><code>dequeue()</code> — удаление из начала</li>
+                <li><code>front()</code> — просмотр первого элемента</li>
+                <li><code>is_empty()</code> — проверка на пустоту</li>
+            </ul>
+
+            <h3>Реализация с помощью deque:</h3>
+            <pre class="code-block">from collections import deque
+
+queue = deque()
+
+# Добавление (enqueue)
+queue.append("Анна")
+queue.append("Борис")
+queue.append("Вера")
+print(queue)  # deque(['Анна', 'Борис', 'Вера'])
+
+# Извлечение (dequeue)
+person = queue.popleft()
+print(person)  # Анна
+print(queue)   # deque(['Борис', 'Вера'])
+
+# Просмотр первого элемента
+print(queue[0])  # Борис</pre>
+
+            <h3>Очередь на списке (медленно для больших объёмов):</h3>
+            <pre class="code-block">queue = []
+
+queue.append("Анна")
+queue.append("Борис")
+
+# Извлечение из начала (O(n) — медленно!)
+person = queue.pop(0)
+
+# Проверка на пустоту
+print(len(queue) == 0)</pre>
+
+            <div class="info-box"><strong>Совет:</strong> Используйте <code>collections.deque</code> вместо списка для реализации очереди — это работает быстрее.</div>
+        </div>
+
+        <div class="card" id="linked_list">
+            <h2 class="card-title">Связный список</h2>
+            <p><strong>Связный список</strong> — структура данных, состоящая из узлов, каждый из которых хранит данные и ссылку на следующий узел.</p>
+
+            <h3>Реализация узла:</h3>
+            <pre class="code-block">class Node:
+    """Узел связного списка."""
+    def __init__(self, data):
+        self.data = data
+        self.next = None</pre>
+
+            <h3>Реализация списка:</h3>
+            <pre class="code-block">class LinkedList:
+    """Односвязный список."""
+    def __init__(self):
+        self.head = None
+
+    def push_front(self, data):
+        """Добавить в начало."""
+        node = Node(data)
+        node.next = self.head
+        self.head = node
+
+    def push_back(self, data):
+        """Добавить в конец."""
+        node = Node(data)
+        if self.head is None:
+            self.head = node
+            return
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = node
+
+    def remove(self, data):
+        """Удалить первый элемент с указанными данными."""
+        if self.head is None:
+            return
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+        current = self.head
+        while current.next:
+            if current.next.data == data:
+                current.next = current.next.next
+                return
+            current = current.next
+
+    def to_list(self):
+        """Преобразовать в обычный список."""
+        result = []
+        current = self.head
+        while current:
+            result.append(current.data)
+            current = current.next
+        return result</pre>
+
+            <h3>Использование:</h3>
+            <pre class="code-block">lst = LinkedList()
+lst.push_back(1)
+lst.push_back(2)
+lst.push_front(0)
+print(lst.to_list())  # [0, 1, 2]
+
+lst.remove(1)
+print(lst.to_list())  # [0, 2]</pre>
+        </div>
+
+        <div class="card" id="trees">
+            <h2 class="card-title">Деревья</h2>
+            <p><strong>Дерево</strong> — структура данных с иерархической организацией элементов.</p>
+
+            <h3>Основные понятия:</h3>
+            <ul class="content-list">
+                <li><strong>Корень</strong> — вершина без родителя</li>
+                <li><strong>Лист</strong> — вершина без потомков</li>
+                <li><strong>Высота дерева</strong> — длина пути от корня до самого глубокого листа</li>
+            </ul>
+
+            <h3>Бинарное дерево:</h3>
+            <pre class="code-block">class TreeNode:
+    """Узел бинарного дерева."""
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+# Пример: дерево поиска
+#       5
+#      / \
+#     3   7
+#    / \ / \
+#   1  4 6  8</pre>
+
+            <h3>Обходы дерева:</h3>
+            <pre class="code-block"># Обход в глубину (Depth-First Search)
+def preorder(node):
+    """Корень → Лево → Право."""
+    if node is None:
+        return []
+    return [node.value] + preorder(node.left) + preorder(node.right)
+
+def inorder(node):
+    """Лево → Корень → Право."""
+    if node is None:
+        return []
+    return inorder(node.left) + [node.value] + inorder(node.right)
+
+def postorder(node):
+    """Лево → Право → Корень."""
+    if node is None:
+        return []
+    return postorder(node.left) + postorder(node.right) + [node.value]
+
+# Обход в ширину (Breadth-First Search)
+from collections import deque
+
+def bfs(root):
+    """Обход по уровням."""
+    if root is None:
+        return []
+    result = []
+    queue = deque([root])
+    while queue:
+        node = queue.popleft()
+        result.append(node.value)
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+    return result</pre>
+
+            <h3>Построение бинарного дерева поиска:</h3>
+            <pre class="code-block">def insert(root, value):
+    """Вставка значения в дерево поиска."""
+    if root is None:
+        return TreeNode(value)
+    if value < root.value:
+        root.left = insert(root.left, value)
+    else:
+        root.right = insert(root.right, value)
+    return root
+
+def search(root, value):
+    """Поиск значения в дереве поиска."""
+    if root is None or root.value == value:
+        return root
+    if value < root.value:
+        return search(root.left, value)
+    return search(root.right, value)
+
+# Построение дерева
+root = None
+for x in [5, 3, 7, 1, 4, 6, 8]:
+    root = insert(root, x)
+
+print(inorder(root))  # [1, 3, 4, 5, 6, 7, 8]</pre>
+        </div>
+
+        <div class="card" id="dict_set">
+            <h2 class="card-title">Словари и множества</h2>
+            <h3>Словари (dict):</h3>
+            <pre class="code-block"># Создание словаря
+person = {
+    "имя": "Анна",
+    "возраст": 15,
+    "класс": "9А"
+}
+
+# Доступ по ключу
+print(person["имя"])  # Анна
+
+# Добавление / изменение
+person["оценка"] = 5
+person["возраст"] = 16
+
+# Проверка ключа
+print("имя" in person)  # True
+
+# Перебор
+for key, value in person.items():
+    print(f"{key}: {value}")
+
+# Методы
+keys = person.keys()
+values = person.values()</pre>
+
+            <h3>Множества (set):</h3>
+            <pre class="code-block"># Создание множества
+numbers = {1, 2, 3, 4, 5}
+
+# Добавление
+numbers.add(6)
+
+# Удаление
+numbers.remove(3)
+
+# Операции над множествами
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a | b)  # Объединение: {1, 2, 3, 4, 5, 6}
+print(a & b)  # Пересечение: {3, 4}
+print(a - b)  # Разность: {1, 2}
+print(a ^ b)  # Симметрическая разность: {1, 2, 5, 6}
+
+# Проверка принадлежности
+print(3 in a)  # True</pre>
+        </div>
+
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задачи</h2>
+
+            <h3>Задача 1: Инвертировать связный список</h3>
+            <pre class="code-block">def reverse_list(head):
+    """Инвертирует связный список."""
+    prev = None
+    current = head
+    while current:
+        next_node = current.next
+        current.next = prev
+        prev = current
+        current = next_node
+    return prev</pre>
+
+            <h3>Задача 2: Проверка палиндрома через стек</h3>
+            <pre class="code-block">def is_palindrome(s):
+    """Проверяет, является ли строка палиндромом."""
+    s = s.lower().replace(" ", "")
+    stack = []
+    for char in s:
+        stack.append(char)
+    for char in s:
+        if char != stack.pop():
+            return False
+    return True
+
+print(is_palindrome("А роза упала на лапу Азора"))  # True</pre>
+
+            <h3>Задача 3: Поиск в ширину в графе</h3>
+            <pre class="code-block">from collections import deque
+
+def bfs(graph, start):
+    """Обход графа в ширину."""
+    visited = set()
+    queue = deque([start])
+    visited.add(start)
+    order = []
+
+    while queue:
+        vertex = queue.popleft()
+        order.append(vertex)
+        for neighbor in graph[vertex]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+    return order
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+print(bfs(graph, 'A'))  # ['A', 'B', 'C', 'D', 'E', 'F']</pre>
+
+            <h3>Задача 4: Частотный анализ текста</h3>
+            <pre class="code-block">def frequency_analysis(text):
+    """Подсчитывает частоту каждого символа."""
+    freq = {}
+    for char in text:
+        freq[char] = freq.get(char, 0) + 1
+    # Сортировка по убыванию частоты
+    sorted_freq = sorted(freq.items(), key=lambda x: -x[1])
+    return sorted_freq
+
+text = "привет мир"
+for char, count in frequency_analysis(text):
+    print(f"'{char}': {count}")</pre>
+
+            <h3>Задача 5: Найти путь в графе (DFS)</h3>
+            <pre class="code-block">def dfs_path(graph, start, end, path=None):
+    """Находит путь между двумя вершинами графа."""
+    if path is None:
+        path = []
+    path = path + [start]
+    if start == end:
+        return path
+    for neighbor in graph[start]:
+        if neighbor not in path:
+            result = dfs_path(graph, neighbor, end, path)
+            if result:
+                return result
+    return None
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+print(dfs_path(graph, 'A', 'F'))  # ['A', 'C', 'F']</pre>
+
+            <div class="info-box"><strong>Совет:</strong> Выбор структуры данных зависит от задачи: стек — для обратного порядка, очередь — для обхода в ширину, дерево — для иерархических данных.</div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="9-4"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="9-4">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-9-3.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">9.3 Файловая обработка</span>
+            </a>
+            <span class="nav-next disabled">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">Далее</span>
+            </span>
+        </div>
+    </main>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
+</body>
+</html>

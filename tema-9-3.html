@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.3. Файловая обработка | Информатика 7–9 классы</title>
+    <meta name="description" content="Работа с файлами в Python — чтение, запись, текстовые и бинарные файлы, обработка CSV. Информатика 9 класс.">
+    <meta property="og:title" content="9.3. Файловая обработка | Информатика 7–9 классы">
+    <meta property="og:description" content="Работа с файлами в Python — чтение, запись, текстовые и бинарные файлы, обработка CSV. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
+    <header>
+        <div class="header-top">
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+        </div>
+        <nav aria-label="Основная навигация">
+            <ul>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
+            </ul>
+        </nav>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Файловая обработка</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
+        <h1 class="page-title">9.3. Файловая обработка</h1>
+        <p class="page-subtitle">Раздел 9. Алгоритмы и программирование (продолжение)</p>
+
+        <div class="toc">
+            <div class="toc-title">📋 Содержание темы:</div>
+            <ol>
+                <li><a href="#file_basics">Основы работы с файлами</a></li>
+                <li><a href="#text_files">Текстовые файлы</a></li>
+                <li><a href="#binary_files">Бинарные файлы</a></li>
+                <li><a href="#csv">Обработка CSV-файлов</a></li>
+                <li><a href="#practice">Практические задачи</a></li>
+            </ol>
+        </div>
+
+        <div class="card" id="file_basics">
+            <h2 class="card-title">Основы работы с файлами</h2>
+            <p><strong>Файл</strong> — именованная область памяти на диске для хранения данных.</p>
+
+            <h3>Режимы открытия файлов:</h3>
+            <table>
+                <tr><th>Режим</th><th>Описание</th></tr>
+                <tr><td><code>'r'</code></td><td>Чтение (по умолчанию). Файл должен существовать.</td></tr>
+                <tr><td><code>'w'</code></td><td>Запись. Файл перезаисывается или создаётся.</td></tr>
+                <tr><td><code>'a'</code></td><td>Дописывание в конец файла.</td></tr>
+                <tr><td><code>'r+'</code></td><td>Чтение и запись. Файл должен существовать.</td></tr>
+                <tr><td><code>'rb'</code></td><td>Чтение бинарного файла.</td></tr>
+                <tr><td><code>'wb'</code></td><td>Запись бинарного файла.</td></tr>
+            </table>
+
+            <h3>Открытие и закрытие файла:</h3>
+            <pre class="code-block"># Способ 1: ручное открытие и закрытие
+f = open("data.txt", "r")
+content = f.read()
+f.close()
+
+# Способ 2: контекстный менеджер (рекомендуется)
+with open("data.txt", "r") as f:
+    content = f.read()</pre>
+
+            <div class="info-box"><strong>Важно:</strong> Всегда используйте <code>with</code> — файл автоматически закрывается даже при ошибке.</div>
+        </div>
+
+        <div class="card" id="text_files">
+            <h2 class="card-title">Текстовые файлы</h2>
+            <h3>Чтение текстового файла:</h3>
+            <pre class="code-block"># Прочитать весь файл целиком
+with open("data.txt", "r", encoding="utf-8") as f:
+    text = f.read()
+    print(text)
+
+# Прочитать построчно
+with open("data.txt", "r", encoding="utf-8") as f:
+    for line in f:
+        print(line.strip())  # strip() убирает \n
+
+# Прочитать все строки в список
+with open("data.txt", "r", encoding="utf-8") as f:
+    lines = f.readlines()
+    print(lines)</pre>
+
+            <h3>Запись в текстовый файл:</h3>
+            <pre class="code-block"># Записать строку
+with open("output.txt", "w", encoding="utf-8") as f:
+    f.write("Привет, мир!\n")
+
+# Записать несколько строк
+lines = ["Первая строка\n", "Вторая строка\n", "Третья строка\n"]
+with open("output.txt", "w", encoding="utf-8") as f:
+    f.writelines(lines)
+
+# Записать через print
+with open("output.txt", "w", encoding="utf-8") as f:
+    print("Значение:", 42, file=f)</pre>
+
+            <h3>Дописывание в файл:</h3>
+            <pre class="code-block"># Добавить строки в конец файла
+with open("log.txt", "a", encoding="utf-8") as f:
+    f.write("Новая запись\n")</pre>
+        </div>
+
+        <div class="card" id="binary_files">
+            <h2 class="card-title">Бинарные файлы</h2>
+            <p>Бинарные файлы хранят данные в формате, не предназначённом для чтения человеком (изображения, архивы, программные файлы).</p>
+
+            <h3>Чтение и запись бинарных данных:</h3>
+            <pre class="code-block"># Копирование бинарного файла
+with open("image.jpg", "rb") as f_in:
+    data = f_in.read()
+
+with open("copy.jpg", "wb") as f_out:
+    f_out.write(data)
+
+# Запись числовых данных в бинарный файл
+import struct
+
+with open("numbers.bin", "wb") as f:
+    for num in [10, 20, 30, 40, 50]:
+        f.write(struct.pack('i', num))  # 'i' — целое число</pre>
+
+            <h3>Чтение бинарных чисел:</h3>
+            <pre class="code-block">import struct
+
+with open("numbers.bin", "rb") as f:
+    while True:
+        data = f.read(4)  # 4 байта на число
+        if not data:
+            break
+        num = struct.unpack('i', data)[0]
+        print(num)</pre>
+        </div>
+
+        <div class="card" id="csv">
+            <h2 class="card-title">Обработка CSV-файлов</h2>
+            <p><strong>CSV</strong> (Comma-Separated Values) — формат для хранения табличных данных.</p>
+
+            <h3>Пример CSV-файла:</h3>
+            <pre class="code-block">Имя;Возраст;Оценка
+Анна;15;5
+Борис;16;4
+Вера;15;5</pre>
+
+            <h3>Чтение CSV без модуля:</h3>
+            <pre class="code-block">with open("students.csv", "r", encoding="utf-8") as f:
+    header = f.readline().strip().split(";")
+    students = []
+    for line in f:
+        values = line.strip().split(";")
+        student = dict(zip(header, values))
+        students.append(student)
+
+print(students)
+# [{'Имя': 'Анна', 'Возраст': '15', 'Оценка': '5'}, ...]</pre>
+
+            <h3>Чтение CSV с модулем csv:</h3>
+            <pre class="code-block">import csv
+
+with open("students.csv", "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f, delimiter=';')
+    for row in reader:
+        print(f"{row['Имя']}: {row['Оценка']}")</pre>
+
+            <h3>Запись в CSV:</h3>
+            <pre class="code-block">import csv
+
+data = [
+    {"Имя": "Глеб", "Возраст": 16, "Оценка": 5},
+    {"Имя": "Дина", "Возраст": 15, "Оценка": 4}
+]
+
+with open("new_students.csv", "w", encoding="utf-8", newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=["Имя", "Возраст", "Оценка"],
+                            delimiter=';', quoting=csv.QUOTE_MINIMAL)
+    writer.writeheader()
+    writer.writerows(data)</pre>
+        </div>
+
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задачи</h2>
+
+            <h3>Задача 1: Подсчёт слов в файле</h3>
+            <pre class="code-block">def count_words(filename):
+    """Подсчитывает количество каждого слова в файле."""
+    with open(filename, "r", encoding="utf-8") as f:
+        text = f.read().lower()
+    # Убираем знаки препинания
+    for char in ".,!?;:-()\"'":
+        text = text.replace(char, "")
+    words = text.split()
+    count = {}
+    for word in words:
+        count[word] = count.get(word, 0) + 1
+    return count
+
+result = count_words("text.txt")
+for word, n in sorted(result.items(), key=lambda x: -x[1])[:10]:
+    print(f"{word}: {n}")</pre>
+
+            <h3>Задача 2: Фильтрация данных из файла</h3>
+            <pre class="code-block">def filter_grades(input_file, output_file, min_grade):
+    """Сохраняет учеников с оценкой >= min_grade."""
+    with open(input_file, "r", encoding="utf-8") as f_in:
+        header = f_in.readline()
+        with open(output_file, "w", encoding="utf-8") as f_out:
+            f_out.write(header)
+            for line in f_in:
+                parts = line.strip().split(";")
+                if int(parts[2]) >= min_grade:
+                    f_out.write(line)
+
+filter_grades("students.csv", "excellent.csv", 5)</pre>
+
+            <h3>Задача 3: Слияние двух отсортированных файлов</h3>
+            <pre class="code-block">def merge_files(file1, file2, output):
+    """Сливает два отсортированных числовых файла."""
+    with open(file1) as f1, open(file2) as f2:
+        nums1 = sorted([int(x) for x in f1.read().split()])
+        nums2 = sorted([int(x) for x in f2.read().split()])
+
+    merged = sorted(nums1 + nums2)
+    with open(output, "w") as f:
+        f.write(" ".join(map(str, merged)))</pre>
+
+            <h3>Задача 4: Шифр Цезаря для файла</h3>
+            <pre class="code-block">def caesar_cipher(text, shift):
+    """Шифр Цезаря: сдвигает каждую букву на shift позиций."""
+    result = ""
+    for char in text:
+        if 'а' <= char <= 'я':
+            code = ord(char) - ord('а')
+            new_code = (code + shift) % 32
+            result += chr(ord('а') + new_code)
+        elif 'А' <= char <= 'Я':
+            code = ord(char) - ord('А')
+            new_code = (code + shift) % 32
+            result += chr(ord('А') + new_code)
+        else:
+            result += char
+    return result
+
+# Зашифровать файл
+with open("plain.txt", "r", encoding="utf-8") as f:
+    text = f.read()
+
+with open("encrypted.txt", "w", encoding="utf-8") as f:
+    f.write(caesar_cipher(text, 3))</pre>
+
+            <div class="warning-box"><strong>Внимание:</strong> При работе с файлами всегда указывайте кодировку <code>encoding="utf-8"</code> для корректного отображения русских символов.</div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="9-3"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="9-3">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-9-2.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">9.2 Подпрограммы и рекурсия</span>
+            </a>
+            <a href="tema-9-4.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">9.4 Структуры данных</span>
+            </a>
+        </div>
+    </main>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
+</body>
+</html>

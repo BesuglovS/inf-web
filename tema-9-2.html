@@ -1,26 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9.2. Подпрограммы и рекурсия | Информатика 7–9 классы</title>
+    <meta name="description" content="Подпрограммы и рекурсия в Python — функции, параметры, возврат значений, локальные и глобальные переменные, рекурсивные алгоритмы. Информатика 9 класс.">
+    <meta property="og:title" content="9.2. Подпрограммы и рекурсия | Информатика 7–9 классы">
+    <meta property="og:description" content="Подпрограммы и рекурсия в Python — функции, параметры, возврат значений, локальные и глобальные переменные, рекурсивные алгоритмы. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Подпрограммы и рекурсия</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
         <h1 class="page-title">9.2. Подпрограммы и рекурсия</h1>
         <p class="page-subtitle">Раздел 9. Алгоритмы и программирование (продолжение)</p>
 
@@ -31,6 +45,8 @@
                 <li><a href="#params">Параметры и возврат значений</a></li>
                 <li><a href="#scope">Локальные и глобальные переменные</a></li>
                 <li><a href="#recursion">Рекурсивные алгоритмы</a></li>
+                <li><a href="#lambda">Лямбда-функции и функции высшего порядка</a></li>
+                <li><a href="#recursion_practice">Практические задачи на рекурсию</a></li>
             </ol>
         </div>
 
@@ -38,14 +54,14 @@
             <h2 class="card-title">Функции в Python</h2>
             <p><strong>Функция</strong> — это именованный блок кода, который можно вызывать многократно.</p>
             <p>Определение функции начинается с ключевого слова <strong>def</strong>:</p>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def имя_функции(параметры):
+            <pre class="code-block">def имя_функции(параметры):
     """документация (необязательно)"""
     тело функции
     return результат</pre>
 
             <h3>Пример:</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def say_hello(name):
-    \"""Приветствие.\"""
+            <pre class="code-block">def say_hello(name):
+    """Приветствие."""
     print(f"Привет, {name}!")
 
 say_hello("Анна")  # Привет, Анна!</pre>
@@ -54,14 +70,14 @@ say_hello("Анна")  # Привет, Анна!</pre>
         <div class="card" id="params">
             <h2 class="card-title">Параметры и возврат значений</h2>
             <h3>Функция с параметрами:</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def sum_two(a, b):
+            <pre class="code-block">def sum_two(a, b):
     return a + b
 
 result = sum_two(5, 3)  # 8</pre>
 
             <h3>Несколько параметров:</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def max_of_three(x, y, z):
-    \"""Возвращает максимум из трёх чисел.\"""
+            <pre class="code-block">def max_of_three(x, y, z):
+    """Возвращает максимум из трёх чисел."""
     if x >= y and x >= z:
         return x
     elif y >= z:
@@ -70,8 +86,8 @@ result = sum_two(5, 3)  # 8</pre>
         return z</pre>
 
             <h3>Параметры по умолчанию:</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def power(x, n=2):
-    \"""Возводит x в степень n (по умолчанию квадрат).\"""
+            <pre class="code-block">def power(x, n=2):
+    """Возводит x в степень n (по умолчанию квадрат)."""
     return x ** n
 
 print(power(5))     # 25
@@ -83,7 +99,7 @@ print(power(5, 3))  # 125</pre>
             <p><strong>Глобальные переменные</strong> — объявлены вне функций, доступны везде.</p>
             <p><strong>Локальные переменные</strong> — объявлены внутри функции, доступны только в ней.</p>
 
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">x = 10  # глобальная переменная
+            <pre class="code-block">x = 10  # глобальная переменная
 
 def func():
     x = 5  # локальная переменная (не изменяет глобальную!)
@@ -109,8 +125,8 @@ print("Снаружи:", x)
             </ul>
 
             <h3>Пример: вычисление факториала</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def factorial(n):
-    \"""Вычисляет n! рекурсивно.\"""
+            <pre class="code-block">def factorial(n):
+    """Вычисляет n! рекурсивно."""
     # Базовый случай
     if n <= 1:
         return 1
@@ -120,8 +136,8 @@ print("Снаружи:", x)
 print(factorial(5))  # 120</pre>
 
             <h3>Пример: числа Фибоначчи</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">def fibonacci(n):
-    \"""Возвращает n-е число Фибоначчи.\"""
+            <pre class="code-block">def fibonacci(n):
+    """Возвращает n-е число Фибоначчи."""
     if n <= 1:
         return n
     return fibonacci(n-1) + fibonacci(n-2)
@@ -131,11 +147,144 @@ print(fibonacci(7))  # 13</pre>
 
             <div class="warning-box"><strong>Внимание:</strong> Рекурсия требует осторожности! Слишком глубокая рекурсия может привести к переполнению стека. Для задач с простыми циклами лучше использовать итеративные алгоритмы.</div>
         </div>
+
+        <div class="card" id="lambda">
+            <h2 class="card-title">Лямбда-функции и функции высшего порядка</h2>
+            <p><strong>Лямбда-функция</strong> — это анонимная функция, заданная выражением. Используется для простых операций.</p>
+
+            <h3>Синтаксис:</h3>
+            <pre class="code-block"># Обычная функция
+def square(x):
+    return x ** 2
+
+# Лямбда-функция
+square = lambda x: x ** 2
+
+print(square(5))  # 25</pre>
+
+            <h3>Лямбда с несколькими параметрами:</h3>
+            <pre class="code-block">add = lambda a, b: a + b
+print(add(3, 4))  # 7
+
+# Сортировка кортежей по второму элементу
+pairs = [(1, 'b'), (2, 'a'), (3, 'c')]
+pairs.sort(key=lambda p: p[1])
+print(pairs)  # [(2, 'a'), (1, 'b'), (3, 'c')]</pre>
+
+            <h3>Функции высшего порядка:</h3>
+            <p><strong>Функция высшего порядка</strong> — это функция, которая принимает другие функции как аргументы или возвращает их.</p>
+
+            <pre class="code-block"># map — применение функции к каждому элементу
+numbers = [1, 2, 3, 4, 5]
+squares = list(map(lambda x: x**2, numbers))
+print(squares)  # [1, 4, 9, 16, 25]
+
+# filter — фильтрация элементов
+even = list(filter(lambda x: x % 2 == 0, numbers))
+print(even)  # [2, 4]
+
+# sorted с ключом
+words = ['banana', 'apple', 'cherry']
+sorted_words = sorted(words, key=lambda w: len(w))
+print(sorted_words)  # ['apple', 'banana', 'cherry']</pre>
+
+            <div class="info-box"><strong>Совет:</strong> Лямбда-функции удобны для коротких операций. Для сложной логики лучше использовать обычные функции с <code>def</code>.</div>
+        </div>
+
+        <div class="card" id="recursion_practice">
+            <h2 class="card-title">Практические задачи на рекурсию</h2>
+
+            <h3>Задача 1: Сумма цифр числа</h3>
+            <pre class="code-block">def digit_sum(n):
+    """Возвращает сумму цифр числа."""
+    if n < 10:
+        return n
+    return n % 10 + digit_sum(n // 10)
+
+print(digit_sum(12345))  # 15</pre>
+
+            <h3>Задача 2: Бинарный поиск (рекурсивный)</h3>
+            <pre class="code-block">def binary_search(arr, target, left=0, right=None):
+    """Ищет элемент в отсортированном массиве."""
+    if right is None:
+        right = len(arr) - 1
+    if left > right:
+        return -1
+    mid = (left + right) // 2
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] < target:
+        return binary_search(arr, target, mid + 1, right)
+    else:
+        return binary_search(arr, target, left, mid - 1)
+
+a = [1, 3, 5, 7, 9, 11, 13]
+print(binary_search(a, 7))  # 3</pre>
+
+            <h3>Задача 3: Быстрое возведение в степень</h3>
+            <pre class="code-block">def power(base, exp):
+    """Возводит base в степень exp за O(log n)."""
+    if exp == 0:
+        return 1
+    if exp % 2 == 0:
+        half = power(base, exp // 2)
+        return half * half
+    return base * power(base, exp - 1)
+
+print(power(2, 10))  # 1024</pre>
+
+            <h3>Задача 4: Ханойские башни</h3>
+            <pre class="code-block">def hanoi(n, source='A', target='C', helper='B'):
+    """Решение задачи о ханойских башнях."""
+    if n == 1:
+        print(f"Переместить диск 1 с {source} на {target}")
+        return
+    hanoi(n-1, source, helper, target)
+    print(f"Переместить диск {n} с {source} на {target}")
+    hanoi(n-1, helper, target, source)
+
+hanoi(3)</pre>
+
+            <h3>Задача 5: Генерация всех перестановок</h3>
+            <pre class="code-block">def permutations(s):
+    """Генерирует все перестановки строки."""
+    if len(s) <= 1:
+        return [s]
+    result = []
+    for i, char in enumerate(s):
+        for perm in permutations(s[:i] + s[i+1:]):
+            result.append(char + perm)
+    return result
+
+print(permutations("abc"))</pre>
+
+            <div class="warning-box"><strong>Внимание:</strong> Рекурсивные решения elegantны, но не всегда эффективны. Для задач с простой структурой итеративный подход может быть быстрее и экономичнее по памяти.</div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="9-2"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="9-2">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-9-1.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">9.1 Массивы и строки</span>
+            </a>
+            <a href="tema-9-3.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">9.3 Файловая обработка</span>
+            </a>
+        </div>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

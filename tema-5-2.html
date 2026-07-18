@@ -1,24 +1,337 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5.2. Язык программирования Python | Информатика 7–9 классы</title>
+    <meta name="description" content="Знакомство с языком Python: переменные, типы данных, ввод и вывод, арифметические операции, стандартные функции, строковый тип данных.">
+    <meta property="og:title" content="5.2 Язык программирования Python | Информатика 8 класс">
+    <meta property="og:description" content="Знакомство с языком Python: переменные, типы данных, ввод и вывод, арифметические операции, стандартные функции.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
 <header>
-<div class="header-top"><h1><a href="index.html">📘 Информатика 7–9 классы</a></h1><a href="index.html" class="home-link">🏠 Главная</a></div>
-<nav><ul><li><a href="7-klass.html">📗 7 класс</a></li><li><a href="8-klass.html">📘 8 класс</a></li><li><a href="9-klass.html">📕 9 класс</a></li></ul></nav>
+<div class="header-top"><a href="index.html" class="site-title">Информатика 7–9 классы</a></div>
+<nav aria-label="Основная навигация"><ul><li><a href="7-klass.html">7 класс</a></li><li><a href="8-klass.html">8 класс</a></li><li><a href="9-klass.html">9 класс</a></li></ul></nav>
 </header>
-<main>
+<main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+    <a href="index.html">Главная</a>
+    <span class="separator">/</span>
+    <a href="8-klass.html">8 класс</a>
+    <span class="separator">/</span>
+    <span class="current">5.2 Язык программирования Python</span>
+</nav>
+<div class="progress-text"></div>
+<div class="progress-bar-container"><div class="progress-bar"></div></div>
 <h1 class="page-title">5.2. Язык программирования Python</h1>
 <p class="page-subtitle">Раздел 5. Основы алгоритмизации и программирования (6 часов)</p>
-<div class="toc"><div class="toc-title">📋 Содержание темы:</div><ol><li><a href="#intro">Знакомство с Python</a></li><li><a href="#variables">Переменные и типы данных</a></li><li><a href="#io">Ввод и вывод</a></li><li><a href="#operators">Арифметические операции</a></li></ol></div>
-<div class="card" id="intro"><h2 class="card-title">Знакомство с Python</h2><p><strong>Python</strong> — современный язык программирования, который широко используется в науке, веб-разработке, анализе данных и обучении программированию.</p><p>Python — <strong>интерпретируемый</strong> язык: программа выполняется сразу без предварительной компиляции.</p><div class="info-box">Создатель: Гвидо ван Россум (1991 г.). Название в честь комедийного шоу «Monty Python's Flying Circus».</div></div><div class="card" id="variables"><h2 class="card-title">Переменные и типы данных</h2><h3>Переменная</h3><p>Переменная — это именованная область памяти для хранения данных.</p><p><strong>Присваивание:</strong> <code>name = value</code></p><h3>Основные типы данных:</h3><table><tr><th>Тип</th><th>Название</th><th>Пример</th></tr><tr><td><code>int</code></td><td>Целое число</td><td><code>x = 5</code></td></tr><tr><td><code>float</code></td><td>Вещественное число</td><td><code>y = 3.14</code></td></tr><tr><td><code>str</code></td><td>Строка</td><td><code>s = 'Привет'</code></td></tr><tr><td><code>bool</code></td><td>Логический</td><td><code>b = True</code></td></tr></table></div><div class="card" id="io"><h2 class="card-title">Ввод и вывод</h2><p><strong>Вывод:</strong> <code>print(выражение)</code></p><p><strong>Ввод:</strong> <code>input(подсказка)</code> — всегда возвращает строку.</p><p><strong>Преобразование типов:</strong> <code>int()</code>, <code>float()</code>, <code>str()</code></p><div class="interactive-block"><h4>💻 Интерактивный пример</h4><pre style="background:#f0f0f0;padding:10px;border-radius:6px;">name = input('Как тебя зовут? ')
-print('Привет, ', name)</pre></div></div><div class="card" id="operators"><h2 class="card-title">Арифметические операции</h2><table><tr><th>Операция</th><th>Знак</th><th>Пример</th></tr><tr><td>Сложение</td><td><code>+</code></td><td><code>a + b</code></td></tr><tr><td>Вычитание</td><td><code>-</code></td><td><code>a - b</code></td></tr><tr><td>Умножение</td><td><code>*</code></td><td><code>a * b</code></td></tr><tr><td>Деление</td><td><code>/</code></td><td><code>a / b</code></td></tr><tr><td>Целочисленное деление</td><td><code>//</code></td><td><code>7 // 2 = 3</code></td></tr><tr><td>Остаток от деления</td><td><code>%</code></td><td><code>7 % 2 = 1</code></td></tr><tr><td>Возведение в степень</td><td><code>**</code></td><td><code>2 ** 3 = 8</code></td></tr></table></div>
+
+<div class="toc"><div class="toc-title">📋 Содержание темы:</div><ol>
+<li><a href="#intro">Знакомство с Python</a></li>
+<li><a href="#tools">Набор инструментов программиста</a></li>
+<li><a href="#alphabet">Алфавит и служебные слова</a></li>
+<li><a href="#variables">Переменные и типы данных</a></li>
+<li><a href="#assignment">Оператор присваивания</a></li>
+<li><a href="#io">Ввод и вывод данных</a></li>
+<li><a href="#operators">Арифметические операции</a></li>
+<li><a href="#functions">Стандартные функции</a></li>
+<li><a href="#strings">Строковый тип данных</a></li>
+<li><a href="#boolean">Логический тип данных</a></li>
+</ol></div>
+
+<div class="card" id="intro">
+<h2 class="card-title">Знакомство с Python</h2>
+<p><strong>Python</strong> — современный язык программирования общего назначения, который широко используется в науке о данных, веб-разработке, искусственном интеллекте, автоматизации и обучении программированию.</p>
+<p>Python — <strong>интерпретируемый</strong> язык: программа выполняется построчно без предварительной компиляции в машинный код.</p>
+<div class="info-box"><strong>Создатель:</strong> Гвидо ван Росcум (1956 г.р.) — голландский программист. Язык создан в 1991 году. Название — в честь комедийного шоу «Monty Python's Flying Circus», а не в честь змеи.</div>
+<h3 class="section-subtitle">Особенности Python:</h3>
+<ul class="content-list">
+<li><strong>Простой синтаксис</strong> — код читается почти как текст на естественном языке</li>
+<li><strong>Свободное использование</strong> — открытый исходный код, бесплатная лицензия</li>
+<li><strong>Кроссплатформенность</strong> — работает на Windows, macOS, Linux</li>
+<li><strong>Большая стандартная библиотека</strong> — множество готовых модулей</li>
+<li><strong>Динамическая типизация</strong> — тип переменной определяется во время выполнения программы</li>
+</ul>
+</div>
+
+<div class="card" id="tools">
+<h2 class="card-title">Набор инструментов программиста</h2>
+<p>Для создания и запуска программ необходимы три основных инструмента:</p>
+<div class="scheme">
+<div class="scheme-item"><div class="scheme-box">Редактор</div><span class="scheme-label">Набор и редактирование кода</span></div>
+<div class="scheme-arrow">→</div>
+<div class="scheme-item"><div class="scheme-box">Транслятор</div><span class="scheme-label">Преобразование в машинный код</span></div>
+<div class="scheme-arrow">→</div>
+<div class="scheme-item"><div class="scheme-box">Программа</div><span class="scheme-label">Выполнение на компьютере</span></div>
+</div>
+<table><tr><th>Инструмент</th><th>Назначение</th></tr>
+<tr><td><strong>Редактор текста</strong></td><td>Программа для ввода, редактирования и форматирования текста программы</td></tr>
+<tr><td><strong>Транслятор</strong></td><td>Преобразует программы с языка программирования в машинный язык. Делится на: <strong>компилятор</strong> (переводит весь текст сразу) и <strong>интерпретатор</strong> (переводит и выполняет построчно)</td></tr>
+<tr><td><strong>Отладчик</strong></td><td>Инструмент для поиска и исправления ошибок в программе</td></tr>
+</table>
+<div class="info-box"><strong>Среда разработки (IDE)</strong> — комплексная среда, объединяющая редактор, транслятор и отладчик. Для Python используется <strong>IDLE</strong> (входит в установочный пакет) или <strong>Thonny</strong> (специально для обучения).</div>
+<h3 class="section-subtitle">Режимы работы в Python:</h3>
+<table><tr><th>Режим</th><th>Описание</th><th>Пример</th></tr>
+<tr><td><strong>Интерактивный</strong></td><td>Каждая команда выполняется сразу после ввода. Удобно для экспериментов.</td><td><code>&gt;&gt;&gt; 2 + 3</code></td></tr>
+<tr><td><strong>Программный</strong></td><td>Программа записывается в файл с расширением <code>.py</code> и запускается целиком.</td><td>Файл <code>hello.py</code></td></tr>
+</table>
+</div>
+
+<div class="card" id="alphabet">
+<h2 class="card-title">Алфавит и служебные слова</h2>
+<h3 class="section-subtitle">Алфавит языка Python:</h3>
+<table><tr><th>Группа</th><th>Символы</th></tr>
+<tr><td>Латинские прописные буквы</td><td>A, B, C, …, X, Y, Z</td></tr>
+<tr><td>Латинские строчные буквы</td><td>a, b, c, …, x, y, z</td></tr>
+<tr><td>Арабские цифры</td><td>0, 1, 2, …, 8, 9</td></tr>
+<tr><td>Специальные символы</td><td>+ − * / = &lt; &gt; ( ) [ ] { } # : ; . , и др.</td></tr>
+</table>
+<h3 class="section-subtitle">Неделимые элементы (составные символы):</h3>
+<table><tr><th>Символы</th><th>Назначение</th></tr>
+<tr><td><code>==</code>, <code>!=</code></td><td>Равно, не равно</td></tr>
+<tr><td><code>&gt;=</code>, <code>&lt;=</code></td><td>Больше или равно, меньше или равно</td></tr>
+<tr><td><code>#</code></td><td>Начало комментария (до конца строки)</td></tr>
+<tr><td><code>"""..."""</code>, <code>'''...'''</code></td><td>Многострочный комментарий / строка</td></tr>
+</table>
+<h3 class="section-subtitle">Служебные слова (ключевые слова):</h3>
+<table><tr><th>Слово</th><th>Значение</th><th>Слово</th><th>Значение</th></tr>
+<tr><td><code>and</code></td><td>И</td><td><code>not</code></td><td>НЕ</td></tr>
+<tr><td><code>or</code></td><td>ИЛИ</td><td><code>True</code></td><td>Истина</td></tr>
+<tr><td><code>if</code></td><td>Если</td><td><code>False</code></td><td>Ложь</td></tr>
+<tr><td><code>elif</code></td><td>Иначе если</td><td><code>for</code></td><td>Для (цикл)</td></tr>
+<tr><td><code>else</code></td><td>Иначе</td><td><code>while</code></td><td>Пока (цикл)</td></tr>
+<tr><td><code>break</code></td><td>Прервать цикл</td><td><code>input</code></td><td>Ввод</td></tr>
+<tr><td><code>int</code></td><td>Целый тип</td><td><code>float</code></td><td>Вещественный</td></tr>
+<tr><td><code>str</code></td><td>Строковый</td><td><code>print</code></td><td>Печать</td></tr>
+<tr><td><code>list</code></td><td>Список</td><td></td><td></td></tr>
+</table>
+<div class="warning-box"><strong>Важно:</strong> В Python <strong>строчные и прописные буквы различаются</strong>! Имена <code>score</code>, <code>Score</code> и <code>SCORE</code> — это три разных имени.</div>
+<h3 class="section-subtitle">Правила именования:</h3>
+<ul class="content-list">
+<li>Имя может состоять из букв, цифр и символа подчёркивания <code>_</code></li>
+<li>Имя <strong>должно начинаться</strong> с буквы или символа подчёркивания</li>
+<li>Имя <strong>не может начинаться</strong> с цифры</li>
+<li>Имя <strong>не должно быть</strong> служебным словом языка</li>
+</ul>
+<table><tr><th>Правильные имена</th><th>Неправильные имена</th><th>Почему неправильно</th></tr>
+<tr><td><code>x</code>, <code>velichina</code>, <code>polnaja_summa</code>, <code>s25</code>, <code>_k1</code></td><td><code>2as</code></td><td>Начинается с цифры</td></tr>
+<tr><td></td><td><code>polnaja summa</code></td><td>Содержит пробел</td></tr>
+<tr><td></td><td><code>and</code></td><td>Является служебным словом</td></tr>
+<tr><td></td><td><code>Domby&Son</code></td><td>Содержит символ <code>&amp;</code></td></tr>
+</table>
+</div>
+
+<div class="card" id="assignment">
+<h2 class="card-title">Оператор присваивания</h2>
+<p>Основная операция — <strong>присваивание</strong> переменной значения:</p>
+<pre class="code-block">имя_переменной = значение_или_выражение</pre>
+<p>Знак <code>=</code> здесь не означает «равно», а означает «становится равным».</p>
+<h3 class="section-subtitle">Примеры:</h3>
+<pre class="code-block">a = 25          # переменной a присваивается значение 25
+name = 'Анна'   # переменной name присваивается строка
+pi = 3.14       # вещественное число
+flag = True     # логическое значение</pre>
+<div class="info-box"><strong>В Python тип переменной не указывается</strong> — он определяется автоматически по значению. Это называется <strong>динамическая типизация</strong>.</div>
+</div>
+
+<div class="card" id="io">
+<h2 class="card-title">Ввод и вывод данных</h2>
+<h3 class="section-subtitle">Вывод данных: print()</h3>
+<p>Оператор <code>print()</code> выводит данные на экран:</p>
+<pre class="code-block">print('Привет, мир!')      # вывод строки
+print('Результат:', 2 + 3) # вывод выражения
+print(1, 2, 3)              # несколько значений через пробел</pre>
+<p>По умолчанию между значениями вставляется <strong>пробел</strong>. Его можно изменить параметром <code>sep</code>:</p>
+<pre class="code-block">print(1, 2, 3, sep='-')    # Результат: 1-2-3
+print(1, 2, 3, sep='')     # Результат: 123</pre>
+
+<h3 class="section-subtitle">Формат вывода</h3>
+<p>Форматирование позволяет задать количество позиций для выводимого числа:</p>
+<pre class="code-block">a = 1/3
+b = 1/9
+print('{:7.3f} {:7.3f}'.format(a, b))
+# Результат:   0.333   0.111
+
+r = 5.4
+c = 2 * 3.14 * r
+s = 3.14 * r * r
+print('Длина окружности c={:6.4f}'.format(c))
+print('Площадь круга    s={:6.4f}'.format(s))</pre>
+
+<h3 class="section-subtitle">Ввод данных: input()</h3>
+<p>Оператор <code>input()</code> считывает строку с клавиатуры:</p>
+<pre class="code-block">name = input('Как тебя зовут? ')
+print('Привет, ', name)</pre>
+<div class="warning-box"><strong>Важно:</strong> Функция <code>input()</code> <strong>всегда возвращает строку</strong> (тип <code>str</code>). Чтобы получить число, нужно преобразовать тип:</div>
+<pre class="code-block">n = int(input())               # ввод целого числа
+x = float(input())             # ввод вещественного числа
+n = int(input('Введите n: '))  # ввод с приглашением</pre>
+
+<h3 class="section-subtitle">Ввод нескольких значений</h3>
+<p>Для ввода нескольких чисел в одной строке используют функции <code>split()</code> и <code>map()</code>:</p>
+<pre class="code-block">a, b = map(int, input().split())
+# Пользователь вводит: 5 10
+# Результат: a = 5, b = 10</pre>
+
+<div class="interactive-block">
+<h4>💻 Первая программа</h4>
+<p>Программа вычисляет длину окружности и площадь круга:</p>
+<pre class="code-block">pi = 3.14159
+r = float(input('Введите радиус: '))
+c = 2 * pi * r
+s = pi * r * r
+print('Длина окружности:', round(c, 2))
+print('Площадь круга:', round(s, 2))</pre>
+<p><strong>Пример ввода:</strong> <code>5.4</code></p>
+<p><strong>Пример вывода:</strong></p>
+<pre class="code-block">Длина окружности: 33.93
+Площадь круга: 91.61</pre>
+</div>
+</div>
+
+<div class="card" id="operators">
+<h2 class="card-title">Арифметические операции</h2>
+<table><tr><th>Операция</th><th>Знак</th><th>Пример</th><th>Результат</th></tr>
+<tr><td>Сложение</td><td><code>+</code></td><td><code>7 + 3</code></td><td>10</td></tr>
+<tr><td>Вычитание</td><td><code>-</code></td><td><code>7 - 3</code></td><td>4</td></tr>
+<tr><td>Умножение</td><td><code>*</code></td><td><code>7 * 3</code></td><td>21</td></tr>
+<tr><td>Деление</td><td><code>/</code></td><td><code>7 / 2</code></td><td>3.5</td></tr>
+<tr><td>Целочисленное деление</td><td><code>//</code></td><td><code>7 // 2</code></td><td>3</td></tr>
+<tr><td>Остаток от деления</td><td><code>%</code></td><td><code>7 % 2</code></td><td>1</td></tr>
+<tr><td>Возведение в степень</td><td><code>**</code></td><td><code>2 ** 3</code></td><td>8</td></tr>
+</table>
+<div class="info-box"><strong>Приоритет операций:</strong> Сначала <code>**</code>, затем <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>, затем <code>+</code>, <code>-</code>. Как в математике, скобки <code>()</code> выполняются первыми.</div>
+
+<div class="interactive-block">
+<h4>🧪 Практическое задание</h4>
+<p>Определите результат выражений без компьютера:</p>
+<p>1) <code>15 // 4</code> &nbsp; 2) <code>15 % 4</code> &nbsp; 3) <code>2 ** 10</code> &nbsp; 4) <code>17 / 5</code></p>
+<button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+<div class="result-box" style="display:none;">
+<p>1) <code>15 // 4 = 3</code> — целочисленное деление (полных четвёрок в 15 — три)</p>
+<p>2) <code>15 % 4 = 3</code> — остаток (15 = 4 × 3 + 3)</p>
+<p>3) <code>2 ** 10 = 1024</code> — две в десятой степени</p>
+<p>4) <code>17 / 5 = 3.4</code> — обычное деление (всегда вещественный результат)</p>
+</div>
+</div>
+</div>
+
+<div class="card" id="functions">
+<h2 class="card-title">Стандартные функции</h2>
+<p>Python предоставляет множество встроенных функций:</p>
+<table><tr><th>Функция</th><th>Назначение</th><th>Пример</th><th>Результат</th></tr>
+<tr><td><code>abs(x)</code></td><td>Модуль числа</td><td><code>abs(-5)</code></td><td>5</td></tr>
+<tr><td><code>round(x)</code></td><td>Округление до ближайшего целого</td><td><code>round(3.7)</code></td><td>4</td></tr>
+<tr><td><code>round(x, n)</code></td><td>Округление до n знаков после запятой</td><td><code>round(3.14159, 2)</code></td><td>3.14</td></tr>
+<tr><td><code>int(x)</code></td><td>Преобразование к целому (отбрасывает дробную часть)</td><td><code>int(3.7)</code></td><td>3</td></tr>
+<tr><td><code>float(x)</code></td><td>Преобразование к вещественному</td><td><code>float(5)</code></td><td>5.0</td></tr>
+<tr><td><code>len(s)</code></td><td>Длина строки (количество символов)</td><td><code>len('Привет')</code></td><td>6</td></tr>
+</table>
+
+<h3 class="section-subtitle">Функции из модуля math:</h3>
+<p>Для использования функций модуля необходимо подключить его командой:</p>
+<pre class="code-block">from math import *</pre>
+<table><tr><th>Функция</th><th>Назначение</th><th>Пример</th></tr>
+<tr><td><code>sqrt(x)</code></td><td>Квадратный корень</td><td><code>sqrt(25) = 5.0</code></td></tr>
+<tr><td><code>pow(x, n)</code></td><td>Возведение в степень</td><td><code>pow(2, 10) = 1024.0</code></td></tr>
+</table>
+
+<h3 class="section-subtitle">Функции случайных чисел:</h3>
+<pre class="code-block">from random import *</pre>
+<table><tr><th>Функция</th><th>Назначение</th><th>Пример</th></tr>
+<tr><td><code>random()</code></td><td>Вещественное случайное число от 0 до 1</td><td><code>random() → 0.728…</code></td></tr>
+<tr><td><code>randint(a, b)</code></td><td>Целое случайное число от a до b включительно</td><td><code>randint(1, 6) → 4</code></td></tr>
+</table>
+
+<div class="interactive-block">
+<h4>🔬 Исследование функций round и int</h4>
+<p>Выполните программу для разных значений x. Каков результат?</p>
+<pre class="code-block">x = float(input('Введите x: '))
+print('Округление:', round(x))
+print('Целая часть:', int(x))</pre>
+<button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ для x = 10.2, 10.8, -10.2, -10.8</button>
+<div class="result-box" style="display:none;">
+<table><tr><th>x</th><th>round(x)</th><th>int(x)</th></tr>
+<tr><td>10.2</td><td>10</td><td>10</td></tr>
+<tr><td>10.8</td><td>11</td><td>10</td></tr>
+<tr><td>-10.2</td><td>-10</td><td>-10</td></tr>
+<tr><td>-10.8</td><td>-11</td><td>-10</td></tr>
+</table>
+<p><strong>Вывод:</strong> <code>round()</code> округляет до ближайшего целого, а <code>int()</code> просто отбрасывает дробную часть.</p>
+</div>
+</div>
+</div>
+
+<div class="card" id="strings">
+<h2 class="card-title">Строковый тип данных</h2>
+<p>Строка — это последовательность символов, заключённая в кавычки:</p>
+<pre class="code-block">s1 = 'Привет'        # одинарные кавычки
+s2 = "Мир"           # двойные кавычки
+s3 = '''Многострочная
+строка'''            # тройные кавычки</pre>
+
+<h3 class="section-subtitle">Операции со строками:</h3>
+<table><tr><th>Операция</th><th>Пример</th><th>Результат</th></tr>
+<tr><td>Сцепление (конкатенация)</td><td><code>'Привет' + ' ' + 'мир'</code></td><td><code>'Привет мир'</code></td></tr>
+<tr><td>Повторение</td><td><code>'аб' * 3</code></td><td><code>'абабаб'</code></td></tr>
+<tr><td>Длина строки</td><td><code>len('Привет')</code></td><td>6</td></tr>
+<tr><td>Обращение по индексу</td><td><code>'Привет'[0]</code></td><td><code>'П'</code></td></tr>
+<tr><td>Срез (slice)</td><td><code>'Привет'[0:3]</code></td><td><code>'При'</code></td></tr>
+</table>
+<div class="info-box"><strong>Индексация:</strong> Нумерация символов начинается с 0. Последний символ — с индекса <code>-1</code>. Срез <code>[a:b]</code> возвращает символы с позиции a по (b−1).</div>
+
+<h3 class="section-subtitle">Полезные функции для строк:</h3>
+<table><tr><th>Функция</th><th>Назначение</th><th>Пример</th></tr>
+<tr><td><code>ord(c)</code></td><td>Код символа в таблице Unicode</td><td><code>ord('A') = 65</code></td></tr>
+<tr><td><code>chr(n)</code></td><td>Символ по его коду</td><td><code>chr(65) = 'A'</code></td></tr>
+<tr><td><code>len(s)</code></td><td>Длина строки</td><td><code>len('abc') = 3</code></td></tr>
+</table>
+<pre class="code-block">a = input('Введите букву: ')
+kod = ord(a)
+print('Код буквы:', kod)
+b = chr(kod - 1) + a + chr(kod + 1)
+print('Соседние буквы:', b)</pre>
+</div>
+
+<div class="card" id="boolean">
+<h2 class="card-title">Логический тип данных</h2>
+<p>Величины логического типа принимают два значения: <code>True</code> (истина) и <code>False</code> (ложь).</p>
+<p>Логические значения получаются в результате <strong>операций сравнения</strong>:</p>
+<table><tr><th>Операция</th><th>Смысл</th><th>Пример</th><th>Результат</th></tr>
+<tr><td><code>==</code></td><td>Равно</td><td><code>5 == 5</code></td><td>True</td></tr>
+<tr><td><code>!=</code></td><td>Не равно</td><td><code>5 != 3</code></td><td>True</td></tr>
+<tr><td><code>&gt;</code></td><td>Больше</td><td><code>5 &gt; 3</code></td><td>True</td></tr>
+<tr><td><code>&lt;</code></td><td>Меньше</td><td><code>5 &lt; 3</code></td><td>False</td></tr>
+<tr><td><code>&gt;=</code></td><td>Больше или равно</td><td><code>5 &gt;= 5</code></td><td>True</td></tr>
+<tr><td><code>&lt;=</code></td><td>Меньше или равно</td><td><code>5 &lt;= 3</code></td><td>False</td></tr>
+</table>
+<p>В Python можно записывать двойные неравенства:</p>
+<pre class="code-block">x = 5
+if 1 &lt; x &lt; 10:
+    print('x находится между 1 и 10')</pre>
+<div class="info-box"><strong>Порядок:</strong> <code>False &lt; True</code>. Ложь соответствует 0, Истина — 1.</div>
+</div>
+
+<div class="quiz-block dynamic-quiz" data-topic="5-2"></div>
+<div style="text-align:center; margin-top:20px;">
+    <button class="btn progress-btn" data-topic="5-2">Отметить как изученное</button>
+</div>
+
+<nav class="topic-nav">
+    <a href="tema-5-1.html" class="prev-link">← 5.1 Алгоритмы и исполнители</a>
+    <a href="tema-5-3.html" class="next-link">5.3 Алгоритмические конструкции →</a>
+</nav>
 </main>
-<footer><p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p><p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p></footer>
-<script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+<script src="js/scripts.js" defer></script>
+<script src="js/quiz.js" defer></script>
 </body>
 </html>

@@ -1,27 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.2 Программы и данные | Информатика 7–9 классы</title>
+    <meta name="description" content="Программное обеспечение, операционные системы, типы интерфейсов, файловая система, архивация данных, компьютерные вирусы и программирование.">
+    <meta property="og:title" content="1.2 Программы и данные">
+    <meta property="og:description" content="Программное обеспечение, операционные системы, файловая система, архивация данных и компьютерные вирусы — основы информатики 7 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
         <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
+</header>
 
-    <main>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="7-klass.html">7 класс</a>
+            <span class="separator">/</span>
+            <span class="current">1.2 Программы и данные</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">1.2. Программы и данные</h1>
         <p class="page-subtitle">Раздел 1. Цифровая грамотность (4 часа)</p>
 
@@ -30,8 +43,10 @@
             <ol>
                 <li><a href="#software">Программное обеспечение</a></li>
                 <li><a href="#os">Операционная система</a></li>
+                <li><a href="#interfaces">Типы пользовательских интерфейсов</a></li>
                 <li><a href="#fs">Файловая система</a></li>
                 <li><a href="#archive">Архивация данных</a></li>
+                <li><a href="#programming">Программирование</a></li>
                 <li><a href="#viruses">Компьютерные вирусы и защита</a></li>
             </ol>
         </div>
@@ -84,10 +99,56 @@
             </div>
         </div>
 
+        <div class="card" id="interfaces">
+            <h2 class="card-title">Типы пользовательских интерфейсов</h2>
+            <p><strong>Пользовательский интерфейс</strong> — это совокупность средств и правил взаимодействия человека с компьютером.</p>
+
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">Командный</div>
+                    <span class="scheme-label">Текстовые команды<br>MS-DOS, Bash</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Графический (GUI)</div>
+                    <span class="scheme-label">Окна, иконки, меню<br>Windows, macOS</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Сенсорный</div>
+                    <span class="scheme-label">Прикосновения<br>Смартфоны, планшеты</span>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Тип интерфейса</th><th>Описание</th><th>Примеры</th></tr>
+                    <tr><td><strong>Командный</strong></td><td>Пользователь вводит текстовые команды в командной строке</td><td>MS-DOS, PowerShell, Bash (Linux)</td></tr>
+                    <tr><td><strong>Графический (GUI)</strong></td><td>Объекты представлены в виде значков; управление мышью и меню</td><td>Windows, macOS, Ubuntu</td></tr>
+                    <tr><td><strong>Объектно-ориентированный</strong></td><td>Каждый объект имеет имя, иконку, свойства и действия</td><td>Современные ОС</td></tr>
+                    <tr><td><strong>Сенсорный</strong></td><td>Управление прикосновениями пальцев к экрану</td><td>Смартфоны, планшеты, интерактивные доски</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>Объекты графического интерфейса:</strong> Каждый компьютерный объект (файл, папка, программа, принтер) имеет своё <strong>имя</strong>, <strong>графическое обозначение</strong> (иконку), набор <strong>свойств</strong> (размер, тип, дата) и доступные <strong>действия</strong> (открыть, скопировать, удалить).
+            </div>
+        </div>
+
         <div class="card" id="fs">
             <h2 class="card-title">Файловая система</h2>
             <p><strong>Файл</strong> — это поименованная область данных на диске. Каждый файл имеет <strong>имя</strong> и <strong>расширение</strong>, которое указывает на тип данных.</p>
 
+            <h3 class="section-subtitle">Логические имена устройств (Windows):</h3>
+            <p>В Windows каждое устройство внешней памяти обозначается латинской буквой и знаком двоеточия:</p>
+            <ul class="content-list">
+                <li><strong>A:, B:</strong> — дисководы гибких дисков (дискеты) — устарели</li>
+                <li><strong>C:</strong> — основной жёсткий диск (системный раздел)</li>
+                <li><strong>D:, E:</strong> — дополнительные разделы диска или оптические дисководы</li>
+                <li><strong>F: и далее</strong> — флеш-накопители, внешние диски</li>
+            </ul>
+
+            <h3 class="section-subtitle">Распространённые расширения файлов:</h3>
             <table>
                 <tr><th>Расширение</th><th>Тип файла</th><th>Программа для открытия</th></tr>
                 <tr><td>.txt</td><td>Текстовый документ</td><td>Блокнот</td></tr>
@@ -99,6 +160,8 @@
                 <tr><td>.mp4, .avi</td><td>Видеофайл</td><td>Видеоплеер</td></tr>
                 <tr><td>.exe</td><td>Исполняемый файл (программа)</td><td>Запускается ОС</td></tr>
                 <tr><td>.zip, .rar</td><td>Архив</td><td>ZIP-архиватор</td></tr>
+                <tr><td>.html</td><td>Веб-страница</td><td>Браузер</td></tr>
+                <tr><td>.py</td><td>Программа на Python</td><td>Python интерпретатор</td></tr>
             </table>
 
             <h3 class="section-subtitle">Иерархическая структура файловой системы</h3>
@@ -108,6 +171,13 @@
                 <strong>Пример пути к файлу:</strong><br>
                 <code>C:\Пользователи\Ученик\Документы\Реферат.docx</code><br>
                 где <strong>C:</strong> — диск, <strong>Пользователи\Ученик\Документы</strong> — путь к папке, <strong>Реферат.docx</strong> — имя файла.
+            </div>
+
+            <h3 class="section-subtitle">Запрещённые символы в имени файла:</h3>
+            <p>В Windows запрещены: <code>\ / : * ? " &lt; &gt; |</code></p>
+
+            <div class="warning-box">
+                <strong>Windows vs Linux:</strong> В Windows <code>FILE.txt</code> и <code>file.txt</code> — это один файл (регистр не важен). В Linux — это <strong>два разных файла</strong>! При работе с серверами это важно учитывать.
             </div>
 
             <h3 class="section-subtitle">Основные операции с файлами и папками:</h3>
@@ -134,6 +204,43 @@
 
             <div class="warning-box">
                 <strong>Важно:</strong> Некоторые типы файлов (изображения, видео, музыка) уже имеют сжатие, поэтому архивация может почти не уменьшить их размер. Текстовые документы и программы сжимаются очень хорошо.
+            </div>
+        </div>
+
+        <div class="card" id="programming">
+            <h2 class="card-title">Программирование</h2>
+            <p><strong>Программирование</strong> — это процесс создания программ, разработки всех типов программного обеспечения. Программист — одна из самых востребованных профессий в современном мире.</p>
+
+            <h3 class="section-subtitle">Специализации программистов:</h3>
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">Системные</div>
+                    <span class="scheme-label">ОС, драйверы</span>
+                </div>
+                <div class="scheme-arrow">+</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Прикладные</div>
+                    <span class="scheme-label">Программы и приложения</span>
+                </div>
+                <div class="scheme-arrow">+</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Веб-программисты</div>
+                    <span class="scheme-label">Интернет-сайты</span>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Популярные языки программирования:</h3>
+            <table>
+                <tr><th>Язык</th><th>Область применения</th><th>Сложность</th></tr>
+                <tr><td><strong>Python</strong></td><td>Наука о данных, ИИ, автоматизация, веб</td><td>Начинающий</td></tr>
+                <tr><td><strong>JavaScript</strong></td><td>Веб-сайты (фронтенд и бэкенд)</td><td>Начинающий</td></tr>
+                <tr><td><strong>C / C++</strong></td><td>Операционные системы, игры, встраиваемые системы</td><td>Продвинутый</td></tr>
+                <tr><td><strong>Java</strong></td><td>Корпоративные приложения, Android</td><td>Средний</td></tr>
+                <tr><td><strong>Scratch</strong></td><td>Обучение программированию (.block-редактор)</td><td>Начинающий</td></tr>
+            </table>
+
+            <div class="info-box">
+                <strong>Для справки:</strong> <strong>Система программирования</strong> — это комплекс программных средств для разработки новых программ: редактор кода, компилятор или интерпретатор, отладчик. Примеры: Visual Studio Code, PyCharm, Thonny.
             </div>
         </div>
 
@@ -172,13 +279,31 @@
                 <div id="password-result" class="result-box"></div>
             </div>
         </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="1-2"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="1-2">Отметить как изученное</button>
+        </div>
+        <div class="topic-nav">
+            <a href="tema-1-1.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">1.1 Компьютер</span>
+            </a>
+            <a href="tema-1-3.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">1.3 Компьютерные сети</span>
+            </a>
+        </div>
     </main>
 
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
-    </footer>
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

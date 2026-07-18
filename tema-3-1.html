@@ -1,27 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3.1 Текстовые документы | Информатика 7–9 классы</title>
+    <meta name="description" content="Тема 3.1 — Текстовые документы: виды текстовых документов, текстовые редакторы и процессоры, форматирование текста, структура документа, вставка объектов.">
+    <meta property="og:title" content="3.1 Текстовые документы | Информатика 7–9 классы">
+    <meta property="og:description" content="Тема 3.1 — Текстовые документы: виды текстовых документов, текстовые редакторы и процессоры, форматирование текста, структура документа, вставка объектов.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
         <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
+</header>
 
-    <main>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="7-klass.html">7 класс</a>
+            <span class="separator">/</span>
+            <span class="current">3.1. Текстовые документы</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">3.1. Текстовые документы</h1>
         <p class="page-subtitle">Раздел 3. Информационные технологии (2 часа)</p>
 
@@ -29,11 +42,13 @@
             <div class="toc-title">📋 Содержание темы:</div>
             <ol>
                 <li><a href="#textdoc">Текстовые документы и их виды</a></li>
+                <li><a href="#history">История создания текстовых процессоров</a></li>
                 <li><a href="#editors">Текстовые редакторы и процессоры</a></li>
                 <li><a href="#format">Форматирование текста</a></li>
                 <li><a href="#struct">Структура документа</a></li>
                 <li><a href="#insert">Вставка объектов</a></li>
                 <li><a href="#tools">Инструменты проверки и редактирования</a></li>
+                <li><a href="#intelligence">Интеллектуальные инструменты</a></li>
             </ol>
         </div>
 
@@ -57,6 +72,26 @@
                 <tr><td>.pdf</td><td>Portable Document Format</td><td>Adobe Acrobat, браузер</td></tr>
                 <tr><td>.rtf</td><td>Rich Text Format</td><td>WordPad, MS Word</td></tr>
             </table>
+        </div>
+
+        <div class="card" id="history">
+            <h2 class="card-title">История создания текстовых процессоров</h2>
+            <p>Первые текстовые процессоры появились в 1960–70-х годах и былиhardware-решениями — специальными машинами.</p>
+
+            <h3 class="section-subtitle">Основные вехи:</h3>
+            <table>
+                <tr><th>Год</th><th>Событие</th></tr>
+                <tr><td>1960-е</td><td>IBM Selectric — пишущая машинка с электронным управлением</td></tr>
+                <tr><td>1971</td><td>IBM MT/ST — первая система «текстовый процессор» с магнитной лентой</td></tr>
+                <tr><td>1979</td><td>WordStar — одна из первых программ для персональных компьютеров</td></tr>
+                <tr><td>1983</td><td>Microsoft Word — начало эпохи WYSIWYG-редакторов</td></tr>
+                <tr><td>1990-е</td><td>LibreOffice (OpenOffice) — бесплатная альтернатива Microsoft Office</td></tr>
+                <tr><td>2006</td><td>Google Docs — облачные текстовые процессоры</td></tr>
+            </table>
+
+            <div class="info-box">
+                <strong>WYSIWYG</strong> (What You See Is What You Get — «что видишь, то и получишь») — принцип работы современных текстовых процессоров: вид документа на экране совпадает с видом при печати.
+            </div>
         </div>
 
         <div class="card" id="editors">
@@ -184,13 +219,52 @@
                 <div id="readability-result" class="result-box"></div>
             </div>
         </div>
+
+        <div class="card" id="intelligence">
+            <h2 class="card-title">Интеллектуальные инструменты текстового процессора</h2>
+            <p>Современные текстовые процессоры используют <strong>искусственный интеллект</strong> для помощи автору:</p>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Инструмент</th><th>Описание</th><th>Пример</th></tr>
+                    <tr><td><strong>Проверка орфографии</strong></td><td>Автоматическое подчёркивание ошибок</td><td>Красное подчёркивание в Word</td></tr>
+                    <tr><td><strong>Проверка грамматики</strong></td><td>Поиск грамматических ошибок</td><td>Синее/зелёное подчёркивание</td></tr>
+                    <tr><td><strong>Стиль текста</strong></td><td>Рекомендации по улучшению читаемости</td><td>«Слишком длинное предложение»</td></tr>
+                    <tr><td><strong>Автозамена</strong></td><td>Замена часто допускаемых ошибок</td><td>«теущий» → «текущий»</td></tr>
+                    <tr><td><strong>Умные кавычки</strong></td><td>Автоматическая замена типографских кавычек</td><td>« » вместо " "</td></tr>
+                    <tr><td><strong>Тезаурус</strong></td><td>Подбор синонимов</td><td>«важный» → «значимый», «существенный»</td></tr>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <strong>Важно:</strong> Интеллектуальные инструменты — это лишь помощь, а не замена знаний. Они могут допускать ошибки, поэтому всегда проверяйте текст самостоятельно!
+            </div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="3-1"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="3-1">Отметить как изученное</button>
+        </div>
+        <div class="topic-nav">
+            <a href="tema-2-2.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">2.2 Представление информации</span>
+            </a>
+            <a href="tema-3-2.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">3.2 Компьютерная графика</span>
+            </a>
+        </div>
     </main>
 
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
-    </footer>
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

@@ -1,26 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>8.2. Информационная безопасность | Информатика 7–9 классы</title>
+    <meta name="description" content="Информационная безопасность — угрозы, защита информации, шифрование, безопасное поведение в сети, цифровой след, сетевой этикет. Информатика 9 класс.">
+    <meta property="og:title" content="8.2. Информационная безопасность | Информатика 7–9 классы">
+    <meta property="og:description" content="Информационная безопасность — угрозы, защита информации, шифрование, безопасное поведение в сети, цифровой след, сетевой этикет. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Информационная безопасность</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
         <h1 class="page-title">8.2. Информационная безопасность</h1>
         <p class="page-subtitle">Раздел 8. Коммуникационные технологии (5 часов)</p>
 
@@ -31,18 +45,22 @@
                 <li><a href="#protection">Защита информации</a></li>
                 <li><a href="#crypto">Шифрование</a></li>
                 <li><a href="#safe">Безопасное поведение в сети</a></li>
+                <li><a href="#malware">Виды вредоносного ПО</a></li>
+                <li><a href="#passwords">Безопасные пароли</a></li>
             </ol>
         </div>
 
         <div class="card" id="threats">
             <h2 class="card-title">Угрозы информационной безопасности</h2>
             <table>
-                <tr><th>Угроза</th><th>Описание</th></tr>
-                <tr><td><strong>Вирусы</strong></td><td>Вредоносные программы, самокопируются</td></tr>
-                <tr><td><strong>Фишинг</strong></td><td>Кража паролей через поддельные сайты</td></tr>
-                <tr><td><strong>Кибербуллинг</strong></td><td>Травля в Интернете</td></tr>
-                <tr><td><strong>Шпионское ПО</strong></td><td>Сбор данных о пользователе</td></tr>
-                <tr><td><strong>Программы-вымогатели</strong></td><td>Шифруют файлы и требуют выкуп</td></tr>
+                <tr><th>Угроза</th><th>Описание</th><th>Пример</th></tr>
+                <tr><td><strong>Вирусы</strong></td><td>Вредоносные программы, самокопируются</td><td>Троян, червь</td></tr>
+                <tr><td><strong>Фишинг</strong></td><td>Кража паролей через поддельные сайты</td><td>Письмо «Подтвердите пароль»</td></tr>
+                <tr><td><strong>Кибербуллинг</strong></td><td>Травля в Интернете</td><td>Оскорбления в чате</td></tr>
+                <tr><td><strong>Шпионское ПО</strong></td><td>Сбор данных о пользователе</td><td>Кейлоггер</td></tr>
+                <tr><td><strong>Программы-вымогатели</strong></td><td>Шифруют файлы и требуют выкуп</td><td>WannaCry</td></tr>
+                <tr><td><strong>DDoS-атаки</strong></td><td>Перегрузка сервера запросами</td><td>Блокировка сайта</td></tr>
+                <tr><td><strong>Социальная инженерия</strong></td><td>Манипуляция людьми для получения данных</td><td>Звонок «из банка»</td></tr>
             </table>
         </div>
 
@@ -91,11 +109,110 @@
             </ul>
             <div class="warning-box"><strong>Помните:</strong> В Интернете информация может оставаться навсегда. Думайте, прежде чем публиковать!</div>
         </div>
+
+        <div class="card" id="malware">
+            <h2 class="card-title">Виды вредоносного ПО</h2>
+            <table>
+                <tr><th>Тип</th><th>Описание</th><th>Опасность</th></tr>
+                <tr><td><strong>Вирус</strong></td><td>Прикрепляется к файлам, самораспространяется</td><td>Повреждение данных</td></tr>
+                <tr><td><strong>Червь</strong></td><td>Распространяется по сети без файла-носителя</td><td>Засорение сети</td></tr>
+                <tr><td><strong>Троян</strong></td><td>Маскируется под полезную программу</td><td>Кража данных, удалённое управление</td></tr>
+                <tr><td><strong>Шифровальщик</strong></td><td>Шифрует файлы, требует выкуп</td><td>Потеря данных</td></tr>
+                <tr><td><strong>Кейлоггер</strong></td><td>Записывает нажатия клавиш</td><td>Кража паролей</td></tr>
+                <tr><td><strong>Руткит</strong></td><td>Скрывается в системе на уровне ядра</td><td>Полный контроль над ПК</td></tr>
+                <tr><td><strong>Рекламное ПО</strong></td><td>Показывает навязчивую рекламу</td><td>Замедление ПК</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Признаки заражения:</h3>
+            <ul class="content-list">
+                <li>Компьютер работает медленнее обычного</li>
+                <li>Появляются непонятные окна и реклама</li>
+                <li>Изменена начальная страница браузера</li>
+                <li>Антивирус отключился</li>
+                <li>Файлы стали недоступны или изменены</li>
+            </ul>
+        </div>
+
+        <div class="card" id="passwords">
+            <h2 class="card-title">Безопасные пароли</h2>
+
+            <h3 class="section-subtitle">Правила создания пароля:</h3>
+            <ul class="content-list">
+                <li>Не менее 12 символов</li>
+                <li>Используйте буквы (прописные и строчные), цифры и спецсимволы</li>
+                <li>Не используйте даты рождения, имена, «123456», «password»</li>
+                <li>Используйте разные пароли для разных сервисов</li>
+                <li>Регулярно меняйте пароли</li>
+            </ul>
+
+            <h3 class="section-subtitle">Надёжность пароля:</h3>
+            <table>
+                <tr><th>Пароль</th><th>Символы</th><th>Время подбора</th></tr>
+                <tr><td>123456</td><td>6 (цифры)</td><td>мгновенно</td></tr>
+                <tr><td>qwerty</td><td>6 (буквы)</td><td>мгновенно</td></tr>
+                <tr><td>Анна2010</td><td>8 (буквы+цифры)</td><td>часы</td></tr>
+                <tr><td>K9#mP2$vL7</td><td>10 (все типы)</td><td>столетия</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Менеджеры паролей:</h3>
+            <p>Программы для безопасного хранения паролей: KeePass, Bitwarden, 1Password. Генерируют и запоминают сложные пароли.</p>
+
+            <div class="info-box"><strong>Совет:</strong> Используйте фразы из 4–6 слов: «ЗелёныйКотПрыгнулЧерезЗабор2024!» — такой пароль одновременно длинный и легко запоминается.</div>
+        </div>
+
+        <div class="card" id="footprint">
+            <h2 class="card-title">Цифровой след и сетевой этикет</h2>
+            <h3 class="section-subtitle">Цифровой след</h3>
+            <p><strong>Цифровой след</strong> — это совокупность данных, которые остаются о пользователе в сети при выполнении любых действий: посещение сайтов, публикации, комментарии, загрузка файлов.</p>
+            <ul class="content-list">
+                <li><strong>Пассивный след</strong> — автоматически собирается сервисами (IP-адрес, история посещений, cookies)</li>
+                <li><strong>Активный след</strong> — создаётся пользователем осознанно (публикации, комментарии, профили)</li>
+            </ul>
+            <div class="warning-box"><strong>Помните:</strong> Удалённая информация может сохраняться в кэше поисковых систем и архивах. Думайте, прежде чем публиковать!</div>
+            <h3 class="section-subtitle">Сетевой этикет (нетикет)</h3>
+            <ul class="content-list">
+                <li>Пишите грамотно и вежливо</li>
+                <li>Не используйте КАПС ЛОК (писание заглавными буквами расценивается как крик)</li>
+                <li>Не дублируйте сообщения в разных чатах (спам)</li>
+                <li>Уважайте чужое мнение, даже если не согласны</li>
+                <li>Не публикуйте чужие личные данные без разрешения</li>
+                <li>Используйте эмодзи умеренно</li>
+                <li>Отвечайте на сообщения в разумные сроки</li>
+            </ul>
+            <h3 class="section-subtitle">Аутентичность субъектов и ресурсов</h3>
+            <p><strong>Аутентификация</strong> — подтверждение подлинности (кто вы). <strong>Авторизация</strong> — предоставление прав (что вам можно).</p>
+            <ul class="content-list">
+                <li>Проверяйте URL-адрес сайта перед вводом данных (наличие <code>https://</code> и правильное написание домена)</li>
+                <li>Используйте двухфакторную аутентификацию (2FA)</li>
+                <li>Не переходите по ссылкам из подозрительных сообщений</li>
+                <li>Проверяйте сертификаты сайтов</li>
+            </ul>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="8-2"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="8-2">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-8-1.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">8.1 Компьютерные сети</span>
+            </a>
+            <a href="tema-9-1.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">9.1 Массивы и строки</span>
+            </a>
+        </div>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

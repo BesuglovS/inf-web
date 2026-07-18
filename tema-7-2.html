@@ -1,26 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7.2. Формулы, функции и диаграммы | Информатика 7–9 классы</title>
+    <meta name="description" content="Формулы, функции и диаграммы — арифметические операторы, встроенные функции, сортировка, фильтрация, типы диаграмм. Информатика 9 класс.">
+    <meta property="og:title" content="7.2. Формулы, функции и диаграммы | Информатика 7–9 классы">
+    <meta property="og:description" content="Формулы, функции и диаграммы — арифметические операторы, встроенные функции, сортировка, фильтрация, типы диаграмм. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Формулы, функции и диаграммы</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
         <h1 class="page-title">7.2. Формулы, функции и диаграммы</h1>
         <p class="page-subtitle">Раздел 7. Обработка числовой информации в электронных таблицах (7 часов)</p>
 
@@ -31,6 +45,8 @@
                 <li><a href="#functions">Встроенные функции</a></li>
                 <li><a href="#sort">Сортировка и фильтрация</a></li>
                 <li><a href="#charts">Диаграммы и визуализация</a></li>
+                <li><a href="#lookup">Функции поиска и ссылок</a></li>
+                <li><a href="#practice">Практические задания</a></li>
             </ol>
         </div>
 
@@ -82,20 +98,115 @@
             <p><strong>Диаграмма</strong> — это графическое представление числовых данных.</p>
             <h3 class="section-subtitle">Типы диаграмм:</h3>
             <table>
-                <tr><th>Тип</th><th>Назначение</th></tr>
-                <tr><td><strong>Гистограмма</strong></td><td>Сравнение значений в разных категориях</td></tr>
-                <tr><td><strong>Круговая</strong></td><td>Показывает доли частей в целом</td></tr>
-                <tr><td><strong>График</strong></td><td>Отображает изменение данных во времени</td></tr>
-                <tr><td><strong>Линейчатая</strong></td><td>Сравнение значений (горизонтальные столбцы)</td></tr>
-                <tr><td><strong>Точечная</strong></td><td>Показывает взаимосвязь между двумя переменными</td></tr>
+                <tr><th>Тип</th><th>Назначение</th><th>Когда использовать</th></tr>
+                <tr><td><strong>Гистограмма</strong></td><td>Сравнение значений</td><td>Сравнение продаж по месяцам</td></tr>
+                <tr><td><strong>Круговая</strong></td><td>Доли частей в целом</td><td>Расходы бюджета по статьям</td></tr>
+                <tr><td><strong>График</strong></td><td>Изменение во времени</td><td>Динамика цен за год</td></tr>
+                <tr><td><strong>Линейчатая</strong></td><td>Горизонтальное сравнение</td><td>Рейтинг школ по баллам</td></tr>
+                <tr><td><strong>Точечная</strong></td><td>Взаимосвязь переменных</td><td>Зависимость роста от веса</td></tr>
+                <tr><td><strong>Диаграмма размаха</strong></td><td>Распределение данных</td><td>Мин/макс температура по дням</td></tr>
             </table>
-            <div class="info-box"><strong>Элементы диаграммы:</strong> заголовок, оси, легенда, подписи данных, сетка.</div>
+
+            <h3 class="section-subtitle">Элементы диаграммы:</h3>
+            <ul class="content-list">
+                <li><strong>Заголовок</strong> — название диаграммы</li>
+                <li><strong>Оси</strong> — горизонтальная (X) и вертикальная (Y)</li>
+                <li><strong>Легенда</strong> — пояснение серий данных</li>
+                <li><strong>Подписи данных</strong> — числовые значения на элементах</li>
+                <li><strong>Сетка</strong> — линии для удобства чтения</li>
+                <li><strong>Трендовая линия</strong> — показывает общую тенденцию</li>
+            </ul>
+
+            <div class="info-box"><strong>Совет:</strong> Круговая диаграмма хорошо подходит для 3–6 категорий. При большем числе категорий лучше использовать гистограмму.</div>
+        </div>
+
+        <div class="card" id="lookup">
+            <h2 class="card-title">Функции поиска и ссылок</h2>
+
+            <h3 class="section-subtitle">ВПР (VLOOKUP) — вертикальный поиск:</h3>
+            <p>Ищет значение в первом столбце диапазона и возвращает значение из указанного столбца.</p>
+            <pre class="code-block">=ВПР(искомое; диапазон; номер_столбца; [точное_совпадение])</pre>
+            <p><strong>Пример:</strong> <code>=ВПР("Иванов"; A2:C10; 3; 0)</code> — найти «Иванова» в A2:A10, вернуть значение из 3-го столбца.</p>
+
+            <h3 class="section-subtitle">ИНДЕКС (INDEX) + ПОИСКПОЗ (MATCH):</h3>
+            <pre class="code-block">=ИНДЕКС(столбец_результатов; ПОИСКПОЗ(искомое; столбец_поиска; 0))</pre>
+            <p><strong>Пример:</strong> <code>=ИНДЕКС(C2:C10; ПОИСКПОЗ("Иванов"; A2:A10; 0))</code></p>
+
+            <h3 class="section-subtitle">ГПР (HLOOKUP) — горизонтальный поиск:</h3>
+            <p>Аналог ВПР, но ищет в первой строке диапазона.</p>
+
+            <h3 class="section-subtitle">ДВССЫЛ (INDIRECT) — косвенная ссылка:</h3>
+            <p>Позволяет формировать ссылку на ячейку динамически.</p>
+            <p><strong>Пример:</strong> <code>=ДВССЫЛ("A"&B1)</code> — если B1=5, ссылка будет A5.</p>
+        </div>
+
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задания</h2>
+
+            <div class="interactive-block">
+                <h4>Задание 1. Формула ЕСЛИ</h4>
+                <p>Напишите формулу: если оценка ≥ 4, вывести «Хорошо», иначе — «Нужно подтянуть».</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;"><code>=ЕСЛИ(A1>=4; "Хорошо"; "Нужно подтянуть")</code></div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 2. Сумма с условием</h4>
+                <p>Какой формулой посчитать сумму только положительных чисел в диапазоне A1:A20?</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;"><code>=СУММЕСЛИ(A1:A20;">"&0)</code></div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 3. Выбор диаграммы</h4>
+                <p>Какой тип диаграммы лучше использовать для:</p>
+                <ol>
+                    <li>Показать долю каждого предмета в общем количестве уроков</li>
+                    <li>Сравнить средние баллы по предметам</li>
+                    <li>Показать изменение температуры за неделю</li>
+                </ol>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <ol>
+                        <li>Круговая диаграмма</li>
+                        <li>Гистограмма</li>
+                        <li>График (линейчатая диаграмма)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 4. ВПР</h4>
+                <p>В таблице: A — название товара, B — цена, C — количество. Напишите формулу для определения цены товара «Хлеб».</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;"><code>=ВПР("Хлеб"; A2:C100; 2; 0)</code> — ищем «Хлеб» в 1-м столбце, возвращаем значение из 2-го (цена).</div>
+            </div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="7-2"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="7-2">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-7-1.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">7.1 Электронные таблицы</span>
+            </a>
+            <a href="tema-8-1.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">8.1 Компьютерные сети и Интернет</span>
+            </a>
         </div>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

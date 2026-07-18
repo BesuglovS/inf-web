@@ -1,61 +1,251 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5.1. Алгоритмы и исполнители | Информатика 7–9 классы</title>
+    <meta name="description" content="Понятие алгоритма, свойства алгоритмов, способы записи, исполнители, объекты алгоритмов, классификация алгоритмов.">
+    <meta property="og:title" content="5.1 Алгоритмы и исполнители | Информатика 8 класс">
+    <meta property="og:description" content="Понятие алгоритма, свойства, способы записи, исполнители, объекты алгоритмов.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav><ul><li><a href="7-klass.html">📗 7 класс</a></li><li><a href="8-klass.html">📘 8 класс</a></li><li><a href="9-klass.html">📕 9 класс</a></li></ul></nav>
-    </header>
-    <main>
+        <nav aria-label="Основная навигация"><ul><li><a href="7-klass.html">7 класс</a></li><li><a href="8-klass.html">8 класс</a></li><li><a href="9-klass.html">9 класс</a></li></ul></nav>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+    <a href="index.html">Главная</a>
+    <span class="separator">/</span>
+    <a href="8-klass.html">8 класс</a>
+    <span class="separator">/</span>
+    <span class="current">5.1 Алгоритмы и исполнители</span>
+</nav>
+<div class="progress-text"></div>
+<div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">5.1. Алгоритмы и исполнители</h1>
         <p class="page-subtitle">Раздел 5. Основы алгоритмизации и программирования (5 часов)</p>
         <div class="toc">
             <div class="toc-title">📋 Содержание темы:</div>
             <ol>
 <li><a href="#algo_intro">Понятие алгоритма</a></li>
+<li><a href="#properties">Свойства алгоритмов</a></li>
 <li><a href="#representation">Способы записи алгоритмов</a></li>
 <li><a href="#executors">Исполнители</a></li>
-<li><a href="#structures">Алгоритмические конструкции</a></li>
+<li><a href="#objects">Объекты алгоритмов</a></li>
+<li><a href="#classification">Классификация алгоритмов</a></li>
+<li><a href="#practical">Практические задачи</a></li>
             </ol>
         </div>
+
         <div class="card" id="algo_intro">
             <h2 class="card-title">Понятие алгоритма</h2>
-            <p><strong>Алгоритм</strong> — это конечная последовательность команд, выполнение которых приводит к решению задачи.</p>
-            <h3>Свойства алгоритмов:</h3>
-            <table><tr><th>Свойство</th><th>Описание</th></tr><tr><td><strong>Дискретность</strong></td><td>Алгоритм состоит из отдельных шагов (команд)</td></tr><tr><td><strong>Понятность</strong></td><td>Каждая команда понятна исполнителю</td></tr><tr><td><strong>Определённость</strong></td><td>Нет двусмысленности, однозначность выполнения</td></tr><tr><td><strong>Результативность</strong></td><td>Приводит к результату за конечное число шагов</td></tr><tr><td><strong>Массовость</strong></td><td>Применим к целому классу задач</td></tr></table>
+            <p><strong>Алгоритм</strong> — это конечная последовательность команд (шагов), выполнение которых приводит к решению задачи.</p>
+            <p>Термин происходит от имени средневекового математика <strong>аль-Хорезми</strong> (783–850), который описывал правила выполнения арифметических действий.</p>
+            <div class="info-box"><strong>Важно:</strong> Любой алгоритм должен состоять из предписаний двух видов: <strong>функциональных операторов</strong> (непосредственное преобразование данных) и <strong>логических операторов</strong> (определение порядка действий). Это доказал выдающийся математик А.А. Марков.</div>
         </div>
+
+        <div class="card" id="properties">
+            <h2 class="card-title">Свойства алгоритмов</h2>
+            <table><tr><th>Свойство</th><th>Описание</th><th>Пример нарушения</th></tr>
+            <tr><td><strong>Дискретность</strong></td><td>Алгоритм состоит из отдельных, чётко разделённых шагов</td><td>Непрерывное описание без разделения на шаги</td></tr>
+            <tr><td><strong>Понятность</strong></td><td>Каждая команда понятна исполнителю</td><td>Команда «сделай красиво» — непонятна</td></tr>
+            <tr><td><strong>Определённость</strong></td><td>Каждая команда однозначна, нет двусмысленности</td><td>«Возьми любое число» — неопределённо</td></tr>
+            <tr><td><strong>Результативность</strong></td><td>Алгоритм завершается за конечное число шагов</td><td>Бесконечный цикл без условия выхода</td></tr>
+            <tr><td><strong>Массовость</strong></td><td>Применим к целому классу задач одного типа</td><td>Алгоритм для конкретного числа 7 — не массовый</td></tr>
+            </table>
+        </div>
+
         <div class="card" id="representation">
             <h2 class="card-title">Способы записи алгоритмов</h2>
-            <ul class="content-list"><li><strong>Словесный</strong> — описание на естественном языке</li><li><strong>Графический</strong> — блок-схемы</li><li><strong>Псевдокод</strong> — полуформализованный язык</li><li><strong>Программа</strong> — запись на языке программирования</li></ul>
-            <h3>Элементы блок-схем:</h3>
-            <table><tr><th>Фигура</th><th>Название</th><th>Назначение</th></tr><tr><td>Овал</td><td>Терминатор</td><td>Начало / конец алгоритма</td></tr><tr><td>Параллелограмм</td><td>Ввод/вывод</td><td>Ввод/вывод данных</td></tr><tr><td>Прямоугольник</td><td>Действие</td><td>Выполнение операции</td></tr><tr><td>Ромб</td><td>Условие</td><td>Ветвление</td></tr></table>
+            <ul class="content-list">
+            <li><strong>Словесный</strong> — описание на естественном языке</li>
+            <li><strong>Графический</strong> — блок-схемы</li>
+            <li><strong>Псевдокод</strong> — полуформализованный язык (школьный алгоритмический язык)</li>
+            <li><strong>Программа</strong> — запись на языке программирования</li>
+            </ul>
+            <h3 class="section-subtitle">Элементы блок-схем:</h3>
+            <table><tr><th>Фигура</th><th>Название</th><th>Назначение</th></tr>
+            <tr><td>Овал</td><td>Терминатор</td><td>Начало / конец алгоритма</td></tr>
+            <tr><td>Параллелограмм</td><td>Ввод/вывод</td><td>Ввод или вывод данных</td></tr>
+            <tr><td>Прямоугольник</td><td>Действие</td><td>Выполнение операции</td></tr>
+            <tr><td>Ромб</td><td>Условие</td><td>Разветвление (выбор ветви)</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Пример словесного алгоритма:</h3>
+            <p><strong>Задача:</strong> Найти сумму двух чисел.</p>
+            <ol class="content-list">
+            <li>Ввести первое число A</li>
+            <li>Ввести второе число B</li>
+            <li>Вычислить S = A + B</li>
+            <li>Вывести результат S</li>
+            </ol>
         </div>
+
         <div class="card" id="executors">
             <h2 class="card-title">Исполнители</h2>
             <p><strong>Исполнитель</strong> — объект, способный выполнять команды алгоритма.</p>
-            <h3>Примеры:</h3>
-            <ul class="content-list"><li><strong>Черепашка</strong> — рисует на экране</li><li><strong>Чертежник</strong> — чертит на координатной плоскости</li><li><strong>Робот</strong> — перемещается по клетчатому полю</li></ul>
-            <div class="info-box"><strong>СКИ</strong> — система команд исполнителя (набор допустимых команд).</div>
+            <h3 class="section-subtitle">Характеристики исполнителя:</h3>
+            <table><tr><th>Характеристика</th><th>Описание</th></tr>
+            <tr><td><strong>Круг решаемых задач</strong></td><td>Какие задачи может решать данный исполнитель</td></tr>
+            <tr><td><strong>Среда</strong></td><td>Объект, над которым выполняются команды</td></tr>
+            <tr><td><strong>Режим работы</strong></td><td>Последовательный или параллельный</td></tr>
+            <tr><td><strong>Система команд (СКИ)</strong></td><td>Полный набор допустимых команд исполнителя</td></tr>
+            </table>
+            <h3 class="section-subtitle">Примеры исполнителей:</h3>
+            <ul class="content-list">
+            <li><strong>Черепашка</strong> — рисует на экране, перемещаясь по координатной плоскости</li>
+            <li><strong>Чертежник</strong> — чертит на координатной плоскости по заданным размерам</li>
+            <li><strong>Робот</strong> — перемещается по клетчатому полю, выполняет действия с кирпичами</li>
+            </ul>
+
+            <h3 class="section-subtitle">СКИ Черепашки:</h3>
+            <table><tr><th>Команда</th><th>Действие</th></tr>
+            <tr><td><code>forward(n)</code></td><td>Двигаться вперёд на n единиц</td></tr>
+            <tr><td><code>backward(n)</code></td><td>Двигаться назад на n единиц</td></tr>
+            <tr><td><code>left(90)</code></td><td>Повернуть влево на 90°</td></tr>
+            <tr><td><code>right(90)</code></td><td>Повернуть вправо на 90°</td></tr>
+            <tr><td><code>penup()</code></td><td>Поднять «перо» (прекратить рисование)</td></tr>
+            <tr><td><code>pendown()</code></td><td>Опустить «перо» (начать рисование)</td></tr>
+            </table>
         </div>
-        <div class="card" id="structures">
-            <h2 class="card-title">Алгоритмические конструкции</h2>
-            <h3>Следование</h3><p>Команды выполняются последовательно.</p>
-            <h3>Ветвление</h3><p>Выбор действий в зависимости от условия.</p><div class="info-box">Полная форма: если условие то A иначе B. Краткая: если условие то A.</div>
-            <h3>Цикл</h3><p>Повторение действий.</p><ul class="content-list"><li><strong>Цикл со счётчиком:</strong> для i от 1 до N</li><li><strong>Цикл с условием:</strong> пока условие истинно</li></ul>
+
+        <div class="card" id="objects">
+            <h2 class="card-title">Объекты алгоритмов</h2>
+            <p>Алгоритмы описывают последовательность действий над <strong>информационными объектами</strong> (величинами).</p>
+
+            <div class="scheme">
+            <div class="scheme-item"><div class="scheme-box">Величина</div><span class="scheme-label">Информационный объект</span></div>
+            <div class="scheme-arrow">→</div>
+            <div class="scheme-item"><div class="scheme-box">Постоянная / Переменная</div><span class="scheme-label">По изменяемости</span></div>
+            <div class="scheme-arrow">→</div>
+            <div class="scheme-item"><div class="scheme-box">Число / Символ / Строка / Таблица</div><span class="scheme-label">По типу данных</span></div>
+            </div>
+
+            <h3 class="section-subtitle">Постоянные и переменные:</h3>
+            <table><tr><th>Тип</th><th>Описание</th><th>Пример</th></tr>
+            <tr><td><strong>Постоянная</strong></td><td>Значение не меняется в ходе выполнения</td><td><code>pi = 3.14</code></td></tr>
+            <tr><td><strong>Переменная</strong></td><td>Значение может изменяться присваиванием</td><td><code>s = 0; s = s + 1</code></td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Операция присваивания:</h3>
+            <p>Запись <code>X := E</code> (или <code>X = E</code>) означает: вычислить значение выражения E и записать его в переменную X.</p>
+            <div class="info-box"><strong>Пример:</strong> После выполнения <code>a := 5</code> переменная a содержит значение 5. После <code>a := a + 1</code> переменная a содержит значение 6.</div>
+
+            <h3 class="section-subtitle">Выражения:</h3>
+            <p>Выражение — это комбинация констант, переменных и операций, которая вычисляется для получения нового значения.</p>
+            <pre class="code-block">s := a * (b + c) / 2   # арифметическое выражение
+x &gt; 0 and y &gt; 0        # логическое выражение</pre>
         </div>
+
+        <div class="card" id="classification">
+            <h2 class="card-title">Классификация алгоритмов</h2>
+            <p>Как доказал Э. Дейкстра, для записи любого алгоритма достаточно трёх основных конструкций:</p>
+
+            <div class="scheme">
+            <div class="scheme-item"><div class="scheme-box">Следование</div><span class="scheme-label">Линейный алгоритм</span></div>
+            <div class="scheme-arrow">|</div>
+            <div class="scheme-item"><div class="scheme-box">Ветвление</div><span class="scheme-label">Разветвляющийся алгоритм</span></div>
+            <div class="scheme-arrow">|</div>
+            <div class="scheme-item"><div class="scheme-box">Повторение</div><span class="scheme-label">Циклический алгоритм</span></div>
+            </div>
+
+            <table><tr><th>Тип</th><th>Описание</th><th>Когда использовать</th></tr>
+            <tr><td><strong>Линейный</strong></td><td>Все команды выполняются последовательно, одна за другой</td><td>Когда каждая команда выполняется ровно один раз</td></tr>
+            <tr><td><strong>Разветвляющийся</strong></td><td>Выбор ветви зависит от условия («да» или «нет»)</td><td>Когда действие зависит от условия</td></tr>
+            <tr><td><strong>Циклический</strong></td><td>Некоторые команды многократно повторяются</td><td>Когда одна и та же команда выполняется много раз</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Алгоритмическая конструкция «Следование»:</h3>
+            <p>Команды выполняются строго последовательно, одна за другой.</p>
+            <div class="scheme">
+            <div class="scheme-item"><div class="scheme-box">Начало</div></div>
+            <div class="scheme-arrow">→</div>
+            <div class="scheme-item"><div class="scheme-box">Команда 1</div></div>
+            <div class="scheme-arrow">→</div>
+            <div class="scheme-item"><div class="scheme-box">Команда 2</div></div>
+            <div class="scheme-arrow">→</div>
+            <div class="scheme-item"><div class="scheme-box">Конец</div></div>
+            </div>
+
+            <h3 class="section-subtitle">Алгоритмическая конструкция «Ветвление»:</h3>
+            <p>В зависимости от истинности условия выбирается одна из двух ветвей.</p>
+            <div class="info-box">Полная форма: <strong>если</strong> условие <strong>то</strong> A <strong>иначе</strong> B.<br>Краткая форма: <strong>если</strong> условие <strong>то</strong> A.</div>
+
+            <h3 class="section-subtitle">Алгоритмическая конструкция «Повторение»:</h3>
+            <ul class="content-list">
+            <li><strong>Цикл со счётчиком:</strong> <code>для i от 1 до N</code> — тело цикла выполняется N раз</li>
+            <li><strong>Цикл с предусловием:</strong> <code>пока условие истинно</code> — проверка условия перед каждым повторением</li>
+            <li><strong>Цикл с постусловием:</strong> <code>выполнять до наступления условия</code> — проверка после каждого повторения</li>
+            </ul>
+        </div>
+
+        <div class="card" id="practical">
+            <h2 class="card-title">Практические задачи</h2>
+
+            <div class="interactive-block">
+            <h4>Задание 1. Определите вид алгоритма</h4>
+            <p>Для каждой последовательности команд определите, к какому типу алгоритма она относится:</p>
+            <p>а) <code>a := 2; b := 3; c := a + b</code></p>
+            <p>б) <code>если a &gt; 0 то вывод «Положительное» иначе вывод «Не положительное»</code></p>
+            <p>в) <code>пока i &lt;= 10 выполнить: вывод i; i := i + 1</code></p>
+            <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+            <div class="result-box" style="display:none;">
+            <p>а) <strong>Линейный</strong> — все команды выполняются последовательно</p>
+            <p>б) <strong>Разветвляющийся</strong> — есть условие и две ветви</p>
+            <p>в) <strong>Циклический</strong> — команды повторяются, пока условие истинно</p>
+            </div>
+            </div>
+
+            <div class="interactive-block">
+            <h4>Задание 2. Составьте алгоритм</h4>
+            <p>Составьте словесный алгоритм: «Найти сумму цифр трёхзначного числа».</p>
+            <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+            <div class="result-box" style="display:none;">
+            <ol class="content-list">
+            <li>Ввести трёхзначное число X</li>
+            <li>Вычислить первую цифру: <code>a := X div 100</code></li>
+            <li>Вычислить вторую цифру: <code>b := X mod 100 div 10</code></li>
+            <li>Вычислить третью цифру: <code>c := X mod 10</code></li>
+            <li>Вычислить сумму: <code>S := a + b + c</code></li>
+            <li>Вывести S</li>
+            </ol>
+            </div>
+            </div>
+
+            <div class="interactive-block">
+            <h4>Задание 3. Определите свойства</h4>
+            <p>Какое из свойств алгоритма нарушено в данном описании?<br>
+            «Возьмите подходящее число и прибавьте к нему ещё одно подходящее число.»</p>
+            <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+            <div class="result-box" style="display:none;">
+            Нарушены свойства <strong>определённости</strong> и <strong>понятности</strong>: «подходящее число» — неопределённое понятие. Исполнитель не знает, какое именно число нужно взять.
+            </div>
+            </div>
+        </div>
+
+<div class="quiz-block dynamic-quiz" data-topic="5-1"></div>
+<div style="text-align:center; margin-top:20px;">
+    <button class="btn progress-btn" data-topic="5-1">Отметить как изученное</button>
+</div>
+
+<nav class="topic-nav">
+    <a href="tema-4-2.html" class="prev-link">← 4.2 Мат. логика</a>
+    <a href="tema-5-2.html" class="next-link">5.2 Язык программирования Python →</a>
+</nav>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

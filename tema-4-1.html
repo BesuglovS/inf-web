@@ -1,27 +1,32 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4.1. Системы счисления | Информатика 7–9 классы</title>
+    <meta name="description" content="Системы счисления: десятичная, двоичная, восьмеричная, шестнадцатеричная. Перевод чисел между системами, арифметика, применение в компьютере.">
+    <meta property="og:title" content="4.1 Системы счисления | Информатика 8 класс">
+    <meta property="og:description" content="Системы счисления: двоичная, восьмеричная, шестнадцатеричная. Перевод чисел, арифметика, применение.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
-        <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
-            </ul>
-        </nav>
-    </header>
+        <div class="header-top"><a href="index.html" class="site-title">Информатика 7–9 классы</a></div>
+        <nav aria-label="Основная навигация"><ul><li><a href="7-klass.html">7 класс</a></li><li><a href="8-klass.html">8 класс</a></li><li><a href="9-klass.html">9 класс</a></li></ul></nav>
+</header>
 
-    <main>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+    <a href="index.html">Главная</a>
+    <span class="separator">/</span>
+    <a href="8-klass.html">8 класс</a>
+    <span class="separator">/</span>
+    <span class="current">4.1 Системы счисления</span>
+</nav>
+<div class="progress-text"></div>
+<div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">4.1. Системы счисления</h1>
         <p class="page-subtitle">Раздел 4. Математические основы информатики (6 часов)</p>
 
@@ -33,57 +38,179 @@
 <li><a href="#binary">Двоичная система счисления</a></li>
 <li><a href="#octal">Восьмеричная система</a></li>
 <li><a href="#hex">Шестнадцатеричная система</a></li>
-<li><a href="#arithmetic">Арифметические операции</a></li>
+<li><a href="#convert_to">Перевод в десятичную систему</a></li>
+<li><a href="#convert_from">Перевод из десятичной системы</a></li>
+<li><a href="#between">Перевод между 2, 8 и 16 системами</a></li>
+<li><a href="#arithmetic">Арифметика в двоичной системе</a></li>
+<li><a href="#memory">Представление в памяти компьютера</a></li>
+<li><a href="#applications">Применение систем счисления</a></li>
             </ol>
         </div>
 
         <div class="card" id="systems">
             <h2 class="card-title">Понятие системы счисления</h2>
-            <p><strong>Система счисления</strong> — это знаковая система, в которой числа записываются по определённым правилам с помощью символов некоторого алфавита, называемых <strong>цифрами</strong>.</p>
-            <h3>Виды систем счисления:</h3>
-            <table><tr><th>Тип</th><th>Описание</th><th>Примеры</th></tr><tr><td><strong>Непозиционные</strong></td><td>Значение цифры не зависит от её позиции</td><td>Римская (I, V, X, L, C, D, M)</td></tr><tr><td><strong>Позиционные</strong></td><td>Значение цифры зависит от позиции (разряда)</td><td>Десятичная, двоичная, 8-ричная, 16-ричная</td></tr></table>
-            <div class="info-box"><strong>Важно:</strong> В позиционных системах счисления основание равно количеству используемых цифр.</div>
+            <p><strong>Система счисления</strong> — это знаковая система, в которой числа записываются по определённым правилам с помощью символов алфавита, называемых <strong>цифрами</strong>.</p>
+            <table><tr><th>Тип</th><th>Описание</th><th>Примеры</th></tr>
+            <tr><td><strong>Непозиционные</strong></td><td>Значение цифры не зависит от позиции</td><td>Римская (I, V, X, L, C, D, M)</td></tr>
+            <tr><td><strong>Позиционные</strong></td><td>Значение цифры зависит от разряда</td><td>Десятичная, двоичная, 8-ричная, 16-ричная</td></tr>
+            </table>
+            <div class="info-box"><strong>Важно:</strong> В позиционных системах основание равно количеству цифр. Каждый разряд имеет «вес» — степень основания.</div>
         </div>
+
         <div class="card" id="decimal">
             <h2 class="card-title">Десятичная система счисления</h2>
-            <p><strong>Десятичная система</strong> (основание 10) — привычная нам система. Использует цифры: <strong>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</strong>.</p>
-            <p>Любое число можно представить в виде суммы разрядных слагаемых:</p>
+            <p><strong>Десятичная система</strong> (основание 10) — привычная нам система. Цифры: <strong>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</strong>.</p>
             <div class="info-box"><strong>Пример:</strong> 2357 = 2×10³ + 3×10² + 5×10¹ + 7×10⁰ = 2000 + 300 + 50 + 7</div>
+            <p>Десятичная система — <strong>позиционная</strong>: одна и та же цифра получает разное значение в зависимости от позиции.</p>
         </div>
+
         <div class="card" id="binary">
             <h2 class="card-title">Двоичная система счисления</h2>
             <p><strong>Двоичная система</strong> (основание 2) — используется в компьютерах. Цифры: <strong>0, 1</strong>.</p>
             <p><strong>Пример:</strong> 1101₂ = 1×2³ + 1×2² + 0×2¹ + 1×2⁰ = 8 + 4 + 0 + 1 = 13₁₀</p>
-            <h3>Таблица степеней числа 2:</h3>
-            <table><tr><th>Степень</th><td>2⁰</td><td>2¹</td><td>2²</td><td>2³</td><td>2⁴</td><td>2⁵</td><td>2⁶</td><td>2⁷</td><td>2⁸</td><td>2⁹</td><td>2¹⁰</td></tr><tr><th>Знач.</th><td>1</td><td>2</td><td>4</td><td>8</td><td>16</td><td>32</td><td>64</td><td>128</td><td>256</td><td>512</td><td>1024</td></tr></table>
+            <table><tr><th>Степень</th><td>2⁰</td><td>2¹</td><td>2²</td><td>2³</td><td>2⁴</td><td>2⁵</td><td>2⁶</td><td>2⁷</td><td>2⁸</td><td>2⁹</td><td>2¹⁰</td></tr>
+            <tr><th>Значение</th><td>1</td><td>2</td><td>4</td><td>8</td><td>16</td><td>32</td><td>64</td><td>128</td><td>256</td><td>512</td><td>1024</td></tr>
+            </table>
+            <div class="info-box"><strong>Почему компьютер использует двоичную систему?</strong> Электронные элементы имеют два устойчивых состояния: «включено» (1) и «выключено» (0).</div>
         </div>
+
         <div class="card" id="octal">
             <h2 class="card-title">Восьмеричная система</h2>
             <p><strong>Восьмеричная система</strong> (основание 8). Цифры: <strong>0–7</strong>.</p>
             <p><strong>Пример:</strong> 237₈ = 2×8² + 3×8¹ + 7×8⁰ = 128 + 24 + 7 = 159₁₀</p>
+            <div class="info-box"><strong>Связь с двоичной:</strong> Каждая восьмеричная цифра соответствует一组 3 бит (триаде): 0=000, 1=001, 2=010, 3=011, 4=100, 5=101, 6=110, 7=111.</div>
         </div>
+
         <div class="card" id="hex">
             <h2 class="card-title">Шестнадцатеричная система</h2>
-            <p><strong>Шестнадцатеричная система</strong> (основание 16). Цифры: <strong>0–9, A, B, C, D, E, F</strong>, где A=10, B=11, C=12, D=13, E=14, F=15.</p>
+            <p><strong>Шестнадцатеричная система</strong> (основание 16). Цифры: <strong>0–9, A=10, B=11, C=12, D=13, E=14, F=15</strong>.</p>
             <p><strong>Пример:</strong> 3F₁₆ = 3×16¹ + 15×16⁰ = 48 + 15 = 63₁₀</p>
-            <div class="info-box"><strong>Применение:</strong> 16-ричная система удобна для представления цветов RGB, MAC-адресов, Unicode.</div>
+            <div class="info-box"><strong>Применение:</strong> Цвета RGB (например, #FF5733), MAC-адреса (A4:5E:60:C1:2B:8F), кодировка Unicode.</div>
         </div>
+
+        <div class="card" id="convert_to">
+            <h2 class="card-title">Перевод в десятичную систему</h2>
+            <p><strong>Алгоритм:</strong> Записать число в развёрнутую форму — каждую цифру умножить на «вес» её разряда и сложить.</p>
+            <p><strong>Пример 1:</strong> Перевести 1101₂ в десятичную:</p>
+            <pre class="code-block">1×2³ + 1×2² + 0×2¹ + 1×2⁰ = 8 + 4 + 0 + 1 = 13₁₀</pre>
+            <p><strong>Пример 2:</strong> Перевести 237₈ в десятичную:</p>
+            <pre class="code-block">2×8² + 3×8¹ + 7×8⁰ = 128 + 24 + 7 = 159₁₀</pre>
+        </div>
+
+        <div class="card" id="convert_from">
+            <h2 class="card-title">Перевод из десятичной системы</h2>
+            <p><strong>Алгоритм:</strong> Многократное деление на основание системы. Остатки от деления записываются в обратном порядке.</p>
+            <p><strong>Пример:</strong> Перевести 159₁₀ в восьмеричную:</p>
+            <table><tr><th>Деление</th><th>Частное</th><th>Остаток</th></tr>
+            <tr><td>159 ÷ 8</td><td>19</td><td><strong>7</strong></td></tr>
+            <tr><td>19 ÷ 8</td><td>2</td><td><strong>3</strong></td></tr>
+            <tr><td>2 ÷ 8</td><td>0</td><td><strong>2</strong></td></tr>
+            </table>
+            <p>Записываем остатки снизу вверх: <strong>159₁₀ = 237₈</strong></p>
+            <div class="interactive-block">
+            <h4>🧪 Попробуйте сами</h4>
+            <p>Переведите 255₁₀ в двоичную систему.</p>
+            <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+            <div class="result-box" style="display:none;">255₁₀ = 11111111₂ (все 8 бит равны 1)</div>
+            </div>
+        </div>
+
+        <div class="card" id="between">
+            <h2 class="card-title">Перевод между 2, 8 и 16 системами</h2>
+            <p>Перевод между системами с основаниями 2, 8 и 16 выполняется <strong>группированием бит</strong>:</p>
+
+            <h3 class="section-subtitle">Триады (двоичная → восьмеричная):</h3>
+            <p>Группируем биты по 3 справа налево:</p>
+            <pre class="code-block">11010100₂ = 011 010 100 = 324₈</pre>
+
+            <h3 class="section-subtitle">Тетрады (двоичная → шестнадцатеричная):</h3>
+            <p>Группируем биты по 4 справа налево:</p>
+            <pre class="code-block">11010100₂ = 1101 0100 = D4₁₆</pre>
+
+            <table><tr><th>Двоичная триада</th><th>8-ричная</th><th>Двоичная тетрада</th><th>16-ричная</th></tr>
+            <tr><td>000</td><td>0</td><td>0000</td><td>0</td></tr>
+            <tr><td>001</td><td>1</td><td>0001</td><td>1</td></tr>
+            <tr><td>010</td><td>2</td><td>0010</td><td>2</td></tr>
+            <tr><td>011</td><td>3</td><td>0011</td><td>3</td></tr>
+            <tr><td>100</td><td>4</td><td>0100</td><td>4</td></tr>
+            <tr><td>101</td><td>5</td><td>0101</td><td>5</td></tr>
+            <tr><td>110</td><td>6</td><td>0110</td><td>6</td></tr>
+            <tr><td>111</td><td>7</td><td>0111</td><td>7</td></tr>
+            <tr><td></td><td></td><td>1000</td><td>8</td></tr>
+            <tr><td></td><td></td><td>1001</td><td>9</td></tr>
+            <tr><td></td><td></td><td>1010</td><td>A</td></tr>
+            <tr><td></td><td></td><td>1011</td><td>B</td></tr>
+            <tr><td></td><td></td><td>1100</td><td>C</td></tr>
+            <tr><td></td><td></td><td>1101</td><td>D</td></tr>
+            <tr><td></td><td></td><td>1110</td><td>E</td></tr>
+            <tr><td></td><td></td><td>1111</td><td>F</td></tr>
+            </table>
+        </div>
+
         <div class="card" id="arithmetic">
-            <h2 class="card-title">Арифметические операции</h2>
-            <h3>Сложение в двоичной системе:</h3>
-            <table><tr><th>0+0=0</th><th>0+1=1</th><th>1+0=1</th><th>1+1=10 (0, перенос 1)</th></tr></table>
+            <h2 class="card-title">Арифметика в двоичной системе</h2>
+            <h3 class="section-subtitle">Правила сложения:</h3>
+            <table><tr><th>0 + 0 = 0</th><th>0 + 1 = 1</th><th>1 + 0 = 1</th><th>1 + 1 = 10 (записываем 0, перенос 1)</th></tr></table>
             <p><strong>Пример:</strong> 1011₂ + 1101₂ = 11000₂</p>
-            <h3>Перевод между системами:</h3>
-            <ul class="content-list"><li><strong>В десятичную:</strong> развёрнутая форма числа</li><li><strong>Из десятичной:</strong> деление на основание</li><li><strong>Между 2, 8, 16:</strong> через триады и тетрады</li></ul>
-            <div class="interactive-block"><h4>🔢 Калькулятор систем счисления</h4><div style="display:flex;flex-wrap:wrap;gap:10px;"><div><label>Число:</label><input type="text" id="num-input" value="255"></div><div><label>Из:</label><select id="base-from"><option value="2">2</option><option value="8">8</option><option value="10" selected>10</option><option value="16">16</option></select></div><div><label>В:</label><select id="base-to"><option value="2">2</option><option value="8">8</option><option value="10">10</option><option value="16" selected>16</option></select></div></div><button class="btn" onclick="convertBase()">Перевести</button><div id="base-result" class="result-box"></div></div>
+            <pre class="code-block">  1011
++ 1101
+------
+ 11000</pre>
+
+            <div class="interactive-block">
+            <h4>🔢 Калькулятор систем счисления</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <div><label>Число:</label><input type="text" id="num-input" value="255"></div>
+            <div><label>Из:</label><select id="base-from"><option value="2">2</option><option value="8">8</option><option value="10" selected>10</option><option value="16">16</option></select></div>
+            <div><label>В:</label><select id="base-to"><option value="2">2</option><option value="8">8</option><option value="10">10</option><option value="16" selected>16</option></select></div>
+            </div>
+            <button class="btn" onclick="convertBase()">Перевести</button>
+            <div id="base-result" class="result-box"></div>
+            </div>
         </div>
+
+        <div class="card" id="memory">
+            <h2 class="card-title">Представление информации в памяти компьютера</h2>
+            <p>Память компьютера состоит из <strong>ячеек</strong>, каждая из которых хранит набор бит.</p>
+            <table><tr><th>Единица</th><th>Размер</th><th>Примерное значение</th></tr>
+            <tr><td>1 бит</td><td>0 или 1</td><td>Одна двоичная цифра</td></tr>
+            <tr><td>1 байт</td><td>8 бит</td><td>Один символ (буква, цифра)</td></tr>
+            <tr><td>1 килобайт (КБ)</td><td>1024 байта</td><td>~1 страница текста</td></tr>
+            <tr><td>1 мегабайт (МБ)</td><td>1024 КБ</td><td>~ небольшая программа</td></tr>
+            <tr><td>1 гигабайт (ГБ)</td><td>1024 МБ</td><td>~ фильм в хорошем качестве</td></tr>
+            </table>
+            <div class="info-box"><strong>Пример:</strong> Число 255₁₀ = 11111112₂ помещается ровно в 1 байт (8 бит).</div>
+        </div>
+
+        <div class="card" id="applications">
+            <h2 class="card-title">Применение систем счисления</h2>
+            <table><tr><th>Область</th><th>Система</th><th>Пример</th></tr>
+            <tr><td>Цвета в HTML/CSS</td><td>16-ричная</td><td><code>#FF5733</code> — оранжевый цвет</td></tr>
+            <tr><td>MAC-адреса</td><td>16-ричная</td><td><code>A4:5E:60:C1:2B:8F</code></td></tr>
+            <tr><td>IP-адреса</td><td>Десятичная</td><td><code>192.168.1.1</code></td></tr>
+            <tr><td>Коды символов</td><td>16-ричная</td><td>Unicode: <code>0410</code> = «А»</td></tr>
+            <tr><td>Файловые системы</td><td>16-ричная</td><td>Размеры файлов, секторы диска</td></tr>
+            </table>
+        </div>
+
+<div class="quiz-block dynamic-quiz" data-topic="4-1"></div>
+<div style="text-align:center; margin-top:20px;">
+    <button class="btn progress-btn" data-topic="4-1">Отметить как изученное</button>
+</div>
+
+<nav class="topic-nav">
+    <a href="tema-3-3.html" class="prev-link">← 3.3 Мультимедийные презентации</a>
+    <a href="tema-4-2.html" class="next-link">4.2 Элементы математической логики →</a>
+</nav>
     </main>
 
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

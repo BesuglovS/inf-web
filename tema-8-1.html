@@ -1,26 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>8.1. Компьютерные сети и Интернет | Информатика 7–9 классы</title>
+    <meta name="description" content="Компьютерные сети и Интернет — локальные и глобальные сети, IP-адресация, сетевые протоколы, службы Интернета, веб-технологии. Информатика 9 класс.">
+    <meta property="og:title" content="8.1. Компьютерные сети и Интернет | Информатика 7–9 классы">
+    <meta property="og:description" content="Компьютерные сети и Интернет — локальные и глобальные сети, IP-адресация, сетевые протоколы, службы Интернета, веб-технологии. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Компьютерные сети и Интернет</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
         <h1 class="page-title">8.1. Компьютерные сети и Интернет</h1>
         <p class="page-subtitle">Раздел 8. Коммуникационные технологии (5 часов)</p>
 
@@ -32,6 +46,8 @@
                 <li><a href="#protocols">Сетевые протоколы</a></li>
                 <li><a href="#services">Службы Интернета</a></li>
                 <li><a href="#web">Веб-технологии</a></li>
+                <li><a href="#equipment">Сетевое оборудование</a></li>
+                <li><a href="#practice">Практические задания</a></li>
             </ol>
         </div>
 
@@ -58,17 +74,56 @@
             <p><strong>IPv4:</strong> 32 бита, запись: четыре числа от 0 до 255 через точку. Пример: 192.168.1.1</p>
             <p><strong>IPv6:</strong> 128 бит — новое поколение адресации.</p>
             <p><strong>DNS</strong> — преобразует доменные имена (yandex.ru) в IP-адреса.</p>
+
+            <h3 class="section-subtitle">Классы IP-адресов:</h3>
+            <table>
+                <tr><th>Класс</th><th>Диапазон первого октета</th><th>Маска по умолчанию</th><th>Назначение</th></tr>
+                <tr><td><strong>A</strong></td><td>1–126</td><td>255.0.0.0</td><td>Крупные сети</td></tr>
+                <tr><td><strong>B</strong></td><td>128–191</td><td>255.255.0.0</td><td>Средние сети</td></tr>
+                <tr><td><strong>C</strong></td><td>192–223</td><td>255.255.255.0</td><td>Малые сети</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Частные IP-адреса:</h3>
+            <ul class="content-list">
+                <li>10.0.0.0 – 10.255.255.255</li>
+                <li>172.16.0.0 – 172.31.255.255</li>
+                <li>192.168.0.0 – 192.168.255.255</li>
+            </ul>
+            <p>Эти адреса не маршрутизируются в Интернете и используются только в локальных сетях.</p>
+
+            <h3 class="section-subtitle">Порт:</h3>
+            <p><strong>Порт</strong> — числовая метка (0–65535), идентифицирующая процесс или сервис на устройстве.</p>
+            <table>
+                <tr><th>Порт</th><th>Протокол</th><th>Служба</th></tr>
+                <tr><td>80</td><td>HTTP</td><td>Веб-сервер</td></tr>
+                <tr><td>443</td><td>HTTPS</td><td>Защищённый веб</td></tr>
+                <tr><td>21</td><td>FTP</td><td>Передача файлов</td></tr>
+                <tr><td>25</td><td>SMTP</td><td>Отправка почты</td></tr>
+                <tr><td>53</td><td>DNS</td><td>Разрешение имён</td></tr>
+            </table>
         </div>
 
         <div class="card" id="protocols">
             <h2 class="card-title">Сетевые протоколы</h2>
             <table>
-                <tr><th>Протокол</th><th>Назначение</th></tr>
-                <tr><td><strong>TCP/IP</strong></td><td>Базовый протокол передачи данных</td></tr>
-                <tr><td><strong>HTTP/HTTPS</strong></td><td>Передача веб-страниц</td></tr>
-                <tr><td><strong>FTP</strong></td><td>Передача файлов</td></tr>
-                <tr><td><strong>SMTP</strong></td><td>Отправка почты</td></tr>
-                <tr><td><strong>POP3/IMAP</strong></td><td>Получение почты</td></tr>
+                <tr><th>Протокол</th><th>Назначение</th><th>Порт</th></tr>
+                <tr><td><strong>TCP</strong></td><td>Надёжная доставка данных</td><td>—</td></tr>
+                <tr><td><strong>UDP</strong></td><td>Быстрая передача (без гарантии)</td><td>—</td></tr>
+                <tr><td><strong>HTTP/HTTPS</strong></td><td>Передача веб-страниц</td><td>80/443</td></tr>
+                <tr><td><strong>FTP</strong></td><td>Передача файлов</td><td>21</td></tr>
+                <tr><td><strong>SMTP</strong></td><td>Отправка почты</td><td>25</td></tr>
+                <tr><td><strong>POP3</strong></td><td>Получение почты</td><td>110</td></tr>
+                <tr><td><strong>IMAP</strong></td><td>Получение почты (синхронизация)</td><td>143</td></tr>
+                <tr><td><strong>DNS</strong></td><td>Разрешение имён в IP</td><td>53</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">TCP vs UDP:</h3>
+            <table>
+                <tr><th>Характеристика</th><th>TCP</th><th>UDP</th></tr>
+                <tr><td>Надёжность</td><td>Гарантия доставки</td><td>Без гарантии</td></tr>
+                <tr><td>Порядок</td><td>Сохраняется</td><td>Не гарантирован</td></tr>
+                <tr><td>Скорость</td><td>Медленнее</td><td>Быстрее</td></tr>
+                <tr><td>Применение</td><td>Веб, почта, файлы</td><td>Видео, игры, VoIP</td></tr>
             </table>
         </div>
 
@@ -89,13 +144,147 @@
             <p><strong>Веб-страница</strong> — документ на языке <strong>HTML</strong>.</p>
             <p><strong>Браузер</strong> — программа для просмотра (Chrome, Firefox, Edge).</p>
             <p><strong>URL</strong> — адрес ресурса: протокол://домен/путь</p>
+
+            <h3 class="section-subtitle">Компоненты веб-страницы:</h3>
+            <table>
+                <tr><th>Технология</th><th>Назначение</th></tr>
+                <tr><td><strong>HTML</strong></td><td>Структура и содержание страницы</td></tr>
+                <tr><td><strong>CSS</strong></td><td>Оформление и стили</td></tr>
+                <tr><td><strong>JavaScript</strong></td><td>Интерактивность и логика</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Протокол HTTP:</h3>
+            <p>Клиент (браузер) отправляет запрос → Сервер обрабатывает → Возвращает ответ:</p>
+            <ul class="content-list">
+                <li><strong>GET</strong> — получить данные (загрузка страницы)</li>
+                <li><strong>POST</strong> — отправить данные (форма, загрузка файла)</li>
+                <li><strong>PUT</strong> — обновить данные</li>
+                <li><strong>DELETE</strong> — удалить данные</li>
+            </ul>
+
+            <h3 class="section-subtitle">Статус-коды HTTP:</h3>
+            <table>
+                <tr><th>Код</th><th>Значение</th></tr>
+                <tr><td><strong>200</strong></td><td>OK — успешно</td></tr>
+                <tr><td><strong>301</strong></td><td>Перенаправление</td></tr>
+                <tr><td><strong>403</strong></td><td>Доступ запрещён</td></tr>
+                <tr><td><strong>404</strong></td><td>Страница не найдена</td></tr>
+                <tr><td><strong>500</strong></td><td>Ошибка сервера</td></tr>
+            </table>
+        </div>
+
+        <div class="card" id="equipment">
+            <h2 class="card-title">Сетевое оборудование</h2>
+            <table>
+                <tr><th>Устройство</th><th>Назначение</th></tr>
+                <tr><td><strong>Модем</strong></td><td>Преобразует сигнал (например, DSL → Ethernet)</td></tr>
+                <tr><td><strong>Маршрутизатор</strong></td><td>Направляет пакеты между сетями</td></tr>
+                <tr><td><strong>Коммутатор</strong></td><td>Объединяет устройства в локальную сеть</td></tr>
+                <tr><td><strong>Точка доступа</strong></td><td>Обеспечивает Wi-Fi подключение</td></tr>
+                <tr><td><strong>Сетевая карта</strong></td><td>Подключает компьютер к сети</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Средства передачи данных:</h3>
+            <table>
+                <tr><th>Среда</th><th>Характеристики</th></tr>
+                <tr><td><strong>Витая пара</strong></td><td>До 100 Мбит/с, расстояние до 100 м</td></tr>
+                <tr><td><strong>Оптоволокно</strong></td><td>До 100 Гбит/с, расстояние до км</td></tr>
+                <tr><td><strong>Wi-Fi</strong></td><td>Беспроводная, до 600 Мбит/с</td></tr>
+                <tr><td><strong>Bluetooth</strong></td><td>Кор радиус, до 3 Мбит/с</td></tr>
+            </table>
+        </div>
+
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задания</h2>
+
+            <div class="interactive-block">
+                <h4>Задание 1. Типы сетей</h4>
+                <p>Определите тип сети для каждого случая:</p>
+                <ol>
+                    <li>Компьютерный класс в школе</li>
+                    <li>Интернет</li>
+                    <li>Сеть между филиалами банка в одном городе</li>
+                </ol>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <ol>
+                        <li>LAN (локальная сеть)</li>
+                        <li>WAN (глобальная сеть)</li>
+                        <li>MAN (городская сеть)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 2. Протоколы</h4>
+                <p>Какой протокол используется для:</p>
+                <ol>
+                    <li>Просмотра веб-страниц</li>
+                    <li>Отправки электронной почты</li>
+                    <li>Скачивания файлов с FTP-сервера</li>
+                </ol>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <ol>
+                        <li>HTTP/HTTPS</li>
+                        <li>SMTP (отправка), POP3/IMAP (получение)</li>
+                        <li>FTP</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 3. IP-адресация</h4>
+                <p>Сколько устройств может быть в сети с маской 255.255.255.0 (класс C)?</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">2⁸ − 2 = 254 устройства (минус адрес сети и.broadcast-адрес).</div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 4. TCP и UDP</h4>
+                <p>Для каких задач лучше использовать TCP, а для каких — UDP?</p>
+                <ol>
+                    <li>Видеозвонок</li>
+                    <li>Отправка файла</li>
+                    <li>Онлайн-игра</li>
+                    <li>Загрузка веб-страницы</li>
+                </ol>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <ol>
+                        <li>UDP (важна скорость, допустимы потери)</li>
+                        <li>TCP (важна надёжность)</li>
+                        <li>UDP (важна скорость)</li>
+                        <li>TCP (важна надёжность)</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="8-1"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="8-1">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-7-2.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">7.2 Формулы и диаграммы</span>
+            </a>
+            <a href="tema-8-2.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">8.2 Информационная безопасность</span>
+            </a>
         </div>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>
-

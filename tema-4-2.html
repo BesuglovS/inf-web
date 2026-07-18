@@ -1,69 +1,508 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4.2. Элементы математической логики | Информатика 7–9 классы</title>
+    <meta name="description" content="Элементы математической логики: высказывания, логические операции, таблицы истинности, законы алгебры логики, логические элементы.">
+    <meta property="og:title" content="4.2 Элементы математической логики | Информатика 8 класс">
+    <meta property="og:description" content="Элементы математической логики: высказывания, логические операции, таблицы истинности, законы алгебры логики, логические элементы.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
-        <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
+<div class="header-top"><a href="index.html" class="site-title">Информатика 7–9 классы</a></div>
+<nav aria-label="Основная навигация"><ul><li><a href="7-klass.html">7 класс</a></li><li><a href="8-klass.html">8 класс</a></li><li><a href="9-klass.html">9 класс</a></li></ul></nav>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+    <a href="index.html">Главная</a>
+    <span class="separator">/</span>
+    <a href="8-klass.html">8 класс</a>
+    <span class="separator">/</span>
+    <span class="current">4.2 Элементы математической логики</span>
+</nav>
+<div class="progress-text"></div>
+<div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">4.2. Элементы математической логики</h1>
         <p class="page-subtitle">Раздел 4. Математические основы информатики (7 часов)</p>
+
         <div class="toc">
             <div class="toc-title">📋 Содержание темы:</div>
             <ol>
-<li><a href="#statements">Высказывания</a></li>
-<li><a href="#logic_ops">Логические операции</a></li>
-<li><a href="#truth_tables">Таблицы истинности</a></li>
-<li><a href="#laws">Законы алгебры логики</a></li>
-<li><a href="#interactive">Калькулятор логики</a></li>
+                <li><a href="#statements">Высказывания</a></li>
+                <li><a href="#logic_ops">Логические операции</a></li>
+                <li><a href="#truth_tables">Таблицы истинности</a></li>
+                <li><a href="#laws">Законы алгебры логики</a></li>
+                <li><a href="#elements">Логические элементы</a></li>
+                <li><a href="#interactive">Калькулятор логики</a></li>
+                <li><a href="#practice">Практические задания</a></li>
             </ol>
         </div>
+
+        <!-- ==================== ВЫСКАЗЫВАНИЯ ==================== -->
         <div class="card" id="statements">
             <h2 class="card-title">Высказывания</h2>
-            <p><strong>Высказывание</strong> — это предложение, относительно которого можно сказать, истинно оно или ложно.</p>
-            <table><tr><th>Пример высказывания</th><th>Значение</th></tr><tr><td>«Москва — столица России»</td><td>Истина</td></tr><tr><td>«2 × 2 = 5»</td><td>Ложь</td></tr><tr><td>«Который час?»</td><td>Не высказывание</td></tr></table>
-            <div class="info-box"><strong>Свойства:</strong> Высказывание должно быть повествовательным, иметь значение Истина или Ложь.</div>
+            <p><strong>Высказывание</strong> — это любое осмысленное утверждение, которое может быть либо истинным, либо ложным, но не тем и другим одновременно.</p>
+
+            <h3 class="section-subtitle">Примеры высказываний</h3>
+            <table>
+                <tr><th>Утверждение</th><th>Является высказыванием?</th><th>Значение</th></tr>
+                <tr><td>«Москва — столица России»</td><td>✅ Да</td><td>Истина (1)</td></tr>
+                <tr><td>«2 + 3 = 5»</td><td>✅ Да</td><td>Истина (1)</td></tr>
+                <tr><td>«10 > 20»</td><td>✅ Да</td><td>Ложь (0)</td></tr>
+                <tr><td>«Какой сегодня день?»</td><td>❌ Нет</td><td>Вопрос — не утверждение</td></tr>
+                <tr><td>«Откройте окно!»</td><td>❌ Нет</td><td>Побуждение — не утверждение</td></tr>
+                <tr><td>«x + 1 = 5»</td><td>⚠️ Зависит от x</td><td>Не является высказыванием, пока x не задано</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Простые и сложные высказывания</h3>
+            <ul class="content-list">
+                <li><strong>Простое высказывание</strong> — содержит одну информацию, не раскладывается на составляющие (например, «5 > 3»).</li>
+                <li><strong>Сложное высказывание</strong> — составлено из нескольких простых с помощью логических связок (например, «5 > 3 <em>и</em> 2 + 2 = 4»).</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Логические связки:</strong> Слова «и», «или», «если…то», «не», которые соединяют простые высказывания в сложные. Именно они образуют основу математической логики.
+            </div>
+
+            <h3 class="section-subtitle">Обозначения</h3>
+            <p>В математической логике высказывания обозначаются заглавными латинскими буквами: <strong>A, B, C, …</strong></p>
+            <p>Значения высказывания записываются числами:</p>
+            <ul class="content-list">
+                <li><strong>1</strong> (Истина, True) — высказывание верное.</li>
+                <li><strong>0</strong> (Ложь, False) — высказывание неверное.</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Важно:</strong> Высказывание должно быть <em>однозначным</em>. Предложение «Прекрасная погода» — субъективное и не может быть строго истинным или ложным, поэтому оно не является высказыванием в математической логике.
+            </div>
         </div>
+
+        <!-- ==================== ЛОГИЧЕСКИЕ ОПЕРАЦИИ ==================== -->
         <div class="card" id="logic_ops">
             <h2 class="card-title">Логические операции</h2>
-            <h3>Конъюнкция (И, AND, ∧)</h3><p>Истинна, когда оба высказывания истинны.</p>
-            <h3>Дизъюнкция (ИЛИ, OR, ∨)</h3><p>Истинна, когда хотя бы одно высказывание истинно.</p>
-            <h3>Инверсия (НЕ, NOT, ¬)</h3><p>Меняет значение на противоположное.</p>
-            <h3>Импликация (следование, →)</h3><p>A → B ложна только когда A истинно, а B ложно.</p>
+            <p>Над высказываниями определены пять основных логических операций. Каждая из них принимает одно или два высказывания и выдаёт результат — новое высказывание.</p>
+
+            <!-- КОНЪЮНКЦИЯ -->
+            <h3 class="section-subtitle">1. Конъюнкция (И, AND, ∧)</h3>
+            <p><strong>A ∧ B</strong> («A и B») — истинна тогда и только тогда, когда <strong>оба</strong> высказывания истинны.</p>
+            <table>
+                <tr><th>A</th><th>B</th><th>A ∧ B</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+            </table>
+            <div class="info-box">
+                <strong>Пример:</strong> «Сегодня понедельник <em>и</em> идёт дождь» — истинно только если оба утверждения верны.
+            </div>
+
+            <!-- ДИЗЪЮНКЦИЯ -->
+            <h3 class="section-subtitle">2. Дизъюнкция (ИЛИ, OR, ∨)</h3>
+            <p><strong>A ∨ B</strong> («A или B») — истинна, когда <strong>хотя бы одно</strong> из высказываний истинно.</p>
+            <table>
+                <tr><th>A</th><th>B</th><th>A ∨ B</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+            </table>
+            <div class="info-box">
+                <strong>Пример:</strong> «Можно купить хлеб <em>или</em> молоко» — достаточно, чтобы хотя бы один товар был куплен.
+            </div>
+
+            <!-- ИНВЕРСИЯ -->
+            <h3 class="section-subtitle">3. Инверсия (НЕ, NOT, ¬)</h3>
+            <p><strong>¬A</strong> («не A») — меняет значение высказывания на <strong>противоположное</strong>. Является <em>унарной</em> операцией (применяется к одному высказыванию).</p>
+            <table>
+                <tr><th>A</th><th>¬A</th></tr>
+                <tr><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td></tr>
+            </table>
+            <div class="info-box">
+                <strong>Пример:</strong> Если «Зима» — ложь (сейчас лето), то «¬Зима» — истина.
+            </div>
+
+            <!-- ИМПЛИКАЦИЯ -->
+            <h3 class="section-subtitle">4. Импликация (следование, →)</h3>
+            <p><strong>A → B</strong> («если A, то B») — ложна <strong>только</strong> в одном случае: когда A истинно, а B ложно. Во всех остальных случаях — истина.</p>
+            <table>
+                <tr><th>A</th><th>B</th><th>A → B</th></tr>
+                <tr><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+            </table>
+            <div class="warning-box">
+                <strong>Почему 0 → 0 истинно?</strong> Высказывание «Если число чётное, то оно больше 100» — не является ложью для нечётного числа (условие не выполняется, значит следствие не нарушено).
+            </div>
+            <div class="info-box">
+                <strong>Эквивалентность:</strong> A → B ≡ ¬A ∨ B. Это ключевое равенство для преобразования импликаций.
+            </div>
+
+            <!-- ИСКЛЮЧАЮЩЕЕ ИЛИ -->
+            <h3 class="section-subtitle">5. Исключающее ИЛИ (XOR, ⊕)</h3>
+            <p><strong>A ⊕ B</strong> — истинно, когда <strong>ровно одно</strong> из высказываний истинно (но не оба).</p>
+            <table>
+                <tr><th>A</th><th>B</th><th>A ⊕ B</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td></tr>
+            </table>
+            <div class="info-box">
+                <strong>Связь с другими операциями:</strong> A ⊕ B ≡ (A ∨ B) ∧ ¬(A ∧ B) — «либо A, либо B, но не одновременно».
+            </div>
+
+            <div class="warning-box">
+                <strong>Не путайте!</strong> Обычная дизъюнкция (OR) допускает «A и B одновременно», а исключающее ИЛИ (XOR) — нет. В повседневной рече «или» бываетboth видов, поэтому в математике их разделяют.
+            </div>
         </div>
+
+        <!-- ==================== ТАБЛИЦЫ ИСТИННОСТИ ==================== -->
         <div class="card" id="truth_tables">
             <h2 class="card-title">Таблицы истинности</h2>
-            <table><tr><th>A</th><th>B</th><th>A∧B</th><th>A∨B</th><th>¬A</th><th>A→B</th></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr></table>
-            <div class="info-box"><strong>Приоритет:</strong> Сначала ¬, затем ∧, затем ∨. Скобки меняют порядок.</div>
+            <p><strong>Таблица истинности</strong> — это способ представить результат логической операции для всех возможных значений переменных. Для двух переменных A и B существует 2² = 4 комбинации значений.</p>
+
+            <h3 class="section-subtitle">Сводная таблица для всех пяти операций</h3>
+            <table>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>A ∧ B<br><small>(И)</small></th>
+                    <th>A ∨ B<br><small>(ИЛИ)</small></th>
+                    <th>¬A<br><small>(НЕ)</small></th>
+                    <th>A → B<br><small>(если…то)</small></th>
+                    <th>A ⊕ B<br><small>(XOR)</small></th>
+                </tr>
+                <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Приоритет логических операций</h3>
+            <div class="code-block">
+Порядок вычислений (от старшего к младшему):
+1. ¬ (инверсия) — выполняется первой
+2. ∧ (конъюнкция)
+3. ∨ (дизъюнкция)
+4. → (импликация) — выполняется последней
+
+Пример: ¬A ∧ B читается как (¬A) ∧ B
+Пример: A ∨ B → C читается как (A ∨ B) → C
+            </div>
+
+            <div class="info-box">
+                <strong>Скобки</strong> меняют порядок вычислений. Выражение ¬(A ∧ B) отличается от ¬A ∧ B: сначала берётся конъюнкция A и B, а затем результат инвертируется.
+            </div>
+
+            <h3 class="section-subtitle">Трёх переменных — пример</h3>
+            <p>Для трёх переменных A, B, C таблица истинности содержит 2³ = 8 строк:</p>
+            <table>
+                <tr><th>A</th><th>B</th><th>C</th><th>A ∧ B ∧ C</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+            </table>
+            <div class="info-box">
+                <strong>Формула:</strong> Для n переменных число строк таблицы истинности равно 2ⁿ.
+            </div>
         </div>
+
+        <!-- ==================== ЗАКОНЫ АЛГЕБРЫ ЛОГИКИ ==================== -->
         <div class="card" id="laws">
             <h2 class="card-title">Законы алгебры логики</h2>
-            <table><tr><th>Закон</th><th>Формула</th></tr><tr><td>Переместительный</td><td>A∧B = B∧A, A∨B = B∨A</td></tr><tr><td>Сочетательный</td><td>(A∧B)∧C = A∧(B∧C)</td></tr><tr><td>Распределительный</td><td>A∧(B∨C) = (A∧B)∨(A∧C)</td></tr><tr><td>де Моргана</td><td>¬(A∧B)=¬A∨¬B, ¬(A∨B)=¬A∧¬B</td></tr><tr><td>Двойного отриц.</td><td>¬(¬A) = A</td></tr></table>
+            <p>Законы алгебры логики позволяют упрощать и преобразовывать логические выражения. Они аналогичны законам арифметики, но работают с операциями ∧, ∨, ¬.</p>
+
+            <h3 class="section-subtitle">Основные законы</h3>
+            <table>
+                <tr><th>Закон</th><th>Формула</th><th>Аналогия</th></tr>
+                <tr>
+                    <td><strong>Тождественный элемент</strong></td>
+                    <td>A ∧ 1 = A, A ∨ 0 = A</td>
+                    <td>Умножение на 1, сложение с 0</td>
+                </tr>
+                <tr>
+                    <td><strong>Нулевой элемент</strong></td>
+                    <td>A ∧ 0 = 0, A ∨ 1 = 1</td>
+                    <td>Умножение на 0, сложение единиц</td>
+                </tr>
+                <tr>
+                    <td><strong>Переместительный</strong></td>
+                    <td>A ∧ B = B ∧ A, A ∨ B = B ∨ A</td>
+                    <td>a × b = b × a, a + b = b + a</td>
+                </tr>
+                <tr>
+                    <td><strong>Сочетательный</strong></td>
+                    <td>(A ∧ B) ∧ C = A ∧ (B ∧ C)</td>
+                    <td>(a × b) × c = a × (b × c)</td>
+                </tr>
+                <tr>
+                    <td><strong>Распределительный</strong></td>
+                    <td>A ∧ (B ∨ C) = (A ∧ B) ∨ (A ∧ C)<br>A ∨ (B ∧ C) = (A ∨ B) ∧ (A ∨ C)</td>
+                    <td>a × (b + c) = a×b + a×c</td>
+                </tr>
+                <tr>
+                    <td><strong>Двойного отрицания</strong></td>
+                    <td>¬(¬A) = A</td>
+                    <td>— (минус минус a) = a</td>
+                </tr>
+                <tr>
+                    <td><strong>Де Моргана</strong></td>
+                    <td>¬(A ∧ B) = ¬A ∨ ¬B<br>¬(A ∨ B) = ¬A ∧ ¬B</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><strong>Поглощения</strong></td>
+                    <td>A ∨ (A ∧ B) = A<br>A ∧ (A ∨ B) = A</td>
+                    <td>—</td>
+                </tr>
+            </table>
+
+            <h3 class="section-subtitle">Примеры преобразований</h3>
+
+            <div class="code-block">
+Пример 1: Упрощение ¬(A ∧ B) ∨ (¬A ∧ B)
+  Шаг 1: Применим закон де Моргана:
+    ¬(A ∧ B) = ¬A ∨ ¬B
+  Шаг 2: Подставим:
+    (¬A ∨ ¬B) ∨ (¬A ∧ B)
+  Шаг 3: По переместительному закону:
+    ¬A ∨ (¬B ∨ (¬A ∧ B))
+  Шаг 4: По закону поглощения ¬B ∨ (¬A ∧ B) = ¬B ∨ ¬A:
+    ¬A ∨ (¬B ∨ ¬A) = ¬A ∨ ¬B ∨ ¬A
+  Шаг 5: По идемпотентности (A ∨ A = A):
+    = ¬A ∨ ¬B
+  Результат: ¬A ∨ ¬B (или ¬(A ∧ B) по де Моргану)
+            </div>
+
+            <div class="code-block">
+Пример 2: Преобразование A → B
+  По определению: A → B ≡ ¬A ∨ B
+
+  Проверим по таблице истинности:
+  A=0, B=0: ¬0 ∨ 0 = 1 ∨ 0 = 1, A→B = 1  ✓
+  A=0, B=1: ¬0 ∨ 1 = 1 ∨ 1 = 1, A→B = 1  ✓
+  A=1, B=0: ¬1 ∨ 0 = 0 ∨ 0 = 0, A→B = 0  ✓
+  A=1, B=1: ¬1 ∨ 1 = 0 ∨ 1 = 1, A→B = 1  ✓
+            </div>
+
+            <div class="code-block">
+Пример 3: Применение закона де Моргана
+  Дано: ¬(A ∨ ¬B)
+  По закону де Моргана: ¬(X ∨ Y) = ¬X ∧ ¬Y
+  Подставим X=A, Y=¬B:
+    ¬(A ∨ ¬B) = ¬A ∧ ¬(¬B) = ¬A ∧ B
+            </div>
+
+            <div class="info-box">
+                <strong>Закон де Моргана</strong> — один из самых важных. Он связывает конъюнкцию с дизъюнкцией через отрицание и широко применяется при упрощении логических выражений и при работе с компьютерными запросами.
+            </div>
         </div>
+
+        <!-- ==================== ЛОГИЧЕСКИЕ ЭЛЕМЕНТЫ ==================== -->
+        <div class="card" id="elements">
+            <h2 class="card-title">Логические элементы</h2>
+            <p>Логические операции реализуются в компьютере с помощью электронных компонентов — <strong>логических элементов</strong> (вентилей). Каждый элемент принимает на вход сигналы (0 или 1) и выдаёт результат согласно таблице истинности.</p>
+
+            <h3 class="section-subtitle">Инвертор (НЕ-элемент, Inverter)</h3>
+            <div class="code-block">
+Схема:    A ──[ ¬ ]── Output
+
+Таблица истинности:
+  A  │  Output
+  0  │    1
+  1  │    0
+            </div>
+            <p>Инвертор — самый простой логический элемент. Он имеет <strong>один вход</strong> и <strong>один выход</strong>. На выходе всегда противоположное значение входу.</p>
+            <ul class="content-list">
+                <li>Обозначение на схеме: треугольник с кружком на вершине.</li>
+                <li>Кружок означает инверсию (отрицание).</li>
+                <li>Применение: генерация противоположного сигнала, задержка, формирование тактовых импульсов.</li>
+            </ul>
+
+            <h3 class="section-subtitle">И-элемент (AND-вентиль)</h3>
+            <div class="code-block">
+Схема:    A ──┐
+              ├─[ & ]── Output
+    B ──┘
+
+Таблица истинности:
+  A  │  B  │  Output
+  0  │  0  │    0
+  0  │  1  │    0
+  1  │  0  │    0
+  1  │  1  │    1
+            </div>
+            <p>И-элемент имеет <strong>два (или более) входов</strong> и <strong>один выход</strong>. Выход равен 1 <em>только</em> тогда, когда все входы равны 1.</p>
+            <ul class="content-list">
+                <li>Обозначение: D-образная фигура (как буква D).</li>
+                <li>Микросхемы: 7408, CD4081.</li>
+                <li>Применение: разрешение сигнала (вход-строб), совпадение чисел в арифметико-логическом устройстве (АЛУ).</li>
+            </ul>
+
+            <h3 class="section-subtitle">ИЛИ-элемент (OR-вентиль)</h3>
+            <div class="code-block">
+Схема:    A ──┐
+              ├─[ ≥1 ]── Output
+    B ──┘
+
+Таблица истинности:
+  A  │  B  │  Output
+  0  │  0  │    0
+  0  │  1  │    1
+  1  │  0  │    1
+  1  │  1  │    1
+            </div>
+            <p>ИЛИ-элемент выдаёт 1, когда <em>хотя бы один</em> из входов равен 1.</p>
+            <ul class="content-list">
+                <li>Обозначение: фигурная скобка с выпуклой задней стороной.</li>
+                <li>Микросхемы: 7432, CD4071.</li>
+                <li>Применение: объединение сигналов прерываний, формирование управляющих сигналов.</li>
+            </ul>
+
+            <h3 class="section-subtitle">Почему это важно для информатики?</h3>
+            <div class="info-box">
+                <strong>Связь с темой 4.1:</strong> Компьютер работает с двоичными числами (0 и 1). Логические элементы обрабатывают эти числа на аппаратном уровне. Совокупность миллионов логических элементов образует процессор, память и другие устройства компьютера.
+            </div>
+
+            <div class="warning-box">
+                <strong>Запомните:</strong> Любая логическая функция может быть реализована с помощью комбинации И-элементов, ИЛИ-элементов и инверторов. Это называется <strong>базисом (complete set of gates)</strong>.
+            </div>
+        </div>
+
+        <!-- ==================== КАЛЬКУЛЯТОР ЛОГИКИ ==================== -->
         <div class="card" id="interactive">
             <h2 class="card-title">Калькулятор логики</h2>
-            <div class="interactive-block"><h4>🧮 Калькулятор логических выражений</h4><div style="display:flex;flex-wrap:wrap;gap:10px;"><div><label>A:</label><select id="logic-a"><option value="1">Истина (1)</option><option value="0">Ложь (0)</option></select></div><div><label>B:</label><select id="logic-b"><option value="1">Истина (1)</option><option value="0">Ложь (0)</option></select></div><div><label>Операция:</label><select id="logic-op"><option value="and">Конъюнкция</option><option value="or">Дизъюнкция</option><option value="xor">XOR</option><option value="imp">Импликация</option></select></div></div><button class="btn" onclick="calcLogic()">Вычислить</button><div id="logic-result" class="result-box"></div></div>
+            <div class="interactive-block">
+                <h4>Калькулятор логических выражений</h4>
+                <p>Выберите значения A и B, а затем логическую операцию. Результат вычисляется мгновенно.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:end;">
+                    <div>
+                        <label>A:</label>
+                        <select id="logic-a">
+                            <option value="0">Ложь (0)</option>
+                            <option value="1">Истина (1)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>B:</label>
+                        <select id="logic-b">
+                            <option value="0">Ложь (0)</option>
+                            <option value="1">Истина (1)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Операция:</label>
+                        <select id="logic-op">
+                            <option value="and">Конъюнкция (A ∧ B)</option>
+                            <option value="or">Дизъюнкция (A ∨ B)</option>
+                            <option value="not">Инверсия (¬A)</option>
+                            <option value="imp">Импликация (A → B)</option>
+                            <option value="xor">Исключающее ИЛИ (A ⊕ B)</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="calcLogic()">Вычислить</button>
+                </div>
+                <div id="logic-result" class="result-box"></div>
+            </div>
         </div>
+
+        <!-- ==================== ПРАКТИЧЕСКИЕ ЗАДАНИЯ ==================== -->
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задания</h2>
+
+            <!-- Задание 1 -->
+            <div class="interactive-block">
+                <h4>Задание 1. Определите логическую операцию</h4>
+                <p>По таблице истинности определите, какая логическая операция соответствует:</p>
+                <table>
+                    <tr><th>A</th><th>B</th><th>Результат</th></tr>
+                    <tr><td>0</td><td>0</td><td>1</td></tr>
+                    <tr><td>0</td><td>1</td><td>1</td></tr>
+                    <tr><td>1</td><td>0</td><td>1</td></tr>
+                    <tr><td>1</td><td>1</td><td>0</td></tr>
+                </table>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <strong>Ответ:</strong> Это отрицание конъюнкции: <strong>¬(A ∧ B)</strong>, что эквивалентно <strong>¬A ∨ ¬B</strong> (по закону де Моргана).<br><br>
+                    <em>Пояснение:</em> результат равен 0 только когда оба высказывания истинны (A=1, B=1), во всех остальных случаях — 1. Это точная таблица истинности операции NAND (Sheffer stroke).
+                </div>
+            </div>
+
+            <!-- Задание 2 -->
+            <div class="interactive-block">
+                <h4>Задание 2. Постройте таблицу истинности</h4>
+                <p>Постройте таблицу истинности для выражения: <strong>(A ∨ B) ∧ ¬A</strong></p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <strong>Ответ:</strong>
+                    <table>
+                        <tr><th>A</th><th>B</th><th>A ∨ B</th><th>¬A</th><th>(A ∨ B) ∧ ¬A</th></tr>
+                        <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                        <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                        <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                        <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                    </table>
+                    <br>
+                    <em>Пояснение:</em> Результат совпадает с ¬A ∧ B. Это означает, что выражение (A ∨ B) ∧ ¬A эквивалентно ¬A ∧ B (дизъюнкция «поглощается»).
+                </div>
+            </div>
+
+            <!-- Задание 3 -->
+            <div class="interactive-block">
+                <h4>Задание 3. Упрощение по закону де Моргана</h4>
+                <p>Упростите выражение <strong>¬(¬A ∨ B)</strong>, используя закон де Моргана и закон двойного отрицания.</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <strong>Решение:</strong>
+                    <div class="code-block">
+Дано: ¬(¬A ∨ B)
+
+Шаг 1: Применим закон де Моргана ¬(X ∨ Y) = ¬X ∧ ¬Y,
+        где X = ¬A, Y = B:
+    ¬(¬A ∨ B) = ¬(¬A) ∧ ¬B
+
+Шаг 2: Применим закон двойного отрицания ¬(¬A) = A:
+    = A ∧ ¬B
+
+Ответ: A ∧ ¬B
+                    </div>
+                    <em>Проверка по таблице:</em><br>
+                    A=0, B=0: ¬(1 ∨ 0) = ¬1 = 0, 0 ∧ 1 = 0 ✓<br>
+                    A=0, B=1: ¬(1 ∨ 1) = ¬1 = 0, 0 ∧ 0 = 0 ✓<br>
+                    A=1, B=0: ¬(0 ∨ 0) = ¬0 = 1, 1 ∧ 1 = 1 ✓<br>
+                    A=1, B=1: ¬(0 ∨ 1) = ¬1 = 0, 1 ∧ 0 = 0 ✓
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="4-2"></div>
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="4-2">Отметить как изученное</button>
+        </div>
+
+        <nav class="topic-nav">
+            <a href="tema-4-1.html" class="prev-link">← 4.1 Системы счисления</a>
+            <a href="tema-5-1.html" class="next-link">5.1 Алгоритмы и исполнители →</a>
+        </nav>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

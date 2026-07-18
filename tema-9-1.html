@@ -1,26 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9.1. Массивы и строки | Информатика 7–9 классы</title>
+    <meta name="description" content="Массивы и строки в Python — одномерные массивы, операции с массивами, поиск и сортировка, обработка строк. Информатика 9 класс.">
+    <meta property="og:title" content="9.1. Массивы и строки | Информатика 7–9 классы">
+    <meta property="og:description" content="Массивы и строки в Python — одномерные массивы, операции с массивами, поиск и сортировка, обработка строк. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Массивы и строки</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
         <h1 class="page-title">9.1. Массивы и строки</h1>
         <p class="page-subtitle">Раздел 9. Алгоритмы и программирование (продолжение)</p>
 
@@ -31,6 +45,8 @@
                 <li><a href="#array_ops">Операции с массивами</a></li>
                 <li><a href="#sorting">Поиск и сортировка</a></li>
                 <li><a href="#strings">Обработка строк</a></li>
+                <li><a href="#2d_arrays">Двумерные массивы (матрицы)</a></li>
+                <li><a href="#practice">Практические задачи</a></li>
             </ol>
         </div>
 
@@ -38,7 +54,7 @@
             <h2 class="card-title">Одномерные массивы</h2>
             <p><strong>Массив</strong> — это структура данных, хранящая набор элементов одного типа.</p>
             <p>В Python массив реализуется с помощью <strong>списка</strong> (list).</p>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;"># Создание массива
+            <pre class="code-block"># Создание массива
 a = [1, 2, 3, 4, 5]
 
 # Доступ к элементам
@@ -48,7 +64,7 @@ print(a[-1])  # 5 (последний элемент)
 # Длина массива
 n = len(a)    # 5</pre>
             <h3>Способы создания массива:</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;"># Пустой массив
+            <pre class="code-block"># Пустой массив
 a = []
 
 # Массив из N нулей
@@ -67,7 +83,7 @@ for i in range(n):
 
         <div class="card" id="array_ops">
             <h2 class="card-title">Операции с массивами</h2>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">a = [3, 1, 4, 1, 5]
+            <pre class="code-block">a = [3, 1, 4, 1, 5]
 
 # Перебор элементов
 for x in a:
@@ -94,7 +110,7 @@ a.pop(2)</pre>
         <div class="card" id="sorting">
             <h2 class="card-title">Поиск и сортировка</h2>
             <h3>Линейный поиск:</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">a = [3, 1, 4, 1, 5, 9, 2, 6]
+            <pre class="code-block">a = [3, 1, 4, 1, 5, 9, 2, 6]
 x = 5
 found = False
 for i in range(len(a)):
@@ -104,7 +120,7 @@ for i in range(len(a)):
         break</pre>
 
             <h3>Сортировка:</h3>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">a = [3, 1, 4, 1, 5, 9, 2, 6]
+            <pre class="code-block">a = [3, 1, 4, 1, 5, 9, 2, 6]
 
 # По возрастанию
 a.sort()
@@ -112,7 +128,7 @@ a.sort()
 # По убыванию
 a.sort(reverse=True)</pre>
             <p><strong>Пузырьковая сортировка</strong> — простейший алгоритм сортировки (O(n²)).</p>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">for i in range(len(a)):
+            <pre class="code-block">for i in range(len(a)):
     for j in range(len(a)-1-i):
         if a[j] > a[j+1]:
             a[j], a[j+1] = a[j+1], a[j]</pre>
@@ -121,7 +137,7 @@ a.sort(reverse=True)</pre>
         <div class="card" id="strings">
             <h2 class="card-title">Обработка строк</h2>
             <p><strong>Строка</strong> — это последовательность символов. В Python строки неизменяемы.</p>
-            <pre style="background:#f0f0f0;padding:10px;border-radius:6px;">s = "Привет, мир!"
+            <pre class="code-block">s = "Привет, мир!"
 
 # Длина строки
 print(len(s))
@@ -148,11 +164,150 @@ print(s.replace("мир", "Python"))</pre>
                 <tr><td><code>' '.join(list)</code></td><td>Склеивание из списка</td></tr>
             </table>
         </div>
+
+        <div class="card" id="2d_arrays">
+            <h2 class="card-title">Двумерные массивы (матрицы)</h2>
+            <p><strong>Двумерный массив</strong> — это массив, каждый элемент которого является массивом. Используется для представления таблиц и матриц.</p>
+
+            <h3>Создание двумерного массива:</h3>
+            <pre class="code-block"># Способ 1: вложенные списки
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Способ 2: создание пустой матрицы N×M
+n, m = 3, 4
+matrix = [[0] * m for _ in range(n)]
+
+# Способ 3: матрица из ввода
+n, m = map(int, input().split())
+matrix = []
+for i in range(n):
+    row = list(map(int, input().split()))
+    matrix.append(row)</pre>
+
+            <h3>Доступ к элементам:</h3>
+            <pre class="code-block"># matrix[строка][столбец]
+print(matrix[0][0])  # первый элемент (1, 2, 3) → 1
+print(matrix[1][2])  # второй строка, третий столбец → 6
+
+# Вывод всей матрицы
+for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+        print(matrix[i][j], end=' ')
+    print()  # перевод строки</pre>
+
+            <h3>Основные операции с матрицами:</h3>
+            <pre class="code-block"># Сумма всех элементов
+total = 0
+for row in matrix:
+    for val in row:
+        total += val
+
+# Транспонирование матрицы (3×3)
+transposed = [[0]*3 for _ in range(3)]
+for i in range(3):
+    for j in range(3):
+        transposed[j][i] = matrix[i][j]
+
+# Умножение матрицы на число
+k = 5
+result = [[val * k for val in row] for row in matrix]</pre>
+
+            <div class="info-box"><strong>Совет:</strong> При работе с матрицами удобно использовать функцию <code>len()</code> для определения количества строк и столбцов: <code>n = len(matrix)</code>, <code>m = len(matrix[0])</code>.</div>
+        </div>
+
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задачи</h2>
+
+            <h3>Задача 1: Найти второй по величине элемент</h3>
+            <pre class="code-block">a = [3, 1, 4, 1, 5, 9, 2, 6]
+first = max(a)
+second = None
+for x in a:
+    if x != first:
+        if second is None or x > second:
+            second = x
+print(f"Второй по величине: {second}")</pre>
+
+            <h3>Задача 2: Подсчёт уникальных слов</h3>
+            <pre class="code-block">text = "мама мыла раму а папа читал книгу а мама пила чай"
+words = text.split()
+count = {}
+for word in words:
+    count[word] = count.get(word, 0) + 1
+
+for word, n in count.items():
+    print(f"{word}: {n}")</pre>
+
+            <h3>Задача 3: Удаление дубликатов с сохранением порядка</h3>
+            <pre class="code-block">a = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]
+seen = set()
+result = []
+for x in a:
+    if x not in seen:
+        seen.add(x)
+        result.append(x)
+print(result)  # [3, 1, 4, 5, 9, 2, 6]</pre>
+
+            <h3>Задача 4: Поворот матрицы на 90°</h3>
+            <pre class="code-block">matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+n = len(matrix)
+rotated = [[0]*n for _ in range(n)]
+for i in range(n):
+    for j in range(n):
+        rotated[j][n-1-i] = matrix[i][j]
+
+# Результат: [[7,4,1],[8,5,2],[9,6,3]]</pre>
+
+            <h3>Задача 5: Объединение отсортированных массивов</h3>
+            <pre class="code-block">def merge_sorted(a, b):
+    result = []
+    i = j = 0
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:
+            result.append(a[i])
+            i += 1
+        else:
+            result.append(b[j])
+            j += 1
+    result.extend(a[i:])
+    result.extend(b[j:])
+    return result
+
+print(merge_sorted([1,3,5], [2,4,6]))  # [1,2,3,4,5,6]</pre>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="9-1"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="9-1">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-8-2.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">8.2 Информационная безопасность</span>
+            </a>
+            <a href="tema-9-2.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">9.2 Подпрограммы и рекурсия</span>
+            </a>
+        </div>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

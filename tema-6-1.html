@@ -1,26 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>6.1. Моделирование и формализация | Информатика 7–9 классы</title>
+    <meta name="description" content="Моделирование и формализация — понятие модели, этапы моделирования, классификация моделей, табличные модели. Информатика 9 класс.">
+    <meta property="og:title" content="6.1. Моделирование и формализация | Информатика 7–9 классы">
+    <meta property="og:description" content="Моделирование и формализация — понятие модели, этапы моделирования, классификация моделей, табличные модели. Информатика 9 класс.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
+</header>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="9-klass.html">9 класс</a>
+            <span class="separator">/</span>
+            <span class="current">Моделирование и формализация</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
         <h1 class="page-title">6.1. Моделирование и формализация</h1>
         <p class="page-subtitle">Раздел 6. Моделирование и формализация (5 часов)</p>
 
@@ -31,6 +45,8 @@
                 <li><a href="#stages">Этапы моделирования</a></li>
                 <li><a href="#types">Классификация моделей</a></li>
                 <li><a href="#tables">Табличные модели</a></li>
+                <li><a href="#math_models">Математические модели</a></li>
+                <li><a href="#practice">Практические задания</a></li>
             </ol>
         </div>
 
@@ -82,13 +98,128 @@
                 <li><strong>Таблица «объект-свойство»</strong> — в строках объекты, в столбцах свойства (например, страны: название, столица, население)</li>
                 <li><strong>Таблица «объект-объект»</strong> — отражает связи между объектами (например, таблица расстояний между городами)</li>
             </ul>
+
+            <h3 class="section-subtitle">Пример таблицы «объект-свойство»:</h3>
+            <table>
+                <tr><th>Город</th><th>Столица</th><th>Население (млн)</th><th>Площадь (км²)</th></tr>
+                <tr><td>Москва</td><td>Россия</td><td>12,6</td><td>2 561</td></tr>
+                <tr><td>Токио</td><td>Япония</td><td>13,9</td><td>2 194</td></tr>
+                <tr><td>Пекин</td><td>Китай</td><td>21,5</td><td>16 410</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Пример таблицы «объект-объект» (расстояния):</h3>
+            <table>
+                <tr><th></th><td>Москва</td><td>С-Петербург</td><td>Казань</td></tr>
+                <tr><td><strong>Москва</strong></td><td>0</td><td>700</td><td>820</td></tr>
+                <tr><td><strong>С-Петербург</strong></td><td>700</td><td>0</td><td>1 500</td></tr>
+                <tr><td><strong>Казань</strong></td><td>820</td><td>1 500</td><td>0</td></tr>
+            </table>
+
             <div class="info-box"><strong>Достоинства табличных моделей:</strong> наглядность, структурированность, возможность автоматической обработки.</div>
         </div>
+
+        <div class="card" id="math_models">
+            <h2 class="card-title">Математические модели</h2>
+            <p><strong>Математическая модель</strong> — описание объекта с помощью математических формул и уравнений.</p>
+
+            <h3 class="section-subtitle">Примеры математических моделей:</h3>
+            <table>
+                <tr><th>Задача</th><th>Модель</th><th>Формула</th></tr>
+                <tr><td>Площадь круга</td><td>Геометрическая</td><td>S = π × r²</td></tr>
+                <tr><td>Движение тела</td><td>Физическая</td><td>S = v × t + (a × t²) / 2</td></tr>
+                <tr><td>Банковский вклад</td><td>Экономическая</td><td>S = P × (1 + r)ⁿ</td></tr>
+                <tr><td>Рост популяции</td><td>Биологическая</td><td>N = N₀ × eᵏᵗ</td></tr>
+            </table>
+
+            <h3 class="section-subtitle">Пример: расчёт стоимости кредита</h3>
+            <p>Модель аннуитетного платежа:</p>
+            <p style="text-align:center; font-size:1.1em;"><strong>П = К × (r × (1+r)ⁿ) / ((1+r)ⁿ − 1)</strong></p>
+            <p>где К — сумма кредита, r — месячная ставка, n — количество месяцев.</p>
+
+            <h3 class="section-subtitle">Пример: модель «хищник — жертва»</h3>
+            <pre class="code-block"># Модель Лотки-Вольтерры
+# x — число жертв, y — число хищников
+dx/dt = a*x - b*x*y    # рост жертв, вымирание от хищников
+dy/dt = c*x*y - d*y     # рост хищников, вымирание без пищи</pre>
+            <p>Эта модель описывает циклические колебания популяций в экосистеме.</p>
+        </div>
+
+        <div class="card" id="practice">
+            <h2 class="card-title">Практические задания</h2>
+
+            <div class="interactive-block">
+                <h4>Задание 1. Классификация моделей</h4>
+                <p>Определите тип каждой модели:</p>
+                <ol>
+                    <li>Глобус Земли → _____</li>
+                    <li>Формула площади треугольника → _____</li>
+                    <li>Схема метро → _____</li>
+                    <li>Компьютерная игра «Симулятор города» → _____</li>
+                </ol>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <ol>
+                        <li>Материальная (предметная)</li>
+                        <li>Информационная (знаковая), математическая</li>
+                        <li>Информационная (знаковая), графическая</li>
+                        <li>Имитационная, компьютерная</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 2. Построение табличной модели</h4>
+                <p>Составьте таблицу «объект-свойство» для 3 школьных предметов (название, количество часов в неделю, форма контроля).</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <table>
+                        <tr><th>Предмет</th><th>Часы/неделю</th><th>Контроль</th></tr>
+                        <tr><td>Математика</td><td>5</td><td>Домашние работы, контрольные</td></tr>
+                        <tr><td>Русский язык</td><td>3</td><td>Диктанты, изложения</td></tr>
+                        <tr><td>Информатика</td><td>2</td><td>Тесты, практикумы</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>Задание 3. Этапы моделирования</h4>
+                <p>Задача: спрогнозировать количество учеников в школе через 5 лет. Опишите каждый этап моделирования.</p>
+                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <div class="result-box" style="display:none;">
+                    <ol>
+                        <li><strong>Постановка задачи:</strong> определить число учеников через 5 лет</li>
+                        <li><strong>Разработка модели:</strong> анализ статистики за предыдущие годы, выявление тренда, построение формулы (линейная или полиномиальная экстраполяция)</li>
+                        <li><strong>Компьютерный эксперимент:</strong> реализация в электронной таблице, подстановка данных</li>
+                        <li><strong>Анализ результатов:</strong> сравнение прогноза с фактическими данными, корректировка модели</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="6-1"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="6-1">Отметить как изученное</button>
+        </div>
+
+        <div class="topic-nav">
+            <a href="tema-5-4.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">5.4 Обработка числовых данных</span>
+            </a>
+            <a href="tema-6-2.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">6.2 Графы и табличные модели</span>
+            </a>
+        </div>
     </main>
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7–9 классы | <a href="index.html">На главную</a></p>
-    </footer>
-    <script src="js/scripts.js"></script>
+
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

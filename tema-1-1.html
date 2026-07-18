@@ -1,27 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.1 Компьютер – универсальное устройство обработки данных | Информатика 7–9 классы</title>
+    <meta name="description" content="Устройство компьютера: процессор, память, устройства ввода и вывода. Виды компьютеров, клавиатура и мышь, датчики, загрузка системы. История вычислительной техники.">
+    <meta property="og:title" content="1.1 Компьютер – универсальное устройство обработки данных">
+    <meta property="og:description" content="Устройство компьютера: процессор, память, устройства ввода и вывода. История развития вычислительной техники и техника безопасности.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
         <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
+</header>
 
-    <main>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="7-klass.html">7 класс</a>
+            <span class="separator">/</span>
+            <span class="current">1.1 Компьютер – универсальное устройство обработки данных</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">1.1. Компьютер – универсальное устройство обработки данных</h1>
         <p class="page-subtitle">Раздел 1. Цифровая грамотность (2 часа)</p>
 
@@ -29,10 +42,14 @@
             <div class="toc-title">📋 Содержание темы:</div>
             <ol>
                 <li><a href="#intro">Что такое компьютер?</a></li>
+                <li><a href="#types">Виды компьютеров</a></li>
                 <li><a href="#hardware">Основные компоненты компьютера</a></li>
                 <li><a href="#cpu">Процессор</a></li>
                 <li><a href="#memory">Память компьютера</a></li>
                 <li><a href="#devices">Устройства ввода и вывода</a></li>
+                <li><a href="#keyboard">Клавиатура и мышь</a></li>
+                <li><a href="#sensors">Датчики современных устройств</a></li>
+                <li><a href="#boot">Загрузка компьютера</a></li>
                 <li><a href="#history">История развития вычислительной техники</a></li>
                 <li><a href="#safety">Техника безопасности</a></li>
             </ol>
@@ -44,6 +61,27 @@
             <p>Это <strong>универсальное устройство</strong>, так как оно может выполнять самые разные задачи: от набора текста до обработки видео и выхода в Интернет.</p>
             <div class="info-box">
                 <strong>Важно:</strong> Компьютер обрабатывает данные, представленные в <strong>двоичном коде</strong> — в виде последовательности нулей (0) и единиц (1).
+            </div>
+        </div>
+
+        <div class="card" id="types">
+            <h2 class="card-title">Виды компьютеров</h2>
+            <p>Современные компьютеры сильно различаются по размерам, производительности и назначению:</p>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Вид</th><th>Описание</th><th>Примеры</th></tr>
+                    <tr><td><strong>Суперкомпьютеры</strong></td><td>Максимальная производительность, используются для сложных расчётов</td><td>Fugaku (Япония), Summit (США)</td></tr>
+                    <tr><td><strong>Серверы</strong></td><td>Обслуживают сети, хранят данные, работают 24/7</td><td>Серверы Google, Яндекс</td></tr>
+                    <tr><td><strong>Персональные компьютеры</strong></td><td>Для работы одного пользователя</td><td>Настольные ПК, ноутбуки</td></tr>
+                    <tr><td><strong>Смартфоны и планшеты</strong></td><td>Мобильные устройства с сенсорным экраном</td><td>iPhone, iPad, Samsung Galaxy</td></tr>
+                    <tr><td><strong>Встроенные компьютеры</strong></td><td>Управляют бытовой техникой, автомобилями</td><td>Микроконтроллеры Arduino</td></tr>
+                    <tr><td><strong>Носимые устройства</strong></td><td>Одеваются на тело, отслеживают здоровье</td><td>Smartwatch, фитнес-браслеты</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>Интересный факт:</strong> Современный смартфон примерно в 100 000 раз мощнее компьютера Apollo 11, который доставил астронавтов на Луну в 1969 году.
             </div>
         </div>
 
@@ -139,6 +177,95 @@
             </ul>
         </div>
 
+        <div class="card" id="keyboard">
+            <h2 class="card-title">Клавиатура и мышь</h2>
+
+            <h3 class="section-subtitle">Группы клавиш на клавиатуре:</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Группа</th><th>Назначение</th><th>Примеры</th></tr>
+                    <tr><td><strong>Функциональные</strong></td><td>Выполнение специальных функций</td><td>F1–F12</td></tr>
+                    <tr><td><strong>Символьные</strong></td><td>Ввод букв, цифр, знаков</td><td>А–Я, 0–9, +, =</td></tr>
+                    <tr><td><strong>Управления курсором</strong></td><td>Перемещение курсора</td><td>←, →, ↑, ↓, Home, End</td></tr>
+                    <tr><td><strong>Дополнительная клавиатура</strong></td><td>Быстрый ввод цифр</td><td>Цифровая клавиатура (Num Pad)</td></tr>
+                    <tr><td><strong>Специальные</strong></td><td>Управление работой ПК</td><td>Ctrl, Alt, Shift, Esc, Print Screen</td></tr>
+                </table>
+            </div>
+
+            <h3 class="section-subtitle">История компьютерной мыши:</h3>
+            <ul class="content-list">
+                <li><strong>1968</strong> — первая мышь, изобретённая Дугласом Энгельбартом (деревянный корпус с одним колесом)</li>
+                <li><strong>1980-е</strong> — механическая мышь с резиновым шариком</li>
+                <li><strong>1990-е</strong> — оптическая мышь со светодиодом (LED)</li>
+                <li><strong>2000-е</strong> — лазерная мышь (точнее оптической)</li>
+                <li><strong>2010-е</strong> — беспроводные мыши (Bluetooth, радиоканал)</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Для справки:</strong> Современная мышь может иметь до 20 кнопок и чувствительность свыше 20 000 DPI (точек на дюйм). Профессиональные игровые мыши оснащаются сенсорами с частотой опроса 1000 Гц — мышь передаёт своё положение 1000 раз в секунду.
+            </div>
+        </div>
+
+        <div class="card" id="sensors">
+            <h2 class="card-title">Датчики современных устройств</h2>
+            <p>Смартфоны и планшеты оснащены множеством датчиков — устройств, которые воспринимают внешние воздействия и передают их на обработку процессору:</p>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Датчик</th><th>Что измеряет</th><th>Применение</th></tr>
+                    <tr><td><strong>Акселерометр</strong></td><td>Ускорение и наклон устройства</td><td>Автоповорот экрана, шагомер, игры</td></tr>
+                    <tr><td><strong>Гироскоп</strong></td><td>Угловую скорость вращения</td><td>Виртуальная реальность, навигация</td></tr>
+                    <tr><td><strong>Датчик освещённости</strong></td><td>Уровень ambient-света</td><td>Авторегулировка яркости экрана</td></tr>
+                    <tr><td><strong>Датчик приближения</strong></td><td>Расстояние до объекта</td><td>Отключение экрана во время разговора</td></tr>
+                    <tr><td><strong>Геомагнитный датчик</strong></td><td>Магнитное поле Земли</td><td>Компас, навигация</td></tr>
+                    <tr><td><strong>Сканер отпечатка пальца</strong></td><td>Рельеф пальца</td><td>Разблокировка, авторизация</td></tr>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <strong>Важно:</strong> Все данные датчиков преобразуются в двоичный код и обрабатываются процессором — именно поэтому датчики являются частью системы ввода информации в компьютер.
+            </div>
+        </div>
+
+        <div class="card" id="boot">
+            <h2 class="card-title">Загрузка компьютера</h2>
+            <p>При включении компьютера происходит последовательная загрузка программ из долговременной памяти в оперативную:</p>
+
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">BIOS/UEFI</div>
+                    <span class="scheme-label">Тестирование оборудования</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Загрузчик ОС</div>
+                    <span class="scheme-label">Поиск начального загрузчика</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Загрузка ОС</div>
+                    <span class="scheme-label">Копирование в ОЗУ</span>
+                </div>
+                <div class="scheme-arrow">→</div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Рабочий стол</div>
+                    <span class="scheme-label">Готов к работе</span>
+                </div>
+            </div>
+
+            <ol class="content-list" style="margin-left:20px;">
+                <li><strong>Включение питания</strong> — запуск BIOS (или UEFI) из постоянной памяти</li>
+                <li><strong>Тестирование (POST)</strong> — проверка работоспособности основных компонентов</li>
+                <li><strong>Поиск загрузчика</strong> — BIOS ищет программу-загрузчик на диске</li>
+                <li><strong>Загрузка ОС</strong> — основные файлы операционной системы копируются из диска в оперативную память</li>
+                <li><strong>Инициализация</strong> — загрузка драйверов, служб и пользовательского интерфейса</li>
+            </ol>
+
+            <div class="info-box">
+                <strong>Примечание:</strong> BIOS (Basic Input/Output System) — базовая система ввода-вывода, хранится в микросхеме на материнской плате. Современные компьютеры используют UEFI — более продвинутую замену BIOS с графическим интерфейсом и поддержкой дисков большого объёма.
+            </div>
+        </div>
+
         <div class="card" id="history">
             <h2 class="card-title">История развития вычислительной техники</h2>
             <div class="table-wrap">
@@ -169,13 +296,27 @@
                 <li>Запрещается самостоятельно вскрывать системный блок без отключения от сети.</li>
             </ul>
         </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="1-1"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="1-1">Отметить как изученное</button>
+        </div>
+        <div class="topic-nav">
+            <a href="tema-1-2.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">1.2 Программы и данные</span>
+            </a>
+        </div>
     </main>
 
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
-    </footer>
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>

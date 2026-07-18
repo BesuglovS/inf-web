@@ -1,27 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2.2 Представление информации | Информатика 7–9 классы</title>
+    <meta name="description" content="Алфавит, двоичное кодирование, единицы измерения информации, кодирование текста, графики и звука — представление информации в информатике.">
+    <meta property="og:title" content="2.2 Представление информации">
+    <meta property="og:description" content="Алфавит, двоичное кодирование, единицы измерения информации, кодирование текста, графики и звука — представление информации в информатике.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
         <header>
         <div class="header-top">
-            <h1><a href="index.html">📘 Информатика 7–9 классы</a></h1>
-            <a href="index.html" class="home-link">🏠 Главная</a>
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
         </div>
-        <nav>
+        <nav aria-label="Основная навигация">
             <ul>
-                <li><a href="7-klass.html">📗 7 класс</a></li>
-                <li><a href="8-klass.html">📘 8 класс</a></li>
-                <li><a href="9-klass.html">📕 9 класс</a></li>
+                <li><a href="7-klass.html">7 класс</a></li>
+                <li><a href="8-klass.html">8 класс</a></li>
+                <li><a href="9-klass.html">9 класс</a></li>
             </ul>
         </nav>
-    </header>
+</header>
 
-    <main>
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Навигация">
+            <a href="index.html">Главная</a>
+            <span class="separator">/</span>
+            <a href="7-klass.html">7 класс</a>
+            <span class="separator">/</span>
+            <span class="current">2.2 Представление информации</span>
+        </nav>
+        <div class="progress-text"></div>
+        <div class="progress-bar-container"><div class="progress-bar"></div></div>
         <h1 class="page-title">2.2. Представление информации</h1>
         <p class="page-subtitle">Раздел 2. Теоретические основы информатики (7 часов)</p>
 
@@ -29,11 +42,13 @@
             <div class="toc-title">📋 Содержание темы:</div>
             <ol>
                 <li><a href="#alphabet">Алфавит и кодирование</a></li>
+                <li><a href="#languages">Языки представления информации</a></li>
                 <li><a href="#binary">Двоичное кодирование</a></li>
                 <li><a href="#units">Единицы измерения информации</a></li>
                 <li><a href="#text">Кодирование текстовой информации</a></li>
                 <li><a href="#image">Кодирование графической информации</a></li>
                 <li><a href="#audio">Кодирование звуковой информации</a></li>
+                <li><a href="#video">Кодирование видеоинформации</a></li>
             </ol>
         </div>
 
@@ -54,6 +69,38 @@
 
             <div class="info-box">
                 <strong>Важно:</strong> Чем больше мощность алфавита, тем больше информации несёт один символ.
+            </div>
+        </div>
+
+        <div class="card" id="languages">
+            <h2 class="card-title">Языки представления информации</h2>
+
+            <div class="scheme">
+                <div class="scheme-item">
+                    <div class="scheme-box">Естественные языки</div>
+                    <span class="scheme-label">Русский, английский и др.</span>
+                </div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Формальные языки</div>
+                    <span class="scheme-label">Математика, музыка, шахматы</span>
+                </div>
+                <div class="scheme-item">
+                    <div class="scheme-box">Языки программирования</div>
+                    <span class="scheme-label">Python, C++, Scratch</span>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <tr><th>Тип языка</th><th>Описание</th><th>Пример</th></tr>
+                    <tr><td><strong>Естественный</strong></td><td>Язык, сложившийся исторически</td><td>Русский, английский, китайский</td></tr>
+                    <tr><td><strong>Формальный (искусственный)</strong></td><td>Создан специально для точного выражения мыслей</td><td>Математическая запись, музыкальная нотация</td></tr>
+                    <tr><td><strong>Язык программирования</strong></td><td>Формальный язык для написания программ</td><td>Python, Java, Scratch, HTML</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>Важно:</strong> Формальные языки точнее естественных, потому что имеют строгие правила. В естественном языке одно слово может иметь несколько значений, а в формальном — каждое выражение однозначно.
             </div>
         </div>
 
@@ -80,7 +127,54 @@
             </div>
 
             <div class="info-box">
-                <strong>Пример:</strong> Число 13₁₀ = 1101₂ (1×8 + 1×4 + 0×2 + 1×1 = 8 + 4 + 0 + 1 = 13)
+                <strong>Пример 1:</strong> Число 13₁₀ = 1101₂ (1×8 + 1×4 + 0×2 + 1×1 = 8 + 4 + 0 + 1 = 13)<br>
+                <strong>Пример 2:</strong> Число 42₁₀ = 101010₂ (32 + 8 + 2 = 42)<br>
+                <strong>Пример 3:</strong> Число 255₁₀ = 11111112 (все 8 бит = 1)
+            </div>
+
+            <div class="interactive-block">
+                <h4>🔢 Перевод двоичного числа в десятичное</h4>
+                <label for="bin-input">Введите двоичное число (только 0 и 1):</label>
+                <input type="text" id="bin-input" placeholder="Например: 1101" maxlength="16" style="max-width:300px;">
+                <button class="btn" onclick="binToDec()">Перевести</button>
+                <div id="bin-dec-result" class="result-box"></div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>🔁 Перевод десятичного числа в двоичное</h4>
+                <label for="dec-input">Введите десятичное число:</label>
+                <input type="number" id="dec-input" placeholder="Например: 13" min="0" max="65535" style="max-width:300px;">
+                <button class="btn" onclick="decToBin()">Перевести</button>
+                <div id="dec-bin-result" class="result-box"></div>
+            </div>
+
+            <div class="interactive-block">
+                <h4>🧮 Калькулятор объёма видео</h4>
+                <p style="font-size:0.9rem;">V = Ширина × Высота × Глубина_цвета × Частота_кадров × Время</p>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <div style="flex:1; min-width:120px;">
+                        <label for="vid-width">Ширина (пикс.):</label>
+                        <input type="number" id="vid-width" value="1920" min="1">
+                    </div>
+                    <div style="flex:1; min-width:120px;">
+                        <label for="vid-height">Высота (пикс.):</label>
+                        <input type="number" id="vid-height" value="1080" min="1">
+                    </div>
+                    <div style="flex:1; min-width:120px;">
+                        <label for="vid-depth">Глубина (бит):</label>
+                        <input type="number" id="vid-depth" value="24" min="1">
+                    </div>
+                    <div style="flex:1; min-width:120px;">
+                        <label for="vid-fps">Кадров/с:</label>
+                        <input type="number" id="vid-fps" value="24" min="1">
+                    </div>
+                    <div style="flex:1; min-width:120px;">
+                        <label for="vid-duration">Время (с):</label>
+                        <input type="number" id="vid-duration" value="60" min="1">
+                    </div>
+                </div>
+                <button class="btn" onclick="calcVideoVolume()">Рассчитать объём</button>
+                <div id="video-volume-result" class="result-box"></div>
             </div>
         </div>
 
@@ -323,13 +417,31 @@
                 <div id="speed-result" class="result-box"></div>
             </div>
         </div>
+
+        <div class="quiz-block dynamic-quiz" data-topic="2-2"></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn progress-btn" data-topic="2-2">Отметить как изученное</button>
+        </div>
+        <div class="topic-nav">
+            <a href="tema-2-1.html" class="nav-prev">
+                <span class="nav-label">&larr; Предыдущая тема</span>
+                <span class="nav-title">2.1 Информация и информационные процессы</span>
+            </a>
+            <a href="tema-3-1.html" class="nav-next">
+                <span class="nav-label">Следующая тема &rarr;</span>
+                <span class="nav-title">3.1 Текстовые документы</span>
+            </a>
+        </div>
     </main>
 
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>© Информатика 7 класс | <a href="index.html">На главную</a></p>
-    </footer>
+    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
+<footer>
+    <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
+    <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+</footer>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/quiz.js" defer></script>
 </body>
 </html>
