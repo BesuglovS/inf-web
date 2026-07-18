@@ -13,6 +13,7 @@
     <meta property="og:locale" content="ru_RU">
     <link rel="canonical" href="https://inf.nayanovaacademy.ru/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/styles.css">
 
     <script type="application/ld+json">
@@ -104,11 +105,6 @@
         <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
     </footer>
 
-    <script src="js/scripts.js" defer></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js').catch(function() {});
-        }
-    </script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

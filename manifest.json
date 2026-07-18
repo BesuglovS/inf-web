@@ -1,0 +1,21 @@
+{
+  "name": "Информатика 7–9 классы",
+  "short_name": "Информатика",
+  "description": "Учебный сайт по информатике для 7–9 классов. Интерактивные инструменты, калькуляторы, тесты и теория.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2c3e50",
+  "lang": "ru",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "scope": "/"
+}
