@@ -15,6 +15,7 @@
     <header>
         <div class="header-top">
             <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
         </div>
         <nav aria-label="Основная навигация">
             <ul>
@@ -146,14 +147,14 @@
             <div class="interactive-block">
                 <h4>Задание 1. Формула ЕСЛИ</h4>
                 <p>Напишите формулу: если оценка ≥ 4, вывести «Хорошо», иначе — «Нужно подтянуть».</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;"><code>=ЕСЛИ(A1>=4; "Хорошо"; "Нужно подтянуть")</code></div>
             </div>
 
             <div class="interactive-block">
                 <h4>Задание 2. Сумма с условием</h4>
                 <p>Какой формулой посчитать сумму только положительных чисел в диапазоне A1:A20?</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;"><code>=СУММЕСЛИ(A1:A20;">"&0)</code></div>
             </div>
 
@@ -165,7 +166,7 @@
                     <li>Сравнить средние баллы по предметам</li>
                     <li>Показать изменение температуры за неделю</li>
                 </ol>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <ol>
                         <li>Круговая диаграмма</li>
@@ -178,7 +179,7 @@
             <div class="interactive-block">
                 <h4>Задание 4. ВПР</h4>
                 <p>В таблице: A — название товара, B — цена, C — количество. Напишите формулу для определения цены товара «Хлеб».</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;"><code>=ВПР("Хлеб"; A2:C100; 2; 0)</code> — ищем «Хлеб» в 1-м столбце, возвращаем значение из 2-го (цена).</div>
             </div>
         </div>
@@ -189,7 +190,7 @@
             <button class="btn progress-btn" data-topic="7-2">Отметить как изученное</button>
         </div>
 
-        <div class="topic-nav">
+        <nav class="topic-nav">
             <a href="tema-7-1.html" class="nav-prev">
                 <span class="nav-label">&larr; Предыдущая тема</span>
                 <span class="nav-title">7.1 Электронные таблицы</span>
@@ -198,7 +199,7 @@
                 <span class="nav-label">Следующая тема &rarr;</span>
                 <span class="nav-title">8.1 Компьютерные сети и Интернет</span>
             </a>
-        </div>
+        </nav>
     </main>
 
     <button class="back-to-top" aria-label="Наверх">&uarr;</button>
@@ -207,6 +208,11 @@
     <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
 </footer>
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
     <script src="js/quiz.js" defer></script>
 </body>
 </html>

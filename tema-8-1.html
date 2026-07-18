@@ -15,6 +15,7 @@
     <header>
         <div class="header-top">
             <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
         </div>
         <nav aria-label="Основная навигация">
             <ul>
@@ -205,7 +206,7 @@
                     <li>Интернет</li>
                     <li>Сеть между филиалами банка в одном городе</li>
                 </ol>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <ol>
                         <li>LAN (локальная сеть)</li>
@@ -223,7 +224,7 @@
                     <li>Отправки электронной почты</li>
                     <li>Скачивания файлов с FTP-сервера</li>
                 </ol>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <ol>
                         <li>HTTP/HTTPS</li>
@@ -236,7 +237,7 @@
             <div class="interactive-block">
                 <h4>Задание 3. IP-адресация</h4>
                 <p>Сколько устройств может быть в сети с маской 255.255.255.0 (класс C)?</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">2⁸ − 2 = 254 устройства (минус адрес сети и.broadcast-адрес).</div>
             </div>
 
@@ -249,7 +250,7 @@
                     <li>Онлайн-игра</li>
                     <li>Загрузка веб-страницы</li>
                 </ol>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <ol>
                         <li>UDP (важна скорость, допустимы потери)</li>
@@ -267,7 +268,7 @@
             <button class="btn progress-btn" data-topic="8-1">Отметить как изученное</button>
         </div>
 
-        <div class="topic-nav">
+        <nav class="topic-nav">
             <a href="tema-7-2.html" class="nav-prev">
                 <span class="nav-label">&larr; Предыдущая тема</span>
                 <span class="nav-title">7.2 Формулы и диаграммы</span>
@@ -276,7 +277,7 @@
                 <span class="nav-label">Следующая тема &rarr;</span>
                 <span class="nav-title">8.2 Информационная безопасность</span>
             </a>
-        </div>
+        </nav>
     </main>
 
     <button class="back-to-top" aria-label="Наверх">&uarr;</button>
@@ -285,6 +286,11 @@
     <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
 </footer>
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
     <script src="js/quiz.js" defer></script>
 </body>
 </html>

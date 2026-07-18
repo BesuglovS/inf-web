@@ -15,6 +15,7 @@
     <header>
         <div class="header-top">
             <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
         </div>
         <nav aria-label="Основная навигация">
             <ul>
@@ -463,7 +464,7 @@ print(dfs_path(graph, 'A', 'F'))  # ['A', 'C', 'F']</pre>
             <button class="btn progress-btn" data-topic="9-4">Отметить как изученное</button>
         </div>
 
-        <div class="topic-nav">
+        <nav class="topic-nav">
             <a href="tema-9-3.html" class="nav-prev">
                 <span class="nav-label">&larr; Предыдущая тема</span>
                 <span class="nav-title">9.3 Файловая обработка</span>
@@ -472,7 +473,7 @@ print(dfs_path(graph, 'A', 'F'))  # ['A', 'C', 'F']</pre>
                 <span class="nav-label">Следующая тема &rarr;</span>
                 <span class="nav-title">Далее</span>
             </span>
-        </div>
+        </nav>
     </main>
 
     <button class="back-to-top" aria-label="Наверх">&uarr;</button>
@@ -481,6 +482,11 @@ print(dfs_path(graph, 'A', 'F'))  # ['A', 'C', 'F']</pre>
     <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
 </footer>
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
     <script src="js/quiz.js" defer></script>
 </body>
 </html>

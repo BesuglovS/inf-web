@@ -15,6 +15,7 @@
     <header>
         <div class="header-top">
             <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
         </div>
         <nav aria-label="Основная навигация">
             <ul>
@@ -478,7 +479,7 @@ while n > 0:
     s += n % 10
     n //= 10
 print(s)</pre>
-                <p>Чему равно s? <button class="btn" onclick="document.getElementById('ans541').style.display='block'">Показать ответ</button></p>
+                <p>Чему равно s? <button class="btn" data-reveal-target="ans541">Показать ответ</button></p>
                 <div id="ans541" class="result-box" style="display:none;">
                     <p>Программа вычисляет сумму цифр числа 4729:</p>
                     <table>
@@ -503,7 +504,7 @@ while n > 0:
         max_d = d
     n //= 10
 print('max =', max_d)</pre>
-                <p><button class="btn" onclick="document.getElementById('ans542').style.display='block'">Показать ответ</button></p>
+                <p><button class="btn" data-reveal-target="ans542">Показать ответ</button></p>
                 <div id="ans542" class="result-box" style="display:none;">
                     <p>Программа находит максимальную цифру в числе 38562:</p>
                     <table>
@@ -529,7 +530,7 @@ while n > 0:
         k += 1
     n //= 10
 print('Чётных цифр:', k)</pre>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <p>Ошибка: вместо <code>n % 10 / 2 == 0</code> нужно использовать <code>n % 10 % 2 == 0</code>. Деление на 2 не проверяет чётность!</p>
                     <pre class="code-block">n = 2473
@@ -546,7 +547,7 @@ print('Чётных цифр:', k)
             <div class="interactive-block">
                 <h4>🧪 Задание 4. Напишите программу</h4>
                 <p>Напишите программу, которая находит среднее арифметическое всех нечётных чисел из N введённых чисел.</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать решение</button>
+                <button type="button" class="btn" data-reveal>Показать решение</button>
                 <div class="result-box" style="display:none;">
                     <pre class="code-block">n = int(input('Сколько чисел? '))
 s = 0
@@ -566,7 +567,7 @@ else:
             <div class="interactive-block">
                 <h4>🧪 Задание 5. Напишите программу</h4>
                 <p>Напишите программу, которая определяет, является ли заданное натуральное число числом Армстронга (сумма его цифр в собственных степенях равна самому числу). Например, 153 = 1³ + 5³ + 3³.</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать решение</button>
+                <button type="button" class="btn" data-reveal>Показать решение</button>
                 <div class="result-box" style="display:none;">
                     <pre class="code-block">n = int(input('Введите число: '))
 original = n
@@ -597,7 +598,7 @@ else:
             <div class="interactive-block">
                 <h4>🧪 Задание 6. Сложная задача</h4>
                 <p>Напишите программу, которая для заданного числа N выводит все его делители в порядке возрастания.</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать решение</button>
+                <button type="button" class="btn" data-reveal>Показать решение</button>
                 <div class="result-box" style="display:none;">
                     <pre class="code-block">n = int(input('Введите число: '))
 for i in range(1, n + 1):
@@ -625,8 +626,8 @@ print('Делители:', divisors)</pre>
 </div>
 
 <nav class="topic-nav">
-    <a href="tema-5-3.html" class="prev-link">← 5.3 Алгоритмические конструкции</a>
-    <a href="tema-6-1.html" class="next-link">6.1 Моделирование и формализация →</a>
+    <a href="tema-5-3.html" class="nav-prev">← 5.3 Алгоритмические конструкции</a>
+    <a href="tema-6-1.html" class="nav-next">6.1 Моделирование и формализация →</a>
 </nav>
     </main>
 
@@ -636,6 +637,11 @@ print('Делители:', divisors)</pre>
     <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
 </footer>
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
     <script src="js/quiz.js" defer></script>
 </body>
 </html>

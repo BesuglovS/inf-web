@@ -694,7 +694,7 @@ const allTopics = [
     '6-1', '6-2',
     '7-1', '7-2',
     '8-1', '8-2',
-    '9-1', '9-2'
+    '9-1', '9-2', '9-3', '9-4'
 ];
 
 function updateProgressUI() {
@@ -836,6 +836,42 @@ function initBackToTop() {
     });
 }
 
+// ===== Переключатель темы =====
+function initThemeToggle() {
+    var toggle = document.querySelector('.theme-toggle');
+    if (!toggle) return;
+
+    var STORAGE_KEY_THEME = 'inf_theme';
+
+    function getPreferredTheme() {
+        var stored = localStorage.getItem(STORAGE_KEY_THEME);
+        if (stored === 'dark' || stored === 'light') return stored;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        toggle.textContent = theme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+        toggle.setAttribute('aria-label', theme === 'dark' ? 'Переключить на светлую тему' : 'Переключить на тёмную тему');
+    }
+
+    applyTheme(getPreferredTheme());
+
+    toggle.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(STORAGE_KEY_THEME, next);
+        applyTheme(next);
+    });
+
+    // Слушаем системные изменения
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem(STORAGE_KEY_THEME)) {
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+}
+
 // ===== Инициализация =====
 document.addEventListener('DOMContentLoaded', function() {
     // Подсветка активного пункта навигации
@@ -846,6 +882,27 @@ document.addEventListener('DOMContentLoaded', function() {
             a.classList.add('active');
             a.setAttribute('aria-current', 'page');
         }
+    });
+
+    // Обработчик кнопок "Показать ответ" (data-reveal)
+    document.querySelectorAll('[data-reveal]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var target = btn.nextElementSibling;
+            if (target) {
+                target.style.display = 'block';
+            }
+        });
+    });
+
+    // Обработчик кнопок "Показать ответ" по ID (data-reveal-target)
+    document.querySelectorAll('[data-reveal-target]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var targetId = btn.getAttribute('data-reveal-target');
+            var target = document.getElementById(targetId);
+            if (target) {
+                target.style.display = 'block';
+            }
+        });
     });
 
     // Инициализация интерактивных элементов
@@ -868,4 +925,5 @@ document.addEventListener('DOMContentLoaded', function() {
     initBackToTop();
     initSidebarToc();
     initTocScrollSpy();
+    initThemeToggle();
 });

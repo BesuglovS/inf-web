@@ -169,12 +169,6 @@
         return a;
     }
 
-    function escapeHTML(str) {
-        var div = document.createElement('div');
-        div.appendChild(document.createTextNode(str));
-        return div.innerHTML;
-    }
-
     function initQuiz(container) {
         var topicId = container.getAttribute('data-topic');
         if (!topicId) return;

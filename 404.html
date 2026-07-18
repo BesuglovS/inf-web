@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Страница не найдена — Информатика 7–9 классы</title>
     <meta name="robots" content="noindex">
-    <link rel="icon" href="favicon.ico" sizes="32x32">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -14,6 +13,7 @@
     <header>
         <div class="header-top">
             <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
         </div>
         <nav aria-label="Основная навигация">
             <ul>
@@ -42,5 +42,10 @@
     </footer>
 
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
 </body>
 </html>

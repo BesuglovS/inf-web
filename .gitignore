@@ -1,12 +1,10 @@
-# Python
-*.py
-__pycache__/
-*.pyc
-
-# OS
+.env
+*.swp
+*.swo
+*~
 Thumbs.db
+Desktop.ini
 .DS_Store
-
-# IDE
 .vscode/
 .idea/
+*.log

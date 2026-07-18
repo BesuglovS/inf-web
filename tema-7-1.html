@@ -15,6 +15,7 @@
     <header>
         <div class="header-top">
             <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
         </div>
         <nav aria-label="Основная навигация">
             <ul>
@@ -152,7 +153,7 @@
             <div class="interactive-block">
                 <h4>Задание 1. Адресация</h4>
                 <p>В ячейке D2 записана формула <code>=A1+$B$2*C1</code>. Какая формула будет в D5 после копирования?</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;"><code>=A4+$B$2*C4</code> — A1→A4 (относительная), $B$2→$B$2 (абсолютная), C1→C4 (относительная).</div>
             </div>
 
@@ -165,7 +166,7 @@
                     <li>"Итого по классу"</li>
                     <li>3,14159</li>
                 </ol>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <ol>
                         <li>Формула</li>
@@ -179,7 +180,7 @@
             <div class="interactive-block">
                 <h4>Задание 3. Практическая задача</h4>
                 <p>Составьте таблицу успеваемости 5 учеников (Имя, Математика, Русский, Информатика, Средний балл). Какой формулой вычислить средний балл?</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <p>Формула среднего балла: <code>=СРЗНАЧ(B2:D2)</code> или <code>=(B2+C2+D2)/3</code></p>
                     <p>Для автоматического заполнения — протяните формулу вниз на остальные строки.</p>
@@ -193,7 +194,7 @@
             <button class="btn progress-btn" data-topic="7-1">Отметить как изученное</button>
         </div>
 
-        <div class="topic-nav">
+        <nav class="topic-nav">
             <a href="tema-6-2.html" class="nav-prev">
                 <span class="nav-label">&larr; Предыдущая тема</span>
                 <span class="nav-title">6.2 Графы</span>
@@ -202,7 +203,7 @@
                 <span class="nav-label">Следующая тема &rarr;</span>
                 <span class="nav-title">7.2 Формулы, функции и диаграммы</span>
             </a>
-        </div>
+        </nav>
     </main>
 
     <button class="back-to-top" aria-label="Наверх">&uarr;</button>
@@ -211,6 +212,11 @@
     <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
 </footer>
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
     <script src="js/quiz.js" defer></script>
 </body>
 </html>

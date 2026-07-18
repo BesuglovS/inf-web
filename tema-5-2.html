@@ -13,7 +13,10 @@
 <body>
     <a href="#main-content" class="skip-link">Перейти к содержимому</a>
 <header>
-<div class="header-top"><a href="index.html" class="site-title">Информатика 7–9 классы</a></div>
+<div class="header-top">
+<a href="index.html" class="site-title">Информатика 7–9 классы</a>
+<button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
+</div>
 <nav aria-label="Основная навигация"><ul><li><a href="7-klass.html">7 класс</a></li><li><a href="8-klass.html">8 класс</a></li><li><a href="9-klass.html">9 класс</a></li></ul></nav>
 </header>
 <main id="main-content">
@@ -209,7 +212,7 @@ print('Площадь круга:', round(s, 2))</pre>
 <h4>🧪 Практическое задание</h4>
 <p>Определите результат выражений без компьютера:</p>
 <p>1) <code>15 // 4</code> &nbsp; 2) <code>15 % 4</code> &nbsp; 3) <code>2 ** 10</code> &nbsp; 4) <code>17 / 5</code></p>
-<button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+<button type="button" class="btn" data-reveal>Показать ответ</button>
 <div class="result-box" style="display:none;">
 <p>1) <code>15 // 4 = 3</code> — целочисленное деление (полных четвёрок в 15 — три)</p>
 <p>2) <code>15 % 4 = 3</code> — остаток (15 = 4 × 3 + 3)</p>
@@ -252,7 +255,7 @@ print('Площадь круга:', round(s, 2))</pre>
 <pre class="code-block">x = float(input('Введите x: '))
 print('Округление:', round(x))
 print('Целая часть:', int(x))</pre>
-<button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ для x = 10.2, 10.8, -10.2, -10.8</button>
+<button type="button" class="btn" data-reveal>Показать ответ для x = 10.2, 10.8, -10.2, -10.8</button>
 <div class="result-box" style="display:none;">
 <table><tr><th>x</th><th>round(x)</th><th>int(x)</th></tr>
 <tr><td>10.2</td><td>10</td><td>10</td></tr>
@@ -321,8 +324,8 @@ if 1 &lt; x &lt; 10:
 </div>
 
 <nav class="topic-nav">
-    <a href="tema-5-1.html" class="prev-link">← 5.1 Алгоритмы и исполнители</a>
-    <a href="tema-5-3.html" class="next-link">5.3 Алгоритмические конструкции →</a>
+    <a href="tema-5-1.html" class="nav-prev">← 5.1 Алгоритмы и исполнители</a>
+    <a href="tema-5-3.html" class="nav-next">5.3 Алгоритмические конструкции →</a>
 </nav>
 </main>
 
@@ -332,6 +335,11 @@ if 1 &lt; x &lt; 10:
     <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
 </footer>
 <script src="js/scripts.js" defer></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(function() {});
+    }
+</script>
 <script src="js/quiz.js" defer></script>
 </body>
 </html>

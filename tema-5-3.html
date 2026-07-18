@@ -13,7 +13,10 @@
 <body>
     <a href="#main-content" class="skip-link">Перейти к содержимому</a>
 <header>
-<div class="header-top"><a href="index.html" class="site-title">Информатика 7–9 классы</a></div>
+<div class="header-top">
+<a href="index.html" class="site-title">Информатика 7–9 классы</a>
+<button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
+</div>
 <nav aria-label="Основная навигация"><ul><li><a href="7-klass.html">7 класс</a></li><li><a href="8-klass.html">8 класс</a></li><li><a href="9-klass.html">9 класс</a></li></ul></nav>
 </header>
 <main id="main-content">
@@ -215,7 +218,7 @@ for i in range(1, 10):
 for i in range(1, 6):
     s = s + i
 print(s)</pre>
-<p>Чему равно s? <button class="btn" onclick="document.getElementById('ans531').style.display='block'">Показать ответ</button></p>
+<p>Чему равно s? <button class="btn" data-reveal-target="ans531">Показать ответ</button></p>
 <div id="ans531" class="result-box" style="display:none;">s = 1 + 2 + 3 + 4 + 5 = <strong>15</strong></div>
 </div>
 
@@ -227,7 +230,7 @@ while n &gt; 0:
     n = n // 10
     k += 1
 print('k =', k)</pre>
-<p><button class="btn" onclick="document.getElementById('ans532').style.display='block'">Показать ответ</button></p>
+<p><button class="btn" data-reveal-target="ans532">Показать ответ</button></p>
 <div id="ans532" class="result-box" style="display:none;">
 <p>Программа считает количество цифр в числе:</p>
 <table><tr><th>Шаг</th><th>n</th><th>k</th></tr>
@@ -248,7 +251,7 @@ print('k =', k)</pre>
 <pre class="code-block">i = 1
 while i &lt;= 5:
     print(i)</pre>
-<button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+<button type="button" class="btn" data-reveal>Показать ответ</button>
 <div class="result-box" style="display:none;">
 <p>Переменная <code>i</code> не изменяется внутри цикла, поэтому условие <code>i &lt;= 5</code> всегда истинно.</p>
 <pre class="code-block">i = 1
@@ -261,7 +264,7 @@ while i &lt;= 5:
 <div class="interactive-block">
 <h4>🧪 Задание 4. Напишите программу</h4>
 <p>Напишите программу, которая выводит все числа от 1 до 50, делящиеся на 3, но не делящиеся на 5.</p>
-<button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать решение</button>
+<button type="button" class="btn" data-reveal>Показать решение</button>
 <div class="result-box" style="display:none;">
 <pre class="code-block">for i in range(1, 51):
     if i % 3 == 0 and i % 5 != 0:
@@ -277,8 +280,8 @@ while i &lt;= 5:
 </div>
 
 <nav class="topic-nav">
-    <a href="tema-5-2.html" class="prev-link">← 5.2 Язык программирования Python</a>
-    <a href="tema-5-4.html" class="next-link">5.4 Обработка числовых данных →</a>
+    <a href="tema-5-2.html" class="nav-prev">← 5.2 Язык программирования Python</a>
+    <a href="tema-5-4.html" class="nav-next">5.4 Обработка числовых данных →</a>
 </nav>
 </main>
 
@@ -288,6 +291,11 @@ while i &lt;= 5:
     <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
 </footer>
 <script src="js/scripts.js" defer></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(function() {});
+    }
+</script>
 <script src="js/quiz.js" defer></script>
 </body>
 </html>

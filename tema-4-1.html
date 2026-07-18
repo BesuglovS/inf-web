@@ -13,7 +13,10 @@
 <body>
     <a href="#main-content" class="skip-link">Перейти к содержимому</a>
     <header>
-        <div class="header-top"><a href="index.html" class="site-title">Информатика 7–9 классы</a></div>
+        <div class="header-top">
+            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
+        </div>
         <nav aria-label="Основная навигация"><ul><li><a href="7-klass.html">7 класс</a></li><li><a href="8-klass.html">8 класс</a></li><li><a href="9-klass.html">9 класс</a></li></ul></nav>
 </header>
 
@@ -110,7 +113,7 @@
             <div class="interactive-block">
             <h4>🧪 Попробуйте сами</h4>
             <p>Переведите 255₁₀ в двоичную систему.</p>
-            <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+            <button type="button" class="btn" data-reveal>Показать ответ</button>
             <div class="result-box" style="display:none;">255₁₀ = 11111111₂ (все 8 бит равны 1)</div>
             </div>
         </div>
@@ -199,8 +202,8 @@
 </div>
 
 <nav class="topic-nav">
-    <a href="tema-3-3.html" class="prev-link">← 3.3 Мультимедийные презентации</a>
-    <a href="tema-4-2.html" class="next-link">4.2 Элементы математической логики →</a>
+    <a href="tema-3-3.html" class="nav-prev">← 3.3 Мультимедийные презентации</a>
+    <a href="tema-4-2.html" class="nav-next">4.2 Элементы математической логики →</a>
 </nav>
     </main>
 
@@ -211,6 +214,11 @@
 </footer>
 
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
     <script src="js/quiz.js" defer></script>
 </body>
 </html>

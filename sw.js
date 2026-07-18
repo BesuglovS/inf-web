@@ -31,6 +31,8 @@ const ASSETS = [
     '/tema-8-2.html',
     '/tema-9-1.html',
     '/tema-9-2.html',
+    '/tema-9-3.html',
+    '/tema-9-4.html',
     '/404.html'
 ];
 

@@ -15,6 +15,7 @@
         <header>
         <div class="header-top">
             <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
         </div>
         <nav aria-label="Основная навигация">
             <ul>
@@ -423,7 +424,7 @@
         <div style="text-align:center; margin-top:20px;">
             <button class="btn progress-btn" data-topic="2-2">Отметить как изученное</button>
         </div>
-        <div class="topic-nav">
+        <nav class="topic-nav">
             <a href="tema-2-1.html" class="nav-prev">
                 <span class="nav-label">&larr; Предыдущая тема</span>
                 <span class="nav-title">2.1 Информация и информационные процессы</span>
@@ -432,7 +433,7 @@
                 <span class="nav-label">Следующая тема &rarr;</span>
                 <span class="nav-title">3.1 Текстовые документы</span>
             </a>
-        </div>
+        </nav>
     </main>
 
     <button class="back-to-top" aria-label="Наверх">&uarr;</button>
@@ -442,6 +443,11 @@
 </footer>
 
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
     <script src="js/quiz.js" defer></script>
 </body>
 </html>

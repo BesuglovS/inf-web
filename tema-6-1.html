@@ -15,6 +15,7 @@
     <header>
         <div class="header-top">
             <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
         </div>
         <nav aria-label="Основная навигация">
             <ul>
@@ -156,7 +157,7 @@ dy/dt = c*x*y - d*y     # рост хищников, вымирание без �
                     <li>Схема метро → _____</li>
                     <li>Компьютерная игра «Симулятор города» → _____</li>
                 </ol>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <ol>
                         <li>Материальная (предметная)</li>
@@ -170,7 +171,7 @@ dy/dt = c*x*y - d*y     # рост хищников, вымирание без �
             <div class="interactive-block">
                 <h4>Задание 2. Построение табличной модели</h4>
                 <p>Составьте таблицу «объект-свойство» для 3 школьных предметов (название, количество часов в неделю, форма контроля).</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <table>
                         <tr><th>Предмет</th><th>Часы/неделю</th><th>Контроль</th></tr>
@@ -184,7 +185,7 @@ dy/dt = c*x*y - d*y     # рост хищников, вымирание без �
             <div class="interactive-block">
                 <h4>Задание 3. Этапы моделирования</h4>
                 <p>Задача: спрогнозировать количество учеников в школе через 5 лет. Опишите каждый этап моделирования.</p>
-                <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+                <button type="button" class="btn" data-reveal>Показать ответ</button>
                 <div class="result-box" style="display:none;">
                     <ol>
                         <li><strong>Постановка задачи:</strong> определить число учеников через 5 лет</li>
@@ -202,7 +203,7 @@ dy/dt = c*x*y - d*y     # рост хищников, вымирание без �
             <button class="btn progress-btn" data-topic="6-1">Отметить как изученное</button>
         </div>
 
-        <div class="topic-nav">
+        <nav class="topic-nav">
             <a href="tema-5-4.html" class="nav-prev">
                 <span class="nav-label">&larr; Предыдущая тема</span>
                 <span class="nav-title">5.4 Обработка числовых данных</span>
@@ -211,7 +212,7 @@ dy/dt = c*x*y - d*y     # рост хищников, вымирание без �
                 <span class="nav-label">Следующая тема &rarr;</span>
                 <span class="nav-title">6.2 Графы и табличные модели</span>
             </a>
-        </div>
+        </nav>
     </main>
 
     <button class="back-to-top" aria-label="Наверх">&uarr;</button>
@@ -220,6 +221,11 @@ dy/dt = c*x*y - d*y     # рост хищников, вымирание без �
     <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
 </footer>
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
     <script src="js/quiz.js" defer></script>
 </body>
 </html>

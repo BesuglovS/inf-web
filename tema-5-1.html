@@ -15,6 +15,7 @@
     <header>
         <div class="header-top">
             <a href="index.html" class="site-title">Информатика 7–9 классы</a>
+            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
         </div>
         <nav aria-label="Основная навигация"><ul><li><a href="7-klass.html">7 класс</a></li><li><a href="8-klass.html">8 класс</a></li><li><a href="9-klass.html">9 класс</a></li></ul></nav>
 </header>
@@ -194,7 +195,7 @@ x &gt; 0 and y &gt; 0        # логическое выражение</pre>
             <p>а) <code>a := 2; b := 3; c := a + b</code></p>
             <p>б) <code>если a &gt; 0 то вывод «Положительное» иначе вывод «Не положительное»</code></p>
             <p>в) <code>пока i &lt;= 10 выполнить: вывод i; i := i + 1</code></p>
-            <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+            <button type="button" class="btn" data-reveal>Показать ответ</button>
             <div class="result-box" style="display:none;">
             <p>а) <strong>Линейный</strong> — все команды выполняются последовательно</p>
             <p>б) <strong>Разветвляющийся</strong> — есть условие и две ветви</p>
@@ -205,7 +206,7 @@ x &gt; 0 and y &gt; 0        # логическое выражение</pre>
             <div class="interactive-block">
             <h4>Задание 2. Составьте алгоритм</h4>
             <p>Составьте словесный алгоритм: «Найти сумму цифр трёхзначного числа».</p>
-            <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+            <button type="button" class="btn" data-reveal>Показать ответ</button>
             <div class="result-box" style="display:none;">
             <ol class="content-list">
             <li>Ввести трёхзначное число X</li>
@@ -222,7 +223,7 @@ x &gt; 0 and y &gt; 0        # логическое выражение</pre>
             <h4>Задание 3. Определите свойства</h4>
             <p>Какое из свойств алгоритма нарушено в данном описании?<br>
             «Возьмите подходящее число и прибавьте к нему ещё одно подходящее число.»</p>
-            <button type="button" class="btn" onclick="this.nextElementSibling.style.display='block'">Показать ответ</button>
+            <button type="button" class="btn" data-reveal>Показать ответ</button>
             <div class="result-box" style="display:none;">
             Нарушены свойства <strong>определённости</strong> и <strong>понятности</strong>: «подходящее число» — неопределённое понятие. Исполнитель не знает, какое именно число нужно взять.
             </div>
@@ -235,8 +236,8 @@ x &gt; 0 and y &gt; 0        # логическое выражение</pre>
 </div>
 
 <nav class="topic-nav">
-    <a href="tema-4-2.html" class="prev-link">← 4.2 Мат. логика</a>
-    <a href="tema-5-2.html" class="next-link">5.2 Язык программирования Python →</a>
+    <a href="tema-4-2.html" class="nav-prev">← 4.2 Мат. логика</a>
+    <a href="tema-5-2.html" class="nav-next">5.2 Язык программирования Python →</a>
 </nav>
     </main>
 
@@ -246,6 +247,11 @@ x &gt; 0 and y &gt; 0        # логическое выражение</pre>
     <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
 </footer>
     <script src="js/scripts.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
+    </script>
     <script src="js/quiz.js" defer></script>
 </body>
 </html>
