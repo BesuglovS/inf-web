@@ -24,7 +24,10 @@ server {
     error_log  /var/log/nginx/inf.nayanovaacademy.ru.error.log;
 
     # Сайт статический: отдаём файлы как есть, без SPA-подмены.
+    # HTML не кэшируем: иначе браузер применяет эвристическое кэширование
+    # и после деплоя продолжает показывать старую страницу (без Ctrl+Shift+R).
     location / {
+        expires -1;
         try_files $uri $uri/ =404;
     }
 
@@ -50,7 +53,14 @@ server {
         add_header Cache-Control "no-cache, must-revalidate";
     }
 
-    location ~* \.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|pdf)$ {
+    # CSS/JS без content-hash в имени: заставляем браузер перепроверять файлы,
+    # иначе после обновления он до 30 дней использует старые стили и скрипты.
+    location ~* \.(css|js)$ {
+        expires -1;
+        access_log off;
+    }
+
+    location ~* \.(png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|pdf)$ {
         expires 30d;
         add_header Cache-Control "public, immutable";
         access_log off;
