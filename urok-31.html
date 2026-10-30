@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 31. Кибербезопасность — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Кибербезопасность»: аутентификация и пароли, шифрование канала, фишинг и социальная инженерия, обновления и резервные копии.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 31
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">31</span>
+                <h1>Что защищают и от кого</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 13:51</li>
+                    <li>Crash Course Computer Science #31</li>
+                    <li>безопасность</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239056&amp;hd=2"
+                                title="Видео занятия 31 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 13:51 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Безопасность — это не один замок, а набор слоёв: кто вы, что вам можно, как защищён канал и что будет, если один слой пробит.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Из чего складывается защита">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="90" y="30" width="420" height="28"/><text x="300" y="49" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">аутентификация</text>
+    <rect x="90" y="64" width="420" height="28"/><text x="300" y="83" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">права</text>
+    <rect x="90" y="98" width="420" height="28"/><text x="300" y="117" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">шифрование</text>
+    <rect x="90" y="132" width="420" height="28"/><text x="300" y="151" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">копии</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="90" y="170">пробит один слой — держат остальные</text>
+  </g>
+</svg>
+                    <figcaption>Схема: слои защиты</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Чем аутентификация отличается от авторизации.</li>
+                        <li>Почему пароль в открытом виде — катастрофа.</li>
+                        <li>Как работает фишинг и почему он эффективен.</li>
+                        <li>Почему обновления важнее антивируса.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Кто вы и что можно</h3>
+                    <p>Аутентификация проверяет личность, авторизация — права. Пароль, второй фактор и биометрия решают первую задачу, роли и разрешения — вторую.</p>
+                    <p>Двухфакторная защита работает потому, что объединяет два разных канала: знание и устройство.</p>
+                    <h3>Канал и данные</h3>
+                    <p>HTTPS шифрует соединение, чтобы содержимое нельзя было прочитать по пути. Сертификат подтверждает, что сервер тот, за кого себя выдаёт.</p>
+                    <p>Данные на диске тоже шифруют: это спасает при потере устройства, но не помогает, если злоумышленник уже внутри системы.</p>
+                    <h3>Люди и обновления</h3>
+                    <p>Большинство атак начинается не с взлома кода, а с человека: письмо «срочно подтвердите вход», поддельная страница, просьба переслать код.</p>
+                    <p>Обновления закрывают уже известные уязвимости. Это самый дешёвый и самый недооценённый способ защиты.</p>
+                    <h3>Модель угроз</h3>
+                    <p>Защита без модели угроз бессмысленна: непонятно, от кого и что защищать. Сначала отвечают, какие данные критичны и кто на них может покушаться.</p>
+                    <p>Отсюда разные решения для личного ноутбука и школьной инфраструктуры: у них разные риски и разные последствия ошибки.</p>
+                    <h3>Пароли и менеджеры</h3>
+                    <p>Одинаковый пароль на разных сайтах означает, что одна утечка открывает остальное. Менеджер паролей решает эту проблему лучше, чем память.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Аутентификация</dt>
+                            <dd>Проверка личности.</dd>
+                        </div>
+                        <div>
+                            <dt>Авторизация</dt>
+                            <dd>Проверка прав доступа.</dd>
+                        </div>
+                        <div>
+                            <dt>Двухфакторная защита</dt>
+                            <dd>Два разных подтверждения личности.</dd>
+                        </div>
+                        <div>
+                            <dt>HTTPS</dt>
+                            <dd>Шифрованный канал между браузером и сервером.</dd>
+                        </div>
+                        <div>
+                            <dt>Фишинг</dt>
+                            <dd>Подделка сообщения или сайта для кражи данных.</dd>
+                        </div>
+                        <div>
+                            <dt>Уязвимость</dt>
+                            <dd>Ошибка, позволяющая нарушить защиту.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="31">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Аутентификация</span>
+                            <span class="card__back">Проверка личности.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Авторизация</span>
+                            <span class="card__back">Проверка прав доступа.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Двухфакторная защита</span>
+                            <span class="card__back">Два разных подтверждения личности.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">HTTPS</span>
+                            <span class="card__back">Шифрованный канал между браузером и сервером.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Фишинг</span>
+                            <span class="card__back">Подделка сообщения или сайта для кражи данных.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Уязвимость</span>
+                            <span class="card__back">Ошибка, позволяющая нарушить защиту.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="31">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Чем авторизация отличается от аутентификации?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Проверяет права, а не личность</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Ничем</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Проверяет пароль</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Шифрует канал</button>
+                        </div>
+                        <p class="quiz__why" hidden>Сначала система узнаёт, кто вы, потом — что вам разрешено.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Зачем нужен HTTPS?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Шифровать канал</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Ускорять сайт</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Сжимать файлы</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Хранить пароли</button>
+                        </div>
+                        <p class="quiz__why" hidden>Содержимое соединения нельзя прочитать по пути.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Почему обновления важны для безопасности?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Закрывают известные уязвимости</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Увеличивают экран</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Меняют шрифт</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Ускоряют диск</button>
+                        </div>
+                        <p class="quiz__why" hidden>Большинство атак использует дыры, для которых патч уже выпущен.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Перечислите три признака фишингового письма.</li>
+                        <li>Объясните, почему второй фактор защищает даже при утечке пароля.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-30.html">
+                        <span>предыдущее занятие</span>
+                        ← Всемирная паутина
+                    </a>
+                    <a class="pager__next" href="urok-32.html">
+                        <span>следующее занятие</span>
+                        Хакеры →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 31 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

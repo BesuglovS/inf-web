@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 15. Алан Тьюринг — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Алан Тьюринг»: машина Тьюринга, универсальная машина, проблема остановки и тест Тьюринга.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 15
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">15</span>
+                <h1>Машина Тьюринга и границы вычислимого</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 13:16</li>
+                    <li>Crash Course Computer Science #15</li>
+                    <li>теория вычислений</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239037&amp;hd=2"
+                                title="Видео занятия 15 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 13:16 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Тьюринг придумал не устройство, а модель: лента, головка и правила. Этой модели хватило, чтобы доказать, что одни задачи вычислимы, а другие — принципиально нет.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Из чего состоит модель">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="90" y="30" width="420" height="28"/><text x="300" y="49" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">лента</text>
+    <rect x="90" y="64" width="420" height="28"/><text x="300" y="83" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">головка</text>
+    <rect x="90" y="98" width="420" height="28"/><text x="300" y="117" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">состояние</text>
+    <rect x="90" y="132" width="420" height="28"/><text x="300" y="151" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">правила</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="90" y="170">правила связывают состояние и символ</text>
+  </g>
+</svg>
+                    <figcaption>Схема: машина Тьюринга</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Как устроена машина Тьюринга.</li>
+                        <li>Что означает универсальная машина.</li>
+                        <li>Почему проблему остановки нельзя решить алгоритмом.</li>
+                        <li>Что на самом деле проверяет тест Тьюринга.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Машина Тьюринга</h3>
+                    <p>Лента с ячейками, головка, читающая символ, и таблица правил: что записать, куда сдвинуться, в каком состоянии оказаться. Этого достаточно для описания любого вычисления.</p>
+                    <p>Модель важна тем, что она формальна: про неё можно доказывать теоремы, а не рассуждать «на пальцах».</p>
+                    <h3>Универсальная машина</h3>
+                    <p>Тьюринг показал, что можно построить машину, которая читает описание другой машины и ведёт себя как она. Это идея программы, хранящейся в памяти.</p>
+                    <p>Отсюда следует, что одна и та же универсальная машина может выполнять любые вычислимые алгоритмы — достаточно сменить описание на ленте.</p>
+                    <h3>Неразрешимость</h3>
+                    <p>Проблема остановки: по описанию программы и входным данным определить, завершится ли она. Тьюринг доказал, что общего алгоритма для этого не существует.</p>
+                    <p>Это не «мы пока не придумали», а доказанное ограничение: любой метод либо ошибётся, либо зациклится.</p>
+                    <h3>Что теория дала практике</h3>
+                    <p>Из теории вычислимости выросло понимание, что универсальный компьютер нужен один: остальное — вопрос скорости и памяти, а не принципиальной возможности.</p>
+                    <p>Кроме того, появилось правило: прежде чем искать алгоритм, стоит проверить, существует ли он вообще.</p>
+                    <h3>Вычислимость и сложность</h3>
+                    <p>«Можно вычислить» и «можно вычислить быстро» — разные вопросы. Задача может быть разрешимой, но требовать такого времени, что практической пользы нет.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Машина Тьюринга</dt>
+                            <dd>Формальная модель вычислений: лента, головка, правила.</dd>
+                        </div>
+                        <div>
+                            <dt>Универсальная машина</dt>
+                            <dd>Машина, исполняющая описание другой машины.</dd>
+                        </div>
+                        <div>
+                            <dt>Проблема остановки</dt>
+                            <dd>Задача определить, завершится ли программа.</dd>
+                        </div>
+                        <div>
+                            <dt>Неразрешимость</dt>
+                            <dd>Отсутствие алгоритма, решающего задачу для всех входов.</dd>
+                        </div>
+                        <div>
+                            <dt>Тест Тьюринга</dt>
+                            <dd>Проверка, отличит ли человек ответы машины от ответов человека.</dd>
+                        </div>
+                        <div>
+                            <dt>Вычислимость</dt>
+                            <dd>Существование алгоритма, решающего задачу.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="15">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Машина Тьюринга</span>
+                            <span class="card__back">Формальная модель вычислений: лента, головка, правила.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Универсальная машина</span>
+                            <span class="card__back">Машина, исполняющая описание другой машины.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Проблема остановки</span>
+                            <span class="card__back">Задача определить, завершится ли программа.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Неразрешимость</span>
+                            <span class="card__back">Отсутствие алгоритма, решающего задачу для всех входов.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Тест Тьюринга</span>
+                            <span class="card__back">Проверка, отличит ли человек ответы машины от ответов человека.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Вычислимость</span>
+                            <span class="card__back">Существование алгоритма, решающего задачу.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="15">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что содержит машина Тьюринга?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Ленту, головку и правила</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Только числа</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Экран и клавиатуру</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Базу данных</button>
+                        </div>
+                        <p class="quiz__why" hidden>Вычисление задаётся состояниями, символами на ленте и таблицей переходов.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что такое универсальная машина?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Машина, исполняющая описание другой машины</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Самая быстрая машина</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Машина без ленты</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Устройство для шифрования</button>
+                        </div>
+                        <p class="quiz__why" hidden>Она читает описание программы и ведёт себя так, будто это она и есть.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Почему проблему остановки нельзя решить алгоритмом?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Это доказано: универсальный метод невозможен</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Она слишком сложная для современных компьютеров</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Нужен квантовый компьютер</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Не хватает памяти</button>
+                        </div>
+                        <p class="quiz__why" hidden>Тьюринг доказал, что такого алгоритма не существует в принципе.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Объясните, почему универсальную машину можно считать прообразом компьютера с хранимой программой.</li>
+                        <li>Сформулируйте своими словами, что означает неразрешимость проблемы остановки.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-14.html">
+                        <span>предыдущее занятие</span>
+                        ← Структуры данных
+                    </a>
+                    <a class="pager__next" href="urok-16.html">
+                        <span>следующее занятие</span>
+                        Инженерия программного обеспечения →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 15 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

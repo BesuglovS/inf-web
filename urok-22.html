@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 22. Клавиатуры и командная строка — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Клавиатуры и командная строка»: раскладки, терминал, команды и аргументы, конвейеры и автоматизация рутины.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 22
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">22</span>
+                <h1>Текст как интерфейс</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 11:37</li>
+                    <li>Crash Course Computer Science #22</li>
+                    <li>интерфейсы</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239047&amp;hd=2"
+                                title="Видео занятия 22 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 11:37 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">До мыши был текст: команда, аргументы, результат. Командная строка не устарела — она осталась самым быстрым способом сделать повторяющееся действие.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Структура команды">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="90" y="30" width="420" height="28"/><text x="300" y="49" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">имя программы</text>
+    <rect x="90" y="64" width="420" height="28"/><text x="300" y="83" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">аргументы</text>
+    <rect x="90" y="98" width="420" height="28"/><text x="300" y="117" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">ключи</text>
+    <rect x="90" y="132" width="420" height="28"/><text x="300" y="151" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">вывод</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="90" y="170">пустой вывод — признак успеха</text>
+  </g>
+</svg>
+                    <figcaption>Схема: из чего состоит команда</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Почему раскладка клавиатуры не совпадает с алфавитом.</li>
+                        <li>Как устроена команда: имя, аргументы, ключи.</li>
+                        <li>Что даёт объединение команд в конвейер.</li>
+                        <li>Когда командная строка быстрее интерфейса.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Клавиатура как устройство ввода</h3>
+                    <p>Каждое нажатие передаёт код, а раскладка сопоставляет код символу. Поэтому одна и та же клавиша даёт разные символы в разных раскладках.</p>
+                    <p>Специальные клавиши — не символы, а команды: они меняют режим ввода или отправляют управляющий сигнал.</p>
+                    <h3>Команды и аргументы</h3>
+                    <p>Команда состоит из имени программы и аргументов: что обработать и как. Ключи уточняют поведение, например выбирают формат вывода.</p>
+                    <p>Пустая строка в ответ означает успех: в командной строке молчание — это норма, а сообщения появляются при проблемах.</p>
+                    <h3>Конвейеры и автоматизация</h3>
+                    <p>Вывод одной команды можно передать на вход другой. Из простых программ собираются сложные операции без единой строки кода.</p>
+                    <p>Сценарии фиксируют последовательность команд и повторяют её по расписанию — так автоматизируют резервное копирование, сборку и проверки.</p>
+                    <h3>Почему текст удобнее для повторения</h3>
+                    <p>Команду можно сохранить, скопировать, сравнить и запустить по расписанию. С действиями мыши так не получится.</p>
+                    <p>Отсюда правило: разовое действие — интерфейс, повторяющееся — команда или сценарий.</p>
+                    <h3>Опасность необратимых команд</h3>
+                    <p>В графическом интерфейсе удаление обычно обратимо, в командной строке — нет. Поэтому опасные команды проверяют дважды, а лучше сначала делать копию.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Терминал</dt>
+                            <dd>Программа, принимающая команды и показывающая вывод.</dd>
+                        </div>
+                        <div>
+                            <dt>Аргумент</dt>
+                            <dd>Значение, уточняющее работу команды.</dd>
+                        </div>
+                        <div>
+                            <dt>Ключ</dt>
+                            <dd>Флаг, меняющий режим команды.</dd>
+                        </div>
+                        <div>
+                            <dt>Конвейер</dt>
+                            <dd>Передача вывода одной команды на вход другой.</dd>
+                        </div>
+                        <div>
+                            <dt>Сценарий</dt>
+                            <dd>Файл с последовательностью команд.</dd>
+                        </div>
+                        <div>
+                            <dt>Раскладка</dt>
+                            <dd>Сопоставление клавиш и символов.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="22">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Терминал</span>
+                            <span class="card__back">Программа, принимающая команды и показывающая вывод.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Аргумент</span>
+                            <span class="card__back">Значение, уточняющее работу команды.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Ключ</span>
+                            <span class="card__back">Флаг, меняющий режим команды.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Конвейер</span>
+                            <span class="card__back">Передача вывода одной команды на вход другой.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Сценарий</span>
+                            <span class="card__back">Файл с последовательностью команд.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Раскладка</span>
+                            <span class="card__back">Сопоставление клавиш и символов.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="22">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что такое аргумент команды?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Значение, уточняющее работу</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Имя программы</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Ошибка</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Тип файла</button>
+                        </div>
+                        <p class="quiz__why" hidden>Аргумент говорит, с чем работать: файл, папка, число.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что делает конвейер?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Передаёт вывод одной команды на вход другой</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Ускоряет диск</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Шифрует данные</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Открывает окна</button>
+                        </div>
+                        <p class="quiz__why" hidden>Так из простых команд собирают сложную обработку.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Когда командная строка удобнее интерфейса?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Для повторяющихся действий</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Для просмотра фото</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Для рисования</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Для игр</button>
+                        </div>
+                        <p class="quiz__why" hidden>Повторяемое действие проще сохранить как команду или сценарий.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Запишите команду, которая выводит список файлов и сортирует его по размеру.</li>
+                        <li>Объясните, почему в командной строке успешное выполнение часто не печатает ничего.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-21.html">
+                        <span>предыдущее занятие</span>
+                        ← Сжатие информации
+                    </a>
+                    <a class="pager__next" href="urok-23.html">
+                        <span>следующее занятие</span>
+                        Экраны и двухмерная графика →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 22 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

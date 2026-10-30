@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 35. Компьютерное зрение — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Компьютерное зрение»: изображение как числа, свёртки и признаки, распознавание объектов, обучение на примерах и ограничения.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 35
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">35</span>
+                <h1>Как машина видит изображение</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 11:56</li>
+                    <li>Crash Course Computer Science #35</li>
+                    <li>компьютерное зрение</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239060&amp;hd=2"
+                                title="Видео занятия 35 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 11:56 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Для машины фотография — таблица чисел. Всё «зрение» сводится к тому, чтобы найти в этой таблице закономерности, связанные с объектами.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Как модель обрабатывает кадр">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="20.0" y="60" width="120.0" height="56"/><text x="80.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">пиксели</text>
+    <path d="M146.0 88 H168.0"/><path d="M168.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="180.0" y="60" width="120.0" height="56"/><text x="240.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">свёртки</text>
+    <path d="M306.0 88 H328.0"/><path d="M328.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="340.0" y="60" width="120.0" height="56"/><text x="400.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">признаки</text>
+    <path d="M466.0 88 H488.0"/><path d="M488.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="500.0" y="60" width="120.0" height="56"/><text x="560.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">ответ</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="20" y="150">слои выделяют всё более сложные признаки</text>
+  </g>
+</svg>
+                    <figcaption>Схема: путь изображения</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Почему изображение — это набор чисел.</li>
+                        <li>Что делает свёртка и зачем нужны фильтры.</li>
+                        <li>Как из простых признаков получаются объекты.</li>
+                        <li>Почему модель ошибается на необычных кадрах.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Изображение как данные</h3>
+                    <p>Каждый пиксель — одно или несколько чисел: яркость или каналы цвета. Матрица чисел и есть вход модели.</p>
+                    <p>Сама по себе таблица ничего не значит: смысл появляется, когда модель находит в ней устойчивые сочетания.</p>
+                    <h3>Признаки и свёртки</h3>
+                    <p>Свёртка применяет небольшой фильтр к окрестности пикселей: так выделяются края, пятна, текстуры. Слои сети учатся, какие фильтры полезны.</p>
+                    <p>Из простых признаков собираются более сложные: контуры → детали → части объекта → объект.</p>
+                    <h3>Обучение и ограничения</h3>
+                    <p>Модель обучают на размеченных примерах. Качество зависит от того, насколько данные похожи на реальность: ночные кадры, дождь, необычные ракурсы.</p>
+                    <p>Поэтому системы зрения проверяют на «трудных» наборах и оставляют человека в контуре там, где ошибка дорога.</p>
+                    <h3>Почему важны данные, а не только сеть</h3>
+                    <p>Архитектура сети задаёт потолок, но качество определяют примеры: если в обучающем наборе нет нужных условий, модель их не выучит.</p>
+                    <p>Отсюда практика: сначала собирают разнообразные данные, потом подбирают модель.</p>
+                    <h3>Смещение в данных</h3>
+                    <p>Если обучающие снимки сделаны днём и в одном месте, модель будет уверенно ошибаться в других условиях. Это не «глупость» алгоритма, а свойство данных.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Пиксель</dt>
+                            <dd>Значение яркости или цвета в точке.</dd>
+                        </div>
+                        <div>
+                            <dt>Свёртка</dt>
+                            <dd>Операция с фильтром над окрестностью пикселей.</dd>
+                        </div>
+                        <div>
+                            <dt>Признак</dt>
+                            <dd>Числовое описание свойства изображения.</dd>
+                        </div>
+                        <div>
+                            <dt>Разметка</dt>
+                            <dd>Ответы, привязанные к примерам для обучения.</dd>
+                        </div>
+                        <div>
+                            <dt>Классификация</dt>
+                            <dd>Отнесение изображения к категории.</dd>
+                        </div>
+                        <div>
+                            <dt>Детекция</dt>
+                            <dd>Поиск объекта и его границ на изображении.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="35">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Пиксель</span>
+                            <span class="card__back">Значение яркости или цвета в точке.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Свёртка</span>
+                            <span class="card__back">Операция с фильтром над окрестностью пикселей.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Признак</span>
+                            <span class="card__back">Числовое описание свойства изображения.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Разметка</span>
+                            <span class="card__back">Ответы, привязанные к примерам для обучения.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Классификация</span>
+                            <span class="card__back">Отнесение изображения к категории.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Детекция</span>
+                            <span class="card__back">Поиск объекта и его границ на изображении.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="35">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что такое свёртка?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Операция с фильтром над окрестностью пикселей</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Сжатие изображения</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Тип файла</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Формат цвета</button>
+                        </div>
+                        <p class="quiz__why" hidden>Фильтр подчёркивает определённые структуры: края, текстуры.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>От чего зависит качество модели зрения?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">От разнообразия и разметки данных</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Только от размера экрана</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">От клавиатуры</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">От браузера</button>
+                        </div>
+                        <p class="quiz__why" hidden>Без примеров нужных условий модель не научится их распознавать.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Где нужен человек в контуре?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Там, где ошибка дорога</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Никогда</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Всегда</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Только в играх</button>
+                        </div>
+                        <p class="quiz__why" hidden>Медицина, транспорт и безопасность требуют проверки человеком.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Объясните, почему фильтр для выделения краёв полезен на первом слое.</li>
+                        <li>Приведите пример условий съёмки, на которых модель может ошибиться.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-34.html">
+                        <span>предыдущее занятие</span>
+                        ← Машинное обучение и искусственный интеллект
+                    </a>
+                    <a class="pager__next" href="urok-36.html">
+                        <span>следующее занятие</span>
+                        Обработка естественного языка →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 35 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

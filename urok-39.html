@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 39. Технологии в образовании — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Технологии в образовании»: обучающие машины, PLATO, LOGO и программирование для детей, интеллектуальные тьюторы, массовые онлайн-курсы и пределы автоматизации обучения.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 39
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">39</span>
+                <h1>Машины, которые учат</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 12:40</li>
+                    <li>Crash Course Computer Science #39</li>
+                    <li>образовательные технологии</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239064&hd=2"
+                                title="Видео занятия 39 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 12:40 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Идея «машина объяснит лучше учителя» почти так же стара, как сами компьютеры. Что из этого получилось, где технология действительно помогает — и почему сама по себе доставка контента ничего не меняет.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 200" role="img" aria-label="Цикл: объяснение, попытка, проверка, разбор">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="60" y="46" width="150" height="52"/>
+    <rect x="330" y="46" width="150" height="52"/>
+    <rect x="330" y="120" width="150" height="52"/>
+    <rect x="60" y="120" width="150" height="52"/>
+    <path d="M210 72 H330 M330 72 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+    <path d="M405 98 V120 M405 120 l-6 -10 h12 z" fill="currentColor" stroke="none"/>
+    <path d="M330 146 H210 M210 146 l10 -6 v12 z" fill="currentColor" stroke="none"/>
+    <path d="M135 120 V98 M135 98 l-6 10 h12 z" fill="currentColor" stroke="none"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="86" y="78">объяснение</text>
+    <text x="372" y="78">попытка</text>
+    <text x="366" y="152">проверка</text>
+    <text x="86" y="152">разбор</text>
+  </g>
+</svg>
+                    <figcaption>Схема: цикл обучения</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Как устроены первые обучающие машины и на какую теорию они опирались.</li>
+                        <li>Что такого сделал LOGO для обучения программированию.</li>
+                        <li>Как работает адаптивная система: что она подстраивает и по каким данным.</li>
+                        <li>Что показали массовые онлайн-курсы про мотивацию ученика.</li>
+                        <li>Почему технология не заменяет постановку задачи и обратную связь.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Обучающие машины</h3>
+                    <p>Первые устройства для обучения опирались на бихевиористскую модель: вопрос — ответ — немедленная проверка. Машина задавала шаг, ученик отвечал, и следующий шаг зависел от правильности.</p>
+                    <p>Главная находка здесь — <strong>немедленная обратная связь</strong> и маленькие шаги. Техническая форма менялась, но принцип остался в основе большинства обучающих приложений.</p>
+                    <h3>LOGO и программирование как среда</h3>
+                    <p>Сеймур Пейперт предложил учить детей не «проходить информатику», а строить в среде: ребёнок даёт команды исполнителю, видит результат и сам исправляет ошибку. Так появился LOGO и знаменитая черепашка.</p>
+                    <p>Смысл не в языке, а в позиции ученика: он автор, а не получатель. Ошибка становится материалом для разбора, а не приговором.</p>
+                    <h3>Адаптивное обучение</h3>
+                    <p>Современные системы собирают данные о попытках: какие задачи решены, сколько времени заняло, какие ошибки повторяются. По этим данным модель выбирает следующую задачу — проще, сложнее или на ту же тему.</p>
+                    <p>Такие системы называют интеллектуальными тьюторами. Они хорошо справляются с тренировкой навыка и диагностикой пробелов, но хуже — с задачами, где нужен развёрнутый ответ и обсуждение.</p>
+                    <h3>Массовые курсы и пределы</h3>
+                    <p>Онлайн-платформы сделали доступным контент лучших преподавателей, но показали и другое: до финала доходит небольшая доля записавшихся. Доступность материала не равна мотивации его освоить.</p>
+                    <p>Практический вывод: технология сильна в тренажёре, наглядности и обратной связи, но постановка цели, разбор ошибок и удержание внимания остаются работой учителя. Хороший курс — это сценарий, а не набор видео.</p>
+                    <h3>Почему видео само по себе не учит</h3>
+                    <p>Просмотр объяснения создаёт ощущение понимания, но не навык. Навык появляется на попытках, ошибках и разборе: поэтому в обучающих системах ценятся задания с немедленной проверкой, а не коллекция лекций.</p>
+                    <p>Отсюда рабочая схема смешанного обучения: короткое объяснение, попытка, автоматическая проверка, разбор ошибки — и только потом следующий шаг. Технология ускоряет цикл, но не отменяет его.</p>
+                    <h3>Что измеряют в обучении</h3>
+                    <p>Просмотры и клики измеряют активность, а не понимание. Полезнее задания с проверкой, где видно, какие именно шаги ученик пропускает.</p>
+                    <p>Хорошая система показывает не только «верно/неверно», но и какое правило не применено. Тогда ошибка превращается в подсказку, а не в оценку.</p>
+                    <h3>Роль учителя</h3>
+                    <p>Технология берёт на себя повторение, проверку и подбор задач, но сценарий, мотивацию и разбор сложных случаев по-прежнему держит человек.</p>
+                    <p>Смешанный формат работает лучше крайностей: короткое объяснение, самостоятельная попытка, автоматическая проверка и обсуждение того, что не получилось.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Обучающая машина</dt>
+                            <dd>Устройство, задающее задания и проверяющее ответы шаг за шагом.</dd>
+                        </div>
+                        <div>
+                            <dt>Немедленная обратная связь</dt>
+                            <dd>Проверка ответа сразу после действия ученика.</dd>
+                        </div>
+                        <div>
+                            <dt>LOGO</dt>
+                            <dd>Среда обучения программированию через управление исполнителем.</dd>
+                        </div>
+                        <div>
+                            <dt>Интеллектуальный тьютор</dt>
+                            <dd>Система, подбирающая задания по данным о действиях ученика.</dd>
+                        </div>
+                        <div>
+                            <dt>Адаптивное обучение</dt>
+                            <dd>Подстройка сложности и содержания под текущий уровень.</dd>
+                        </div>
+                        <div>
+                            <dt>MOOC</dt>
+                            <dd>Массовый открытый онлайн-курс.</dd>
+                        </div>
+                        <div>
+                            <dt>Геймификация</dt>
+                            <dd>Игровые механики в обучении: очки, уровни, награды.</dd>
+                        </div>
+                        <div>
+                            <dt>Смешанное обучение</dt>
+                            <dd>Сочетание занятий с преподавателем и самостоятельной работы онлайн.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="39">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Обучающая машина</span>
+                            <span class="card__back">Устройство, задающее задания и проверяющее ответы шаг за шагом.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Немедленная обратная связь</span>
+                            <span class="card__back">Проверка ответа сразу после действия ученика.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">LOGO</span>
+                            <span class="card__back">Среда обучения программированию через управление исполнителем.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Интеллектуальный тьютор</span>
+                            <span class="card__back">Система, подбирающая задания по данным о действиях ученика.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Адаптивное обучение</span>
+                            <span class="card__back">Подстройка сложности и содержания под текущий уровень.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">MOOC</span>
+                            <span class="card__back">Массовый открытый онлайн-курс.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Геймификация</span>
+                            <span class="card__back">Игровые механики в обучении: очки, уровни, награды.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Смешанное обучение</span>
+                            <span class="card__back">Сочетание занятий с преподавателем и самостоятельной работы онлайн.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="39">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Почему немедленная обратная связь важна?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Ошибка не успевает закрепиться</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Уменьшается размер файла</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Ускоряется интернет</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Упрощается интерфейс</button>
+                        </div>
+                        <p class="quiz__why" hidden>Проверка сразу после действия позволяет исправить понимание, пока ученик помнит свой ход мысли.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>В чём главная идея LOGO?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Ученик управляет исполнителем и видит результат</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Ученик смотрит лекции</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Ученик сдаёт тесты</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Ученик читает учебник</button>
+                        </div>
+                        <p class="quiz__why" hidden>В LOGO ребёнок программирует поведение исполнителя. Программирование становится средой для мышления, а не набором синтаксиса.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>На чём основана адаптивная система обучения?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">На данных о попытках ученика</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">На случайном выборе заданий</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">На количестве просмотренных видео</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">На оценках за четверть</button>
+                        </div>
+                        <p class="quiz__why" hidden>Система собирает историю: что решено, сколько времени заняло, какие ошибки повторяются, — и по ней выбирает следующее задание.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Почему массовые онлайн-курсы часто не доходят до конца?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Не хватает внешней структуры и поддержки</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Видео слишком короткие</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Нет сертификатов</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Слишком сложные задания</button>
+                        </div>
+                        <p class="quiz__why" hidden>Доступ к материалу не равен мотивации его освоить: без дедлайнов, обратной связи и общения доля завершивших мала.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Разберите любое обучающее приложение по схеме: шаг, проверка, обратная связь, следующий шаг.</li>
+                        <li>Придумайте задание для LOGO-подобной среды, которое проверяет цикл, а не только результат.</li>
+                        <li>Сформулируйте, какие данные о своих действиях вы готовы отдавать обучающей системе и почему.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-34.html">
+                        <span>предыдущее занятие</span>
+                        ← Машинное обучение и искусственный интеллект
+                    </a>
+                    <a class="pager__next" href="urok-40.html">
+                        <span>следующее занятие</span>
+                        Сингулярность, Скайнет и будущее вычислений →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 39 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

@@ -1,113 +1,572 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Информатика 7–9 классы — Главная</title>
-    <meta name="description" content="Учебный сайт по информатике для 7–9 классов. Материалы по программированию, алгоритмам, электронным таблицам и информационной безопасности на основе ФРП.">
-    <meta name="keywords" content="информатика, 7 класс, 8 класс, 9 класс, программирование, Python, алгоритмы, ФГОС, учебный сайт">
-    <meta property="og:title" content="Информатика 7–9 классы — Учебный сайт">
-    <meta property="og:description" content="Учебный сайт по информатике для 7–9 классов на основе Федеральной рабочей программы (базовый уровень).">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://inf.nayanovaacademy.ru/">
-    <meta property="og:locale" content="ru_RU">
-    <link rel="canonical" href="https://inf.nayanovaacademy.ru/">
+    <title>Основы информационных технологий — от абака до микросхемы</title>
+    <meta name="description" content="Короткие видео по истории вычислительной техники и разбор темы к каждому занятию: счётные инструменты, механические машины, перфокарты, лампы, транзисторы и интегральные схемы.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        "name": "Информатика 7–9 классы",
-        "description": "Учебный сайт по информатике для 7–9 классов на основе Федеральной рабочей программы (базовый уровень).",
-        "provider": {
-            "@type": "Organization",
-            "name": "Информатика 7–9 классы"
-        },
-        "educationalLevel": "Основное общее образование",
-        "inLanguage": "ru",
-        "hasCourseInstance": [
-            {"@type": "CourseInstance", "name": "7 класс", "courseMode": "online"},
-            {"@type": "CourseInstance", "name": "8 класс", "courseMode": "online"},
-            {"@type": "CourseInstance", "name": "9 класс", "courseMode": "online"}
-        ]
-    }
-    </script>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
-    <header>
-        <div class="header-top">
-            <a href="index.html" class="site-title">Информатика 7–9 классы</a>
-            <button class="theme-toggle" aria-label="Переключить тему" type="button"></button>
-        </div>
-        <nav aria-label="Основная навигация">
-            <ul>
-                <li><a href="7-klass.html">7 класс</a></li>
-                <li><a href="8-klass.html">8 класс</a></li>
-                <li><a href="9-klass.html">9 класс</a></li>
-            </ul>
-        </nav>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
 
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="#how">Как заниматься</a>
+            </nav>
+        </div>
     </header>
 
-    <main id="main-content">
-        <div class="hero">
-            <h1>Информатика. Основная школа (7–9 классы)</h1>
-            <p>Учебный сайт по информатике для 7–9 классов. Материалы подготовлены на основе Федеральной рабочей программы основного общего образования (базовый уровень).</p>
-        </div>
+    <main id="main">
+        <section class="wrap hero">
+            <p class="eyebrow">информатика · история вычислительной техники</p>
+            <h1>От абака до <em>микросхемы</em></h1>
+            <p class="hero__lede">
+                Сорок коротких видео и разбор к каждому: как люди считали до электричества,
+                почему механические машины уступили лампам, а лампы — транзистору,
+                и откуда у современного компьютера его главные идеи.
+            </p>
+            <ul class="hero__meta">
+                <li><b>40</b> занятий готово</li>
+                <li><b>10—12</b> минут видео на занятие</li>
+                <li>по мотивам курса Crash Course Computer Science</li>
+            </ul>
 
-        <div class="progress-text"></div>
-        <div class="progress-bar-container"><div class="progress-bar"></div></div>
+            <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239018&hd=2"
+                                title="Превью курса"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 2:21 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
 
-        <div class="class-grid">
-            <a href="7-klass.html" class="theme-card class-card">
-                <div class="class-icon">7</div>
-                <h3>7 класс</h3>
-                <p class="class-hours">34 часа</p>
-                <ul class="section-list">
-                    <li>Цифровая грамотность (8 ч)</li>
-                    <li>Теоретические основы информатики (11 ч)</li>
-                    <li>Информационные технологии (13 ч)</li>
-                </ul>
-            </a>
+            <figure class="tape" aria-labelledby="tape-caption">
+                <figcaption class="tape__cap" id="tape-caption">
+                    <span>Ось времени: что когда появилось</span>
+                    <span>масштаб до 1900 г. сжат</span>
+                </figcaption>
+                <div class="tape__scroll">
+                    <div class="tape__track">
+                        <div class="tape__zones" aria-hidden="true">
+                            <div class="zone zone--mech">механическая эра</div>
+                            <div class="zone zone--break"></div>
+                            <div class="zone zone--el">электронная эра</div>
+                        </div>
+                        <div class="tape__axis" aria-hidden="true"></div>
+                        <p class="tape__note" aria-hidden="true">//</p>
+                        <ol class="marks">
+                            <li class="mark" style="--x: 5%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">≈3000 до н. э.</span>
+                                <span class="mark__name">абак</span>
+                            </li>
+                            <li class="mark" style="--x: 14%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">1620</span>
+                                <span class="mark__name">счётная линейка</span>
+                            </li>
+                            <li class="mark" style="--x: 19%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">1642</span>
+                                <span class="mark__name">Паскалина</span>
+                            </li>
+                            <li class="mark" style="--x: 27%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">1801</span>
+                                <span class="mark__name">станок Жаккара</span>
+                            </li>
+                            <li class="mark" style="--x: 33%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">1837</span>
+                                <span class="mark__name">машина Бэббиджа</span>
+                            </li>
+                            <li class="mark" style="--x: 39%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">1890</span>
+                                <span class="mark__name">табулятор Холлерита</span>
+                            </li>
+                            <li class="mark" style="--x: 58%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">1941</span>
+                                <span class="mark__name">реле</span>
+                            </li>
+                            <li class="mark mark--glow" style="--x: 64%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">1945</span>
+                                <span class="mark__name">лампы · ENIAC</span>
+                            </li>
+                            <li class="mark" style="--x: 70%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">1947</span>
+                                <span class="mark__name">транзистор</span>
+                            </li>
+                            <li class="mark" style="--x: 84%">
+                                <span class="mark__dot"></span>
+                                <span class="mark__year">1958</span>
+                                <span class="mark__name">интегральная схема</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </figure>
+        </section>
 
-            <a href="8-klass.html" class="theme-card class-card">
-                <div class="class-icon">8</div>
-                <h3>8 класс</h3>
-                <p class="class-hours">34 часа</p>
-                <ul class="section-list">
-                    <li>Математические основы информатики (13 ч)</li>
-                    <li>Основы алгоритмизации и программирования (19 ч)</li>
-                </ul>
-            </a>
+        <section class="wrap section" aria-labelledby="lessons-title">
+            <div class="section__head">
+                <h2 id="lessons-title">Занятия</h2>
+                <span>40 из 40</span>
+            </div>
+            <ol class="lessons">
+                <li>
+                    <a class="lesson-card" href="urok-01.html">
+                        <span class="lesson-card__num" aria-hidden="true">01</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Ранние вычисления: счёт, механизмы, перфокарты</span>
+                            <span class="lesson-card__desc">Абак и счётная линейка, машины Паскаля и Лейбница, станок Жаккара, проект Бэббиджа и первая программа Ады Лавлейс.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-02.html">
+                        <span class="lesson-card__num" aria-hidden="true">02</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Электронные вычисления: лампы, ENIAC, транзистор</span>
+                            <span class="lesson-card__desc">Почему реле перестали справляться, как устроена электронная лампа, что придумали в ENIAC и зачем программа переехала в память.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-03.html">
+                        <span class="lesson-card__num" aria-hidden="true">03</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Булева логика и логические элементы</span>
+                            <span class="lesson-card__desc">Высказывания и таблицы истинности, операции AND, OR, NOT, XOR, логические элементы на транзисторах и сборка схем из простых блоков.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-04.html">
+                        <span class="lesson-card__num" aria-hidden="true">04</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Двоичное представление: числа и буквы</span>
+                            <span class="lesson-card__desc">Биты и байты, позиционная запись, отрицательные числа, ASCII и Unicode, как в числа превращаются буквы, звук и изображения.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-05.html">
+                        <span class="lesson-card__num" aria-hidden="true">05</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">АЛУ: как компьютер считает</span>
+                            <span class="lesson-card__desc">Полусумматор и полный сумматор, сложение многоразрядных чисел, вычитание через дополнительный код, флаги результата и управляющий код операции.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-06.html">
+                        <span class="lesson-card__num" aria-hidden="true">06</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Регистры и память</span>
+                            <span class="lesson-card__desc">Регистры внутри процессора, адресация, дешифратор адреса, двумерная матрица памяти и разница между SRAM и DRAM.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-07.html">
+                        <span class="lesson-card__num" aria-hidden="true">07</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Центральный процессор</span>
+                            <span class="lesson-card__desc">АЛУ, регистры и устройство управления, цикл выборки-декодирования-исполнения, счётчик команд и переходы.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-08.html">
+                        <span class="lesson-card__num" aria-hidden="true">08</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Команды и программы</span>
+                            <span class="lesson-card__desc">Формат команды, опкод и операнды, работа с регистрами и памятью, условные переходы и пример простой программы.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-09.html">
+                        <span class="lesson-card__num" aria-hidden="true">09</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Продвинутые схемы процессоров</span>
+                            <span class="lesson-card__desc">Конвейер команд, кэш, предсказание переходов, суперскалярность и многоядерность.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-10.html">
+                        <span class="lesson-card__num" aria-hidden="true">10</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Раннее программирование</span>
+                            <span class="lesson-card__desc">Коммутационные панели, перфокарты, машинный код, ассемблер, компилятор Грейс Хоппер и первые языки высокого уровня.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-11.html">
+                        <span class="lesson-card__num" aria-hidden="true">11</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Первые языки программирования</span>
+                            <span class="lesson-card__desc">Ассемблер и ассемблерные команды, FORTRAN, LISP, COBOL, ALGOL, компилятор и интерпретатор, переносимость программ.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-12.html">
+                        <span class="lesson-card__num" aria-hidden="true">12</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Основы программирования</span>
+                            <span class="lesson-card__desc">Переменные и присваивание, условия и циклы, функции и параметры, область видимости и побочные эффекты.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-13.html">
+                        <span class="lesson-card__num" aria-hidden="true">13</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Введение в алгоритмы</span>
+                            <span class="lesson-card__desc">Свойства алгоритма, линейный и бинарный поиск, сортировка, оценка сложности и разница между алгоритмом и программой.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-14.html">
+                        <span class="lesson-card__num" aria-hidden="true">14</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Структуры данных</span>
+                            <span class="lesson-card__desc">Массив, связный список, стек и очередь, деревья и хеш-таблицы, компромиссы между скоростью и памятью.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-15.html">
+                        <span class="lesson-card__num" aria-hidden="true">15</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Алан Тьюринг</span>
+                            <span class="lesson-card__desc">Машина Тьюринга, универсальная машина, проблема остановки и тест Тьюринга.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-16.html">
+                        <span class="lesson-card__num" aria-hidden="true">16</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Инженерия программного обеспечения</span>
+                            <span class="lesson-card__desc">Программные интерфейсы, контроль версий, тестирование и отладка, код-ревью, документация и процессы разработки.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-17.html">
+                        <span class="lesson-card__num" aria-hidden="true">17</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Интегральные схемы и закон Мура</span>
+                            <span class="lesson-card__desc">Переход от отдельных деталей к микросхемам, фотолитография, плотность элементов и пределы роста.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-18.html">
+                        <span class="lesson-card__num" aria-hidden="true">18</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Операционные системы</span>
+                            <span class="lesson-card__desc">Планировщик, виртуальная память, драйверы, файловые системы и права доступа.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-19.html">
+                        <span class="lesson-card__num" aria-hidden="true">19</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Память и хранение</span>
+                            <span class="lesson-card__desc">Оперативная память и диски, магнитные и твердотельные носители, иерархия, надёжность и резервное копирование.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-20.html">
+                        <span class="lesson-card__num" aria-hidden="true">20</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Файлы и файловые системы</span>
+                            <span class="lesson-card__desc">Имена и пути, каталоги, таблица размещения, метаданные, фрагментация и права.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-21.html">
+                        <span class="lesson-card__num" aria-hidden="true">21</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Сжатие информации</span>
+                            <span class="lesson-card__desc">Сжатие без потерь и с потерями, коды переменной длины, словарные методы, JPEG и MP3, артефакты и выбор формата.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-22.html">
+                        <span class="lesson-card__num" aria-hidden="true">22</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Клавиатуры и командная строка</span>
+                            <span class="lesson-card__desc">Раскладки, терминал, команды и аргументы, конвейеры и автоматизация рутины.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-23.html">
+                        <span class="lesson-card__num" aria-hidden="true">23</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Экраны и двухмерная графика</span>
+                            <span class="lesson-card__desc">Электронно-лучевая трубка, пиксели и растр, векторная графика, видеопамять, цвет и прозрачность, шрифты и спрайты.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-24.html">
+                        <span class="lesson-card__num" aria-hidden="true">24</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Разрешение и дисплеи</span>
+                            <span class="lesson-card__desc">Пиксели и плотность, типы матриц, частоты обновления, масштабирование интерфейса.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-25.html">
+                        <span class="lesson-card__num" aria-hidden="true">25</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Холодная война и потребительская электроника</span>
+                            <span class="lesson-card__desc">Военные заказы, системы ПВО, космос, появление персональных компьютеров и рынка бытовой техники.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-26.html">
+                        <span class="lesson-card__num" aria-hidden="true">26</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Графические интерфейсы</span>
+                            <span class="lesson-card__desc">Окна и значки, мышь и указатель, событийная модель, стандартные элементы и доступность.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-27.html">
+                        <span class="lesson-card__num" aria-hidden="true">27</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Трёхмерная графика</span>
+                            <span class="lesson-card__desc">Полигоны и сетки, координатные преобразования, проекция, z-буфер, освещение и текстуры.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-28.html">
+                        <span class="lesson-card__num" aria-hidden="true">28</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Компьютерные сети</span>
+                            <span class="lesson-card__desc">Топологии, пакеты и адреса, коммутаторы и маршрутизаторы, протоколы и уровни.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-29.html">
+                        <span class="lesson-card__num" aria-hidden="true">29</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Интернет</span>
+                            <span class="lesson-card__desc">IP и маршрутизация, DNS, провайдеры и обмен трафиком, как работает доставка пакета через полмира.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-30.html">
+                        <span class="lesson-card__num" aria-hidden="true">30</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Всемирная паутина</span>
+                            <span class="lesson-card__desc">URL и HTTP, HTML и гиперссылки, браузер и сервер, поисковые системы и индексация.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-31.html">
+                        <span class="lesson-card__num" aria-hidden="true">31</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Кибербезопасность</span>
+                            <span class="lesson-card__desc">Аутентификация и пароли, шифрование канала, фишинг и социальная инженерия, обновления и резервные копии.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-32.html">
+                        <span class="lesson-card__num" aria-hidden="true">32</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Хакеры</span>
+                            <span class="lesson-card__desc">Телефонное фрикинг, первые компьютерные взломы, червь Морриса, закон о компьютерном мошенничестве, уязвимости нулевого дня и этика раскрытия.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-33.html">
+                        <span class="lesson-card__num" aria-hidden="true">33</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Криптография</span>
+                            <span class="lesson-card__desc">Симметричное и асимметричное шифрование, обмен ключами, цифровая подпись и хеширование.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-34.html">
+                        <span class="lesson-card__num" aria-hidden="true">34</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Машинное обучение и искусственный интеллект</span>
+                            <span class="lesson-card__desc">Признаки и классификация, деревья решений, граница разделения, метод опорных векторов, нейросети и глубокое обучение, переобучение.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-35.html">
+                        <span class="lesson-card__num" aria-hidden="true">35</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Компьютерное зрение</span>
+                            <span class="lesson-card__desc">Изображение как числа, свёртки и признаки, распознавание объектов, обучение на примерах и ограничения.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-36.html">
+                        <span class="lesson-card__num" aria-hidden="true">36</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Обработка естественного языка</span>
+                            <span class="lesson-card__desc">Токенизация, эмбеддинги, синтаксис и смысл, перевод и большие языковые модели.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-37.html">
+                        <span class="lesson-card__num" aria-hidden="true">37</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Роботы</span>
+                            <span class="lesson-card__desc">Сенсоры и actuators, контур управления, автономность, программирование поведения и безопасность.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-38.html">
+                        <span class="lesson-card__num" aria-hidden="true">38</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Психология вычислений</span>
+                            <span class="lesson-card__desc">Восприятие интерфейсов, когнитивная нагрузка, привычки и уведомления, влияние на внимание и сон.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-39.html">
+                        <span class="lesson-card__num" aria-hidden="true">39</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Технологии в образовании</span>
+                            <span class="lesson-card__desc">Обучающие машины, PLATO, LOGO и программирование для детей, интеллектуальные тьюторы, массовые онлайн-курсы и пределы автоматизации обучения.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lesson-card" href="urok-40.html">
+                        <span class="lesson-card__num" aria-hidden="true">40</span>
+                        <span class="lesson-card__body">
+                            <span class="lesson-card__title">Сингулярность, Скайнет и будущее вычислений</span>
+                            <span class="lesson-card__desc">Пределы закона Мура, квантовые вычисления, автоматизация, сценарии сильного ИИ и разница между научной фантастикой и инженерией.</span>
+                        </span>
+                        <span class="lesson-card__go">Смотреть и разбирать →</span>
+                    </a>
+                </li>
+            </ol>
+            <p class="lessons__soon">Все 40 занятий готовы: конспект, схема, термины, карточки, квиз и практика. Видео играется из плейлиста ВК.</p>
+        </section>
 
-            <a href="9-klass.html" class="theme-card class-card">
-                <div class="class-icon">9</div>
-                <h3>9 класс</h3>
-                <p class="class-hours">34 часа</p>
-                <ul class="section-list">
-                    <li>Моделирование и формализация (10 ч)</li>
-                    <li>Электронные таблицы (14 ч)</li>
-                    <li>Коммуникационные технологии (10 ч)</li>
-                    <li>Алгоритмы и программирование (продолжение)</li>
-                </ul>
-            </a>
-        </div>
+        <section class="wrap section" id="how" aria-labelledby="how-title">
+            <div class="section__head">
+                <h2 id="how-title">Как заниматься</h2>
+                <span>три шага</span>
+            </div>
+            <ol class="steps">
+                <li class="step">
+                    <h3>Посмотрите видео</h3>
+                    <p>10—12 минут. Не конспектируйте на ходу — просто отметьте, что показалось непонятным.</p>
+                </li>
+                <li class="step">
+                    <h3>Прочитайте разбор</h3>
+                    <p>То же содержание, но текстом и по разделам: даты, устройство машин, причины и следствия.</p>
+                </li>
+                <li class="step">
+                    <h3>Проверьте себя</h3>
+                    <p>Ответьте на вопросы в конце страницы, не подглядывая. Не сошлось — вернитесь к нужному разделу.</p>
+                </li>
+            </ol>
+        </section>
     </main>
 
-    <button class="back-to-top" aria-label="Наверх">&uarr;</button>
-
-    <footer>
-        <p>Материалы подготовлены на основе Федеральной рабочей программы по информатике (базовый уровень) для 7–9 классов, 2023 г.</p>
-        <p>&copy; Информатика 7–9 классы | <a href="index.html">На главную</a></p>
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">плейлист Crash Course Computer Science</a>
+            </span>
+        </div>
     </footer>
 
-    <script src="js/progress-client.js"></script>
-    <script src="js/progress-sync.js"></script>
-    <script src="js/tracking-client.js"></script>
-    <script type="module" src="js/main.js"></script>
 </body>
 </html>

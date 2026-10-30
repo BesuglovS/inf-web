@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 24. Разрешение и дисплеи — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Разрешение экранов»: пиксели и плотность, типы матриц, частоты обновления, масштабирование интерфейса.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 24
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">24</span>
+                <h1>Сколько точек нужно глазу</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 9:23</li>
+                    <li>Crash Course Computer Science #24</li>
+                    <li>дисплеи</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239049&amp;hd=2"
+                                title="Видео занятия 24 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 9:23 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Разрешение — это число точек в кадре, а не размер экрана. Один и тот же кадр на маленькой матрице выглядит резче, потому что точки мельче.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Разрешение и плотность">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="30" y="40" width="240" height="96"/>
+    <rect x="370" y="40" width="240" height="96"/>
+    <text x="150" y="76" text-anchor="middle" font-size="13" font-family="JetBrains Mono, monospace">кадр</text>
+    <text x="150" y="106" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">1920×1080 точек</text>
+    <text x="490" y="76" text-anchor="middle" font-size="13" font-family="JetBrains Mono, monospace">матрица</text>
+    <text x="490" y="106" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">точки на дюйм</text>
+    <path d="M290 88 H350 M350 88 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="30" y="164">плотность = точки / дюймы</text>
+  </g>
+</svg>
+                    <figcaption>Схема: кадр и экран</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Чем разрешение отличается от физического размера.</li>
+                        <li>Что такое плотность пикселей и зачем она нужна.</li>
+                        <li>Почему частота обновления заметна на движении.</li>
+                        <li>Зачем интерфейсу масштабирование.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Пиксели и плотность</h3>
+                    <p>Разрешение задаёт сетку: 1920×1080 значит 1920 точек по горизонтали. Плотность — сколько точек приходится на дюйм; от неё зависит, видны ли отдельные пиксели.</p>
+                    <p>На телефоне экран маленький, поэтому высокая плотность достигается меньшим числом точек, чем на большом мониторе.</p>
+                    <h3>Частота обновления</h3>
+                    <p>Экран перерисовывается десятки раз в секунду. Чем выше частота, тем плавнее движение и меньше устают глаза при чтении с прокруткой.</p>
+                    <p>Если частота кадров приложения не совпадает с частотой экрана, появляются рывки; адаптивная синхронизация это сглаживает.</p>
+                    <h3>Масштабирование</h3>
+                    <p>На экране с высокой плотностью интерфейс пришлось бы увеличивать, иначе текст стал бы микроскопическим. Система масштабирует элементы, сохраняя резкость.</p>
+                    <p>Отсюда путаница: «разрешение 4K» и «удобный размер текста» — разные вещи, связанные настройкой масштаба.</p>
+                    <h3>Разрешение и производительность</h3>
+                    <p>Каждый лишний пиксель — работа для видеокарты. Поэтому в играх разрешение понижают, а не уменьшают качество эффектов: разница в нагрузке огромна.</p>
+                    <p>Отсюда и техника масштабирования кадра: изображение считается в меньшем разрешении и растягивается, экономя ресурсы.</p>
+                    <h3>Разрешение не равно качеству</h3>
+                    <p>Резкость зависит и от плотности, и от качества панели, и от контента. Видео в низком разрешении на 4K-экране не станет лучше — оно просто растянется.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Разрешение</dt>
+                            <dd>Число пикселей по горизонтали и вертикали.</dd>
+                        </div>
+                        <div>
+                            <dt>Плотность пикселей</dt>
+                            <dd>Количество точек на дюйм экрана.</dd>
+                        </div>
+                        <div>
+                            <dt>Частота обновления</dt>
+                            <dd>Сколько раз в секунду обновляется изображение.</dd>
+                        </div>
+                        <div>
+                            <dt>Матрица</dt>
+                            <dd>Физическая панель с точками.</dd>
+                        </div>
+                        <div>
+                            <dt>Масштабирование</dt>
+                            <dd>Увеличение элементов интерфейса без потери резкости.</dd>
+                        </div>
+                        <div>
+                            <dt>Адаптивная синхронизация</dt>
+                            <dd>Согласование частоты кадров и обновления экрана.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="24">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Разрешение</span>
+                            <span class="card__back">Число пикселей по горизонтали и вертикали.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Плотность пикселей</span>
+                            <span class="card__back">Количество точек на дюйм экрана.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Частота обновления</span>
+                            <span class="card__back">Сколько раз в секунду обновляется изображение.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Матрица</span>
+                            <span class="card__back">Физическая панель с точками.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Масштабирование</span>
+                            <span class="card__back">Увеличение элементов интерфейса без потери резкости.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Адаптивная синхронизация</span>
+                            <span class="card__back">Согласование частоты кадров и обновления экрана.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="24">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что такое разрешение?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Число пикселей в кадре</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Размер экрана в сантиметрах</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Яркость</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Контрастность</button>
+                        </div>
+                        <p class="quiz__why" hidden>Разрешение — это сетка точек, а не физический размер.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Зачем нужна высокая плотность пикселей?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Чтобы отдельные точки не были видны</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Чтобы экран был больше</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Чтобы снизить цену</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Чтобы уменьшить вес</button>
+                        </div>
+                        <p class="quiz__why" hidden>Чем мельче точки, тем глаже выглядят линии и текст.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Почему на 4K нужен масштаб интерфейса?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Иначе элементы слишком мелкие</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Иначе экран не включится</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Иначе пропадёт звук</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Иначе не работает мышь</button>
+                        </div>
+                        <p class="quiz__why" hidden>Плотность высокая, поэтому элементы увеличивают для читаемости.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Посчитайте плотность пикселей для экрана 1920×1080 диагональю 24 дюйма.</li>
+                        <li>Объясните, почему 4K-монитор без масштабирования неудобен для текста.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-23.html">
+                        <span>предыдущее занятие</span>
+                        ← Экраны и двухмерная графика
+                    </a>
+                    <a class="pager__next" href="urok-25.html">
+                        <span>следующее занятие</span>
+                        Холодная война и потребительская электроника →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 24 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

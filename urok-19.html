@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 19. Память и хранение — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Память и хранение»: оперативная память и диски, магнитные и твердотельные носители, иерархия, надёжность и резервное копирование.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 19
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">19</span>
+                <h1>Быстро, дёшево и надолго — выберите два</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 12:24</li>
+                    <li>Crash Course Computer Science #19</li>
+                    <li>носители</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239044&amp;hd=2"
+                                title="Видео занятия 19 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 12:24 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Память отвечает за скорость, хранение — за сохранность. Носители отличаются не только объёмом, но и тем, как долго и надёжно они держат данные.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Иерархия памяти">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="90" y="30" width="420" height="28"/><text x="300" y="49" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">регистры</text>
+    <rect x="90" y="64" width="420" height="28"/><text x="300" y="83" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">кэш</text>
+    <rect x="90" y="98" width="420" height="28"/><text x="300" y="117" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">оперативная память</text>
+    <rect x="90" y="132" width="420" height="28"/><text x="300" y="151" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">накопитель</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="90" y="170">ниже — медленнее и дешевле</text>
+  </g>
+</svg>
+                    <figcaption>Схема: уровни хранения</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Чем память отличается от хранения.</li>
+                        <li>Как устроены магнитные и твердотельные носители.</li>
+                        <li>Почему иерархия носителей неизбежна.</li>
+                        <li>Что реально защищает данные.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Память и хранение</h3>
+                    <p>Оперативная память быстрая, но энергозависимая: при отключении питания данные пропадают. Накопитель сохраняет данные без питания, но работает медленнее.</p>
+                    <p>Поэтому программа загружает данные с диска в память, работает с ними там и записывает результат обратно.</p>
+                    <h3>Носители</h3>
+                    <p>Магнитные диски хранят данные на вращающихся пластинах: дешёвые и ёмкие, но чувствительны к ударам. Твердотельные накопители хранят заряд в ячейках флеш-памяти и не имеют механики.</p>
+                    <p>У флеш-памяти ограничен ресурс перезаписи, поэтому контроллер распределяет запись по ячейкам, чтобы износ был равномерным.</p>
+                    <h3>Надёжность</h3>
+                    <p>Любой носитель выходит из строя. Единственная защита — копии: регулярные, проверяемые и хранящиеся отдельно от оригинала.</p>
+                    <p>RAID спасает от отказа диска, но не от удаления файла или шифровальщика — это не резервная копия.</p>
+                    <h3>Срок службы и деградация</h3>
+                    <p>Данные на флеш-памяти и жёстких дисках со временем могут теряться: заряд утекает, магнитные домены ослабевают. Поэтому архив нельзя просто положить «на полку» на десять лет.</p>
+                    <p>Рабочая практика — периодически перечитывать архив и проверять контрольные суммы, а не только наличие файлов.</p>
+                    <h3>Иерархия как компромисс</h3>
+                    <p>Быстрые носители дороги за гигабайт, ёмкие — медленные. Поэтому данные раскладывают по уровням: горячие — в память и кэш, холодные — на диск или в архив.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Энергозависимость</dt>
+                            <dd>Потеря данных при отключении питания.</dd>
+                        </div>
+                        <div>
+                            <dt>HDD</dt>
+                            <dd>Магнитный диск с вращающимися пластинами.</dd>
+                        </div>
+                        <div>
+                            <dt>SSD</dt>
+                            <dd>Твердотельный накопитель на флеш-памяти.</dd>
+                        </div>
+                        <div>
+                            <dt>Износ ячеек</dt>
+                            <dd>Ограниченное число перезаписей флеш-памяти.</dd>
+                        </div>
+                        <div>
+                            <dt>RAID</dt>
+                            <dd>Объединение дисков для отказоустойчивости или скорости.</dd>
+                        </div>
+                        <div>
+                            <dt>Резервная копия</dt>
+                            <dd>Отдельная копия данных для восстановления.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="19">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Энергозависимость</span>
+                            <span class="card__back">Потеря данных при отключении питания.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">HDD</span>
+                            <span class="card__back">Магнитный диск с вращающимися пластинами.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">SSD</span>
+                            <span class="card__back">Твердотельный накопитель на флеш-памяти.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Износ ячеек</span>
+                            <span class="card__back">Ограниченное число перезаписей флеш-памяти.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">RAID</span>
+                            <span class="card__back">Объединение дисков для отказоустойчивости или скорости.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Резервная копия</span>
+                            <span class="card__back">Отдельная копия данных для восстановления.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="19">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Чем память отличается от хранения?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Память быстрая и энергозависимая</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Память хранит файлы годами</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Хранение быстрее памяти</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Разницы нет</button>
+                        </div>
+                        <p class="quiz__why" hidden>Оперативная память теряет данные без питания, накопитель — нет.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что ограничивает срок службы SSD?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Число перезаписей ячеек</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Размер экрана</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Скорость интернета</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Тип файловой системы</button>
+                        </div>
+                        <p class="quiz__why" hidden>Флеш-ячейки выдерживают ограниченное количество циклов записи.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Что защищает от удаления файла по ошибке?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Резервная копия</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">RAID</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Более быстрый диск</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Больше оперативной памяти</button>
+                        </div>
+                        <p class="quiz__why" hidden>RAID дублирует диск, но удаление повторяется на всех копиях одновременно.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Объясните, почему RAID не заменяет резервную копию.</li>
+                        <li>Сравните HDD и SSD по скорости, цене за гигабайт и устойчивости к ударам.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-18.html">
+                        <span>предыдущее занятие</span>
+                        ← Операционные системы
+                    </a>
+                    <a class="pager__next" href="urok-20.html">
+                        <span>следующее занятие</span>
+                        Файлы и файловые системы →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 19 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

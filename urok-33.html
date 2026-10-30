@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 33. Криптография — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Криптография»: симметричное и асимметричное шифрование, обмен ключами, цифровая подпись и хеширование.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 33
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">33</span>
+                <h1>Как спрятать сообщение и подтвердить автора</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 13:54</li>
+                    <li>Crash Course Computer Science #33</li>
+                    <li>криптография</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239058&amp;hd=2"
+                                title="Видео занятия 33 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 13:54 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Шифрование прячет смысл, подпись подтверждает авторство, хеш проверяет целостность. Три разные задачи — три разных инструмента.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Как распределяются ключи">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="30" y="40" width="240" height="96"/>
+    <rect x="370" y="40" width="240" height="96"/>
+    <text x="150" y="76" text-anchor="middle" font-size="13" font-family="JetBrains Mono, monospace">симметричный</text>
+    <text x="150" y="106" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">один ключ</text>
+    <text x="490" y="76" text-anchor="middle" font-size="13" font-family="JetBrains Mono, monospace">асимметричный</text>
+    <text x="490" y="106" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">пара ключей</text>
+    <path d="M290 88 H350 M350 88 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="30" y="164">асимметрия медленнее, но решает обмен</text>
+  </g>
+</svg>
+                    <figcaption>Схема: два подхода</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Чем симметричное шифрование отличается от асимметричного.</li>
+                        <li>Как стороны договариваются о ключе.</li>
+                        <li>Что доказывает цифровая подпись.</li>
+                        <li>Зачем нужен хеш, если есть шифрование.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Симметричное шифрование</h3>
+                    <p>Один и тот же ключ и шифрует, и расшифровывает. Это быстро, но требует, чтобы обе стороны уже имели общий ключ — а как его передать?</p>
+                    <p>Современные алгоритмы надёжны при условии, что ключ длинный и не повторяется; слабое место обычно не алгоритм, а обращение с ключом.</p>
+                    <h3>Асимметричное шифрование</h3>
+                    <p>Пара ключей: открытым шифруют, закрытым расшифровывают. Открытый можно публиковать — он бесполезен для расшифровки.</p>
+                    <p>Асимметричные операции медленнее, поэтому ими обычно договариваются о сессионном симметричном ключе, а дальше общаются быстрым шифром.</p>
+                    <h3>Подпись и хеш</h3>
+                    <p>Подпись — это шифрование хеша закрытым ключом. Любой может проверить её открытым: значит, сообщение создал владелец ключа и оно не изменено.</p>
+                    <p>Хеш сжимает данные в короткий отпечаток. Изменение одного бита меняет отпечаток полностью, поэтому хеши используют для контроля целостности.</p>
+                    <h3>Стойкость и практика</h3>
+                    <p>Стойкость шифра измеряют не «на глаз», а перебором вариантов: 128-битный ключ перебрать невозможно физически.</p>
+                    <p>При этом реальные системы ломают через ошибки реализации, слабые пароли и утечки ключей — а не через взлом математики.</p>
+                    <h3>Пароли не шифруют, а хешируют</h3>
+                    <p>Сервер хранит не пароль, а его медленный хеш с солью. Соль делает бесполезными заранее посчитанные таблицы, а медленность затрудняет перебор.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Ключ</dt>
+                            <dd>Секретное значение, управляющее шифрованием.</dd>
+                        </div>
+                        <div>
+                            <dt>Симметричное шифрование</dt>
+                            <dd>Один ключ для шифрования и расшифровки.</dd>
+                        </div>
+                        <div>
+                            <dt>Асимметричное шифрование</dt>
+                            <dd>Пара ключей: открытый и закрытый.</dd>
+                        </div>
+                        <div>
+                            <dt>Цифровая подпись</dt>
+                            <dd>Подтверждение авторства и целостности.</dd>
+                        </div>
+                        <div>
+                            <dt>Хеш</dt>
+                            <dd>Короткий отпечаток данных фиксированной длины.</dd>
+                        </div>
+                        <div>
+                            <dt>Обмен ключами</dt>
+                            <dd>Протокол выработки общего секрета.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="33">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Ключ</span>
+                            <span class="card__back">Секретное значение, управляющее шифрованием.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Симметричное шифрование</span>
+                            <span class="card__back">Один ключ для шифрования и расшифровки.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Асимметричное шифрование</span>
+                            <span class="card__back">Пара ключей: открытый и закрытый.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Цифровая подпись</span>
+                            <span class="card__back">Подтверждение авторства и целостности.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Хеш</span>
+                            <span class="card__back">Короткий отпечаток данных фиксированной длины.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Обмен ключами</span>
+                            <span class="card__back">Протокол выработки общего секрета.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="33">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Сколько ключей в асимметричном шифровании?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Два: открытый и закрытый</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Один</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Ни одного</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">По ключу на каждого пользователя</button>
+                        </div>
+                        <p class="quiz__why" hidden>Открытым шифруют, закрытым расшифровывают.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что подтверждает цифровая подпись?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Авторство и целостность</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Скорость сети</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Размер файла</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Сжатие данных</button>
+                        </div>
+                        <p class="quiz__why" hidden>Подпись проверяется открытым ключом автора.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Зачем нужен хеш?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Проверять целостность данных</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Шифровать канал</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Хранить пароли в открытом виде</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Ускорять диск</button>
+                        </div>
+                        <p class="quiz__why" hidden>Любое изменение данных меняет хеш, и это заметно.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Объясните, почему открытый ключ можно публиковать без риска.</li>
+                        <li>Сравните задачи шифрования, подписи и хеширования.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-32.html">
+                        <span>предыдущее занятие</span>
+                        ← Хакеры
+                    </a>
+                    <a class="pager__next" href="urok-34.html">
+                        <span>следующее занятие</span>
+                        Машинное обучение и искусственный интеллект →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 33 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

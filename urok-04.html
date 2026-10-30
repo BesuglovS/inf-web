@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 04. Двоичное представление: числа и буквы — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Двоичное представление»: биты и байты, позиционная запись, отрицательные числа, ASCII и Unicode, как в числа превращаются буквы, звук и изображения.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 04
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">04</span>
+                <h1>Всё — числа: как биты становятся текстом</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 10:34</li>
+                    <li>Crash Course Computer Science #04</li>
+                    <li>представление данных</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239069&hd=2"
+                                title="Видео занятия 04 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 10:34 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">У компьютера есть только одно «вещество» — состояние «включено/выключено». Всё остальное, числа, буквы, музыка и фотографии, появляется из договорённости о том, как эти состояния читать.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 150" role="img" aria-label="Восемь бит с весами от 128 до 1 и пример числа 00101101">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.3">
+    <rect x="40" y="40" width="64" height="52"/>
+    <rect x="104" y="40" width="64" height="52"/>
+    <rect x="168" y="40" width="64" height="52"/>
+    <rect x="232" y="40" width="64" height="52"/>
+    <rect x="296" y="40" width="64" height="52"/>
+    <rect x="360" y="40" width="64" height="52"/>
+    <rect x="424" y="40" width="64" height="52"/>
+    <rect x="488" y="40" width="64" height="52"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="14">
+    <text x="62" y="74">0</text><text x="126" y="74">0</text><text x="190" y="74">1</text><text x="254" y="74">0</text>
+    <text x="318" y="74">1</text><text x="382" y="74">1</text><text x="446" y="74">0</text><text x="510" y="74">1</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.65">
+    <text x="58" y="112">128</text><text x="126" y="112">64</text><text x="194" y="112">32</text><text x="258" y="112">16</text>
+    <text x="326" y="112">8</text><text x="390" y="112">4</text><text x="454" y="112">2</text><text x="518" y="112">1</text>
+    <text x="40" y="26">биты</text>
+    <text x="360" y="136">32 + 8 + 4 + 1 = 45</text>
+  </g>
+</svg>
+                    <figcaption>Схема: веса разрядов в байте</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Что такое бит и почему разряды считаются степенями двойки.</li>
+                        <li>Сколько разных значений помещается в 8 бит и откуда берутся байты.</li>
+                        <li>Как в двоичном виде хранят отрицательные числа.</li>
+                        <li>Почему для букв понадобилась таблица кодировки и зачем её расширяли.</li>
+                        <li>Как одна и та же идея работает для звука и картинок.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Позиционная запись и степени двойки</h3>
+                    <p>В привычной десятичной записи вес разряда растёт в десять раз: единицы, десятки, сотни. В двоичной — в два раза: 1, 2, 4, 8, 16 и дальше. Число 263 в десятичной системе раскладывается как 2·100 + 6·10 + 3·1, а в двоичной те же идеи работают с другим основанием.</p>
+                    <p>Один разряд называется <strong>битом</strong> и принимает два значения. Восемь бит — <strong>байт</strong>: 256 комбинаций. Этого хватает на латинскую букву, знак препинания или небольшое число.</p>
+                    <h3>Диапазоны и отрицательные числа</h3>
+                    <p>n бит дают 2ⁿ комбинаций. Для 8 бит это 0…255 без знака. Чтобы хранить отрицательные значения, договариваются о коде: например, старший бит считается знаком.</p>
+                    <p>На практике чаще используют <strong>дополнительный код</strong>: отрицательное число записывают так, чтобы сложение работало без особых правил. Минус превращается в «прибавить число, близкое к максимальному», и схема сумматора остаётся той же.</p>
+                    <h3>Буквы: от ASCII к Unicode</h3>
+                    <p>Текст кодируют числами по таблице. ASCII, принятый в 1960-х, сопоставил 128 значений латинским буквам, цифрам и управляющим символам. Позже появились расширенные наборы под национальные алфавиты — и вместе с ними путаница: один и тот же байт в разных кодировках означал разные буквы.</p>
+                    <p><strong>Unicode</strong> решает это, назначая каждому символу уникальный номер (кодовую точку), а UTF-8, UTF-16 и другие кодировки описывают, как этот номер записать байтами. Русский текст в UTF-8 занимает по два байта на букву, и это нормальная плата за единый стандарт.</p>
+                    <h3>Звук, изображение, видео</h3>
+                    <p>Изображение — сетка чисел: яркость или цвет каждого пикселя. Звук — последовательность замеров громкости через равные промежутки. Видео — поток кадров плюс сжатие, о котором речь в отдельном занятии.</p>
+                    <p>Во всех случаях работает один принцип: сначала выбирают способ представить объект числами, потом договариваются, как эти числа хранить. Смысл появляется не в битах, а в формате — в соглашении о чтении.</p>
+                    <h3>Почему байт стал единицей хранения</h3>
+                    <p>Биты удобны для схем, но неудобны для людей и адресации памяти. Байт оказался компромиссом: 256 значений хватает на символ латиницы и небольшое число, а адресовать память байтами проще, чем битами.</p>
+                    <p>Из этого выросла вся арифметика размеров: килобайт в обиходе — это 1000 байт у производителей дисков и 1024 байта в операционной системе, отсюда и расхождение в «недостающих» гигабайтах на новом накопителе.</p>
+                    <h3>Шестнадцатеричная запись</h3>
+                    <p>Читать длинные двоичные числа неудобно, поэтому программисты группируют биты по четыре: каждая группа — одна цифра от 0 до 15, то есть 0—9 и A—F. Так байт записывается двумя символами, а 32-битное значение — восемью.</p>
+                    <p>Это не другая система счисления по смыслу, а другая запись тех же битов. Отсюда адреса вида 0x7FFE, цвета #C03A25 и дампы памяти, где каждый байт — две шестнадцатеричные цифры.</p>
+                    <h3>Числа с плавающей точкой</h3>
+                    <p>Дробные числа хранят как знак, порядок и мантиссу: значение = мантисса × 2^порядок. Такая запись покрывает огромный диапазон, но не все числа точно: 0,1 в двоичном виде — бесконечная дробь.</p>
+                    <p>Поэтому 0.1 + 0.2 может не равняться 0.3, и сравнивать дробные числа «в лоб» нельзя. На практике сравнивают с допуском, а деньги считают в целых копейках, а не в рублях с плавающей точкой.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03 · модель</span>
+                    <h2 id="ch-3-title">Попробуйте сами</h2>
+
+                    <div class="widget" data-widget="bits">
+                        <p class="widget__hint">Нажимайте на биты — число пересчитывается в десятичной и шестнадцатеричной записи.</p>
+                        <div class="bits" role="group" aria-label="Восемь бит числа">
+                            <span class="bits__weight">128</span>
+                            <span class="bits__weight">64</span>
+                            <span class="bits__weight">32</span>
+                            <span class="bits__weight">16</span>
+                            <span class="bits__weight">8</span>
+                            <span class="bits__weight">4</span>
+                            <span class="bits__weight">2</span>
+                            <span class="bits__weight">1</span>
+                            <button type="button" class="bit" aria-pressed="false">0</button>
+                            <button type="button" class="bit" aria-pressed="false">0</button>
+                            <button type="button" class="bit" aria-pressed="false">0</button>
+                            <button type="button" class="bit" aria-pressed="false">0</button>
+                            <button type="button" class="bit" aria-pressed="false">0</button>
+                            <button type="button" class="bit" aria-pressed="false">0</button>
+                            <button type="button" class="bit" aria-pressed="false">0</button>
+                            <button type="button" class="bit" aria-pressed="false">0</button>
+                        </div>
+                        <p class="widget__out">Десятичное: <b data-out="dec">0</b> · шестнадцатеричное: <b data-out="hex">00</b></p>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04</span>
+                    <h2 id="ch-4-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Бит</dt>
+                            <dd>Один двоичный разряд: 0 или 1.</dd>
+                        </div>
+                        <div>
+                            <dt>Байт</dt>
+                            <dd>Восемь бит; 256 возможных значений.</dd>
+                        </div>
+                        <div>
+                            <dt>Позиционная запись</dt>
+                            <dd>Система, где вес разряда зависит от его позиции и основания системы.</dd>
+                        </div>
+                        <div>
+                            <dt>Дополнительный код</dt>
+                            <dd>Способ записи отрицательных чисел, при котором вычитание сводится к сложению.</dd>
+                        </div>
+                        <div>
+                            <dt>ASCII</dt>
+                            <dd>Таблица кодировки на 128 символов, принятая в 1960-х.</dd>
+                        </div>
+                        <div>
+                            <dt>Unicode</dt>
+                            <dd>Стандарт, где каждому символу назначен уникальный номер.</dd>
+                        </div>
+                        <div>
+                            <dt>UTF-8</dt>
+                            <dd>Кодировка Unicode переменной длины, совместимая с ASCII.</dd>
+                        </div>
+                        <div>
+                            <dt>Формат</dt>
+                            <dd>Соглашение о том, как числа описывают текст, звук или изображение.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="04">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Бит</span>
+                            <span class="card__back">Один двоичный разряд: 0 или 1.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Байт</span>
+                            <span class="card__back">Восемь бит; 256 возможных значений.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Позиционная запись</span>
+                            <span class="card__back">Система, где вес разряда зависит от его позиции и основания системы.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Дополнительный код</span>
+                            <span class="card__back">Способ записи отрицательных чисел, при котором вычитание сводится к сложению.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">ASCII</span>
+                            <span class="card__back">Таблица кодировки на 128 символов, принятая в 1960-х.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Unicode</span>
+                            <span class="card__back">Стандарт, где каждому символу назначен уникальный номер.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">UTF-8</span>
+                            <span class="card__back">Кодировка Unicode переменной длины, совместимая с ASCII.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Формат</span>
+                            <span class="card__back">Соглашение о том, как числа описывают текст, звук или изображение.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06 · интерактив</span>
+                    <h2 id="ch-6-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="04">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Сколько различных значений можно записать в 8 битах?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">128</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">256</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">512</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">1024</button>
+                        </div>
+                        <p class="quiz__why" hidden>Каждый бит удваивает число комбинаций: 2⁸ = 256 значений, от 0 до 255 без знака.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Зачем нужен дополнительный код?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Чтобы кодировать буквы</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Чтобы вычитание выполнялось сложением</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Чтобы сжимать данные</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Чтобы проверять чётность</button>
+                        </div>
+                        <p class="quiz__why" hidden>Отрицательное число записывают так, чтобы сумма с положительным давала правильную разность. Отдельная схема вычитания не нужна.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Что произойдёт, если прочитать UTF-8 как Windows-1251?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Текст не изменится</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Появятся посторонние символы вместо букв</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Файл будет удалён</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Текст сожмётся</button>
+                        </div>
+                        <p class="quiz__why" hidden>Байты те же, но таблица другая: вместо русских букв появятся символы из другой кодировки. Данные целы, неверно выбрано соглашение о чтении.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Сколько байт обычно занимает одна русская буква в UTF-8?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Один</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Два</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Четыре</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Восемь</button>
+                        </div>
+                        <p class="quiz__why" hidden>Кириллица в UTF-8 кодируется двумя байтами. Латиница — одним, а редкие символы — тремя-четырьмя.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
+                    <span class="chapter__num">07</span>
+                    <h2 id="ch-7-title">Мини-практика</h2>
+                    <ol>
+                        <li>Переведите 45 и 200 в двоичную запись, затем сложите их в двоичном виде и проверьте результат.</li>
+                        <li>Запишите число −5 в 8-битном дополнительном коде и проверьте сложение с 7.</li>
+                        <li>Закодируйте слово из четырёх русских букв в UTF-8 и посчитайте, сколько байт оно занимает.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-03.html">
+                        <span>предыдущее занятие</span>
+                        ← Булева логика и логические элементы
+                    </a>
+                    <a class="pager__next" href="urok-05.html">
+                        <span>следующее занятие</span>
+                        АЛУ: как компьютер считает →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Модель</a></li>
+                    <li><a href="#ch-4">Термины</a></li>
+                    <li><a href="#ch-5">Карточки</a></li>
+                    <li><a href="#ch-6">Квиз</a></li>
+                    <li><a href="#ch-7">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 04 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

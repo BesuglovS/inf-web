@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 05. АЛУ: как компьютер считает — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «АЛУ»: полусумматор и полный сумматор, сложение многоразрядных чисел, вычитание через дополнительный код, флаги результата и управляющий код операции.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 05
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">05</span>
+                <h1>Арифметико-логическое устройство</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 11:01</li>
+                    <li>Crash Course Computer Science #05</li>
+                    <li>устройство процессора</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239070&hd=2"
+                                title="Видео занятия 05 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 11:01 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Складывать двоичные числа умеет схема из нескольких логических элементов. Собрав её на нужное число разрядов и добавив выбор операции, получают арифметико-логическое устройство — тот блок, который в процессоре отвечает за вычисления.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 190" role="img" aria-label="Полусумматор: входы A и B, выходы сумма и перенос">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M60 50 H140 M60 130 H140"/>
+    <rect x="140" y="34" width="150" height="112"/>
+    <path d="M290 66 H430 M290 116 H430"/>
+    <path d="M430 66 l-10 -6 v12 z M430 116 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="44" y="54">A</text>
+    <text x="44" y="134">B</text>
+    <text x="160" y="86">XOR → S</text>
+    <text x="160" y="112">AND → C</text>
+    <text x="446" y="62">сумма</text>
+    <text x="446" y="112">перенос</text>
+    <text x="140" y="24">полусумматор</text>
+  </g>
+</svg>
+                    <figcaption>Схема: полусумматор</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Почему сложение двух бит — это сумма и отдельный перенос.</li>
+                        <li>Как из двух полусумматоров собирается полный сумматор.</li>
+                        <li>Как складываются многоразрядные числа и что происходит с переносом.</li>
+                        <li>Почему вычитание делают сложением.</li>
+                        <li>Зачем АЛУ сообщает флаги: ноль, переполнение, перенос.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Полусумматор</h3>
+                    <p>Сложим два бита. Результат — тоже два бита: младший разряд суммы и перенос в следующий. Младший разряд ведёт себя как XOR, перенос — как AND. Двух элементов достаточно, чтобы сложить два однобитных числа.</p>
+                    <p>Такая схема называется <strong>полусумматором</strong>. Её ограничение видно сразу: она не умеет принимать перенос от предыдущего разряда.</p>
+                    <h3>Полный сумматор</h3>
+                    <p>Чтобы складывать многозначные числа, нужен блок с тремя входами: два бита и перенос из младшего разряда. Внутри — два полусумматора и элемент OR, который объединяет два возможных переноса.</p>
+                    <p>Восемь таких блоков, соединённых цепочкой переносов, дают 8-разрядный сумматор. Он работает, но перенос идёт последовательно: каждый следующий разряд ждёт предыдущий. Отсюда берутся схемы ускоренного переноса, которые считают переносы параллельно.</p>
+                    <h3>Вычитание как сложение</h3>
+                    <p>Отдельную схему вычитания делать невыгодно. Вместо этого число, которое вычитают, переводят в дополнительный код и складывают: A − B превращается в A + (−B). Тот же сумматор, другая подготовка входа.</p>
+                    <p>Именно поэтому в компьютере нет «вычитателя» как отдельного блока: есть инверторы на входе и управляющий сигнал, который выбирает режим.</p>
+                    <h3>Флаги и выбор операции</h3>
+                    <p>После операции важно не только число на выходе, но и её свойства: равен ли результат нулю, был ли перенос за старший разряд, не вышел ли результат за пределы разрядной сетки. Эти признаки — <strong>флаги</strong>, и по ним работают условные переходы в программах.</p>
+                    <p>АЛУ умеет не только арифметику: AND, OR, NOT, XOR и сдвиги делаются теми же входами. Код операции выбирает, какой результат попадёт на выход, — и в этом смысле АЛУ уже маленький программируемый блок.</p>
+                    <h3>Перенос — узкое место сумматора</h3>
+                    <p>В цепочке полных сумматоров каждый следующий разряд ждёт переноса от предыдущего. Для 8 разрядов это восемь последовательных задержек, для 64 — шестьдесят четыре, и тактовая частота упирается именно в это.</p>
+                    <p>Поэтому в реальных процессорах используют схемы ускоренного переноса: сигнал вычисляется сразу для группы разрядов, а не передаётся по цепочке. Цена — больше элементов и сложнее проект, выигрыш — скорость.</p>
+                    <h3>Зачем АЛУ сообщает флаги</h3>
+                    <p>Флаги — мост между арифметикой и логикой программы. Сравнение двух чисел часто делают вычитанием: если результат ноль, числа равны; если отрицательный — первое меньше. Отдельной схемы сравнения не нужно.</p>
+                    <p>По этим признакам работают условные переходы и циклы. Поэтому в описании процессора флаги занимают отдельное место наравне с регистрами.</p>
+                    <h3>Сдвиги и маски</h3>
+                    <p>Сдвиг влево на один разряд — это умножение на два, вправо — деление на два с отбрасыванием остатка. Сдвиги дешевле умножения по числу элементов и потому остаются в системе команд.</p>
+                    <p>Логические операции работают как маски: AND оставляет только нужные биты, OR выставляет флаги, XOR инвертирует выбранные разряды. Так из одного числа можно «вырезать» поле, не трогая остальное.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03 · модель</span>
+                    <h2 id="ch-3-title">Попробуйте сами</h2>
+
+                    <div class="widget" data-widget="adder">
+                        <p class="widget__hint">Соберите два четырёхбитных числа и посмотрите на сумму и перенос.</p>
+                        <div class="adder">
+                            <div class="adder__row">
+                                <span class="adder__label">A</span>
+                                <button type="button" class="bit" data-row="a" data-idx="0" aria-pressed="false">0</button>
+                                <button type="button" class="bit" data-row="a" data-idx="1" aria-pressed="false">0</button>
+                                <button type="button" class="bit" data-row="a" data-idx="2" aria-pressed="false">0</button>
+                                <button type="button" class="bit" data-row="a" data-idx="3" aria-pressed="false">0</button>
+                            </div>
+                            <div class="adder__row">
+                                <span class="adder__label">B</span>
+                                <button type="button" class="bit" data-row="b" data-idx="0" aria-pressed="false">0</button>
+                                <button type="button" class="bit" data-row="b" data-idx="1" aria-pressed="false">0</button>
+                                <button type="button" class="bit" data-row="b" data-idx="2" aria-pressed="false">0</button>
+                                <button type="button" class="bit" data-row="b" data-idx="3" aria-pressed="false">0</button>
+                            </div>
+                        </div>
+                        <p class="widget__out">Сумма: <b data-out="sum">0</b> · в двоичном виде: <b data-out="bin">00000</b> <span data-out="flags"></span></p>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04</span>
+                    <h2 id="ch-4-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>АЛУ</dt>
+                            <dd>Арифметико-логическое устройство: блок, выполняющий операции над числами и логическими значениями.</dd>
+                        </div>
+                        <div>
+                            <dt>Полусумматор</dt>
+                            <dd>Схема сложения двух бит: сумма через XOR, перенос через AND.</dd>
+                        </div>
+                        <div>
+                            <dt>Полный сумматор</dt>
+                            <dd>Сумматор с учётом переноса от младшего разряда.</dd>
+                        </div>
+                        <div>
+                            <dt>Перенос</dt>
+                            <dd>Единица, которая переходит в следующий разряд при переполнении текущего.</dd>
+                        </div>
+                        <div>
+                            <dt>Дополнительный код</dt>
+                            <dd>Запись отрицательного числа, позволяющая вычитать сложением.</dd>
+                        </div>
+                        <div>
+                            <dt>Флаг</dt>
+                            <dd>Признак результата операции: ноль, перенос, переполнение, знак.</dd>
+                        </div>
+                        <div>
+                            <dt>Код операции</dt>
+                            <dd>Управляющий сигнал, выбирающий, какую операцию выполнит блок.</dd>
+                        </div>
+                        <div>
+                            <dt>Разрядность</dt>
+                            <dd>Количество бит, с которым работает схема за один такт.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="05">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">АЛУ</span>
+                            <span class="card__back">Арифметико-логическое устройство: блок, выполняющий операции над числами и логическими значениями.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Полусумматор</span>
+                            <span class="card__back">Схема сложения двух бит: сумма через XOR, перенос через AND.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Полный сумматор</span>
+                            <span class="card__back">Сумматор с учётом переноса от младшего разряда.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Перенос</span>
+                            <span class="card__back">Единица, которая переходит в следующий разряд при переполнении текущего.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Дополнительный код</span>
+                            <span class="card__back">Запись отрицательного числа, позволяющая вычитать сложением.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Флаг</span>
+                            <span class="card__back">Признак результата операции: ноль, перенос, переполнение, знак.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Код операции</span>
+                            <span class="card__back">Управляющий сигнал, выбирающий, какую операцию выполнит блок.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Разрядность</span>
+                            <span class="card__back">Количество бит, с которым работает схема за один такт.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06 · интерактив</span>
+                    <h2 id="ch-6-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="05">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Из каких элементов состоит полусумматор?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">XOR и AND</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Два AND</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Два NOT</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">OR и NOT</button>
+                        </div>
+                        <p class="quiz__why" hidden>Сумма двух бит — это XOR, перенос — AND. Полусумматор не умеет принимать перенос из младшего разряда.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Чем полный сумматор отличается от полусумматора?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">У него три входа, включая перенос</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Он умеет умножать</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Он не использует XOR</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Он работает только с одним битом</button>
+                        </div>
+                        <p class="quiz__why" hidden>Третий вход — перенос от предыдущего разряда. Без него нельзя складывать многозначные числа цепочкой.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Как АЛУ выполняет вычитание?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Отдельной схемой вычитания</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Сложением с числом в дополнительном коде</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Через умножение</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Через сдвиг влево</button>
+                        </div>
+                        <p class="quiz__why" hidden>A − B превращается в A + (−B). Тот же сумматор, но на вход B подаётся инвертированное значение с добавленной единицей.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Зачем нужен флаг переполнения?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Чтобы ускорить сложение</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Чтобы сообщить, что результат не помещается в разрядную сетку</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Чтобы сохранить результат на диск</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Чтобы выбрать язык программирования</button>
+                        </div>
+                        <p class="quiz__why" hidden>Переполнение означает, что ответ вышел за пределы разрядности и полученное число неверно. По этому флагу программа может обработать ситуацию.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
+                    <span class="chapter__num">07</span>
+                    <h2 id="ch-7-title">Мини-практика</h2>
+                    <ol>
+                        <li>Сложите 8-битные числа 10010110 и 01101101 вручную и определите, был ли перенос за старший разряд.</li>
+                        <li>Объясните, как изменится схема, если понадобится вычитать: что именно подаётся на вход B.</li>
+                        <li>Придумайте, какой флаг должен взводиться при сравнении двух чисел, чтобы работал переход «если A больше B».</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-04.html">
+                        <span>предыдущее занятие</span>
+                        ← Двоичное представление: числа и буквы
+                    </a>
+                    <a class="pager__next" href="urok-10.html">
+                        <span>следующее занятие</span>
+                        Раннее программирование →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Модель</a></li>
+                    <li><a href="#ch-4">Термины</a></li>
+                    <li><a href="#ch-5">Карточки</a></li>
+                    <li><a href="#ch-6">Квиз</a></li>
+                    <li><a href="#ch-7">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 05 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

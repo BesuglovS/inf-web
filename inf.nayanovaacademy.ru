@@ -18,26 +18,22 @@ server {
     add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
 
     root /var/www/inf.nayanovaacademy.ru/public;
-    index index.html index.htm index.php;
+    index index.html index.htm;
 
     access_log /var/log/nginx/inf.nayanovaacademy.ru.access.log;
     error_log  /var/log/nginx/inf.nayanovaacademy.ru.error.log;
 
+    # Сайт статический: отдаём файлы как есть, без SPA-подмены.
     location / {
-        try_files $uri $uri/ /index.html;
+        try_files $uri $uri/ =404;
     }
 
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php8.1-fpm.sock;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
-        fastcgi_read_timeout 60s;
-        fastcgi_send_timeout 60s;
+    location = /version.json {
+        add_header Cache-Control "no-cache, must-revalidate";
     }
 
-    # Ecosystem-скрипты без content-hash - ne keshirovat, inache obnovleniya
-    # dohodyat do 30 dney (tracking-client, progress-client, progress-sync).
+    # Экосистемные скрипты без content-hash: не кэшируем, иначе обновления
+    # доходят до 30 дней.
     location = /js/tracking-client.js {
         add_header Cache-Control "no-cache, must-revalidate";
     }

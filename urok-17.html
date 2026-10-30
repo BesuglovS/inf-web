@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 17. Интегральные схемы и закон Мура — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Интегральные схемы и закон Мура»: переход от отдельных деталей к микросхемам, фотолитография, плотность элементов и пределы роста.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 17
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">17</span>
+                <h1>Как транзисторы переехали на один кристалл</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 13:36</li>
+                    <li>Crash Course Computer Science #17</li>
+                    <li>электроника</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239041&amp;hd=2"
+                                title="Видео занятия 17 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 13:36 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Пока схему собирали из отдельных транзисторов, каждая деталь требовала пайки. Интегральная схема убрала пайку: элементы и связи вырастили на одном кристалле.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Производство микросхемы">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="20.0" y="60" width="120.0" height="56"/><text x="80.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">детали</text>
+    <path d="M146.0 88 H168.0"/><path d="M168.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="180.0" y="60" width="120.0" height="56"/><text x="240.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">пластина</text>
+    <path d="M306.0 88 H328.0"/><path d="M328.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="340.0" y="60" width="120.0" height="56"/><text x="400.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">литография</text>
+    <path d="M466.0 88 H488.0"/><path d="M488.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="500.0" y="60" width="120.0" height="56"/><text x="560.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">кристалл</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="20" y="150">соединения создаются вместе с элементами</text>
+  </g>
+</svg>
+                    <figcaption>Схема: от деталей к кристаллу</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Почему сборка из отдельных деталей стала тормозом.</li>
+                        <li>Как элементы формируют на кристалле.</li>
+                        <li>Что именно предсказал закон Мура.</li>
+                        <li>Почему рост плотности не может продолжаться вечно.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>От деталей к кристаллу</h3>
+                    <p>В 1950-х схему собирали из дискретных транзисторов, резисторов и проводов. Чем сложнее устройство, тем больше паек и тем выше вероятность отказа.</p>
+                    <p>Интегральная схема объединила элементы и соединения на одной пластине: соединения формируются в процессе производства, а не руками.</p>
+                    <h3>Как это делают</h3>
+                    <p>На кремниевой пластине послойно создают области с разными свойствами, а рисунок задают фотолитографией: свет через шаблон засвечивает лак, незасвеченное снимается.</p>
+                    <p>Чем короче длина волны и точнее оптика, тем мельче детали. Отсюда огромная цена современных фабрик.</p>
+                    <h3>Закон Мура</h3>
+                    <p>Гордон Мур в 1965 году заметил, что число компонентов на кристалле удваивается примерно каждые год-два при той же цене. Наблюдение превратилось в отраслевую цель.</p>
+                    <p>Позже темп замедлился: уменьшать транзистор становится дороже, а квантовые эффекты мешают. Поэтому рост продолжился за счёт специализации и компоновки.</p>
+                    <h3>Цена масштаба</h3>
+                    <p>Каждый шаг техпроцесса требует нового оборудования и чистой комнаты. Поэтому фабрик, способных делать современные кристаллы, единицы.</p>
+                    <p>Отсюда и стратегия отрасли: не строить своё производство, а проектировать чипы и заказывать их у тех, у кого есть фабрика.</p>
+                    <h3>Специализация вместо частоты</h3>
+                    <p>Когда рост частоты упёрся в тепло, выигрыш стали искать в специализированных блоках: графических, матричных, нейросетевых. Общий процессор перестал быть единственным источником ускорения.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Интегральная схема</dt>
+                            <dd>Множество элементов и связей на одном кристалле.</dd>
+                        </div>
+                        <div>
+                            <dt>Фотолитография</dt>
+                            <dd>Перенос рисунка схемы светом через шаблон.</dd>
+                        </div>
+                        <div>
+                            <dt>Техпроцесс</dt>
+                            <dd>Размер элементов, которые умеет делать фабрика.</dd>
+                        </div>
+                        <div>
+                            <dt>Закон Мура</dt>
+                            <dd>Наблюдение об удвоении плотности элементов каждые ~2 года.</dd>
+                        </div>
+                        <div>
+                            <dt>Кристалл</dt>
+                            <dd>Кремниевая пластина с готовой схемой.</dd>
+                        </div>
+                        <div>
+                            <dt>Выход годных</dt>
+                            <dd>Доля кристаллов без дефектов на пластине.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="17">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Интегральная схема</span>
+                            <span class="card__back">Множество элементов и связей на одном кристалле.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Фотолитография</span>
+                            <span class="card__back">Перенос рисунка схемы светом через шаблон.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Техпроцесс</span>
+                            <span class="card__back">Размер элементов, которые умеет делать фабрика.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Закон Мура</span>
+                            <span class="card__back">Наблюдение об удвоении плотности элементов каждые ~2 года.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Кристалл</span>
+                            <span class="card__back">Кремниевая пластина с готовой схемой.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Выход годных</span>
+                            <span class="card__back">Доля кристаллов без дефектов на пластине.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="17">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что дала интегральная схема?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Элементы и связи на одном кристалле</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Увеличение размеров компьютера</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Отказ от транзисторов</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Появление интернета</button>
+                        </div>
+                        <p class="quiz__why" hidden>Схема перестала быть сборкой из деталей и стала единым изделием.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что описывает закон Мура?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Удвоение плотности элементов примерно каждые два года</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Рост цены компьютеров</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Скорость интернета</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Объём жёсткого диска</button>
+                        </div>
+                        <p class="quiz__why" hidden>Это наблюдение о темпе роста, а не физический закон.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Почему темп замедлился?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Уменьшать элементы стало дороже и мешают квантовые эффекты</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Закончились инженеры</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Транзисторы перестали работать</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Запретили производство</button>
+                        </div>
+                        <p class="quiz__why" hidden>Технологические и экономические пределы сделали прежний темп недостижимым.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Объясните, почему рост числа транзисторов сам по себе не гарантирует рост производительности.</li>
+                        <li>Сравните: больше кристаллов на пластине или больше элементов на кристалле — что выгоднее и почему.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-16.html">
+                        <span>предыдущее занятие</span>
+                        ← Инженерия программного обеспечения
+                    </a>
+                    <a class="pager__next" href="urok-18.html">
+                        <span>следующее занятие</span>
+                        Операционные системы →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 17 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 03. Булева логика и логические элементы — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Булева логика»: высказывания и таблицы истинности, операции AND, OR, NOT, XOR, логические элементы на транзисторах и сборка схем из простых блоков.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 03
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">03</span>
+                <h1>Логика, которую можно собрать из проводов</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 9:39</li>
+                    <li>Crash Course Computer Science #03</li>
+                    <li>логические схемы</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239068&hd=2"
+                                title="Видео занятия 03 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 9:39 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Всё, что компьютер «решает», сводится к двум значениям и нескольким операциям над ними. Булева алгебра описывает эти операции на бумаге, а транзистор позволяет собрать каждую из них из проводов и электричества.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 240" role="img" aria-label="Входы A и B подаются на элементы AND, OR и XOR, у каждого свой выход">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M60 56 H130 M60 72 H130"/>
+    <rect x="130" y="30" width="120" height="64"/>
+    <path d="M250 62 H310 M310 62 l-9 -5 v10 z" fill="currentColor" stroke="none"/>
+
+    <path d="M60 128 H130 M60 144 H130"/>
+    <rect x="130" y="102" width="120" height="64"/>
+    <path d="M250 134 H310 M310 134 l-9 -5 v10 z" fill="currentColor" stroke="none"/>
+
+    <path d="M60 200 H130 M60 216 H130"/>
+    <rect x="130" y="174" width="120" height="64"/>
+    <path d="M250 206 H310 M310 206 l-9 -5 v10 z" fill="currentColor" stroke="none"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="34" y="60">A</text><text x="34" y="76">B</text>
+    <text x="34" y="132">A</text><text x="34" y="148">B</text>
+    <text x="34" y="204">A</text><text x="34" y="220">B</text>
+    <text x="168" y="67">AND</text>
+    <text x="172" y="139">OR</text>
+    <text x="168" y="211">XOR</text>
+    <text x="322" y="66">A AND B</text>
+    <text x="322" y="138">A OR B</text>
+    <text x="322" y="210">A XOR B</text>
+  </g>
+</svg>
+                    <figcaption>Схема: одинаковые входы, разные операции</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Почему для логики достаточно двух значений — истина и ложь.</li>
+                        <li>Как таблица истинности заменяет словесное описание операции.</li>
+                        <li>Чем XOR отличается от OR и почему эта операция так важна в схемах.</li>
+                        <li>Как два транзистора превращаются в элемент AND или OR.</li>
+                        <li>Зачем схемы собирают из готовых блоков, а не из отдельных транзисторов.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Высказывание и два значения</h3>
+                    <p>Джордж Буль в середине XIX века описал алгебру, в которой переменные принимают только два значения: истина и ложь. Его интересовала логика рассуждений, а не техника — но именно эта система оказалась удобной для машин.</p>
+                    <p>Высказывание в такой алгебре — утверждение, у которого есть ровно один ответ: да или нет. Из простых высказываний строятся составные, и правило их вычисления задаётся операцией.</p>
+                    <h3>Операции и таблицы истинности</h3>
+                    <p>Три базовые операции: <strong>NOT</strong> (отрицание) переворачивает значение, <strong>AND</strong> (конъюнкция) истинна только когда истинны оба входа, <strong>OR</strong> (дизъюнкция) истинна, если истинен хотя бы один.</p>
+                    <p>Таблица истинности перечисляет все комбинации входов и результат для каждой. Для двух входов это четыре строки; для трёх — восемь. Таблица — исчерпывающее описание операции: по ней схему можно собрать, не думая о смысле.</p>
+                    <p>Отдельно стоит <strong>XOR</strong> («исключающее ИЛИ»): истинно, когда входы разные. Он пригодится в сумматорах, шифровании и проверках чётности.</p>
+                    <h3>От транзистора к элементу</h3>
+                    <p>Транзистор работает как управляемый ключ: сигнал на затворе решает, потечёт ли ток. Из двух транзисторов, включённых последовательно, получается AND: ток пройдёт, только если открыты оба. Из двух параллельных — OR: достаточно одного.</p>
+                    <p>NOT собирается из одного транзистора: поданный сигнал закрывает путь току, и на выходе получается противоположное значение. Электрика здесь не «думает» — она просто подчиняется закону Ома, а логика возникает из схемы соединений.</p>
+                    <h3>Абстракция: из блоков — схема</h3>
+                    <p>Собрав элемент один раз, его перестают рассматривать на уровне транзисторов: у блока есть входы, выход и таблица истинности. Из таких блоков собирают полусумматор, сумматор, мультиплексор и далее — вплоть до процессора.</p>
+                    <p>Это и есть главный инженерный приём вычислительной техники: каждый следующий уровень прячет подробности предыдущего, и сложность растёт не взрывом, а слоями.</p>
+                    <h3>Из таблицы — в устройство</h3>
+                    <p>Любую логическую функцию можно записать таблицей истинности, а затем собрать под неё схему. Приём называется «сумма произведений»: для каждой строки, где результат истинен, берут комбинацию входов через AND, а все такие комбинации объединяют через OR.</p>
+                    <p>На практике схемы упрощают: одинаковые части выносят, лишние элементы убирают по законам булевой алгебры. Отдельно стоит запомнить, что элементы NAND и NOR универсальны — из них одним типом деталей собирается любая логика, что удобно для производства микросхем.</p>
+                    <h3>Законы, которые упрощают схему</h3>
+                    <p>Булева алгебра позволяет переписывать выражение, не меняя его смысла: A OR (B AND C) = (A OR B) AND (A OR C), а двойное отрицание снимается. Правила Де Моргана связывают AND и OR через NOT: NOT (A AND B) = (NOT A) OR (NOT B).</p>
+                    <p>Упрощение — не украшение, а экономия: меньше элементов значит меньше площадь кристалла, меньше тепла и выше надёжность. Инженер почти всегда ищет схему с минимальным числом вентилей.</p>
+                    <h3>Где это работает в процессоре</h3>
+                    <p>Логические элементы не живут отдельно: из них собраны сумматор, мультиплексор (выбор одного из входов), дешифратор команд и регистры. Мультиплексор — по сути управляемый переключатель: сигнал выбора решает, какой из входов попадёт на выход.</p>
+                    <p>Именно поэтому «процессор выполняет команды» — это не метафора: команда превращается в набор управляющих сигналов, которые открывают и закрывают нужные вентили в нужной последовательности.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03 · модель</span>
+                    <h2 id="ch-3-title">Попробуйте сами</h2>
+
+                    <div class="widget" data-widget="gates">
+                        <p class="widget__hint">Переключайте входы и смотрите, что выдаёт каждая операция.</p>
+                        <div class="widget__row">
+                            <button type="button" class="switch" data-input="a" aria-pressed="false">A = 0</button>
+                            <button type="button" class="switch" data-input="b" aria-pressed="false">B = 0</button>
+                        </div>
+                        <table class="widget__table">
+                            <caption>Таблица истинности для выбранных входов</caption>
+                            <tbody>
+                                <tr><th scope="row">A AND B</th><td data-out="and">0</td></tr>
+                                <tr><th scope="row">A OR B</th><td data-out="or">0</td></tr>
+                                <tr><th scope="row">A XOR B</th><td data-out="xor">0</td></tr>
+                                <tr><th scope="row">NOT A</th><td data-out="nota">1</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04</span>
+                    <h2 id="ch-4-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Булева алгебра</dt>
+                            <dd>Алгебра высказываний с двумя значениями: истина и ложь.</dd>
+                        </div>
+                        <div>
+                            <dt>Таблица истинности</dt>
+                            <dd>Перечисление результатов операции для всех комбинаций входов.</dd>
+                        </div>
+                        <div>
+                            <dt>AND</dt>
+                            <dd>Истинно только при истинных обоих входах. Схемно — последовательное включение ключей.</dd>
+                        </div>
+                        <div>
+                            <dt>OR</dt>
+                            <dd>Истинно, если истинен хотя бы один вход. Схемно — параллельное включение.</dd>
+                        </div>
+                        <div>
+                            <dt>NOT</dt>
+                            <dd>Инверсия значения: истина становится ложью и наоборот.</dd>
+                        </div>
+                        <div>
+                            <dt>XOR</dt>
+                            <dd>Истинно, когда входы различаются. Основа сумматоров и проверок чётности.</dd>
+                        </div>
+                        <div>
+                            <dt>Логический элемент</dt>
+                            <dd>Готовый блок, реализующий операцию: входы, выход, таблица истинности.</dd>
+                        </div>
+                        <div>
+                            <dt>Абстракция</dt>
+                            <dd>Способ скрыть детали нижнего уровня, чтобы работать с более крупными блоками.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="03">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Булева алгебра</span>
+                            <span class="card__back">Алгебра высказываний с двумя значениями: истина и ложь.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Таблица истинности</span>
+                            <span class="card__back">Перечисление результатов операции для всех комбинаций входов.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">AND</span>
+                            <span class="card__back">Истинно только при истинных обоих входах. Схемно — последовательное включение ключей.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">OR</span>
+                            <span class="card__back">Истинно, если истинен хотя бы один вход. Схемно — параллельное включение.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">NOT</span>
+                            <span class="card__back">Инверсия значения: истина становится ложью и наоборот.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">XOR</span>
+                            <span class="card__back">Истинно, когда входы различаются. Основа сумматоров и проверок чётности.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Логический элемент</span>
+                            <span class="card__back">Готовый блок, реализующий операцию: входы, выход, таблица истинности.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Абстракция</span>
+                            <span class="card__back">Способ скрыть детали нижнего уровня, чтобы работать с более крупными блоками.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06 · интерактив</span>
+                    <h2 id="ch-6-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="03">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Когда результат операции AND истинен?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Когда истинен хотя бы один вход</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Только когда истинны оба входа</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Только когда оба входа ложны</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Всегда</button>
+                        </div>
+                        <p class="quiz__why" hidden>AND — конъюнкция: истина только при истинных обоих входах. Схемно это два ключа, включённых последовательно.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что делает операция NOT?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Меняет значение на противоположное</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Складывает два значения</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Сравнивает два значения</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Выбирает большее из двух</button>
+                        </div>
+                        <p class="quiz__why" hidden>NOT — инверсия: истина становится ложью, ложь — истиной. На транзисторе это один ключ, включённый «наоборот».</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Чем XOR отличается от OR?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">XOR истинно только при разных входах</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">XOR истинно только при ложных входах</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">XOR — это то же самое, что OR</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">XOR работает только с тремя входами</button>
+                        </div>
+                        <p class="quiz__why" hidden>OR даёт истину и тогда, когда истинны оба входа. XOR в этом случае даёт ложь: ему нужны именно разные значения.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Чему равно выражение (1 AND 0) OR 1?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">0</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">1</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Не определено</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Зависит от порядка операций</button>
+                        </div>
+                        <p class="quiz__why" hidden>Сначала скобки: 1 AND 0 = 0. Затем 0 OR 1 = 1.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
+                    <span class="chapter__num">07</span>
+                    <h2 id="ch-7-title">Мини-практика</h2>
+                    <ol>
+                        <li>Постройте таблицу истинности для выражения (A AND NOT B) OR C и проверьте себя на всех восьми комбинациях.</li>
+                        <li>Объясните на схеме из двух ключей, почему последовательное включение даёт AND, а параллельное — OR.</li>
+                        <li>Придумайте бытовой пример, который ведёт себя как XOR: результат «сработало», когда условия разные.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-02.html">
+                        <span>предыдущее занятие</span>
+                        ← Электронные вычисления: лампы, ENIAC, транзистор
+                    </a>
+                    <a class="pager__next" href="urok-04.html">
+                        <span>следующее занятие</span>
+                        Двоичное представление: числа и буквы →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Модель</a></li>
+                    <li><a href="#ch-4">Термины</a></li>
+                    <li><a href="#ch-5">Карточки</a></li>
+                    <li><a href="#ch-6">Квиз</a></li>
+                    <li><a href="#ch-7">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 03 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 16. Инженерия программного обеспечения — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Инженерия ПО»: программные интерфейсы, контроль версий, тестирование и отладка, код-ревью, документация и процессы разработки.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 16
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">16</span>
+                <h1>Как писать код, который переживёт автора</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 11:22</li>
+                    <li>Crash Course Computer Science #16</li>
+                    <li>разработка ПО</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239038&hd=2"
+                                title="Видео занятия 16 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 11:22 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Программа на сто строк живёт в голове одного человека. Программа на миллион строк живёт в команде, в репозитории и в документации. Инженерия ПО — это набор приёмов, которые позволяют такой программе не рассыпаться.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 170" role="img" aria-label="Клиент обращается к модулю через описанный контракт, детали скрыты">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="30" y="55" width="120" height="60"/>
+    <rect x="240" y="30" width="160" height="110" stroke-dasharray="5 4"/>
+    <rect x="490" y="55" width="120" height="60"/>
+    <path d="M150 78 H240 M400 78 H490"/>
+    <path d="M240 78 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+    <path d="M490 78 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="52" y="90">клиент</text>
+    <text x="512" y="90">модуль</text>
+    <text x="256" y="66">API</text>
+    <text x="256" y="90" opacity="0.65">входы / выходы</text>
+    <text x="256" y="112" opacity="0.65">реализация скрыта</text>
+  </g>
+</svg>
+                    <figcaption>Схема: контракт вместо деталей</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Почему интерфейс между частями важнее их внутреннего устройства.</li>
+                        <li>Как контроль версий спасает от «а вчера работало».</li>
+                        <li>Чем тестирование отличается от отладки.</li>
+                        <li>Зачем код читают другие люди и что даёт код-ревью.</li>
+                        <li>Почему большую часть времени тратят не на новую функциональность.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Интерфейсы и разделение труда</h3>
+                    <p>Большую программу делят на части с чёткими границами. <strong>Программный интерфейс</strong> (API) описывает, что часть умеет и какие данные принимает, но не как она устроена внутри. Пока контракт соблюдается, внутренности можно переписать.</p>
+                    <p>Это же свойство позволяет использовать чужие библиотеки: вы вызываете функцию, не зная её реализации. Абстракция из занятия о логических элементах здесь работает на уровне целых систем.</p>
+                    <h3>Версии и история изменений</h3>
+                    <p>Система контроля версий хранит историю: кто, когда и зачем изменил каждую строку. Ошибку можно найти, откатить изменение и работать параллельно в отдельных ветках.</p>
+                    <p>Без этого команда быстро приходит к файлам вида «final_2_исправленный_окончательный». История изменений — не бюрократия, а инструмент поиска причин поломок.</p>
+                    <h3>Тестирование и отладка</h3>
+                    <p>Тест проверяет, что программа ведёт себя ожидаемо: на конкретных входах даёт конкретные выходы. Модульные тесты проверяют отдельные функции, интеграционные — взаимодействие частей. Хороший набор тестов ловит регрессии: изменения, которые сломали то, что работало.</p>
+                    <p>Отладка — другой процесс: найти причину уже известной ошибки. Отладчик позволяет остановить программу в нужном месте и посмотреть значения переменных, вместо того чтобы угадывать по выводу.</p>
+                    <h3>Процесс и цена изменений</h3>
+                    <p>Процессы разработки — водопад, итеративный, гибкий — по-разному отвечают на вопрос, когда фиксировать требования. Общий смысл один: чем позже обнаружена ошибка, тем дороже она обходится.</p>
+                    <p>Отдельно стоит помнить про сопровождение: код живёт годами, и большая часть усилий уходит на чтение, правку и проверку уже существующего. Поэтому читаемость, имена и документация — не украшение, а условие работоспособности команды.</p>
+                    <h3>Ошибка дорожает по мере движения</h3>
+                    <p>Чем позже найдена ошибка, тем дороже она обходится: правка в коде — минуты, правка в выпущенной версии — часы и репутация. Поэтому проверки стараются сдвинуть влево: ревью до слияния, тесты до выпуска, автоматическая сборка на каждое изменение.</p>
+                    <p>Тесты полезны ещё и как документация: они показывают, как систему предполагалось использовать, и переживают смену авторов лучше, чем комментарии.</p>
+                    <h3>Пирамида тестов</h3>
+                    <p>Тестов много и они разные: быстрые модульные проверяют отдельные функции, интеграционные — стыки между частями, сквозные — весь сценарий целиком. Дешёвых модульных должно быть больше, дорогих сквозных — меньше.</p>
+                    <p>Если всё проверять только сквозными тестами, прогон станет медленным и хрупким. Если только модульными — можно не заметить, что части не договорились между собой.</p>
+                    <h3>Имена и документация</h3>
+                    <p>Хорошее имя отвечает на вопрос «что это», а не «как это сделано». Читая `retryDelayMs`, вы уже понимаете единицы измерения и назначение — комментарий не нужен.</p>
+                    <p>Документация описывает зачем и как пользоваться, код — как устроено. Когда документация дублирует код, она устаревает первой и начинает врать.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>API</dt>
+                            <dd>Программный интерфейс: описание того, что делает модуль, без деталей реализации.</dd>
+                        </div>
+                        <div>
+                            <dt>Контроль версий</dt>
+                            <dd>Хранение истории изменений и работа с ветками.</dd>
+                        </div>
+                        <div>
+                            <dt>Модульный тест</dt>
+                            <dd>Проверка отдельной функции или модуля на заданных входах.</dd>
+                        </div>
+                        <div>
+                            <dt>Регрессия</dt>
+                            <dd>Поломка того, что раньше работало.</dd>
+                        </div>
+                        <div>
+                            <dt>Отладчик</dt>
+                            <dd>Инструмент пошагового выполнения с просмотром состояния программы.</dd>
+                        </div>
+                        <div>
+                            <dt>Код-ревью</dt>
+                            <dd>Чтение изменений коллегами до включения в основную ветку.</dd>
+                        </div>
+                        <div>
+                            <dt>Технический долг</dt>
+                            <dd>Отложенные решения, которые усложняют дальнейшую работу.</dd>
+                        </div>
+                        <div>
+                            <dt>Сопровождение</dt>
+                            <dd>Изменение и починка уже работающей системы.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="16">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">API</span>
+                            <span class="card__back">Программный интерфейс: описание того, что делает модуль, без деталей реализации.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Контроль версий</span>
+                            <span class="card__back">Хранение истории изменений и работа с ветками.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Модульный тест</span>
+                            <span class="card__back">Проверка отдельной функции или модуля на заданных входах.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Регрессия</span>
+                            <span class="card__back">Поломка того, что раньше работало.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Отладчик</span>
+                            <span class="card__back">Инструмент пошагового выполнения с просмотром состояния программы.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Код-ревью</span>
+                            <span class="card__back">Чтение изменений коллегами до включения в основную ветку.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Технический долг</span>
+                            <span class="card__back">Отложенные решения, которые усложняют дальнейшую работу.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Сопровождение</span>
+                            <span class="card__back">Изменение и починка уже работающей системы.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="16">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что описывает программный интерфейс (API)?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Как устроен модуль внутри</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Что модуль принимает и что возвращает</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Кто автор кода</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">На каком языке написан модуль</button>
+                        </div>
+                        <p class="quiz__why" hidden>API — это контракт: входы, выходы и правила поведения. Внутреннюю реализацию можно менять, пока контракт соблюдается.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что такое регрессия?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Новая функция</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Поломка того, что раньше работало</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Ошибка в тестах</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Ускорение программы</button>
+                        </div>
+                        <p class="quiz__why" hidden>Регрессия — возврат к уже исправленной проблеме или поломка существующего поведения после изменений.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Зачем нужно код-ревью?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Чтобы увеличить число строк</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Чтобы найти ошибки и передать знание до слияния</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Чтобы замедлить работу</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Чтобы заменить тесты</button>
+                        </div>
+                        <p class="quiz__why" hidden>Ревью ловит ошибки на раннем этапе и помогает команде понимать чужой код — это дешевле, чем разбираться после выпуска.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Почему тесты называют документацией?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Они показывают ожидаемое поведение на примерах</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Они написаны на естественном языке</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Они заменяют README</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Они хранятся отдельно от кода</button>
+                        </div>
+                        <p class="quiz__why" hidden>Тест фиксирует конкретный сценарий использования: вход, ожидаемый результат. Это точнее любого описания словами.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Опишите API функции «найти среднее в массиве»: что принимает, что возвращает, как ведёт себя на пустом массиве.</li>
+                        <li>Придумайте три теста для функции проверки пароля: корректный, граничный и заведомо ошибочный случай.</li>
+                        <li>Найдите в любом своём проекте место, которое вы бы переписали, и объясните, что мешает это сделать сейчас.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-11.html">
+                        <span>предыдущее занятие</span>
+                        ← Первые языки программирования
+                    </a>
+                    <a class="pager__next" href="urok-21.html">
+                        <span>следующее занятие</span>
+                        Сжатие информации →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 16 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 32. Хакеры — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Хакеры»: телефонное фрикинг, первые компьютерные взломы, червь Морриса, закон о компьютерном мошенничестве, уязвимости нулевого дня и этика раскрытия.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 32
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">32</span>
+                <h1>Люди, которые ищут дыры раньше других</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 12:24</li>
+                    <li>Crash Course Computer Science #32</li>
+                    <li>безопасность</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239057&hd=2"
+                                title="Видео занятия 32 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 12:24 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Слово «хакер» сначала означало человека, который разбирается в устройстве системы настолько, чтобы заставить её работать иначе. Потом появились те, кто использует это знание во вред, и те, кто ищет уязвимости, чтобы их закрыть.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 150" role="img" aria-label="Уязвимость проходит путь от находки до патча и публикации">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M60 76 H560"/>
+    <circle cx="90" cy="76" r="9"/><circle cx="240" cy="76" r="9"/><circle cx="390" cy="76" r="9"/><circle cx="540" cy="76" r="9"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11">
+    <text x="56" y="46">находка</text>
+    <text x="206" y="46">сообщение</text>
+    <text x="362" y="46">патч</text>
+    <text x="506" y="46">публикация</text>
+    <text x="56" y="112" opacity="0.65">0 день</text>
+    <text x="470" y="112" opacity="0.65">после обновления</text>
+  </g>
+</svg>
+                    <figcaption>Схема: путь уязвимости</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Как исследование телефонных сетей стало первой школой взлома.</li>
+                        <li>Почему ошибка в программе превращается в дыру в безопасности.</li>
+                        <li>Что произошло с червём 1988 года и какие правила появились после.</li>
+                        <li>Как уязвимость проходит путь от находки до исправления.</li>
+                        <li>Чем белая, серая и чёрная шляпы отличаются на практике.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Сначала были телефоны</h3>
+                    <p>Интерес к устройству систем начался с телефонных сетей: тональные сигналы, служебные частоты, бесплатные междугородние звонки. Это была техническая любознательность с сомнительной законностью — и первая школа практического исследования чужих систем.</p>
+                    <p>С появлением домашних компьютеров и модемов та же культура перешла в сети: bulletin board, обмен программами, первые запреты и первые наказания.</p>
+                    <h3>Ошибка становится уязвимостью</h3>
+                    <p>Программа ожидает данных определённого вида. Если подать не то, что она ждёт, поведение может выйти из-под контроля: переполнение буфера перезаписывает соседнюю память, а неверная проверка открывает доступ к чужим данным.</p>
+                    <p>Так ошибка разработчика превращается в <strong>уязвимость</strong>. Эксплойт — способ воспользоваться ею; <strong>уязвимость нулевого дня</strong> — та, для которой исправления ещё нет и защитник о ней не знает.</p>
+                    <h3>Червь и закон</h3>
+                    <p>В 1988 году самораспространяющаяся программа, запущенная из исследовательского интереса, вывела из строя значительную часть тогдашней сети. Последствия были не столько техническими, сколько юридическими: стало ясно, что закон не описывает такие действия.</p>
+                    <p>В США появился закон о компьютерном мошенничестве и злоупотреблениях, а в сообществе — практика ответственного раскрытия: найти, сообщить разработчику, дать время на исправление, только потом публиковать детали.</p>
+                    <h3>Этика и практика</h3>
+                    <p>Деление на «шляпы» описывает не навык, а согласие с правилами: белые ищут уязвимости с разрешения и сообщают о них, чёрные используют их для выгоды, серые действуют без разрешения, но без явного вреда.</p>
+                    <p>Для инженера практический вывод простой: любое тестирование чужой системы без письменного разрешения — нарушение, даже если цель благородная. Проверять безопасность нужно там, где вы владелец или получили мандат.</p>
+                    <h3>Как от дыр защищаются</h3>
+                    <p>Полностью безопасных программ не бывает, поэтому защита строится слоями: проверка входных данных, минимальные права, изоляция процессов, журналирование и регулярные обновления. Если один слой пробит, остальные ограничивают ущерб.</p>
+                    <p>Обновления — самый недооценённый слой. Большинство реальных взломов использует уже известные уязвимости, для которых патч выпущен, но не установлен.</p>
+                    <h3>Как находят уязвимости</h3>
+                    <p>Помимо ручного чтения кода используют фаззинг: программе подают миллионы случайных и полуосмысленных входов и смотрят, где она падает. Падение — сигнал, что рядом может быть exploitable-ошибка.</p>
+                    <p>Второй путь — аудит: разбор опасных мест (разбор входных данных, работа с памятью, права доступа) и проверка, что все входы валидируются.</p>
+                    <h3>Ответственность и закон</h3>
+                    <p>Техническая находка не отменяет юридических последствий: доступ к чужой системе без разрешения — нарушение, даже если ничего не изменено. Разрешение фиксируют письменно и заранее.</p>
+                    <p>Ответственное раскрытие защищает всех: пользователи получают патч раньше, чем инструмент атаки, а исследователь — признание вместо уголовного дела.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Хакер</dt>
+                            <dd>Человек, глубоко разбирающийся в устройстве систем; значение слова зависит от контекста.</dd>
+                        </div>
+                        <div>
+                            <dt>Уязвимость</dt>
+                            <dd>Ошибка или особенность, позволяющая нарушить работу системы или получить лишний доступ.</dd>
+                        </div>
+                        <div>
+                            <dt>Эксплойт</dt>
+                            <dd>Способ использовать уязвимость.</dd>
+                        </div>
+                        <div>
+                            <dt>Уязвимость нулевого дня</dt>
+                            <dd>Уязвимость, для которой ещё нет исправления.</dd>
+                        </div>
+                        <div>
+                            <dt>Червь</dt>
+                            <dd>Самораспространяющаяся программа, заражающая узлы сети без участия человека.</dd>
+                        </div>
+                        <div>
+                            <dt>Ответственное раскрытие</dt>
+                            <dd>Практика: сообщить разработчику и дать время на исправление до публикации.</dd>
+                        </div>
+                        <div>
+                            <dt>Белая шляпа</dt>
+                            <dd>Специалист, тестирующий системы с разрешения владельца.</dd>
+                        </div>
+                        <div>
+                            <dt>Баг-баунти</dt>
+                            <dd>Программа выплат за найденные уязвимости.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="32">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Хакер</span>
+                            <span class="card__back">Человек, глубоко разбирающийся в устройстве систем; значение слова зависит от контекста.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Уязвимость</span>
+                            <span class="card__back">Ошибка или особенность, позволяющая нарушить работу системы или получить лишний доступ.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Эксплойт</span>
+                            <span class="card__back">Способ использовать уязвимость.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Уязвимость нулевого дня</span>
+                            <span class="card__back">Уязвимость, для которой ещё нет исправления.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Червь</span>
+                            <span class="card__back">Самораспространяющаяся программа, заражающая узлы сети без участия человека.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Ответственное раскрытие</span>
+                            <span class="card__back">Практика: сообщить разработчику и дать время на исправление до публикации.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Белая шляпа</span>
+                            <span class="card__back">Специалист, тестирующий системы с разрешения владельца.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Баг-баунти</span>
+                            <span class="card__back">Программа выплат за найденные уязвимости.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="32">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что такое уязвимость нулевого дня?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Ошибка, для которой ещё нет исправления</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Ошибка, найденная в первый день работы</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Вирус, живущий один день</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Пароль по умолчанию</button>
+                        </div>
+                        <p class="quiz__why" hidden>Нулевой день — уязвимость без патча: защитники о ней не знают, и обходные меры приходится придумывать на ходу.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что означает ответственное раскрытие?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Сразу опубликовать эксплойт</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Сообщить разработчику и дать время на исправление</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Продать уязвимость</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Скрыть проблему навсегда</button>
+                        </div>
+                        <p class="quiz__why" hidden>Смысл в том, чтобы исправление вышло раньше, чем детали попадут к тем, кто использует их во вред.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>В чём суть переполнения буфера?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Данные выходят за границы выделенной памяти</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Файл становится слишком большим</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Процессор перегревается</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Сеть перегружается</button>
+                        </div>
+                        <p class="quiz__why" hidden>Если записать больше, чем помещается в буфер, можно повредить соседние данные и повлиять на ход программы.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="2">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Можно ли проверять безопасность чужого сайта без разрешения?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Да, если без ущерба</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Да, если это учебная цель</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Нет, это нарушение</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Да, если предупредить после</button>
+                        </div>
+                        <p class="quiz__why" hidden>Тестирование чужой системы без письменного разрешения — нарушение, независимо от намерений и последствий.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Разберите любую известную утечку данных по шагам: какая ошибка, как использована, что изменили после.</li>
+                        <li>Объясните, почему переполнение буфера опасно, на примере массива фиксированной длины.</li>
+                        <li>Сформулируйте три пункта политики раскрытия уязвимостей для школьного проекта.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-23.html">
+                        <span>предыдущее занятие</span>
+                        ← Экраны и двухмерная графика
+                    </a>
+                    <a class="pager__next" href="urok-34.html">
+                        <span>следующее занятие</span>
+                        Машинное обучение и искусственный интеллект →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 32 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

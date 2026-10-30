@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 30. Всемирная паутина — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Всемирная паутина»: URL и HTTP, HTML и гиперссылки, браузер и сервер, поисковые системы и индексация.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 30
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">30</span>
+                <h1>Интернет, по которому ходят страницы</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 12:21</li>
+                    <li>Crash Course Computer Science #30</li>
+                    <li>веб</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239055&amp;hd=2"
+                                title="Видео занятия 30 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 12:21 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Паутина — надстройка над интернетом: документы, связанные ссылками, и правила их запроса. Браузер просит страницу, сервер отдаёт её, ссылки ведут дальше.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="От адреса до документа">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="20.0" y="60" width="120.0" height="56"/><text x="80.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">URL</text>
+    <path d="M146.0 88 H168.0"/><path d="M168.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="180.0" y="60" width="120.0" height="56"/><text x="240.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">DNS</text>
+    <path d="M306.0 88 H328.0"/><path d="M328.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="340.0" y="60" width="120.0" height="56"/><text x="400.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">сервер</text>
+    <path d="M466.0 88 H488.0"/><path d="M488.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="500.0" y="60" width="120.0" height="56"/><text x="560.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">страница</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="20" y="150">ответ приходит с кодом и телом</text>
+  </g>
+</svg>
+                    <figcaption>Схема: запрос страницы</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Из чего состоит адрес страницы.</li>
+                        <li>Что происходит при запросе к серверу.</li>
+                        <li>Зачем нужна разметка и гиперссылки.</li>
+                        <li>Как поисковик узнаёт о страницах.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>URL и запрос</h3>
+                    <p>Адрес описывает протокол, хост и путь: `https://example.ru/lesson/1`. Браузер открывает соединение, отправляет запрос и получает ответ с кодом и телом.</p>
+                    <p>Код 200 значит успех, 404 — страница не найдена, 500 — ошибка на сервере. Эти числа — часть контракта, а не украшение.</p>
+                    <h3>Разметка и ссылки</h3>
+                    <p>HTML описывает структуру: заголовки, абзацы, списки, ссылки. Браузер превращает разметку в дерево элементов и рисует его по стилям.</p>
+                    <p>Гиперссылка — главная идея: документ может указывать на другой документ, и вся паутина держится на этих переходах.</p>
+                    <h3>Поиск</h3>
+                    <p>Поисковик обходит страницы по ссылкам, сохраняет их содержимое в индекс и по запросу выбирает подходящие документы, упорядочивая по релевантности.</p>
+                    <p>Поэтому сайт, на который никто не ссылается и который закрыт от обхода, найти трудно — даже если он существует.</p>
+                    <h3>Почему веб победил</h3>
+                    <p>Веб не требовал устанавливать отдельную программу под каждый сервис: браузер универсален, а ссылка работает между любыми сайтами.</p>
+                    <p>Открытые стандарты и возможность сделать страницу без разрешения центра сделали рост взрывным.</p>
+                    <h3>Веб и приватность</h3>
+                    <p>Каждый запрос несёт сведения: адрес, заголовки, cookie. Понимание того, что именно уходит на сервер, — базовая грамотность, а не паранойя.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>URL</dt>
+                            <dd>Адрес ресурса: протокол, хост, путь.</dd>
+                        </div>
+                        <div>
+                            <dt>HTTP</dt>
+                            <dd>Протокол запросов и ответов в вебе.</dd>
+                        </div>
+                        <div>
+                            <dt>HTML</dt>
+                            <dd>Язык разметки структуры страницы.</dd>
+                        </div>
+                        <div>
+                            <dt>Гиперссылка</dt>
+                            <dd>Ссылка на другой документ.</dd>
+                        </div>
+                        <div>
+                            <dt>Индексация</dt>
+                            <dd>Сохранение содержимого страниц поисковиком.</dd>
+                        </div>
+                        <div>
+                            <dt>Код ответа</dt>
+                            <dd>Число, описывающее результат запроса.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="30">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">URL</span>
+                            <span class="card__back">Адрес ресурса: протокол, хост, путь.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">HTTP</span>
+                            <span class="card__back">Протокол запросов и ответов в вебе.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">HTML</span>
+                            <span class="card__back">Язык разметки структуры страницы.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Гиперссылка</span>
+                            <span class="card__back">Ссылка на другой документ.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Индексация</span>
+                            <span class="card__back">Сохранение содержимого страниц поисковиком.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Код ответа</span>
+                            <span class="card__back">Число, описывающее результат запроса.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="30">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что описывает URL?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Адрес ресурса</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Размер файла</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Тип процессора</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Пароль</button>
+                        </div>
+                        <p class="quiz__why" hidden>Протокол, хост и путь указывают, что и где запрашивать.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что означает код 404?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Страница не найдена</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Успех</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Ошибка сервера</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Перенаправление</button>
+                        </div>
+                        <p class="quiz__why" hidden>Сервер понял запрос, но ресурса по адресу нет.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Как поисковик узнаёт о страницах?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Обходит ссылки и индексирует</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Спрашивает у браузера</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Читает закладки</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Смотрит историю</button>
+                        </div>
+                        <p class="quiz__why" hidden>Робот переходит по ссылкам и складывает содержимое в индекс.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Разберите адрес любимого сайта на части: протокол, хост, путь.</li>
+                        <li>Объясните, почему страница без ссылок плохо находится поиском.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-29.html">
+                        <span>предыдущее занятие</span>
+                        ← Интернет
+                    </a>
+                    <a class="pager__next" href="urok-31.html">
+                        <span>следующее занятие</span>
+                        Кибербезопасность →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 30 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 13. Введение в алгоритмы — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Алгоритмы»: свойства алгоритма, линейный и бинарный поиск, сортировка, оценка сложности и разница между алгоритмом и программой.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 13
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">13</span>
+                <h1>Алгоритмы: шаги, которые решают задачу</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 11:58</li>
+                    <li>Crash Course Computer Science #13</li>
+                    <li>алгоритмы</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239035&amp;hd=2"
+                                title="Видео занятия 13 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 11:58 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Алгоритм — конечная последовательность понятных шагов, которая заканчивается результатом. Один и тот же алгоритм можно записать на любом языке — или выполнить вручную.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Два подхода к поиску">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="30" y="40" width="240" height="96"/>
+    <rect x="370" y="40" width="240" height="96"/>
+    <text x="150" y="76" text-anchor="middle" font-size="13" font-family="JetBrains Mono, monospace">линейный</text>
+    <text x="150" y="106" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">проверяет всё</text>
+    <text x="490" y="76" text-anchor="middle" font-size="13" font-family="JetBrains Mono, monospace">бинарный</text>
+    <text x="490" y="106" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">делит пополам</text>
+    <path d="M290 88 H350 M350 88 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="30" y="164">бинарный требует отсортированных данных</text>
+  </g>
+</svg>
+                    <figcaption>Схема: линейный и бинарный поиск</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Чем алгоритм отличается от программы.</li>
+                        <li>Почему бинарный поиск быстрее линейного.</li>
+                        <li>Как сравнивают алгоритмы по скорости роста.</li>
+                        <li>Почему сортировка нужна чаще, чем кажется.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Свойства алгоритма</h3>
+                    <p>Шаги должны быть конечными, определёнными и приводить к результату за конечное число действий. Если шаг нельзя выполнить однозначно, это ещё не алгоритм.</p>
+                    <p>Один и тот же алгоритм записывают по-разному: словами, блок-схемой, кодом. Важна последовательность действий, а не форма записи.</p>
+                    <h3>Поиск</h3>
+                    <p>Линейный поиск проверяет элементы по одному: работает всегда, но на больших данных медленный. Бинарный поиск делит отсортированный массив пополам и отбрасывает половину — но требует сортировки.</p>
+                    <p>Отсюда типичный компромисс: один раз отсортировать, чтобы много раз искать быстро.</p>
+                    <h3>Оценка сложности</h3>
+                    <p>Сложность описывает, как растёт число операций с размером данных: O(n) — линейно, O(log n) — логарифмически, O(n²) — квадратично.</p>
+                    <p>На малых данных разница незаметна, на больших — решающая: алгоритм O(n²) на миллионе элементов делает триллион операций.</p>
+                    <h3>Почему на больших данных важна асимптотика</h3>
+                    <p>Константа в формуле не так важна, как порядок роста: алгоритм, который на малых данных проигрывает вдвое, на больших выигрывает тысячекратно.</p>
+                    <p>Поэтому при выборе алгоритма смотрят не на секунды на тестовом примере, а на то, как поведение меняется при росте входа.</p>
+                    <h3>Алгоритм и структура данных</h3>
+                    <p>Выбор структуры часто важнее выбора алгоритма: бинарный поиск по массиву работает, а по связному списку — нет, потому что нет доступа по индексу за постоянное время.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Алгоритм</dt>
+                            <dd>Конечная последовательность однозначных шагов.</dd>
+                        </div>
+                        <div>
+                            <dt>Линейный поиск</dt>
+                            <dd>Последовательная проверка элементов.</dd>
+                        </div>
+                        <div>
+                            <dt>Бинарный поиск</dt>
+                            <dd>Деление отсортированного массива пополам.</dd>
+                        </div>
+                        <div>
+                            <dt>Сортировка</dt>
+                            <dd>Упорядочивание элементов по правилу.</dd>
+                        </div>
+                        <div>
+                            <dt>Сложность</dt>
+                            <dd>Оценка роста числа операций с размером данных.</dd>
+                        </div>
+                        <div>
+                            <dt>O(log n)</dt>
+                            <dd>Логарифмический рост: удвоение данных добавляет один шаг.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="13">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Алгоритм</span>
+                            <span class="card__back">Конечная последовательность однозначных шагов.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Линейный поиск</span>
+                            <span class="card__back">Последовательная проверка элементов.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Бинарный поиск</span>
+                            <span class="card__back">Деление отсортированного массива пополам.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Сортировка</span>
+                            <span class="card__back">Упорядочивание элементов по правилу.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Сложность</span>
+                            <span class="card__back">Оценка роста числа операций с размером данных.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">O(log n)</span>
+                            <span class="card__back">Логарифмический рост: удвоение данных добавляет один шаг.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="13">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что отличает алгоритм от программы?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Алгоритм — это способ решения, программа — его запись</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Ничего</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Программа не требует шагов</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Алгоритм работает только с числами</button>
+                        </div>
+                        <p class="quiz__why" hidden>Алгоритм описывает последовательность действий, программа — конкретная реализация на языке.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Когда работает бинарный поиск?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">В отсортированном массиве</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">В любом массиве</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Только в строках</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Только в файлах</button>
+                        </div>
+                        <p class="quiz__why" hidden>Он отбрасывает половину, опираясь на порядок элементов.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Что означает O(n)?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Время растёт линейно с размером данных</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Время не зависит от данных</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Время растёт квадратично</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Память не используется</button>
+                        </div>
+                        <p class="quiz__why" hidden>Удвоение данных удваивает число операций.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Оцените, сколько шагов сделает бинарный поиск в массиве из 1024 элементов.</li>
+                        <li>Объясните, почему бинарный поиск нельзя применить к неотсортированному массиву.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-12.html">
+                        <span>предыдущее занятие</span>
+                        ← Основы программирования
+                    </a>
+                    <a class="pager__next" href="urok-14.html">
+                        <span>следующее занятие</span>
+                        Структуры данных →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 13 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

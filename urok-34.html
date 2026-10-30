@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 34. Машинное обучение и искусственный интеллект — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Машинное обучение и ИИ»: признаки и классификация, деревья решений, граница разделения, метод опорных векторов, нейросети и глубокое обучение, переобучение.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 34
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">34</span>
+                <h1>Программы, которые учатся на данных</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 13:12</li>
+                    <li>Crash Course Computer Science #34</li>
+                    <li>искусственный интеллект</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239059&hd=2"
+                                title="Видео занятия 34 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 13:12 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Обычная программа следует правилам, которые написал человек. Обученная модель сама находит закономерности в примерах — и это работает там, где правила сформулировать трудно: узнать лицо, отличить спам, поставить диагноз по снимку.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 200" role="img" aria-label="Точки двух классов и линия, разделяющая их">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.2">
+    <path d="M50 30 V170 H600"/>
+    <path d="M120 160 L520 50" stroke-width="1.6"/>
+  </g>
+  <g fill="currentColor">
+    <circle cx="150" cy="130" r="4"/><circle cx="190" cy="145" r="4"/><circle cx="230" cy="120" r="4"/>
+    <circle cx="270" cy="138" r="4"/><circle cx="310" cy="112" r="4"/>
+  </g>
+  <g fill="currentColor" opacity="0.55">
+    <circle cx="330" cy="70" r="4"/><circle cx="380" cy="60" r="4"/><circle cx="430" cy="75" r="4"/>
+    <circle cx="470" cy="55" r="4"/><circle cx="510" cy="65" r="4"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="60" y="26">признак 2</text>
+    <text x="540" y="190">признак 1</text>
+    <text x="410" y="110">граница</text>
+  </g>
+</svg>
+                    <figcaption>Схема: граница разделения классов</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Чем обучение на примерах отличается от обычного программирования.</li>
+                        <li>Что такое признак и почему от него зависит результат.</li>
+                        <li>Как дерево решений разбивает задачу на простые проверки.</li>
+                        <li>Что показывает граница разделения классов.</li>
+                        <li>Почему модель может отлично работать на примерах и плохо — в жизни.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Признаки и классификация</h3>
+                    <p>Модель не видит объект целиком: она получает набор <strong>признаков</strong> — чисел, описывающих важные свойства. Для письма это длина, частота слов, наличие ссылок; для снимка — значения пикселей или выделенные контуры.</p>
+                    <p>Классификация — самая частая задача: отнести объект к одной из категорий. Обучение состоит в подборе параметров, при которых модель даёт правильные ответы на известных примерах.</p>
+                    <h3>Деревья и границы</h3>
+                    <p>Дерево решений задаёт цепочку вопросов «признак больше порога?». Каждый вопрос делит данные на части, и в листьях остаётся ответ. Дерево понятно человеку, но легко переусложняется.</p>
+                    <p>Геометрически классификатор проводит <strong>границу</strong>, разделяющую классы. Метод опорных векторов ищет границу с максимальным запасом до ближайших точек обоих классов: считается, что так модель устойчивее к новым данным.</p>
+                    <h3>Нейросети и глубокое обучение</h3>
+                    <p>Нейронная сеть — слои простых элементов, каждый из которых взвешивает входы и передаёт результат дальше. Обучение меняет веса так, чтобы ошибка на примерах уменьшалась.</p>
+                    <p>Глубокие сети отличаются числом слоёв: нижние выучивают простые признаки, верхние — их сочетания. Для изображений это контуры, затем детали, затем объекты. Отсюда успехи в распознавании, но и огромные требования к данным и вычислениям.</p>
+                    <h3>Переобучение и доверие</h3>
+                    <p>Если модель слишком долго подгонять под обучающую выборку, она запоминает её особенности вместе с шумом. На новых данных качество падает — это <strong>переобучение</strong>. Поэтому часть данных откладывают для проверки и используют перекрёстную проверку.</p>
+                    <p>Второй риск — качество данных. Смещённая или неполная выборка даёт модель, которая уверенно ошибается на людях, не похожих на примеры. Поэтому результат модели проверяют, объясняют и не применяют там, где ошибка недопустима, без человека в контуре.</p>
+                    <h3>Данные решают не меньше, чем алгоритм</h3>
+                    <p>Две модели с одинаковой архитектурой дадут разный результат, если учить их на разных данных. Смещённая выборка порождает модель, которая уверенно ошибается на людях, не похожих на примеры, — и это самая частая причина провала внедрения.</p>
+                    <p>Поэтому перед обучением отвечают на вопросы: кого представляют данные, чего в них нет, как часто они обновляются и что произойдёт при ошибке. Отдельная проверочная выборка нужна, чтобы не обманывать себя качеством.</p>
+                    <h3>Три выборки</h3>
+                    <p>Данные делят на обучающую, проверочную и отложенную выборки. На первой подбирают параметры, на второй выбирают модель и настройки, на третьей — единственный раз — оценивают итог.</p>
+                    <p>Если отложенную выборку использовать при настройке, оценка перестаёт быть честной: модель косвенно под неё подстроится, и в реальности качество окажется ниже.</p>
+                    <h3>Где модели ошибаются</h3>
+                    <p>Три частые причины: смещение данных (в выборке нет нужных людей или случаев), дрейф (мир изменился, а модель осталась прежней) и утечка (в признаки попало то, что в реальности неизвестно на момент прогноза).</p>
+                    <p>Поэтому внедрение модели — это не только обучение, но и мониторинг: как меняется качество, на каких примерах оно падает и кто проверяет спорные ответы.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Машинное обучение</dt>
+                            <dd>Подход, при котором параметры модели подбираются по примерам, а не задаются вручную.</dd>
+                        </div>
+                        <div>
+                            <dt>Признак</dt>
+                            <dd>Числовое описание свойства объекта, которое видит модель.</dd>
+                        </div>
+                        <div>
+                            <dt>Классификация</dt>
+                            <dd>Отнесение объекта к одной из заранее заданных категорий.</dd>
+                        </div>
+                        <div>
+                            <dt>Дерево решений</dt>
+                            <dd>Модель в виде последовательности проверок признаков.</dd>
+                        </div>
+                        <div>
+                            <dt>Граница разделения</dt>
+                            <dd>Поверхность, отделяющая один класс от другого.</dd>
+                        </div>
+                        <div>
+                            <dt>Нейронная сеть</dt>
+                            <dd>Модель из слоёв взвешенных сумматоров с нелинейностью.</dd>
+                        </div>
+                        <div>
+                            <dt>Переобучение</dt>
+                            <dd>Запоминание обучающих примеров вместо общей закономерности.</dd>
+                        </div>
+                        <div>
+                            <dt>Обучающая и проверочная выборка</dt>
+                            <dd>Данные для подбора параметров и для честной проверки качества.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="34">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Машинное обучение</span>
+                            <span class="card__back">Подход, при котором параметры модели подбираются по примерам, а не задаются вручную.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Признак</span>
+                            <span class="card__back">Числовое описание свойства объекта, которое видит модель.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Классификация</span>
+                            <span class="card__back">Отнесение объекта к одной из заранее заданных категорий.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Дерево решений</span>
+                            <span class="card__back">Модель в виде последовательности проверок признаков.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Граница разделения</span>
+                            <span class="card__back">Поверхность, отделяющая один класс от другого.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Нейронная сеть</span>
+                            <span class="card__back">Модель из слоёв взвешенных сумматоров с нелинейностью.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Переобучение</span>
+                            <span class="card__back">Запоминание обучающих примеров вместо общей закономерности.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Обучающая и проверочная выборка</span>
+                            <span class="card__back">Данные для подбора параметров и для честной проверки качества.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="34">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что такое признак в машинном обучении?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Число, описывающее свойство объекта</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Название модели</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Ошибка обучения</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Тип процессора</button>
+                        </div>
+                        <p class="quiz__why" hidden>Модель не видит объект целиком: она получает набор числовых признаков, по которым ищет закономерность.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что такое переобучение?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Модель запомнила примеры вместо закономерности</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Модель слишком простая</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Данных слишком много</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Обучение шло слишком быстро</button>
+                        </div>
+                        <p class="quiz__why" hidden>Переобученная модель отлично отвечает на обучающих примерах и хуже — на новых. Это видно по разрыву качества между выборками.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Зачем нужна проверочная выборка?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Чтобы честно оценить модель на новых данных</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Чтобы ускорить обучение</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Чтобы уменьшить файл</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Чтобы выбрать язык программирования</button>
+                        </div>
+                        <p class="quiz__why" hidden>На обучающих данных модель уже настроена. Проверочные данные показывают, как она поведёт себя на незнакомых примерах.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Что означает граница разделения классов?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Поверхность, отделяющую один класс от другого</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Предел размера файла</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Конец обучающей выборки</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Правило кодирования</button>
+                        </div>
+                        <p class="quiz__why" hidden>Классификатор проводит границу в пространстве признаков. Метод опорных векторов ищет границу с максимальным запасом до точек.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Придумайте пять признаков для задачи «отличить спам от обычного письма» и объясните каждый.</li>
+                        <li>Нарисуйте простое дерево решений для выбора транспорта по расстоянию и погоде.</li>
+                        <li>Объясните на примере, почему модель, обученная только на фотографиях днём, будет ошибаться ночью.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-32.html">
+                        <span>предыдущее занятие</span>
+                        ← Хакеры
+                    </a>
+                    <a class="pager__next" href="urok-39.html">
+                        <span>следующее занятие</span>
+                        Технологии в образовании →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 34 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

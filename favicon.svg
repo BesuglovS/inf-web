@@ -1,4 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#2c6fbb"/>
-  <text x="50" y="68" font-family="Arial, sans-serif" font-size="50" font-weight="bold" fill="white" text-anchor="middle">ИНФ</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Вычисления">
+    <rect width="32" height="32" fill="#16191c"/>
+    <g fill="#f1f2ee">
+        <rect x="7" y="7" width="4" height="4"/>
+        <rect x="14" y="7" width="4" height="4"/>
+        <rect x="7" y="14" width="4" height="4"/>
+        <rect x="21" y="14" width="4" height="4"/>
+        <rect x="14" y="21" width="4" height="4"/>
+        <rect x="21" y="21" width="4" height="4"/>
+    </g>
+    <rect x="21" y="7" width="4" height="4" fill="#c03a25"/>
 </svg>

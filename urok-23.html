@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 23. Экраны и двухмерная графика — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Экраны и 2D-графика»: электронно-лучевая трубка, пиксели и растр, векторная графика, видеопамять, цвет и прозрачность, шрифты и спрайты.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 23
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">23</span>
+                <h1>Как изображение попадает на экран</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 9:42</li>
+                    <li>Crash Course Computer Science #23</li>
+                    <li>компьютерная графика</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239048&hd=2"
+                                title="Видео занятия 23 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 9:42 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Экран — это сетка точек, каждая из которых светится с заданной яркостью. Всё остальное, линии, шрифты, окна и кнопки, — способ решить, какие точки и каким цветом зажечь.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 190" role="img" aria-label="Слева пиксельная сетка, справа гладкая кривая">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.1">
+    <rect x="40" y="40" width="240" height="110"/>
+    <path d="M80 40 V150 M120 40 V150 M160 40 V150 M200 40 V150 M240 40 V150"/>
+    <path d="M40 77 H280 M40 113 H280"/>
+  </g>
+  <g fill="currentColor">
+    <rect x="120" y="77" width="40" height="36"/><rect x="160" y="77" width="40" height="36"/>
+    <rect x="160" y="40" width="40" height="37"/><rect x="200" y="113" width="40" height="37"/>
+  </g>
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M400 140 C 450 40, 520 40, 580 130"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="40" y="176">растр: значения в клетках</text>
+    <text x="400" y="176">вектор: формула кривой</text>
+  </g>
+</svg>
+                    <figcaption>Схема: растр и вектор</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Как электронный луч рисует изображение в кинескопе.</li>
+                        <li>Чем растровая графика отличается от векторной.</li>
+                        <li>Зачем нужна видеопамять и что в ней хранится.</li>
+                        <li>Как из трёх цветов получается весь диапазон оттенков.</li>
+                        <li>Почему текст на экране — тоже графика.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Кинескоп и растр</h3>
+                    <p>В электронно-лучевой трубке пучок электронов попадает на люминофор и заставляет его светиться. Луч проходит строку за строкой сверху вниз, и глаз, за счёт инерции свечения, видит цельное изображение.</p>
+                    <p>Так родился <strong>растр</strong>: картинка как прямоугольная сетка точек. Современные матрицы устроены иначе, но принцип остался — изображение задаётся значениями в узлах сетки.</p>
+                    <h3>Пиксели, разрешение, видеопамять</h3>
+                    <p>Каждый элемент сетки — <strong>пиксель</strong>. Чем больше пикселей, тем мельче детали, но и тем больше данных нужно хранить и передавать. Разрешение — это размер сетки, а не физический размер экрана.</p>
+                    <p>Готовое изображение держат в <strong>видеопамяти</strong>: видеоконтроллер читает её и выводит строки на экран. Отсюда требование к скорости памяти: кадры меняются десятки раз в секунду.</p>
+                    <h3>Цвет и прозрачность</h3>
+                    <p>Цвет на экране складывается из красного, зелёного и синего: смешивая их с разной яркостью, получают остальные оттенки. Глубина цвета показывает, сколько бит отведено на пиксель: 8 бит — 256 оттенков, 24 бита — миллионы.</p>
+                    <p><strong>Альфа-канал</strong> добавляет прозрачность, и становится возможным накладывать изображения друг на друга: значение альфы говорит, какая доля нижнего слоя просвечивает.</p>
+                    <h3>Векторная графика и шрифты</h3>
+                    <p>Векторное изображение хранит не точки, а геометрию: линии, кривые, заливки. Его можно увеличивать без потери качества, но сложные сцены считать дороже. Растровое, наоборот, точно передаёт фотографию, но при увеличении распадается на квадраты.</p>
+                    <p>Шрифт на экране — тоже графика: символ описывают контурами и растеризуют под нужный размер. Сглаживание смягчает края, подмешивая промежуточные оттенки, — иначе мелкий текст выглядел бы рваным.</p>
+                    <h3>Почему текст на экране — тоже графика</h3>
+                    <p>Символ шрифта описывают контурами, а затем растеризуют под конкретный размер экрана. На маленьком кегле контуры приходится подсказывать — выравнивать по пиксельной сетке, иначе штрихи получаются разной толщины.</p>
+                    <p>Отсюда два разных подхода: сглаживание подмешивает промежуточные оттенки и делает край мягким, а хинтинг старается попасть штрихами точно в пиксели, чтобы текст оставался резким.</p>
+                    <h3>Кадровый буфер и частота</h3>
+                    <p>Изображение собирается в буфере, а контроллер выводит его построчно с частотой обновления. Если картинка не успевает подготовиться к следующему кадру, возникает рывок.</p>
+                    <p>Отсюда две разные величины: частота обновления экрана и частота кадров приложения. Согласование этих частот (адаптивная синхронизация) убирает разрывы изображения.</p>
+                    <h3>Цветовые модели</h3>
+                    <p>Экран складывает свет: красный, зелёный и синий в разных пропорциях дают остальные оттенки. Печать наоборот вычитает свет из белой бумаги, поэтому там используется модель CMY с добавлением чёрного.</p>
+                    <p>Из-за этого один и тот же макет на экране и на бумаге выглядит по-разному, а гамма-коррекция нужна, чтобы яркости воспринимались равномерно.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Пиксель</dt>
+                            <dd>Наименьший элемент растрового изображения.</dd>
+                        </div>
+                        <div>
+                            <dt>Растр</dt>
+                            <dd>Представление изображения прямоугольной сеткой точек.</dd>
+                        </div>
+                        <div>
+                            <dt>Разрешение</dt>
+                            <dd>Количество пикселей по горизонтали и вертикали.</dd>
+                        </div>
+                        <div>
+                            <dt>Видеопамять</dt>
+                            <dd>Область памяти, из которой контроллер читает кадр для вывода.</dd>
+                        </div>
+                        <div>
+                            <dt>Глубина цвета</dt>
+                            <dd>Число бит, отведённых на цвет одного пикселя.</dd>
+                        </div>
+                        <div>
+                            <dt>Альфа-канал</dt>
+                            <dd>Значение прозрачности пикселя при наложении.</dd>
+                        </div>
+                        <div>
+                            <dt>Векторная графика</dt>
+                            <dd>Изображение, заданное геометрическими примитивами, а не точками.</dd>
+                        </div>
+                        <div>
+                            <dt>Сглаживание</dt>
+                            <dd>Смягчение ступенчатых краёв за счёт промежуточных оттенков.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="23">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Пиксель</span>
+                            <span class="card__back">Наименьший элемент растрового изображения.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Растр</span>
+                            <span class="card__back">Представление изображения прямоугольной сеткой точек.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Разрешение</span>
+                            <span class="card__back">Количество пикселей по горизонтали и вертикали.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Видеопамять</span>
+                            <span class="card__back">Область памяти, из которой контроллер читает кадр для вывода.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Глубина цвета</span>
+                            <span class="card__back">Число бит, отведённых на цвет одного пикселя.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Альфа-канал</span>
+                            <span class="card__back">Значение прозрачности пикселя при наложении.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Векторная графика</span>
+                            <span class="card__back">Изображение, заданное геометрическими примитивами, а не точками.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Сглаживание</span>
+                            <span class="card__back">Смягчение ступенчатых краёв за счёт промежуточных оттенков.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="23">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Чем векторное изображение отличается от растрового?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Оно хранит геометрию, а не точки</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Оно всегда чёрно-белое</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Оно не может масштабироваться</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Оно занимает больше места</button>
+                        </div>
+                        <p class="quiz__why" hidden>Векторное изображение задано линиями и кривыми, поэтому увеличивается без потери качества.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что такое разрешение экрана?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Физический размер в сантиметрах</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Количество пикселей в кадре</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Яркость подсветки</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Частота обновления</button>
+                        </div>
+                        <p class="quiz__why" hidden>Разрешение — это размер сетки пикселей, например 1920×1080. Оно не равно физическому размеру экрана.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Зачем нужен альфа-канал?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Для прозрачности при наложении</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Для увеличения яркости</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Для сжатия</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Для звука</button>
+                        </div>
+                        <p class="quiz__why" hidden>Альфа задаёт долю прозрачности пикселя: при выводе цвет смешивается с тем, что нарисовано под ним.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Почему при увеличении растровой картинки видны квадраты?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Пиксели имеют фиксированные значения</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Файл повреждён</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Не хватает оперативной памяти</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Сжатие с потерями включено</button>
+                        </div>
+                        <p class="quiz__why" hidden>Масштабирование повторяет исходные пиксели: границы становятся ступенчатыми, детали не появляются.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Посчитайте, сколько данных занимает кадр 1920×1080 при 24 битах на пиксель, — и сравните с 8-битным.</li>
+                        <li>Объясните, почему значок, нарисованный в векторном редакторе, останется чётким на любом экране.</li>
+                        <li>Придумайте, как будет выглядеть текст без сглаживания на экране с низкой плотностью пикселей.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-21.html">
+                        <span>предыдущее занятие</span>
+                        ← Сжатие информации
+                    </a>
+                    <a class="pager__next" href="urok-32.html">
+                        <span>следующее занятие</span>
+                        Хакеры →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 23 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

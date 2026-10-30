@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 29. Интернет — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Интернет»: IP и маршрутизация, DNS, провайдеры и обмен трафиком, как работает доставка пакета через полмира.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 29
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">29</span>
+                <h1>Сеть сетей</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 11:09</li>
+                    <li>Crash Course Computer Science #29</li>
+                    <li>интернет</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239054&amp;hd=2"
+                                title="Видео занятия 29 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 11:09 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Интернет — не одна сеть, а договорённость множества сетей обмениваться пакетами по общим правилам. Отсюда и название: сеть сетей.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Как пакет идёт по сети">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="20.0" y="60" width="120.0" height="56"/><text x="80.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">узел</text>
+    <path d="M146.0 88 H168.0"/><path d="M168.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="180.0" y="60" width="120.0" height="56"/><text x="240.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">провайдер</text>
+    <path d="M306.0 88 H328.0"/><path d="M328.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="340.0" y="60" width="120.0" height="56"/><text x="400.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">обмен</text>
+    <path d="M466.0 88 H488.0"/><path d="M488.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="500.0" y="60" width="120.0" height="56"/><text x="560.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">сервер</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="20" y="150">на каждом шаге — своя таблица маршрутов</text>
+  </g>
+</svg>
+                    <figcaption>Схема: путь пакета</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Как пакет находит путь через множество сетей.</li>
+                        <li>Зачем нужна система доменных имён.</li>
+                        <li>Кто такие провайдеры и точки обмена трафиком.</li>
+                        <li>Почему интернет устойчив к отказам.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>IP и маршрутизация</h3>
+                    <p>Каждый узел имеет IP-адрес, а сети соединяются маршрутизаторами. Пакет идёт от одного маршрутизатора к другому, и каждый выбирает следующий шаг по своей таблице.</p>
+                    <p>Никто не знает весь маршрут заранее: путь складывается из локальных решений и может меняться.</p>
+                    <h3>DNS</h3>
+                    <p>Людям удобны имена, машинам — адреса. DNS переводит имя в адрес: браузер спрашивает резолвер, тот идёт по цепочке серверов, пока не найдёт ответ.</p>
+                    <p>Ответы кэшируются, поэтому повторный запрос обычно быстрее — и поэтому смена адреса сайта иногда «долетает» не сразу.</p>
+                    <h3>Провайдеры и обмен</h3>
+                    <p>Домашняя сеть подключается к провайдеру, провайдеры соединяются между собой в точках обмена. Чем крупнее сеть, тем больше у неё прямых соединений.</p>
+                    <p>Отсюда разница в скорости до разных сайтов: дело не только в вашем канале, но и в маршруте и загрузке промежуточных сетей.</p>
+                    <h3>Почему интернет не падает целиком</h3>
+                    <p>У сети нет единого центра: маршрутизаторы договариваются между собой, а обходные пути находятся автоматически.</p>
+                    <p>Уязвимые места всё же есть — крупные провайдеры и точки обмена, через которые проходит значительная доля трафика.</p>
+                    <h3>Адреса кончаются</h3>
+                    <p>Число адресов IPv4 ограничено, поэтому появились NAT и переход на IPv6. Это редкий случай, когда запас «номеров» исчерпался на глобальном уровне.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>IP</dt>
+                            <dd>Протокол адресации и доставки пакетов между сетями.</dd>
+                        </div>
+                        <div>
+                            <dt>Маршрутизация</dt>
+                            <dd>Выбор следующего шага для пакета.</dd>
+                        </div>
+                        <div>
+                            <dt>DNS</dt>
+                            <dd>Система, переводящая имена в адреса.</dd>
+                        </div>
+                        <div>
+                            <dt>Провайдер</dt>
+                            <dd>Организация, подключающая сети к интернету.</dd>
+                        </div>
+                        <div>
+                            <dt>Точка обмена</dt>
+                            <dd>Место соединения сетей разных операторов.</dd>
+                        </div>
+                        <div>
+                            <dt>Кэш DNS</dt>
+                            <dd>Сохранённый ответ на запрос имени.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="29">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">IP</span>
+                            <span class="card__back">Протокол адресации и доставки пакетов между сетями.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Маршрутизация</span>
+                            <span class="card__back">Выбор следующего шага для пакета.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">DNS</span>
+                            <span class="card__back">Система, переводящая имена в адреса.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Провайдер</span>
+                            <span class="card__back">Организация, подключающая сети к интернету.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Точка обмена</span>
+                            <span class="card__back">Место соединения сетей разных операторов.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Кэш DNS</span>
+                            <span class="card__back">Сохранённый ответ на запрос имени.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="29">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что делает DNS?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Переводит имя в IP-адрес</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Шифрует трафик</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Сжимает видео</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Соединяет провода</button>
+                        </div>
+                        <p class="quiz__why" hidden>Браузер получает адрес по имени, а дальше работает IP.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Кто выбирает путь пакета?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Каждый маршрутизатор по своей таблице</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Браузер</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Провайдер целиком</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Сайт назначения</button>
+                        </div>
+                        <p class="quiz__why" hidden>Путь складывается из локальных решений на каждом шаге.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Почему скорость до разных сайтов отличается?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Разные маршруты и загрузка сетей</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Разный размер экрана</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Разная клавиатура</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Разный браузер</button>
+                        </div>
+                        <p class="quiz__why" hidden>Канал до вас — только часть пути; остальное зависит от промежуточных сетей.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Опишите, что происходит по шагам от ввода адреса сайта до загрузки страницы.</li>
+                        <li>Объясните, почему смена DNS может занять время.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-28.html">
+                        <span>предыдущее занятие</span>
+                        ← Компьютерные сети
+                    </a>
+                    <a class="pager__next" href="urok-30.html">
+                        <span>следующее занятие</span>
+                        Всемирная паутина →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 29 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

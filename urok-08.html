@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 08. Команды и программы — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Команды и программы»: формат команды, опкод и операнды, работа с регистрами и памятью, условные переходы и пример простой программы.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 08
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">08</span>
+                <h1>Из чего состоит программа</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 10:34</li>
+                    <li>Crash Course Computer Science #08</li>
+                    <li>система команд</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239030&amp;hd=2"
+                                title="Видео занятия 08 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 10:34 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Программа — это последовательность чисел, которые процессор умеет читать как команды. Всё богатство поведения получается из небольшого набора операций и умения менять порядок.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Разбиение команды на поля">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="90" y="30" width="420" height="28"/><text x="300" y="49" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">опкод</text>
+    <rect x="90" y="64" width="420" height="28"/><text x="300" y="83" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">операнд 1</text>
+    <rect x="90" y="98" width="420" height="28"/><text x="300" y="117" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">операнд 2</text>
+    <rect x="90" y="132" width="420" height="28"/><text x="300" y="151" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">адрес</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="90" y="170">чем шире поле опкода, тем больше операций</text>
+  </g>
+</svg>
+                    <figcaption>Схема: поля команды</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Как устроена одна команда: опкод и операнды.</li>
+                        <li>Чем команды с регистрами отличаются от команд с памятью.</li>
+                        <li>Как записывается простая программа из нескольких команд.</li>
+                        <li>Почему без переходов программа остаётся линейной.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Формат команды</h3>
+                    <p>Команда — число, разбитое на поля: код операции и один-два операнда. Поле операнда может означать номер регистра или адрес в памяти.</p>
+                    <p>Разрядность полей ограничивает возможности: чем больше бит отдано опкоду, тем больше разных операций, но меньше места остаётся на адреса.</p>
+                    <h3>Регистры и память</h3>
+                    <p>Команды с регистрами работают быстро, но самих регистров мало. Команды с памятью позволяют обращаться к большим массивам данных, но каждое обращение медленнее.</p>
+                    <p>Поэтому типичная программа держит счётчики и промежуточные результаты в регистрах, а большие данные — в памяти.</p>
+                    <h3>Программа как последовательность</h3>
+                    <p>Простейшая программа — цепочка операций: загрузить значение, прибавить, сохранить, вывести. Порядок задан адресами, и процессор просто идёт по ним.</p>
+                    <p>Добавьте условный переход — и появятся циклы и ветвления; программа перестаёт быть линейной и начинает «выбирать» поведение.</p>
+                    <h3>Как программа попадает в память</h3>
+                    <p>Загрузчик читает исполняемый файл, раскладывает его части по адресам и передаёт управление точке входа. С этого момента процессор видит только команды и данные.</p>
+                    <p>Отсюда и берётся требование к формату исполняемого файла: в нём должны быть описаны, что куда грузить и откуда начинать.</p>
+                    <h3>Ассемблер как читаемая запись</h3>
+                    <p>Числовые команды неудобно писать вручную, поэтому их записывают мнемониками — так появляется ассемблер, где одна строка соответствует одной машинной команде.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Система команд</dt>
+                            <dd>Набор операций, которые понимает процессор.</dd>
+                        </div>
+                        <div>
+                            <dt>Опкод</dt>
+                            <dd>Поле команды с кодом операции.</dd>
+                        </div>
+                        <div>
+                            <dt>Операнд</dt>
+                            <dd>Значение или ссылка на него.</dd>
+                        </div>
+                        <div>
+                            <dt>Регистровая команда</dt>
+                            <dd>Операция над значениями в регистрах.</dd>
+                        </div>
+                        <div>
+                            <dt>Команда с памятью</dt>
+                            <dd>Операция, читающая или пишущая ячейку памяти.</dd>
+                        </div>
+                        <div>
+                            <dt>Точка входа</dt>
+                            <dd>Адрес, с которого начинается выполнение программы.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="08">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Система команд</span>
+                            <span class="card__back">Набор операций, которые понимает процессор.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Опкод</span>
+                            <span class="card__back">Поле команды с кодом операции.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Операнд</span>
+                            <span class="card__back">Значение или ссылка на него.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Регистровая команда</span>
+                            <span class="card__back">Операция над значениями в регистрах.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Команда с памятью</span>
+                            <span class="card__back">Операция, читающая или пишущая ячейку памяти.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Точка входа</span>
+                            <span class="card__back">Адрес, с которого начинается выполнение программы.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="08">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что содержит команда?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Код операции и операнды</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Только текст</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Имя файла</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Адрес сайта</button>
+                        </div>
+                        <p class="quiz__why" hidden>Команда разбита на поля: опкод говорит что делать, операнды — с чем.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Почему команды с памятью медленнее регистровых?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Обращение к памяти дольше</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Они короче</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Их нельзя выполнить</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Они работают только с текстом</button>
+                        </div>
+                        <p class="quiz__why" hidden>Регистр доступен за такт, а к памяти нужно обратиться по адресу, что занимает больше времени.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Что даёт условный переход?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Циклы и ветвления</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Сжатие данных</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Защиту паролей</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Ускорение диска</button>
+                        </div>
+                        <p class="quiz__why" hidden>Меняя адрес следующей команды, переход позволяет повторять участок или выбрать другую ветку.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Запишите в псевдокомандах программу «сложить два числа из памяти и сохранить результат».</li>
+                        <li>Объясните, почему одна и та же задача решается разным числом команд на разных процессорах.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-07.html">
+                        <span>предыдущее занятие</span>
+                        ← Центральный процессор
+                    </a>
+                    <a class="pager__next" href="urok-09.html">
+                        <span>следующее занятие</span>
+                        Продвинутые схемы процессоров →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 08 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

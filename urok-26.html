@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 26. Графические интерфейсы — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Графические интерфейсы»: окна и значки, мышь и указатель, событийная модель, стандартные элементы и доступность.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 26
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">26</span>
+                <h1>Окна, мышь и события</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 13:51</li>
+                    <li>Crash Course Computer Science #26</li>
+                    <li>интерфейсы</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239051&amp;hd=2"
+                                title="Видео занятия 26 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 13:51 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Графический интерфейс заменил команды на объекты: файл — значок, действие — кнопка. Пользователю больше не нужно помнить синтаксис, достаточно узнать элемент.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Как работает интерфейс">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="20.0" y="60" width="120.0" height="56"/><text x="80.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">ожидание</text>
+    <path d="M146.0 88 H168.0"/><path d="M168.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="180.0" y="60" width="120.0" height="56"/><text x="240.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">событие</text>
+    <path d="M306.0 88 H328.0"/><path d="M328.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="340.0" y="60" width="120.0" height="56"/><text x="400.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">обработчик</text>
+    <path d="M466.0 88 H488.0"/><path d="M488.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="500.0" y="60" width="120.0" height="56"/><text x="560.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">перерисовка</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="20" y="150">долгий обработчик блокирует окно</text>
+  </g>
+</svg>
+                    <figcaption>Схема: цикл обработки событий</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Что изменилось с появлением окон и мыши.</li>
+                        <li>Как программа реагирует на события.</li>
+                        <li>Почему стандартные элементы экономят время.</li>
+                        <li>Что делает интерфейс доступным.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Объекты вместо команд</h3>
+                    <p>В командной строке вы пишете, что сделать. В графическом интерфейсе вы видите объект и действуете с ним: перетаскиваете, открываете, удаляете.</p>
+                    <p>Это снижает порог входа, но требует, чтобы объекты были наглядны: значок файла должен выглядеть как файл.</p>
+                    <h3>События</h3>
+                    <p>Программа не выполняется линейно: она ждёт событий — щелчка, нажатия, таймера — и реагирует на них обработчиками.</p>
+                    <p>Отсюда требование к отзывчивости: обработчик не должен занимать интерфейс надолго, иначе окно «зависает».</p>
+                    <h3>Стандарты и доступность</h3>
+                    <p>Кнопки, меню, поля ввода выглядят одинаково в разных программах — так пользователь переносит навык. Нестандартные элементы заставляют учиться заново.</p>
+                    <p>Доступность — не отдельная функция: контраст, размер целей, работа с клавиатуры и подписи для экранных дикторов закладываются в элементы.</p>
+                    <h3>Почему интерфейс влияет на ошибки</h3>
+                    <p>Большая часть ошибок пользователя — не его вина, а следствие неоднозначного интерфейса: опасная кнопка рядом с обычной, необратимое действие без подтверждения.</p>
+                    <p>Хороший интерфейс делает правильное действие простым, а опасное — явным.</p>
+                    <h3>Клавиатура не роскошь</h3>
+                    <p>Интерфейс, работающий только мышью, отсекает часть пользователей. Поддержка клавиатуры и видимый фокус — базовая гигиена, а не дополнительная функция.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Графический интерфейс</dt>
+                            <dd>Управление через объекты на экране.</dd>
+                        </div>
+                        <div>
+                            <dt>Событие</dt>
+                            <dd>Действие пользователя или системы, на которое реагирует программа.</dd>
+                        </div>
+                        <div>
+                            <dt>Обработчик</dt>
+                            <dd>Код, выполняемый при событии.</dd>
+                        </div>
+                        <div>
+                            <dt>Виджет</dt>
+                            <dd>Стандартный элемент интерфейса: кнопка, поле, список.</dd>
+                        </div>
+                        <div>
+                            <dt>Фокус</dt>
+                            <dd>Элемент, который сейчас принимает ввод с клавиатуры.</dd>
+                        </div>
+                        <div>
+                            <dt>Доступность</dt>
+                            <dd>Возможность пользоваться интерфейсом разными способами.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="26">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Графический интерфейс</span>
+                            <span class="card__back">Управление через объекты на экране.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Событие</span>
+                            <span class="card__back">Действие пользователя или системы, на которое реагирует программа.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Обработчик</span>
+                            <span class="card__back">Код, выполняемый при событии.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Виджет</span>
+                            <span class="card__back">Стандартный элемент интерфейса: кнопка, поле, список.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Фокус</span>
+                            <span class="card__back">Элемент, который сейчас принимает ввод с клавиатуры.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Доступность</span>
+                            <span class="card__back">Возможность пользоваться интерфейсом разными способами.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="26">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Чем графический интерфейс отличается от командной строки?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Работает с объектами на экране</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Не требует компьютера</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Использует только текст</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Не поддерживает мышь</button>
+                        </div>
+                        <p class="quiz__why" hidden>Пользователь действует с видимыми объектами, а не пишет команды.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что такое событие?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Действие, на которое реагирует программа</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Файл настроек</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Тип шрифта</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Ошибка памяти</button>
+                        </div>
+                        <p class="quiz__why" hidden>Щелчок, нажатие клавиши и таймер — всё это события.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Зачем нужны стандартные элементы?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Пользователь переносит навык между программами</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Чтобы уменьшить экран</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Чтобы ускорить процессор</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Чтобы снизить цену</button>
+                        </div>
+                        <p class="quiz__why" hidden>Одинаковые кнопки и меню не приходится изучать заново.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Назовите три события, на которые реагирует текстовое поле.</li>
+                        <li>Объясните, почему обработчик не должен выполняться долго.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-25.html">
+                        <span>предыдущее занятие</span>
+                        ← Холодная война и потребительская электроника
+                    </a>
+                    <a class="pager__next" href="urok-27.html">
+                        <span>следующее занятие</span>
+                        Трёхмерная графика →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 26 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

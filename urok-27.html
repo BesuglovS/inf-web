@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 27. Трёхмерная графика — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «3D-графика»: полигоны и сетки, координатные преобразования, проекция, z-буфер, освещение и текстуры.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 27
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">27</span>
+                <h1>Как плоский экран показывает объём</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 13:15</li>
+                    <li>Crash Course Computer Science #27</li>
+                    <li>3D-графика</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239052&amp;hd=2"
+                                title="Видео занятия 27 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 13:15 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Трёхмерная сцена — это набор вершин в пространстве. Чтобы показать её на плоском экране, нужны преобразования, проекция и расчёт видимости.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Как строится 3D-кадр">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="20.0" y="60" width="120.0" height="56"/><text x="80.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">вершины</text>
+    <path d="M146.0 88 H168.0"/><path d="M168.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="180.0" y="60" width="120.0" height="56"/><text x="240.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">преобразования</text>
+    <path d="M306.0 88 H328.0"/><path d="M328.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="340.0" y="60" width="120.0" height="56"/><text x="400.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">растеризация</text>
+    <path d="M466.0 88 H488.0"/><path d="M488.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="500.0" y="60" width="120.0" height="56"/><text x="560.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">пиксели</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="20" y="150">z-буфер решает, что видно</text>
+  </g>
+</svg>
+                    <figcaption>Схема: путь кадра</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Из чего состоит трёхмерная модель.</li>
+                        <li>Зачем нужны матрицы преобразований.</li>
+                        <li>Как плоское изображение получает глубину.</li>
+                        <li>Почему освещение считают на видеокарте.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Вершины и полигоны</h3>
+                    <p>Модель задаётся вершинами, соединёнными в треугольники. Треугольник удобен: любая его точка однозначно вычисляется по трём вершинам.</p>
+                    <p>Чем больше треугольников, тем детальнее форма — и тем больше работы для видеокарты.</p>
+                    <h3>Преобразования и проекция</h3>
+                    <p>Объект перемещают, поворачивают и масштабируют матрицами. Затем камера проецирует сцену на плоскость: дальние объекты становятся меньше.</p>
+                    <p>Порядок преобразований важен: поворот вокруг своей оси и вокруг мировой оси — разные вещи.</p>
+                    <h3>Глубина и свет</h3>
+                    <p>Чтобы ближние объекты перекрывали дальние, хранят глубину каждого пикселя — z-буфер. Он решает, какой треугольник виден.</p>
+                    <p>Освещение считают по нормалям и источникам света, а текстуры накладывают по координатам. Всё это делает видеокарта параллельно.</p>
+                    <h3>Почему видеокарта быстрее процессора в графике</h3>
+                    <p>Обработка пикселей и треугольников распараллеливается почти идеально: тысячи независимых операций над разными точками.</p>
+                    <p>Поэтому видеокарта — это много простых исполнителей, а не несколько универсальных ядер.</p>
+                    <h3>Реальное время</h3>
+                    <p>В играх кадр нужно посчитать за 16 миллисекунд. Поэтому качество подстраивают: упрощают тени, снижают разрешение, используют предварительные расчёты.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Полигон</dt>
+                            <dd>Плоская фигура, обычно треугольник, из которых собрана модель.</dd>
+                        </div>
+                        <div>
+                            <dt>Вершина</dt>
+                            <dd>Точка в пространстве с координатами.</dd>
+                        </div>
+                        <div>
+                            <dt>Проекция</dt>
+                            <dd>Перевод трёхмерных координат в экранные.</dd>
+                        </div>
+                        <div>
+                            <dt>Z-буфер</dt>
+                            <dd>Хранение глубины для определения видимости.</dd>
+                        </div>
+                        <div>
+                            <dt>Нормаль</dt>
+                            <dd>Вектор, перпендикулярный поверхности; нужен для света.</dd>
+                        </div>
+                        <div>
+                            <dt>Текстура</dt>
+                            <dd>Изображение, накладываемое на поверхность.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="27">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Полигон</span>
+                            <span class="card__back">Плоская фигура, обычно треугольник, из которых собрана модель.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Вершина</span>
+                            <span class="card__back">Точка в пространстве с координатами.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Проекция</span>
+                            <span class="card__back">Перевод трёхмерных координат в экранные.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Z-буфер</span>
+                            <span class="card__back">Хранение глубины для определения видимости.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Нормаль</span>
+                            <span class="card__back">Вектор, перпендикулярный поверхности; нужен для света.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Текстура</span>
+                            <span class="card__back">Изображение, накладываемое на поверхность.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="27">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Из чего состоит полигональная модель?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Из вершин и треугольников</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Из пикселей экрана</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Из файлов</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Из команд</button>
+                        </div>
+                        <p class="quiz__why" hidden>Треугольники задают поверхность, а вершины — её форму.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Зачем нужен z-буфер?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Определять, какой объект ближе</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Ускорять диск</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Хранить текстуры</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Сжимать видео</button>
+                        </div>
+                        <p class="quiz__why" hidden>Он хранит глубину и решает, какой пиксель показывать.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Почему видеокарта хорошо считает графику?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Операции распараллеливаются</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">У неё больше диска</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Она работает без памяти</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Она использует только один поток</button>
+                        </div>
+                        <p class="quiz__why" hidden>Тысячи независимых вычислений выполняются одновременно.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Объясните, почему для модели используют треугольники, а не прямоугольники.</li>
+                        <li>Опишите, что произойдёт, если отключить z-буфер.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-26.html">
+                        <span>предыдущее занятие</span>
+                        ← Графические интерфейсы
+                    </a>
+                    <a class="pager__next" href="urok-28.html">
+                        <span>следующее занятие</span>
+                        Компьютерные сети →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 27 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

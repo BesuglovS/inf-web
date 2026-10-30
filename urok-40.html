@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 40. Сингулярность, Скайнет и будущее вычислений — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Будущее вычислений»: пределы закона Мура, квантовые вычисления, автоматизация, сценарии сильного ИИ и разница между научной фантастикой и инженерией.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 40
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">40</span>
+                <h1>Куда идут вычисления</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 12:43</li>
+                    <li>Crash Course Computer Science #40</li>
+                    <li>будущее технологий</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239065&hd=2"
+                                title="Видео занятия 40 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 12:43 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Сорок лет компьютеры становились быстрее по предсказуемой кривой. Эта кривая упирается в физику, а вместе с ней меняются и вопросы: не «сколько транзисторов», а «что мы вообще сможем автоматизировать и кому это будет выгодно».</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 200" role="img" aria-label="Кривая роста производительности выходит на плато">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.2">
+    <path d="M60 30 V170 H600"/>
+    <path d="M60 160 C 180 150, 240 110, 320 80 C 380 60, 400 56, 440 54 L 580 54"/>
+  </g>
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" opacity="0.5">
+    <path d="M440 54 V170"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="60" y="24">производительность</text>
+    <text x="520" y="190">время</text>
+    <text x="420" y="164">предел</text>
+  </g>
+</svg>
+                    <figcaption>Схема: рост и плато</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Почему закон Мура — наблюдение, а не закон природы.</li>
+                        <li>Какие физические пределы видны у кремниевых технологий.</li>
+                        <li>Чем квантовый компьютер отличается от обычного и для каких задач он нужен.</li>
+                        <li>Какие сценарии сильного ИИ обсуждают и чего в них не хватает.</li>
+                        <li>Почему прогнозы про «точку сингулярности» стоит читать осторожно.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Пределы закона Мура</h3>
+                    <p>Уменьшение транзистора упирается в несколько стен: тепловыделение, утечки тока, длину волны света при литографии и стоимость производства. На нескольких нанометрах элементы становятся такими малыми, что квантовые эффекты начинают мешать.</p>
+                    <p>Отсюда сдвиг индустрии: вместо роста частоты — больше ядер, специализированные ускорители и ставка на эффективность, а не на тактовую частоту.</p>
+                    <h3>Квантовые вычисления</h3>
+                    <p>Квантовый компьютер использует состояния, которые ведут себя иначе, чем биты: суперпозицию и запутанность. Для некоторых задач это даёт принципиально иной порядок сложности — например, для факторизации больших чисел.</p>
+                    <p>Но это не «компьютер, который всё делает быстрее». Он плохо подходит для обычных вычислений, требует экстремального охлаждения и крайне чувствителен к помехам. Практические применения пока узкие.</p>
+                    <h3>Автоматизация и работа</h3>
+                    <p>Технология меняет не «все профессии сразу», а отдельные задачи внутри профессий. Рутинные операции автоматизируются первыми, а вместе с ними меняются требования к людям: меньше механического труда, больше постановки задач и проверки результата.</p>
+                    <p>Исторически автоматизация не уничтожала работу целиком, но перераспределяла её и требовала переобучения. Это социальный процесс не меньше, чем технический.</p>
+                    <h3>Сценарии и реальность</h3>
+                    <p>Разговоры о «сильном ИИ» и сингулярности полезны как вопросы: что считать интеллектом, как проверять безопасность, кто отвечает за решения системы. Но конкретные даты в таких прогнозах почти всегда взяты из литературы, а не из инженерии.</p>
+                    <p>Полезная привычка: отделять проверяемые утверждения (что уже работает, при каких условиях, с какой ценой) от метафор. Тогда разговор о будущем становится разговором о решениях, которые принимаются сейчас.</p>
+                    <h3>Что делать инженеру с неопределённостью</h3>
+                    <p>Прогнозы о будущем плохо проверяются, а инженерные решения проверяются хорошо. Поэтому полезно переводить разговор в измеримые вопросы: какая точность нужна, что произойдёт при отказе, кто отвечает за ошибку, сколько стоит ошибка и как её заметить.</p>
+                    <p>Из этого вырастает практическое правило: чем выше цена ошибки, тем больше нужно человека в контуре, журналирования и возможности откатить решение. Это применимо и к нейросети, и к обычному скрипту.</p>
+                    <h3>Пределы и обходы</h3>
+                    <p>Когда уменьшать транзистор стало дорого, индустрия пошла вширь: больше ядер, отдельные ускорители для графики и нейросетей, компоновка чиплетов вместо одного кристалла.</p>
+                    <p>Выигрыш теперь даёт не частота, а специализация и память. Программисту это видно по тому, что оптимизация всё чаще означает «меньше перемещать данные», а не «больше вычислять».</p>
+                    <h3>Ответственность за систему</h3>
+                    <p>Чем автономнее система, тем важнее вопросы: кто отвечает за решение, как его объяснить, можно ли откатить и что произойдёт при отказе.</p>
+                    <p>Инженерная привычка — проектировать не только успешный сценарий, но и отказ: журнал, ограничения, человек в контуре там, где цена ошибки высока.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Закон Мура</dt>
+                            <dd>Наблюдение об удвоении плотности элементов на кристалле примерно каждые два года.</dd>
+                        </div>
+                        <div>
+                            <dt>Технологический предел</dt>
+                            <dd>Ограничение, вызванное физикой или экономикой производства.</dd>
+                        </div>
+                        <div>
+                            <dt>Кубит</dt>
+                            <dd>Квантовый аналог бита: состояние, которое может быть суперпозицией.</dd>
+                        </div>
+                        <div>
+                            <dt>Квантовое превосходство</dt>
+                            <dd>Демонстрация задачи, которую квантовое устройство решает быстрее классического.</dd>
+                        </div>
+                        <div>
+                            <dt>Специализированный ускоритель</dt>
+                            <dd>Процессор под узкий класс задач: графика, нейросети, шифрование.</dd>
+                        </div>
+                        <div>
+                            <dt>Автоматизация</dt>
+                            <dd>Передача отдельных задач машинам.</dd>
+                        </div>
+                        <div>
+                            <dt>Сильный ИИ</dt>
+                            <dd>Гипотетическая система, сопоставимая с человеком по кругу задач.</dd>
+                        </div>
+                        <div>
+                            <dt>Сингулярность</dt>
+                            <dd>Сценарий взрывного самоускорения технологий; научная гипотеза, а не прогноз с датой.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="40">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Закон Мура</span>
+                            <span class="card__back">Наблюдение об удвоении плотности элементов на кристалле примерно каждые два года.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Технологический предел</span>
+                            <span class="card__back">Ограничение, вызванное физикой или экономикой производства.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Кубит</span>
+                            <span class="card__back">Квантовый аналог бита: состояние, которое может быть суперпозицией.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Квантовое превосходство</span>
+                            <span class="card__back">Демонстрация задачи, которую квантовое устройство решает быстрее классического.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Специализированный ускоритель</span>
+                            <span class="card__back">Процессор под узкий класс задач: графика, нейросети, шифрование.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Автоматизация</span>
+                            <span class="card__back">Передача отдельных задач машинам.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Сильный ИИ</span>
+                            <span class="card__back">Гипотетическая система, сопоставимая с человеком по кругу задач.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Сингулярность</span>
+                            <span class="card__back">Сценарий взрывного самоускорения технологий; научная гипотеза, а не прогноз с датой.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="40">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Почему закон Мура нельзя считать законом природы?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Это наблюдение, зависящее от технологий и экономики</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Он открыт биологами</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Он действует только в Азии</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Он касается только памяти</button>
+                        </div>
+                        <p class="quiz__why" hidden>Формулировка описывала темп роста плотности элементов. Как только упёрлись в физику и стоимость, темп изменился.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Что такое кубит?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Квантовый аналог бита</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Единица скорости сети</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Тип транзистора</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Формат файла</button>
+                        </div>
+                        <p class="quiz__why" hidden>Кубит — квантовое состояние, которое может находиться в суперпозиции, а не только в 0 или 1.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Для каких задач квантовый компьютер особенно полезен?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Для факторизации и моделирования квантовых систем</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Для офисных документов</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Для игр</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Для любых задач быстрее классического</button>
+                        </div>
+                        <p class="quiz__why" hidden>Выигрыш есть для узкого класса задач. Обычные вычисления квантовому устройству не подходят.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Что автоматизация меняет в первую очередь?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Отдельные задачи внутри профессий</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Сразу все профессии</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Ничего</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Только государственные услуги</button>
+                        </div>
+                        <p class="quiz__why" hidden>Автоматизируются рутинные операции, а не профессия целиком. Меняется содержание работы и требования к навыкам.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Сравните два утверждения о будущем ИИ и отметьте, какое из них проверяемо, а какое — метафора.</li>
+                        <li>Оцените, какие задачи в вашей школе уже можно автоматизировать, а какие требуют человека.</li>
+                        <li>Сформулируйте три вопроса, которые стоит задать перед внедрением любой новой технологии.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-39.html">
+                        <span>предыдущее занятие</span>
+                        ← Технологии в образовании
+                    </a>
+                    <a class="pager__next" href="index.html">
+                        <span>дальше</span>
+                        Все занятия
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 40 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 20. Файлы и файловые системы — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Файлы и файловые системы»: имена и пути, каталоги, таблица размещения, метаданные, фрагментация и права.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 20
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">20</span>
+                <h1>Как диск превращается в папки и файлы</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 12:05</li>
+                    <li>Crash Course Computer Science #20</li>
+                    <li>файловые системы</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&amp;id=456239045&amp;hd=2"
+                                title="Видео занятия 20 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 12:05 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Для диска файл — это набор блоков и запись в служебной таблице. Имя, папка и дата создания существуют только в файловой системе.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 180" role="img" aria-label="Как система находит файл">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="20.0" y="60" width="120.0" height="56"/><text x="80.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">имя</text>
+    <path d="M146.0 88 H168.0"/><path d="M168.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="180.0" y="60" width="120.0" height="56"/><text x="240.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">каталог</text>
+    <path d="M306.0 88 H328.0"/><path d="M328.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="340.0" y="60" width="120.0" height="56"/><text x="400.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">метаданные</text>
+    <path d="M466.0 88 H488.0"/><path d="M488.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="500.0" y="60" width="120.0" height="56"/><text x="560.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">блоки</text>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
+    <text x="20" y="150">имя → запись → адреса блоков</text>
+  </g>
+</svg>
+                    <figcaption>Схема: путь к данным</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Что файловая система добавляет к набору блоков.</li>
+                        <li>Как устроен путь и зачем нужны каталоги.</li>
+                        <li>Где хранятся метаданные файла.</li>
+                        <li>Почему возникает фрагментация.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Файл и его метаданные</h3>
+                    <p>Файл — последовательность байт, разложенная по блокам. Рядом хранится описание: размер, время изменения, права, ссылки на блоки.</p>
+                    <p>Отсюда типичная ситуация: файл «есть», но не открывается, потому что повреждены метаданные, а не сами данные.</p>
+                    <h3>Каталоги и пути</h3>
+                    <p>Каталог — таблица имён и ссылок на файлы. Путь задаёт маршрут по этой иерархии: от корня к вложенным папкам.</p>
+                    <p>Один и тот же файл может иметь несколько имён (жёсткие ссылки) или быть доступен по короткому пути (символическая ссылка).</p>
+                    <h3>Размещение и фрагментация</h3>
+                    <p>Блоки файла могут лежать подряд или вразбивку. Фрагментация замедляет чтение, потому что головке приходится прыгать между участками.</p>
+                    <p>Файловые системы стремятся размещать данные последовательно и по возможности рядом со связанными файлами.</p>
+                    <h3>Почему диск «забивается»</h3>
+                    <p>Даже после удаления больших файлов место может не освободиться: часть занята журналами, кэшами, временными файлами и старыми версиями.</p>
+                    <p>Полезно смотреть не на «размер папки», а на реальные потребители: обновления, снимки системы, кэш браузеров.</p>
+                    <h3>Файловая система и надёжность</h3>
+                    <p>Журналирование и проверка целостности нужны, чтобы после сбоя питания система знала, какие операции завершились, а какие нужно откатить.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Файловая система</dt>
+                            <dd>Способ организовать данные и метаданные на носителе.</dd>
+                        </div>
+                        <div>
+                            <dt>Блок</dt>
+                            <dd>Единица размещения данных на диске.</dd>
+                        </div>
+                        <div>
+                            <dt>Каталог</dt>
+                            <dd>Таблица имён и ссылок на файлы.</dd>
+                        </div>
+                        <div>
+                            <dt>Путь</dt>
+                            <dd>Маршрут от корня к файлу.</dd>
+                        </div>
+                        <div>
+                            <dt>Метаданные</dt>
+                            <dd>Сведения о файле: размер, даты, права.</dd>
+                        </div>
+                        <div>
+                            <dt>Фрагментация</dt>
+                            <dd>Разброс блоков файла по диску.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="20">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Файловая система</span>
+                            <span class="card__back">Способ организовать данные и метаданные на носителе.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Блок</span>
+                            <span class="card__back">Единица размещения данных на диске.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Каталог</span>
+                            <span class="card__back">Таблица имён и ссылок на файлы.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Путь</span>
+                            <span class="card__back">Маршрут от корня к файлу.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Метаданные</span>
+                            <span class="card__back">Сведения о файле: размер, даты, права.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Фрагментация</span>
+                            <span class="card__back">Разброс блоков файла по диску.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="20">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Что хранит каталог?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Имена и ссылки на файлы</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Содержимое файлов</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Пароли</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Драйверы</button>
+                        </div>
+                        <p class="quiz__why" hidden>Каталог — это таблица, связывающая имена с записями о файлах.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Откуда берётся фрагментация?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Блоки файла разбросаны по диску</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Файл слишком маленький</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Диск перегрелся</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Мало оперативной памяти</button>
+                        </div>
+                        <p class="quiz__why" hidden>При удалении и записи блоки оказываются в разных местах, и чтение замедляется.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Что произойдёт при повреждении метаданных?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Файл может не открыться</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Диск станет быстрее</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Изменится формат</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Ничего</button>
+                        </div>
+                        <p class="quiz__why" hidden>Данные могут быть на месте, но без описания система не знает, где они лежат.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Объясните, почему удаление файла часто не освобождает место сразу.</li>
+                        <li>Сравните жёсткую и символическую ссылку.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-19.html">
+                        <span>предыдущее занятие</span>
+                        ← Память и хранение
+                    </a>
+                    <a class="pager__next" href="urok-21.html">
+                        <span>следующее занятие</span>
+                        Сжатие информации →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 20 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>

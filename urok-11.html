@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 11. Первые языки программирования — Основы информационных технологий</title>
+    <meta name="description" content="Разбор темы «Первые языки программирования»: ассемблер и ассемблерные команды, FORTRAN, LISP, COBOL, ALGOL, компилятор и интерпретатор, переносимость программ.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span>Занятие 11
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">11</span>
+                <h1>Языки, которые пережили свои машины</h1>
+                <ul class="lesson-head__meta">
+                    <li>видео 11:32</li>
+                    <li>Crash Course Computer Science #11</li>
+                    <li>языки программирования</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <figure class="video">
+                    <div class="video__frame">
+                        <iframe src="https://vk.com/video_ext.php?oid=-196622247&id=456239033&hd=2"
+                                title="Видео занятия 11 в ВК"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="player__note">
+                        Видео в ВК · 11:32 ·
+                        <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                    </figcaption>
+                </figure>
+
+                <p class="lede">Язык высокого уровня позволяет записать задачу, не зная, сколько у машины регистров. Первые такие языки появились в конце 1950-х, и некоторые из них живы до сих пор — хотя компьютеры, для которых их придумали, давно сданы в музей.</p>
+                <figure class="diagram">
+<svg viewBox="0 0 640 150" role="img" aria-label="Исходный текст проходит через компилятор и компоновщик">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="30" y="55" width="110" height="46"/>
+    <path d="M140 78 H186 M186 78 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+    <rect x="190" y="55" width="130" height="46"/>
+    <path d="M320 78 H366 M366 78 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+    <rect x="370" y="55" width="120" height="46"/>
+    <path d="M490 78 H536 M536 78 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
+    <rect x="540" y="55" width="70" height="46"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11">
+    <text x="48" y="82">исходник</text>
+    <text x="206" y="82">компилятор</text>
+    <text x="386" y="82">объектный код</text>
+    <text x="548" y="82">.exe</text>
+    <text x="212" y="128">синтаксис → типы → код</text>
+  </g>
+</svg>
+                    <figcaption>Схема: путь от текста к программе</figcaption>
+                </figure>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · ориентиры</span>
+                    <h2 id="ch-1-title">На что смотреть в видео</h2>
+                    <ul class="checklist">
+                        <li>Из чего состоит строка ассемблера: метка, команда, операнды.</li>
+                        <li>Чем компиляция отличается от интерпретации.</li>
+                        <li>Какие задачи решали FORTRAN, COBOL и LISP.</li>
+                        <li>Почему программы на языках высокого уровня переносимы.</li>
+                        <li>Что общего у языков 1950-х и современных.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02</span>
+                    <h2 id="ch-2-title">Конспект</h2>
+                    <h3>Ассемблер: текст вместо чисел</h3>
+                    <p>В ассемблере у каждой команды есть мнемоника: загрузить, сложить, сохранить, перейти. Плюс метки, по которым вычисляются адреса переходов. Ассемблер уже читается человеком, но всё ещё описывает машину, а не задачу.</p>
+                    <p>Одна и та же программа для разных процессоров требует разного ассемблера. Это главное неудобство: код привязан к железу.</p>
+                    <h3>Языки высокого уровня</h3>
+                    <p><strong>FORTRAN</strong> (1957) создавали для научных расчётов: формулы, массивы, циклы. <strong>COBOL</strong> (1959) — для деловой обработки данных: записи, отчёты, файлы. <strong>LISP</strong> (1958) вырос из исследований искусственного интеллекта и принёс в программирование списки и рекурсию.</p>
+                    <p>Все три показывают главное свойство языков высокого уровня: они описывают предметную область, а не устройство процессора. Отсюда переносимость — программу можно перекомпилировать под другую машину.</p>
+                    <h3>Компилятор и интерпретатор</h3>
+                    <p>Компилятор переводит всю программу заранее и выдаёт исполняемый код: работает быстро, но требует отдельного шага сборки. Интерпретатор читает и выполняет программу по частям: удобно для отладки и обучения, но медленнее.</p>
+                    <p>Многие современные языки совмещают оба подхода: код компилируется в промежуточное представление, которое затем исполняется виртуальной машиной.</p>
+                    <h3>Что осталось</h3>
+                    <p>Идеи первых языков никуда не делись: переменные и типы, ветвления и циклы, процедуры, библиотеки. Менялись синтаксис и инструменты, но структура программы осталась той же.</p>
+                    <p>История здесь полезна практически: понимая, зачем вводили ту или иную конструкцию, легче читать чужой код и выбирать язык под задачу, а не по привычке.</p>
+                    <h3>Почему старые языки не исчезли</h3>
+                    <p>Язык живёт, пока живёт написанный на нём код. В FORTRAN до сих пор считают научные и инженерные задачи, в COBOL — банковские операции, и переписать миллионы строк дороже, чем поддерживать компилятор.</p>
+                    <p>Отсюда практический вывод для выбора языка: смотреть не на модность, а на библиотеки, инструменты и людей, которые смогут этот код сопровождать через десять лет.</p>
+                    <h3>Синтаксис и смысл</h3>
+                    <p>Компилятор проходит несколько шагов: разбирает текст на лексемы, строит дерево разбора, проверяет типы и только потом генерирует код. Синтаксическая ошибка ловится на первых шагах, логическая — гораздо позже.</p>
+                    <p>Понимание этих шагов помогает читать сообщения об ошибках: «ожидалась точка с запятой» и «несовместимые типы» приходят с разных этапов и требуют разных действий.</p>
+                    <h3>Экосистема важнее синтаксиса</h3>
+                    <p>Язык выбирают не по красоте конструкций, а по библиотекам, инструментам и людям. Зрелая экосистема означает, что типовую задачу уже решили, а ошибку уже встречали и описали.</p>
+                    <p>Стандарт языка тоже часть экосистемы: он фиксирует поведение, чтобы код одинаково работал на разных машинах. Первые языки высокого уровня принесли именно эту идею — программу, независимую от конкретного железа.</p>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03</span>
+                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <dl class="terms">
+                        <div>
+                            <dt>Мнемоника</dt>
+                            <dd>Символическое обозначение машинной команды в ассемблере.</dd>
+                        </div>
+                        <div>
+                            <dt>Метка</dt>
+                            <dd>Имя места в программе, к которому можно перейти.</dd>
+                        </div>
+                        <div>
+                            <dt>Компилятор</dt>
+                            <dd>Переводит программу целиком до запуска.</dd>
+                        </div>
+                        <div>
+                            <dt>Интерпретатор</dt>
+                            <dd>Выполняет программу по частям, переводя её на ходу.</dd>
+                        </div>
+                        <div>
+                            <dt>FORTRAN</dt>
+                            <dd>Первый массовый язык высокого уровня, ориентированный на вычисления.</dd>
+                        </div>
+                        <div>
+                            <dt>COBOL</dt>
+                            <dd>Язык деловой обработки данных: записи, отчёты, файлы.</dd>
+                        </div>
+                        <div>
+                            <dt>LISP</dt>
+                            <dd>Язык символьных вычислений: списки и рекурсия.</dd>
+                        </div>
+                        <div>
+                            <dt>Переносимость</dt>
+                            <dd>Возможность собрать ту же программу на другой платформе.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · интерактив</span>
+                    <h2 id="ch-4-title">Карточки терминов</h2>
+                    <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
+                    <div class="cards" data-cards="11">
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Мнемоника</span>
+                            <span class="card__back">Символическое обозначение машинной команды в ассемблере.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Метка</span>
+                            <span class="card__back">Имя места в программе, к которому можно перейти.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Компилятор</span>
+                            <span class="card__back">Переводит программу целиком до запуска.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Интерпретатор</span>
+                            <span class="card__back">Выполняет программу по частям, переводя её на ходу.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">FORTRAN</span>
+                            <span class="card__back">Первый массовый язык высокого уровня, ориентированный на вычисления.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">COBOL</span>
+                            <span class="card__back">Язык деловой обработки данных: записи, отчёты, файлы.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">LISP</span>
+                            <span class="card__back">Язык символьных вычислений: списки и рекурсия.</span>
+                        </button>
+                        <button class="card" type="button" aria-pressed="false">
+                            <span class="card__front">Переносимость</span>
+                            <span class="card__back">Возможность собрать ту же программу на другой платформе.</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <div class="quiz" data-quiz="11">
+                        <ol class="quiz__list">
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">1</span>Для каких задач создавался FORTRAN?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Для бухгалтерских отчётов</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Для научных и инженерных расчётов</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Для работы с текстом</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Для игр</button>
+                        </div>
+                        <p class="quiz__why" hidden>FORTRAN ориентирован на формулы, массивы и численные методы — отсюда его долгая жизнь в науке и инженерии.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="1">
+                        <p class="quiz__q"><span class="quiz__num">2</span>Чем интерпретатор отличается от компилятора?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Он выполняется без перевода</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Он переводит и выполняет программу по частям</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Он работает только с числами</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Он не требует исходного текста</button>
+                        </div>
+                        <p class="quiz__why" hidden>Интерпретатор читает и выполняет код постепенно. Это удобно для обучения и отладки, но обычно медленнее готового исполняемого файла.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">3</span>Почему программа на языке высокого уровня переносима?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Она не содержит команд процессора</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Её можно запустить без компьютера</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Она написана на ассемблере</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Она не требует компиляции</button>
+                        </div>
+                        <p class="quiz__why" hidden>Язык описывает задачу, а не регистры и команды. Перевод под конкретную машину выполняет компилятор.</p>
+                    </li>
+                    <li class="quiz__item" data-answer="0">
+                        <p class="quiz__q"><span class="quiz__num">4</span>Что общего у FORTRAN, COBOL и LISP?</p>
+                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
+                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Все они появились в конце 1950-х</button>
+                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Все они работают только с числами</button>
+                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Все они интерпретируемые</button>
+                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Все они созданы для игр</button>
+                        </div>
+                        <p class="quiz__why" hidden>Это языки первого поколения высокого уровня, появившиеся в 1957—1959 годах, каждый под свою предметную область.</p>
+                    </li>
+                        </ol>
+                        <div class="quiz__foot">
+                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
+                            <button type="button" class="quiz__reset">Пройти заново</button>
+                        </div>
+                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06</span>
+                    <h2 id="ch-6-title">Мини-практика</h2>
+                    <ol>
+                        <li>Запишите одну и ту же операцию — сложение двух чисел и вывод — на псевдоассемблере и в виде формулы, затем сравните количество строк.</li>
+                        <li>Объясните, что произойдёт с программой на ассемблере при переходе на процессор другой архитектуры.</li>
+                        <li>Выберите язык для задачи «обработать таблицу оценок» и обоснуйте выбор двумя аргументами.</li>
+                    </ol>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-10.html">
+                        <span>предыдущее занятие</span>
+                        ← Раннее программирование
+                    </a>
+                    <a class="pager__next" href="urok-16.html">
+                        <span>следующее занятие</span>
+                        Инженерия программного обеспечения →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Что смотреть</a></li>
+                    <li><a href="#ch-2">Конспект</a></li>
+                    <li><a href="#ch-3">Термины</a></li>
+                    <li><a href="#ch-4">Карточки</a></li>
+                    <li><a href="#ch-5">Квиз</a></li>
+                    <li><a href="#ch-6">Практика</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Занятие 11 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js" defer></script>
+</body>
+</html>
