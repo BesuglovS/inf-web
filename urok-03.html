@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261031">
+    <link rel="stylesheet" href="css/styles.css?v=20261031-37">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -55,38 +55,31 @@
                     <figcaption class="player__note">
                         Видео в ВК · 9:39 ·
                         <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                        · <a href="https://www.youtube.com/watch?v=gI-qXk7XojA" target="_blank" rel="noopener">оригинал на YouTube</a>
                     </figcaption>
                 </figure>
 
                 <p class="lede">Всё, что компьютер «решает», сводится к двум значениям и нескольким операциям над ними. Булева алгебра описывает эти операции на бумаге, а транзистор позволяет собрать каждую из них из проводов и электричества.</p>
-                <figure class="diagram">
-<svg viewBox="0 0 640 240" role="img" aria-label="Входы A и B подаются на элементы AND, OR и XOR, у каждого свой выход">
-  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
-    <path d="M60 56 H130 M60 72 H130"/>
-    <rect x="130" y="30" width="120" height="64"/>
-    <path d="M250 62 H310 M310 62 l-9 -5 v10 z" fill="currentColor" stroke="none"/>
-
-    <path d="M60 128 H130 M60 144 H130"/>
-    <rect x="130" y="102" width="120" height="64"/>
-    <path d="M250 134 H310 M310 134 l-9 -5 v10 z" fill="currentColor" stroke="none"/>
-
-    <path d="M60 200 H130 M60 216 H130"/>
-    <rect x="130" y="174" width="120" height="64"/>
-    <path d="M250 206 H310 M310 206 l-9 -5 v10 z" fill="currentColor" stroke="none"/>
-  </g>
-  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
-    <text x="34" y="60">A</text><text x="34" y="76">B</text>
-    <text x="34" y="132">A</text><text x="34" y="148">B</text>
-    <text x="34" y="204">A</text><text x="34" y="220">B</text>
-    <text x="168" y="67">AND</text>
-    <text x="172" y="139">OR</text>
-    <text x="168" y="211">XOR</text>
-    <text x="322" y="66">A AND B</text>
-    <text x="322" y="138">A OR B</text>
-    <text x="322" y="210">A XOR B</text>
-  </g>
-</svg>
-                    <figcaption>Схема: одинаковые входы, разные операции</figcaption>
+                <figure class="diagram truth-panel">
+                    <table class="widget__table truth-table">
+                        <caption>Таблицы истинности базовых операций</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">A</th>
+                                <th scope="col">B</th>
+                                <th scope="col">NOT A</th>
+                                <th scope="col">AND</th>
+                                <th scope="col">OR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <figcaption>AND, OR и NOT: все комбинации входов</figcaption>
                 </figure>
 
                 <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
@@ -130,23 +123,502 @@
 
                 <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
                     <span class="chapter__num">03 · модель</span>
-                    <h2 id="ch-3-title">Попробуйте сами</h2>
+                    <h2 id="ch-3-title">Логика на транзисторах</h2>
+                    <p class="chapter__hint">Переключайте входы или нажимайте строки таблицы истинности: красные точки на базе показывают ток базы, а основная цепь идёт слева направо. A/B — база, К — коллектор, Э — эмиттер.</p>
 
-                    <div class="widget" data-widget="gates">
-                        <p class="widget__hint">Переключайте входы и смотрите, что выдаёт каждая операция.</p>
-                        <div class="widget__row">
-                            <button type="button" class="switch" data-input="a" aria-pressed="false">A = 0</button>
-                            <button type="button" class="switch" data-input="b" aria-pressed="false">B = 0</button>
-                        </div>
-                        <table class="widget__table">
-                            <caption>Таблица истинности для выбранных входов</caption>
-                            <tbody>
-                                <tr><th scope="row">A AND B</th><td data-out="and">0</td></tr>
-                                <tr><th scope="row">A OR B</th><td data-out="or">0</td></tr>
-                                <tr><th scope="row">A XOR B</th><td data-out="xor">0</td></tr>
-                                <tr><th scope="row">NOT A</th><td data-out="nota">1</td></tr>
-                            </tbody>
-                        </table>
+                    <div class="logic-circuits">
+
+                        <article class="logic-circuit" data-logic="not" data-a="0" data-b="0">
+                            <div class="logic-circuit__main">
+                                <h3>NOT</h3>
+<svg viewBox="0 0 420 240" role="group" aria-label="NOT на одном транзисторе с нагрузочным резистором">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M30 50 V190"/>
+    <path d="M30 100 H60"/>
+    <rect x="60" y="88" width="36" height="24"/>
+    <path d="M96 100 H150"/>
+    <path d="M150 100 H230"/>
+    <path d="M150 100 V70"/>
+    <circle cx="275" cy="88" r="32"/>
+    <path d="M257 78 H293" stroke-width="3"/>
+    <path d="M230 100 L257 78"/>
+    <path d="M293 78 L320 100"/>
+    <path d="M275 38 V78"/>
+    <path d="M315.95 96.7 L303.2 93.4 L310.1 84.8 Z" fill="currentColor" stroke="none"/>
+    <path d="M320 100 H350 V140"/>
+    <path d="M350 140 V150"/>
+    <path d="M340 150 H360 M344 155 H356 M347 160 H353"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="30" y="40">Vcc</text>
+    <text x="275" y="28" text-anchor="middle">A</text>
+    <text x="150" y="62" text-anchor="middle">выход</text>
+    <text x="104" y="80">R</text>
+    <text x="223" y="94" text-anchor="end" font-size="10">К</text>
+    <text x="327" y="94" font-size="10">Э</text>
+  </g>
+  <path class="logic-flow not-flow-high" fill="none" stroke-width="2" d="M30 100 H150 V70"/>
+  <path class="logic-flow not-flow-low" fill="none" stroke-width="2" d="M30 100 H230 L257 78 H293 L320 100 H350 V140"/>
+  <path class="base-flow base-flow-a" fill="none" stroke-width="2" d="M275 38 V78"/>
+  <g fill="var(--signal)" stroke="none">
+    <circle class="logic-electron not-electron-high" cx="0" cy="0" r="4"/>
+    <circle class="logic-electron not-electron-high" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="logic-electron not-electron-high" cx="0" cy="0" r="4" style="animation-delay: 1s"/>
+    <circle class="logic-electron not-electron-high" cx="0" cy="0" r="4" style="animation-delay: 1.5s"/>
+    <circle class="logic-electron not-electron-low" cx="0" cy="0" r="4"/>
+    <circle class="logic-electron not-electron-low" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="logic-electron not-electron-low" cx="0" cy="0" r="4" style="animation-delay: 1s"/>
+    <circle class="logic-electron not-electron-low" cx="0" cy="0" r="4" style="animation-delay: 1.5s"/>
+    <circle class="base-electron base-electron-a" cx="0" cy="0" r="4"/>
+    <circle class="base-electron base-electron-a" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+  </g>
+  <g class="xor-switch" data-input="a" role="button" tabindex="0" aria-pressed="false" aria-label="Вход A" transform="translate(286 6)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="140" height="56"/>
+    <rect class="xor-switch__bg" width="122" height="36" rx="4"/>
+    <text class="xor-switch__label" x="61" y="24" text-anchor="middle">A = 0</text>
+  </g>
+</svg>
+                                <p class="logic-circuit__out" role="status" aria-live="polite">Выход: <b data-out>1</b></p>
+                            </div>
+                            <table class="widget__table logic-table">
+                                <caption>NOT</caption>
+                                <thead>
+                                    <tr><th scope="col">A</th><th scope="col">выход</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="0"><td>0</td><td>1</td></tr>
+                                    <tr data-row="1"><td>1</td><td>0</td></tr>
+                                </tbody>
+                            </table>
+                        </article>
+                        <article class="logic-circuit" data-logic="and" data-a="0" data-b="0">
+                            <div class="logic-circuit__main">
+                                <h3>AND</h3>
+<svg viewBox="0 0 420 240" role="group" aria-label="AND на двух транзисторах, включённых последовательно">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M30 60 V190"/>
+    <path d="M30 122 H85"/>
+    <circle cx="140" cy="110" r="34"/>
+    <path d="M120 100 H160" stroke-width="3"/>
+    <path d="M85 122 L128 100"/>
+    <path d="M152 100 L195 122"/>
+    <path d="M140 60 V100"/>
+    <path d="M188.55 118.7 L175.4 118.1 L180.4 108.3 Z" fill="currentColor" stroke="none"/>
+    <path d="M195 122 H225"/>
+    <circle cx="280" cy="110" r="34"/>
+    <path d="M260 100 H300" stroke-width="3"/>
+    <path d="M225 122 L268 100"/>
+    <path d="M292 100 L335 122"/>
+    <path d="M280 60 V100"/>
+    <path d="M328.55 118.7 L315.4 118.1 L320.4 108.3 Z" fill="currentColor" stroke="none"/>
+    <path d="M335 122 H360"/>
+    <path d="M360 122 V142"/>
+    <rect x="346" y="142" width="28" height="26"/>
+    <path d="M360 168 V178"/>
+    <path d="M350 178 H370 M354 183 H366 M357 188 H363"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="30" y="50">Vcc</text>
+    <text x="140" y="50" text-anchor="middle">A</text>
+    <text x="280" y="50" text-anchor="middle">B</text>
+    <text x="368" y="126">выход</text>
+    <text x="334" y="160" text-anchor="end">R</text>
+    <text x="78" y="116" text-anchor="end" font-size="10">К</text>
+    <text x="202" y="116" font-size="10">Э</text>
+    <text x="218" y="116" text-anchor="end" font-size="10">К</text>
+    <text x="342" y="116" font-size="10">Э</text>
+  </g>
+  <path class="logic-flow and-flow-1" fill="none" stroke-width="2" d="M30 122 H85 L128 100"/>
+  <path class="logic-flow and-flow-2" fill="none" stroke-width="2" d="M30 122 H85 L128 100 H152 L195 122 H225 L268 100"/>
+  <path class="logic-flow and-flow-3" fill="none" stroke-width="2" d="M30 122 H85 L128 100 H152 L195 122 H225 L268 100 H292 L335 122 H360"/>
+  <path class="base-flow base-flow-a" fill="none" stroke-width="2" d="M140 60 V100"/>
+  <path class="base-flow base-flow-b" fill="none" stroke-width="2" d="M280 60 V100"/>
+  <g fill="var(--signal)" stroke="none">
+    <circle class="logic-electron and-electron-1" cx="0" cy="0" r="4"/>
+    <circle class="logic-electron and-electron-1" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="logic-electron and-electron-1" cx="0" cy="0" r="4" style="animation-delay: 1s"/>
+    <circle class="logic-electron and-electron-1" cx="0" cy="0" r="4" style="animation-delay: 1.5s"/>
+    <circle class="logic-electron and-electron-2" cx="0" cy="0" r="4"/>
+    <circle class="logic-electron and-electron-2" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="logic-electron and-electron-2" cx="0" cy="0" r="4" style="animation-delay: 1s"/>
+    <circle class="logic-electron and-electron-2" cx="0" cy="0" r="4" style="animation-delay: 1.5s"/>
+    <circle class="logic-electron and-electron-3" cx="0" cy="0" r="4"/>
+    <circle class="logic-electron and-electron-3" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="logic-electron and-electron-3" cx="0" cy="0" r="4" style="animation-delay: 1s"/>
+    <circle class="logic-electron and-electron-3" cx="0" cy="0" r="4" style="animation-delay: 1.5s"/>
+    <circle class="base-electron base-electron-a" cx="0" cy="0" r="4"/>
+    <circle class="base-electron base-electron-a" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="base-electron base-electron-b" cx="0" cy="0" r="4"/>
+    <circle class="base-electron base-electron-b" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+  </g>
+  <g class="xor-switch" data-input="a" role="button" tabindex="0" aria-pressed="false" aria-label="Вход A" transform="translate(80 2)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="140" height="56"/>
+    <rect class="xor-switch__bg" width="120" height="36" rx="4"/>
+    <text class="xor-switch__label" x="60" y="24" text-anchor="middle">A = 0</text>
+  </g>
+  <g class="xor-switch" data-input="b" role="button" tabindex="0" aria-pressed="false" aria-label="Вход B" transform="translate(220 2)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="140" height="56"/>
+    <rect class="xor-switch__bg" width="120" height="36" rx="4"/>
+    <text class="xor-switch__label" x="60" y="24" text-anchor="middle">B = 0</text>
+  </g>
+</svg>
+                                <p class="logic-circuit__out" role="status" aria-live="polite">Выход: <b data-out>0</b></p>
+                            </div>
+                            <table class="widget__table logic-table">
+                                <caption>AND</caption>
+                                <thead>
+                                    <tr><th scope="col">A</th><th scope="col">B</th><th scope="col">выход</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="00"><td>0</td><td>0</td><td>0</td></tr>
+                                    <tr data-row="01"><td>0</td><td>1</td><td>0</td></tr>
+                                    <tr data-row="10"><td>1</td><td>0</td><td>0</td></tr>
+                                    <tr data-row="11"><td>1</td><td>1</td><td>1</td></tr>
+                                </tbody>
+                            </table>
+                        </article>
+
+                        <article class="logic-circuit" data-logic="or" data-a="0" data-b="0">
+                            <div class="logic-circuit__main">
+                                <h3>OR</h3>
+<svg viewBox="0 0 420 260" role="group" aria-label="OR на двух транзисторах, включённых параллельно">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M30 50 V210"/>
+    <path d="M30 97 H95"/>
+    <path d="M30 187 H95"/>
+    <circle cx="150" cy="85" r="32"/>
+    <path d="M132 75 H168" stroke-width="3"/>
+    <path d="M95 97 L138 75"/>
+    <path d="M162 75 L205 97"/>
+    <path d="M150 35 V75"/>
+    <path d="M198.55 93.7 L185.4 93.1 L190.4 83.3 Z" fill="currentColor" stroke="none"/>
+    <circle cx="150" cy="175" r="32"/>
+    <path d="M132 165 H168" stroke-width="3"/>
+    <path d="M95 187 L138 165"/>
+    <path d="M162 165 L205 187"/>
+    <path d="M150 205 V165"/>
+    <path d="M198.55 183.7 L185.4 183.1 L190.4 173.3 Z" fill="currentColor" stroke="none"/>
+    <path d="M205 97 H230 V130"/>
+    <path d="M205 187 H230 V130"/>
+    <path d="M230 130 H360"/>
+    <path d="M360 130 V150"/>
+    <rect x="346" y="150" width="28" height="26"/>
+    <path d="M360 176 V186"/>
+    <path d="M350 186 H370 M354 191 H366 M357 196 H363"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="30" y="40">Vcc</text>
+    <text x="150" y="25" text-anchor="middle">A</text>
+    <text x="150" y="245" text-anchor="middle">B</text>
+    <text x="368" y="134">выход</text>
+    <text x="334" y="168" text-anchor="end">R</text>
+    <text x="88" y="91" text-anchor="end" font-size="10">К</text>
+    <text x="212" y="91" font-size="10">Э</text>
+    <text x="88" y="181" text-anchor="end" font-size="10">К</text>
+    <text x="212" y="181" font-size="10">Э</text>
+  </g>
+  <path class="logic-flow or-flow-off-a" fill="none" stroke-width="2" d="M30 97 H95 L138 75"/>
+  <path class="logic-flow or-flow-on-a" fill="none" stroke-width="2" d="M30 97 H95 L138 75 H162 L205 97 H230 V130 H360"/>
+  <path class="logic-flow or-flow-off-b" fill="none" stroke-width="2" d="M30 187 H95 L138 165"/>
+  <path class="logic-flow or-flow-on-b" fill="none" stroke-width="2" d="M30 187 H95 L138 165 H162 L205 187 H230 V130 H360"/>
+  <path class="base-flow base-flow-a" fill="none" stroke-width="2" d="M150 35 V75"/>
+  <path class="base-flow base-flow-b" fill="none" stroke-width="2" d="M150 205 V165"/>
+  <g fill="var(--signal)" stroke="none">
+    <circle class="logic-electron or-electron-off-a" cx="0" cy="0" r="4"/>
+    <circle class="logic-electron or-electron-off-a" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="logic-electron or-electron-off-a" cx="0" cy="0" r="4" style="animation-delay: 1s"/>
+    <circle class="logic-electron or-electron-off-a" cx="0" cy="0" r="4" style="animation-delay: 1.5s"/>
+    <circle class="logic-electron or-electron-on-a" cx="0" cy="0" r="4"/>
+    <circle class="logic-electron or-electron-on-a" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="logic-electron or-electron-on-a" cx="0" cy="0" r="4" style="animation-delay: 1s"/>
+    <circle class="logic-electron or-electron-on-a" cx="0" cy="0" r="4" style="animation-delay: 1.5s"/>
+    <circle class="logic-electron or-electron-off-b" cx="0" cy="0" r="4"/>
+    <circle class="logic-electron or-electron-off-b" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="logic-electron or-electron-off-b" cx="0" cy="0" r="4" style="animation-delay: 1s"/>
+    <circle class="logic-electron or-electron-off-b" cx="0" cy="0" r="4" style="animation-delay: 1.5s"/>
+    <circle class="logic-electron or-electron-on-b" cx="0" cy="0" r="4"/>
+    <circle class="logic-electron or-electron-on-b" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="logic-electron or-electron-on-b" cx="0" cy="0" r="4" style="animation-delay: 1s"/>
+    <circle class="logic-electron or-electron-on-b" cx="0" cy="0" r="4" style="animation-delay: 1.5s"/>
+    <circle class="base-electron base-electron-a" cx="0" cy="0" r="4"/>
+    <circle class="base-electron base-electron-a" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+    <circle class="base-electron base-electron-b" cx="0" cy="0" r="4"/>
+    <circle class="base-electron base-electron-b" cx="0" cy="0" r="4" style="animation-delay: .5s"/>
+  </g>
+  <g class="xor-switch" data-input="a" role="button" tabindex="0" aria-pressed="false" aria-label="Вход A" transform="translate(195 4)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+    <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+    <text class="xor-switch__label" x="65" y="24" text-anchor="middle">A = 0</text>
+  </g>
+  <g class="xor-switch" data-input="b" role="button" tabindex="0" aria-pressed="false" aria-label="Вход B" transform="translate(195 214)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+    <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+    <text class="xor-switch__label" x="65" y="24" text-anchor="middle">B = 0</text>
+  </g>
+</svg>
+                                <p class="logic-circuit__out" role="status" aria-live="polite">Выход: <b data-out>0</b></p>
+                            </div>
+                            <table class="widget__table logic-table">
+                                <caption>OR</caption>
+                                <thead>
+                                    <tr><th scope="col">A</th><th scope="col">B</th><th scope="col">выход</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="00"><td>0</td><td>0</td><td>0</td></tr>
+                                    <tr data-row="01"><td>0</td><td>1</td><td>1</td></tr>
+                                    <tr data-row="10"><td>1</td><td>0</td><td>1</td></tr>
+                                    <tr data-row="11"><td>1</td><td>1</td><td>1</td></tr>
+                                </tbody>
+                            </table>
+                        </article>
+
+                        <article class="logic-circuit xor-circuit" data-logic="xor" data-a="0" data-b="0">
+                            <div class="logic-circuit__main">
+                                <h3>XOR</h3>
+                                <p class="logic-circuit__formula">(A OR B) AND NOT (A AND B)</p>
+                                <p class="logic-circuit__out" role="status" aria-live="polite">Выход: <b data-out>0</b></p>
+                                <p class="xor-status" role="status" aria-live="polite">OR: <b data-signal="or">0</b> · AND: <b data-signal="and">0</b> · NOT: <b data-signal="not">1</b></p>
+
+                                <div class="xor-views">
+                                    <figure class="xor-view">
+                                        <figcaption>Версия 1: только OR, AND, NOT</figcaption>
+                                        <table class="widget__table logic-table xor-table">
+                                            <caption>XOR</caption>
+                                            <thead>
+                                                <tr><th scope="col">A</th><th scope="col">B</th><th scope="col">выход</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-row="00"><td>0</td><td>0</td><td>0</td></tr>
+                                                <tr data-row="01"><td>0</td><td>1</td><td>1</td></tr>
+                                                <tr data-row="10"><td>1</td><td>0</td><td>1</td></tr>
+                                                <tr data-row="11"><td>1</td><td>1</td><td>0</td></tr>
+                                            </tbody>
+                                        </table>
+<svg viewBox="-160 0 920 300" role="group" aria-label="XOR из OR, AND и NOT: A OR B объединяется через AND с NOT от A AND B">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path class="xor-wire xor-wire-a" d="M20 60 H90 H150"/>
+    <path class="xor-wire xor-wire-a" d="M90 60 V200 H150"/>
+    <path class="xor-wire xor-wire-b" d="M20 240 H60 V220 H150"/>
+    <path class="xor-wire xor-wire-b" d="M60 220 V80 H150"/>
+    <rect class="xor-gate xor-gate-or" x="150" y="40" width="110" height="60"/>
+    <rect class="xor-gate xor-gate-and" x="150" y="180" width="110" height="60"/>
+    <rect class="xor-gate xor-gate-not" x="300" y="180" width="80" height="60"/>
+    <rect class="xor-gate xor-gate-final" x="460" y="110" width="110" height="60"/>
+    <path class="xor-wire xor-wire-or" d="M260 70 H300 V130 H460"/>
+    <path class="xor-wire xor-wire-and" d="M260 210 H300"/>
+    <path class="xor-wire xor-wire-not" d="M380 210 H420 V150 H460"/>
+    <path d="M570 140 H650"/>
+  </g>
+  <g class="xor-dot-layer" fill="none" stroke-linecap="round">
+    <path class="xor-dot-line xor-dot-a" d="M20 60 H90 H150"/>
+    <path class="xor-dot-line xor-dot-a" d="M90 60 V200 H150"/>
+    <path class="xor-dot-line xor-dot-b" d="M20 240 H60 V220 H150"/>
+    <path class="xor-dot-line xor-dot-b" d="M60 220 V80 H150"/>
+    <path class="xor-dot-line xor-dot-or" d="M260 70 H300 V130 H460"/>
+    <path class="xor-dot-line xor-dot-and" d="M260 210 H300"/>
+    <path class="xor-dot-line xor-dot-not" d="M380 210 H420 V150 H460"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="16" y="54">A</text>
+    <text x="16" y="234">B</text>
+    <text x="205" y="74" text-anchor="middle">OR</text>
+    <text x="205" y="214" text-anchor="middle">AND</text>
+    <text x="340" y="214" text-anchor="middle">NOT</text>
+    <text x="515" y="144" text-anchor="middle">AND</text>
+    <text x="660" y="144">выход</text>
+    <text x="265" y="62" font-size="10">A OR B</text>
+    <text x="298" y="202" text-anchor="end" font-size="9" textLength="36" lengthAdjust="spacingAndGlyphs">A AND B</text>
+    <text x="390" y="232" font-size="10">NOT (A AND B)</text>
+  </g>
+  <path class="xor-flow" fill="none" stroke-width="2" d="M570 140 H650"/>
+  <g fill="var(--signal)" stroke="none">
+    <circle class="xor-electron" cx="0" cy="0" r="4"/>
+    <circle class="xor-electron" cx="0" cy="0" r="4" style="animation-delay: .6s"/>
+    <circle class="xor-electron" cx="0" cy="0" r="4" style="animation-delay: 1.2s"/>
+  </g>
+  <g class="xor-switch" data-input="a" role="button" tabindex="0" aria-pressed="false" aria-label="Вход A" transform="translate(-140 42)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+    <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+    <text class="xor-switch__label" x="65" y="24" text-anchor="middle">A = 0</text>
+  </g>
+  <g class="xor-switch" data-input="b" role="button" tabindex="0" aria-pressed="false" aria-label="Вход B" transform="translate(-140 222)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+    <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+    <text class="xor-switch__label" x="65" y="24" text-anchor="middle">B = 0</text>
+  </g>
+</svg>
+                                    </figure>
+
+                                    <figure class="xor-view">
+                                        <figcaption>Версия 2: с внутренними транзисторами</figcaption>
+                                        <table class="widget__table logic-table xor-table">
+                                            <caption>XOR</caption>
+                                            <thead>
+                                                <tr><th scope="col">A</th><th scope="col">B</th><th scope="col">выход</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-row="00"><td>0</td><td>0</td><td>0</td></tr>
+                                                <tr data-row="01"><td>0</td><td>1</td><td>1</td></tr>
+                                                <tr data-row="10"><td>1</td><td>0</td><td>1</td></tr>
+                                                <tr data-row="11"><td>1</td><td>1</td><td>0</td></tr>
+                                            </tbody>
+                                        </table>
+<svg viewBox="-160 0 1060 520" role="group" aria-label="XOR из OR, AND и NOT, транзисторы включены в схему">
+  <defs>
+    <g id="xt">
+      <circle cx="0" cy="0" r="16" fill="none" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M-12 10 H12" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M-6 10 L-30 0" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M6 10 L30 0" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M0 30 V10" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M30 0 L23.42 7.62 L19.96 -0.69 Z" fill="currentColor" stroke="none"/>
+    </g>
+  </defs>
+
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path class="xor-wire xor-wire-a" d="M20 130 H110"/>
+    <path class="xor-wire xor-wire-a" d="M70 130 V360 H110"/>
+    <path class="xor-wire xor-wire-b" d="M20 200 H110"/>
+    <path class="xor-wire xor-wire-b" d="M50 200 V390 H110"/>
+    <path class="xor-wire xor-wire-or" d="M310 135 H340 V220 H540 V280 H570"/>
+    <path class="xor-wire xor-wire-and" d="M310 330 H340 V410 H370"/>
+    <path class="xor-wire xor-wire-not" d="M510 340 H540 V310 H570"/>
+    <path d="M750 250 H810"/>
+  </g>
+
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect class="xor-gate xor-gate-or" x="110" y="40" width="200" height="190"/>
+    <rect class="xor-gate xor-gate-and" x="110" y="250" width="200" height="230"/>
+    <rect class="xor-gate xor-gate-not" x="370" y="250" width="140" height="230"/>
+    <rect class="xor-gate xor-gate-final" x="570" y="140" width="200" height="250"/>
+
+    <path d="M130 80 V190"/>
+    <path d="M130 100 H150"/>
+    <path d="M130 170 H150"/>
+    <path d="M210 100 H240"/>
+    <path d="M210 170 H240"/>
+    <path d="M240 80 V190"/>
+    <path class="xor-internal xor-internal-or" d="M240 135 H310"/>
+    <path d="M110 130 H124 A6 6 0 0 1 136 130 H180"/>
+    <path d="M110 200 H180"/>
+    <path d="M270 135 V161"/>
+    <rect x="256" y="161" width="28" height="24"/>
+    <path d="M270 185 V193"/>
+    <path d="M260 193 H280 M264 198 H276 M267 203 H273"/>
+
+    <path d="M130 315 V345"/>
+    <path d="M130 330 H160"/>
+    <path d="M220 330 H230"/>
+    <path d="M290 330 H310"/>
+    <path class="xor-internal xor-internal-and" d="M290 330 H310"/>
+    <path d="M110 360 H190"/>
+    <path d="M110 390 H240 V360 H260"/>
+    <path d="M290 330 V356"/>
+    <rect x="276" y="356" width="28" height="24"/>
+    <path d="M290 380 V388"/>
+    <path d="M280 388 H300 M284 393 H296 M287 398 H293"/>
+
+    <path d="M420 280 H460"/>
+    <path d="M440 280 V294"/>
+    <rect x="426" y="294" width="28" height="24"/>
+    <path d="M440 318 V340"/>
+    <path class="xor-internal xor-internal-not" d="M440 340 H510"/>
+    <path d="M440 340 H410 V380"/>
+    <path d="M470 380 V410"/>
+    <path d="M460 410 H480 M464 415 H476 M467 420 H473"/>
+    <path d="M370 410 H440"/>
+
+    <path d="M590 230 V270"/>
+    <path d="M590 250 H620"/>
+    <path d="M680 250 H690"/>
+    <path d="M750 250 H810"/>
+    <path class="xor-internal xor-internal-final" d="M750 250 H810"/>
+    <path d="M570 280 H650"/>
+    <path d="M570 310 H720 V280"/>
+    <path d="M750 250 V280"/>
+    <rect x="736" y="280" width="28" height="24"/>
+    <path d="M750 304 V312"/>
+    <path d="M740 312 H760 M744 317 H756 M747 322 H753"/>
+  </g>
+
+  <g fill="currentColor">
+    <g class="xt xt-or-a"><use href="#xt" transform="translate(180 100)"/></g>
+    <g class="xt xt-or-b"><use href="#xt" transform="translate(180 170)"/></g>
+    <g class="xt xt-and-a"><use href="#xt" transform="translate(190 330)"/></g>
+    <g class="xt xt-and-b"><use href="#xt" transform="translate(260 330)"/></g>
+    <g class="xt xt-not"><use href="#xt" transform="translate(440 380)"/></g>
+    <g class="xt xt-final-a"><use href="#xt" transform="translate(650 250)"/></g>
+    <g class="xt xt-final-b"><use href="#xt" transform="translate(720 250)"/></g>
+  </g>
+
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="16" y="124">A</text>
+    <text x="16" y="194">B</text>
+    <text x="120" y="62">OR</text>
+    <text x="120" y="80" font-size="10">Vcc</text>
+    <text x="120" y="272">AND</text>
+    <text x="120" y="310" font-size="10">Vcc</text>
+    <text x="380" y="272">NOT</text>
+    <text x="420" y="274" font-size="10">Vcc</text>
+    <text x="580" y="162">AND</text>
+    <text x="590" y="220" font-size="10">Vcc</text>
+    <text x="810" y="254">выход</text>
+  </g>
+
+  <g class="xor-dot-layer" fill="none" stroke-linecap="round">
+    <path class="xor-dot-line xor-dot-a" d="M20 130 H110"/>
+    <path class="xor-dot-line xor-dot-a" d="M70 130 V360 H110"/>
+    <path class="xor-dot-line xor-dot-b" d="M20 200 H110"/>
+    <path class="xor-dot-line xor-dot-b" d="M50 200 V390 H110"/>
+    <path class="xor-dot-line xor-dot-or" d="M310 135 H340 V220 H540 V280 H570"/>
+    <path class="xor-dot-line xor-dot-and" d="M310 330 H340 V410 H370"/>
+    <path class="xor-dot-line xor-dot-not" d="M510 340 H540 V310 H570"/>
+
+    <path class="xor-dot-line xor2-dot-or-off-a" d="M130 100 H150 L174 110"/>
+    <path class="xor-dot-line xor2-dot-or-off-b" d="M130 170 H150 L174 180"/>
+    <path class="xor-dot-line xor2-dot-or-a" d="M130 100 H150 L174 110 H186 L210 100 H240 V135 H310"/>
+    <path class="xor-dot-line xor2-dot-or-b" d="M130 170 H150 L174 180 H186 L210 170 H240 V135 H310"/>
+    <path class="xor-dot-line xor2-dot-and-vcc" d="M130 315 V345"/>
+    <path class="xor-dot-line xor2-dot-and-vcc" d="M130 330 H160 L184 340"/>
+    <path class="xor-dot-line xor2-dot-and-a" d="M184 340 H196 L220 330 H230 L254 340"/>
+    <path class="xor-dot-line xor2-dot-and-b" d="M254 340 H266 L290 330 H310"/>
+    <path class="xor-dot-line xor2-dot-not-low" d="M440 280 V340 H410 V380 L434 390 H446 L470 380 V410"/>
+    <path class="xor-dot-line xor2-dot-not-high" d="M440 280 V340 H510"/>
+    <path class="xor-dot-line xor2-dot-final-vcc" d="M590 230 V270"/>
+    <path class="xor-dot-line xor2-dot-final-vcc" d="M590 250 H620 L644 260"/>
+    <path class="xor-dot-line xor2-dot-final-a" d="M644 260 H656 L680 250 H690 L714 260"/>
+    <path class="xor-dot-line xor2-dot-final-b" d="M714 260 H726 L750 250 H810"/>
+
+    <path class="xor-dot-line xor2-dot-or-base-a" d="M110 130 H124 A6 6 0 0 1 136 130 H180 V110"/>
+    <path class="xor-dot-line xor2-dot-or-base-b" d="M110 200 H180 V180"/>
+    <path class="xor-dot-line xor2-dot-and-base-a" d="M110 360 H190 V340"/>
+    <path class="xor-dot-line xor2-dot-and-base-b" d="M110 390 H240 V360 H260 V340"/>
+    <path class="xor-dot-line xor2-dot-not-base" d="M370 410 H440 V390"/>
+    <path class="xor-dot-line xor2-dot-final-base-a" d="M570 280 H650 V260"/>
+    <path class="xor-dot-line xor2-dot-final-base-b" d="M570 310 H720 V260"/>
+  </g>
+
+  <path class="xor-flow-2" fill="none" stroke-width="2" d="M750 250 H810"/>
+  <g fill="var(--signal)" stroke="none">
+    <circle class="xor-electron-2" cx="0" cy="0" r="4"/>
+    <circle class="xor-electron-2" cx="0" cy="0" r="4" style="animation-delay: .6s"/>
+    <circle class="xor-electron-2" cx="0" cy="0" r="4" style="animation-delay: 1.2s"/>
+  </g>
+  <g class="xor-switch" data-input="a" role="button" tabindex="0" aria-pressed="false" aria-label="Вход A" transform="translate(-140 112)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+    <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+    <text class="xor-switch__label" x="65" y="24" text-anchor="middle">A = 0</text>
+  </g>
+  <g class="xor-switch" data-input="b" role="button" tabindex="0" aria-pressed="false" aria-label="Вход B" transform="translate(-140 182)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+    <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+    <text class="xor-switch__label" x="65" y="24" text-anchor="middle">B = 0</text>
+  </g>
+</svg>
+                                    </figure>
+                                </div>
+                            </div>
+                        </article>
                     </div>
                 </section>
 
@@ -332,6 +804,12 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031" defer></script>
+    <script src="js/interactive.js?v=20261031-37" defer></script>
+</｜DSML｜ invoke>
+</｜DSML｜ calls>
+
+<｜DSML｜ calls>
+<｜DSML｜ invoke name="shell">
+<｜DSML｜ parameter name="command" string="true">python -m http.server 8123 --bind 127.0.0.1
 </body>
 </html>

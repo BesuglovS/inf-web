@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261031">
+    <link rel="stylesheet" href="css/styles.css?v=20261031-9">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -55,6 +55,7 @@
                     <figcaption class="player__note">
                         Видео в ВК · 10:58 ·
                         <a href="https://vkvideo.ru/playlist/-196622247_1" target="_blank" rel="noopener">плейлист курса</a>
+                        · <a href="https://www.youtube.com/watch?v=LN0ucKNX0hc" target="_blank" rel="noopener">оригинал на YouTube</a>
                     </figcaption>
                 </figure>
 
@@ -138,6 +139,60 @@
                         а триод Ли де Фореста (1906) с управляющей сеткой мог не только выпрямлять,
                         но и усиливать. Именно триод сделал возможной электронную логику.
                     </p>
+                    <figure class="diagram diagram--interactive" data-widget="lamp" data-state="open">
+                        <div class="diagram__controls" role="group" aria-label="Напряжение на сетке">
+                            <button type="button" class="switch is-on" data-state="open" aria-pressed="true">Сетка 0 В</button>
+                            <button type="button" class="switch" data-state="closed" aria-pressed="false">Сетка −</button>
+                        </div>
+<svg viewBox="0 0 640 270" role="img" aria-label="Триод: при нулевом напряжении на сетке электроны летят от катода к аноду, при отрицательном — поток перекрывается">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="100" y="46" width="440" height="184" rx="24" opacity="0.4"/>
+    <path d="M180 80 V190" stroke-width="4"/>
+    <path class="lamp-grid" d="M320 68 V202" stroke-dasharray="6 5" opacity="0.75"/>
+    <path d="M460 80 V190" stroke-width="4"/>
+  </g>
+  <g class="state-open">
+    <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.22">
+      <path d="M200 110 H440"/>
+      <path d="M200 135 H440"/>
+      <path d="M200 160 H440"/>
+    </g>
+    <g fill="var(--signal)" stroke="none">
+      <circle class="lamp-electron" cx="200" cy="110" r="4"/>
+      <circle class="lamp-electron" cx="200" cy="110" r="4" style="animation-delay: .3s"/>
+      <circle class="lamp-electron" cx="200" cy="135" r="4" style="animation-delay: .6s"/>
+      <circle class="lamp-electron" cx="200" cy="135" r="4" style="animation-delay: .9s"/>
+      <circle class="lamp-electron" cx="200" cy="160" r="4" style="animation-delay: 1.2s"/>
+      <circle class="lamp-electron" cx="200" cy="160" r="4" style="animation-delay: 1.5s"/>
+    </g>
+  </g>
+  <g class="state-closed">
+    <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.18">
+      <path d="M200 110 H310"/>
+      <path d="M200 135 H310"/>
+      <path d="M200 160 H310"/>
+    </g>
+    <g fill="var(--signal)" stroke="none">
+      <circle class="lamp-blocked-electron" cx="200" cy="110" r="4"/>
+      <circle class="lamp-blocked-electron" cx="200" cy="110" r="4" style="animation-delay: .3s"/>
+      <circle class="lamp-blocked-electron" cx="200" cy="135" r="4" style="animation-delay: .6s"/>
+      <circle class="lamp-blocked-electron" cx="200" cy="135" r="4" style="animation-delay: .9s"/>
+      <circle class="lamp-blocked-electron" cx="200" cy="160" r="4" style="animation-delay: 1.2s"/>
+      <circle class="lamp-blocked-electron" cx="200" cy="160" r="4" style="animation-delay: 1.5s"/>
+    </g>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text x="180" y="246" text-anchor="middle">катод −</text>
+    <text class="state-open" x="320" y="60" text-anchor="middle">сетка 0 В</text>
+    <text class="state-closed" x="320" y="60" text-anchor="middle">сетка −</text>
+    <text x="460" y="246" text-anchor="middle">анод +</text>
+    <text class="state-open" x="320" y="96" text-anchor="middle" style="fill: var(--signal)">поток электронов</text>
+    <text class="state-closed" x="320" y="96" text-anchor="middle" style="fill: var(--signal)">поток перекрыт</text>
+  </g>
+</svg>
+                        <p class="diagram__out" data-out="lamp" role="status" aria-live="polite">Сетка открыта: электроны летят от катода к аноду.</p>
+                        <figcaption>Схема: сетка управляет потоком электронов</figcaption>
+                    </figure>
                 </section>
 
                 <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
@@ -213,6 +268,54 @@
                         серийные транзисторные компьютеры, и вычисления перестают быть уделом нескольких
                         лабораторий.
                     </p>
+                    <figure class="diagram diagram--interactive" data-widget="transistor" data-state="closed">
+                        <div class="diagram__controls" role="group" aria-label="Ток базы">
+                            <button type="button" class="switch is-on" data-state="closed" aria-pressed="true">База 0</button>
+                            <button type="button" class="switch" data-state="open" aria-pressed="false">База 1</button>
+                        </div>
+<svg viewBox="0 0 640 270" role="img" aria-label="Транзистор: без тока базы он закрыт, с током базы через коллектор и эмиттер идёт большой ток">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="110" y="40" width="420" height="190" rx="22" opacity="0.4"/>
+    <circle cx="320" cy="135" r="70"/>
+    <path d="M278 95 V175" stroke-width="4"/>
+    <path d="M278 110 L350 75 V52"/>
+    <path d="M278 160 L350 195 V218"/>
+    <path d="M339.2 189.7 L326.0 189.4 L330.8 179.6 Z" fill="currentColor" stroke="none"/>
+  </g>
+  <g class="state-closed dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M170 135 H240"/>
+    <path d="M258 135 H278"/>
+  </g>
+  <g class="state-closed" style="stroke: var(--signal); fill: var(--signal)">
+    <path d="M240 135 L258 120" fill="none" stroke-width="1.6"/>
+  </g>
+  <g class="state-open dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M170 135 H278"/>
+  </g>
+  <g class="state-open" style="stroke: var(--signal); fill: var(--signal)">
+    <path d="M270 135 l-9 -4 v8 z" stroke="none"/>
+    <path d="M350 52 V75 L278 110 V160 L350 195 V218" fill="none" stroke-width="2"/>
+    <path d="M350 218 l-5 -9 h10 z" stroke="none"/>
+    <circle class="transistor-electron" cx="350" cy="52" r="4"/>
+    <circle class="transistor-electron" cx="350" cy="52" r="4" style="animation-delay: .4s"/>
+    <circle class="transistor-electron" cx="350" cy="52" r="4" style="animation-delay: .8s"/>
+    <circle class="transistor-electron" cx="350" cy="52" r="4" style="animation-delay: 1.2s"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+    <text class="state-open" x="320" y="26" text-anchor="middle">БАЗА 1 — ОТКРЫТ</text>
+    <text class="state-closed" x="320" y="26" text-anchor="middle">БАЗА 0 — ЗАКРЫТ</text>
+    <text x="170" y="158">база</text>
+    <text x="360" y="62">коллектор</text>
+    <text x="360" y="242">эмиттер</text>
+    <text class="state-open" x="180" y="120" style="fill: var(--signal)">Iб</text>
+    <text class="state-closed" x="180" y="120" style="fill: var(--signal)">Iб = 0</text>
+    <text class="state-open" x="410" y="135" style="fill: var(--signal)">Iк</text>
+    <text class="state-closed" x="410" y="135" style="fill: var(--signal)">Iк = 0</text>
+  </g>
+</svg>
+                        <p class="diagram__out" data-out="transistor" role="status" aria-live="polite">Тока базы нет: транзистор закрыт, ток коллектор — эмиттер не идёт.</p>
+                        <figcaption>Схема: малый ток базы управляет током коллектор — эмиттер</figcaption>
+                    </figure>
                 </section>
 
                 <section class="chapter" id="ch-8" aria-labelledby="ch-8-title">
@@ -354,6 +457,6 @@
             </span>
         </div>
     </footer>
-
+    <script src="js/interactive.js?v=20261031-9" defer></script>
 </body>
 </html>

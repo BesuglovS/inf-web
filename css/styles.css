@@ -251,6 +251,36 @@ a:hover {
     max-width: 780px;
 }
 
+.hero__intro {
+    max-width: 960px;
+    margin-top: 32px;
+}
+
+.hero__intro-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+.hero__intro-title::before {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+}
+
+.hero__intro .video {
+    max-width: none;
+    margin: 0;
+}
+
 /* ─── Плеер ───────────────────────────────────────────────────────────────── */
 
 .player {
@@ -294,6 +324,26 @@ a:hover {
 
 .video figcaption {
     margin: 8px 0 0;
+}
+
+.video__cap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2px 16px;
+}
+
+.video__tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--signal);
+}
+
+.video__cap .player__note {
+    margin: 0;
 }
 
 .video + .lede {
@@ -621,18 +671,30 @@ a:hover {
 
 .lessons {
     display: grid;
-    gap: 14px;
+    grid-template-columns: 1fr;
+    gap: 16px;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
+@media (min-width: 720px) {
+    .lessons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1120px) {
+    .lessons {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 .lesson-card {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 20px;
-    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
     color: var(--ink);
     background: var(--paper-2);
     border: 1px solid transparent;
@@ -645,38 +707,69 @@ a:hover {
     text-decoration: none;
 }
 
+.lesson-card__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--ink);
+}
+
+.lesson-card__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease);
+}
+
+.lesson-card:hover .lesson-card__media img {
+    transform: scale(1.02);
+}
+
 .lesson-card__num {
-    font-family: var(--font-display);
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 9px 6px;
+    background: var(--paper);
     color: var(--signal);
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 0.95;
 }
 
 .lesson-card__body {
-    display: block;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
     min-width: 0;
+    padding: 16px 18px 18px;
 }
 
 .lesson-card__title {
     display: block;
     margin: 0;
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 600;
     line-height: 1.3;
 }
 
 .lesson-card__desc {
     display: block;
-    margin: 4px 0 0;
-    font-size: 14.5px;
+    margin: 0;
+    font-size: 14px;
     line-height: 1.45;
     color: var(--ink-soft);
 }
 
 .lesson-card__go {
+    margin-top: auto;
+    padding-top: 12px;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--signal);
@@ -740,6 +833,50 @@ a:hover {
     margin: 0;
     font-size: 15px;
     color: var(--ink-soft);
+}
+
+/* ─── Основа курса ────────────────────────────────────────────────────────── */
+
+.about-course__body {
+    display: grid;
+    gap: 24px;
+    align-items: center;
+}
+
+@media (min-width: 760px) {
+    .about-course__body {
+        grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+        gap: 32px;
+    }
+}
+
+.about-course__media {
+    display: block;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+}
+
+.about-course__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.about-course__text p {
+    max-width: 58ch;
+    margin: 0 0 12px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
+.about-course__link {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 /* ─── Страница занятия ────────────────────────────────────────────────────── */
@@ -1319,14 +1456,12 @@ a:hover {
         white-space: nowrap;
     }
 
-    .lesson-card {
-        grid-template-columns: auto minmax(0, 1fr);
-        gap: 14px;
-        padding: 16px;
+    .lesson-card__body {
+        padding: 14px 16px 16px;
     }
 
-    .lesson-card__go {
-        grid-column: 2;
+    .lesson-card__title {
+        font-size: 16px;
     }
 }
 
@@ -1567,6 +1702,125 @@ a:hover {
     color: var(--ink-faint);
 }
 
+.diagram__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.diagram__out {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+}
+
+.state-closed {
+    display: none;
+}
+
+.diagram[data-state="closed"] .state-open {
+    display: none;
+}
+
+.diagram[data-state="closed"] .state-closed {
+    display: inline;
+}
+
+.diagram[data-state="closed"] .lamp-grid {
+    stroke: var(--signal);
+    stroke-width: 2.5;
+}
+
+.lamp-electron,
+.lamp-blocked-electron,
+.transistor-electron {
+    fill: var(--signal);
+    opacity: 0;
+}
+
+.diagram[data-state="open"] .lamp-electron {
+    animation: electron-flow 2s linear infinite;
+}
+
+.diagram[data-state="closed"] .lamp-blocked-electron {
+    animation: blocked-electron-flow 2s ease-in-out infinite;
+}
+
+.diagram[data-state="open"] .transistor-electron {
+    animation: current-flow 2s linear infinite;
+}
+
+@keyframes electron-flow {
+    0% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+    12% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(230px);
+        opacity: 0;
+    }
+}
+
+@keyframes blocked-electron-flow {
+    0% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    55% {
+        transform: translateX(110px);
+        opacity: 1;
+    }
+    65% {
+        transform: translateX(110px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+}
+
+@keyframes current-flow {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    12% {
+        opacity: 1;
+    }
+    15% {
+        transform: translate(0, 23px);
+    }
+    35% {
+        transform: translate(-72px, 58px);
+    }
+    55% {
+        transform: translate(-72px, 108px);
+    }
+    75% {
+        transform: translate(0, 143px);
+    }
+    90% {
+        transform: translate(0, 166px);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0, 166px);
+        opacity: 0;
+    }
+}
+
 .widget {
     max-width: var(--measure);
     padding: 18px;
@@ -1672,6 +1926,599 @@ a:hover {
     font-weight: 700;
 }
 
+.truth-panel .widget__table {
+    margin-top: 0;
+    max-width: 520px;
+}
+
+.truth-table th,
+.truth-table td,
+.logic-table th,
+.logic-table td {
+    text-align: center;
+}
+
+.truth-table td,
+.logic-table td {
+    width: auto;
+}
+
+.truth-table th {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.logic-circuits {
+    display: grid;
+    gap: 18px;
+}
+
+.logic-circuit {
+    display: grid;
+    gap: 18px;
+    padding: 18px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+}
+
+@media (min-width: 760px) {
+    .logic-circuit {
+        grid-template-columns: minmax(0, 1fr) 200px;
+        align-items: start;
+    }
+}
+
+.logic-circuit__main {
+    min-width: 0;
+}
+
+.logic-circuit h3 {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.logic-circuit__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.logic-circuit svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: var(--ink);
+}
+
+.logic-circuit__out {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+}
+
+.logic-circuit__out b {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: var(--ink);
+}
+
+.logic-table {
+    margin-top: 0;
+    max-width: 200px;
+}
+
+.logic-table tr.is-active {
+    background: var(--ok-soft);
+}
+
+.logic-table tr.is-active td {
+    color: var(--ok);
+    font-weight: 700;
+}
+
+.logic-table tr[data-row] {
+    cursor: pointer;
+}
+
+.logic-table tr[data-row]:hover {
+    background: var(--paper-3);
+}
+
+.logic-table tr[data-row]:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: -2px;
+}
+
+.logic-circuit__formula {
+    margin: -2px 0 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+}
+
+.xor-circuit {
+    grid-template-columns: 1fr;
+}
+
+.xor-table {
+    width: 100%;
+    max-width: 260px;
+    margin-top: 0;
+    justify-self: end;
+}
+
+.xor-table caption {
+    padding-bottom: 4px;
+}
+
+.xor-table th,
+.xor-table td {
+    padding: 5px 0;
+    font-size: 13px;
+}
+
+.xor-switch {
+    cursor: pointer;
+}
+
+.xor-switch__hit {
+    fill: transparent;
+    pointer-events: all;
+}
+
+.xor-switch__bg {
+    fill: var(--paper);
+    stroke: var(--rule-strong);
+    stroke-width: 1;
+    transition: fill 0.2s var(--ease), stroke 0.2s var(--ease);
+}
+
+.xor-switch__label {
+    fill: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    pointer-events: none;
+}
+
+.xor-switch:hover .xor-switch__bg {
+    stroke: var(--ink);
+}
+
+.xor-switch.is-on .xor-switch__bg {
+    fill: var(--ok-soft);
+    stroke: var(--ok);
+}
+
+.xor-switch:focus {
+    outline: none;
+}
+
+.xor-switch:focus-visible .xor-switch__bg {
+    stroke: var(--signal);
+    stroke-width: 2;
+}
+
+@media (max-width: 759px) {
+    .xor-switch__label {
+        font-size: 18px;
+    }
+}
+
+.xor-views {
+    display: grid;
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.xor-view {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 14px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+}
+
+.xor-view figcaption {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+@media (min-width: 760px) {
+    .xor-view {
+        grid-template-columns: minmax(0, 1fr) 200px;
+        align-items: start;
+    }
+
+    .xor-view figcaption {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .xor-view .xor-table {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .xor-view svg {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+}
+
+.xor-view svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: var(--ink);
+}
+
+.xor-flow,
+.xor-flow-2 {
+    stroke: var(--signal);
+    opacity: 0;
+    transition: opacity 0.2s var(--ease);
+}
+
+.xor-electron,
+.xor-electron-2 {
+    fill: var(--signal);
+    opacity: 0;
+}
+
+.logic-circuit[data-logic="xor"][data-out="1"] .xor-flow,
+.logic-circuit[data-logic="xor"][data-out="1"] .xor-flow-2 {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="xor"][data-out="1"] .xor-electron,
+.logic-circuit[data-logic="xor"][data-out="1"] .xor-electron-2 {
+    animation: logic-flow 2s linear infinite;
+}
+
+.xor-electron {
+    offset-path: path("M570 140 H650");
+}
+
+.xor-electron-2 {
+    offset-path: path("M750 250 H810");
+}
+
+.xt {
+    transition: color 0.2s var(--ease);
+}
+
+.xor-internal {
+    transition: stroke 0.2s var(--ease), stroke-width 0.2s var(--ease);
+}
+
+.logic-circuit[data-logic="xor"][data-a="1"] .xt-or-a,
+.logic-circuit[data-logic="xor"][data-a="1"] .xt-and-a,
+.logic-circuit[data-logic="xor"][data-b="1"] .xt-or-b,
+.logic-circuit[data-logic="xor"][data-b="1"] .xt-and-b,
+.logic-circuit[data-logic="xor"][data-and="1"] .xt-not,
+.logic-circuit[data-logic="xor"][data-or="1"] .xt-final-a,
+.logic-circuit[data-logic="xor"][data-not="1"] .xt-final-b {
+    color: var(--signal);
+}
+
+.logic-circuit[data-logic="xor"][data-or="1"] .xor-internal-or,
+.logic-circuit[data-logic="xor"][data-and="1"] .xor-internal-and,
+.logic-circuit[data-logic="xor"][data-not="1"] .xor-internal-not,
+.logic-circuit[data-logic="xor"][data-out="1"] .xor-internal-final {
+    stroke: var(--signal);
+    stroke-width: 2;
+}
+
+.xor-status {
+    margin: 4px 0 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+}
+
+.xor-status b {
+    color: var(--ink);
+}
+
+.xor-gate {
+    transition: fill 0.2s var(--ease), stroke 0.2s var(--ease);
+}
+
+.xor-wire {
+    transition: stroke 0.2s var(--ease), stroke-width 0.2s var(--ease);
+}
+
+.logic-circuit[data-logic="xor"][data-a="1"] .xor-wire-a,
+.logic-circuit[data-logic="xor"][data-b="1"] .xor-wire-b,
+.logic-circuit[data-logic="xor"][data-a="1"] .xor-wire-or,
+.logic-circuit[data-logic="xor"][data-b="1"] .xor-wire-or,
+.logic-circuit[data-logic="xor"][data-a="1"][data-b="1"] .xor-wire-and,
+.logic-circuit[data-logic="xor"]:not([data-a="1"][data-b="1"]) .xor-wire-not {
+    stroke: var(--signal);
+    stroke-width: 2;
+}
+
+.xor-dot-layer {
+    pointer-events: none;
+}
+
+.xor-dot-line {
+    fill: none;
+    stroke: var(--signal);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 0.1 14;
+    opacity: 0;
+}
+
+.logic-circuit[data-logic="xor"][data-a="1"] .xor-dot-a,
+.logic-circuit[data-logic="xor"][data-b="1"] .xor-dot-b,
+.logic-circuit[data-logic="xor"][data-a="1"] .xor-dot-or,
+.logic-circuit[data-logic="xor"][data-b="1"] .xor-dot-or,
+.logic-circuit[data-logic="xor"][data-a="1"][data-b="1"] .xor-dot-and,
+.logic-circuit[data-logic="xor"]:not([data-a="1"][data-b="1"]) .xor-dot-not {
+    opacity: 1;
+    animation: xor-wire-electron 2s linear infinite;
+}
+
+.logic-circuit[data-logic="xor"][data-a="1"] .xor2-dot-or-a,
+.logic-circuit[data-logic="xor"][data-b="1"] .xor2-dot-or-b,
+.logic-circuit[data-logic="xor"][data-a="0"] .xor2-dot-or-off-a,
+.logic-circuit[data-logic="xor"][data-b="0"] .xor2-dot-or-off-b,
+.logic-circuit[data-logic="xor"][data-a="1"] .xor2-dot-and-a,
+.logic-circuit[data-logic="xor"][data-and="1"] .xor2-dot-and-b,
+.logic-circuit[data-logic="xor"][data-and="0"] .xor2-dot-not-high,
+.logic-circuit[data-logic="xor"][data-and="1"] .xor2-dot-not-low,
+.logic-circuit[data-logic="xor"][data-or="1"] .xor2-dot-final-a,
+.logic-circuit[data-logic="xor"][data-out="1"] .xor2-dot-final-b {
+    opacity: 1;
+    animation: xor-wire-electron 2s linear infinite;
+}
+
+.logic-circuit[data-logic="xor"][data-a="1"] .xor2-dot-or-base-a,
+.logic-circuit[data-logic="xor"][data-a="1"] .xor2-dot-and-base-a,
+.logic-circuit[data-logic="xor"][data-b="1"] .xor2-dot-or-base-b,
+.logic-circuit[data-logic="xor"][data-b="1"] .xor2-dot-and-base-b,
+.logic-circuit[data-logic="xor"][data-and="1"] .xor2-dot-not-base,
+.logic-circuit[data-logic="xor"][data-or="1"] .xor2-dot-final-base-a,
+.logic-circuit[data-logic="xor"][data-not="1"] .xor2-dot-final-base-b {
+    opacity: 1;
+    animation: xor-wire-electron 2s linear infinite;
+}
+
+.logic-circuit[data-logic="xor"] .xor2-dot-final-vcc,
+.logic-circuit[data-logic="xor"] .xor2-dot-and-vcc {
+    opacity: 1;
+    animation: xor-wire-electron 2s linear infinite;
+}
+
+@keyframes xor-wire-electron {
+    to {
+        stroke-dashoffset: -14.1;
+    }
+}
+
+.logic-circuit[data-logic="xor"][data-a="1"] .xor-gate-or,
+.logic-circuit[data-logic="xor"][data-b="1"] .xor-gate-or,
+.logic-circuit[data-logic="xor"][data-a="1"][data-b="1"] .xor-gate-and,
+.logic-circuit[data-logic="xor"]:not([data-a="1"][data-b="1"]) .xor-gate-not,
+.logic-circuit[data-logic="xor"][data-out="1"] .xor-gate-final {
+    fill: var(--ok-soft);
+    stroke: var(--ok);
+    stroke-width: 2;
+}
+
+.logic-flow,
+.base-flow {
+    stroke: var(--signal);
+    opacity: 0;
+    transition: opacity 0.2s var(--ease);
+}
+
+.logic-electron,
+.base-electron {
+    fill: var(--signal);
+    opacity: 0;
+}
+
+.logic-circuit[data-logic="and"][data-a="0"] .and-flow-1 {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="and"][data-a="0"] .and-electron-1 {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="and"][data-a="1"][data-b="0"] .and-flow-2 {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="and"][data-a="1"][data-b="0"] .and-electron-2 {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="and"][data-a="1"][data-b="1"] .and-flow-3 {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="and"][data-a="1"][data-b="1"] .and-electron-3 {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="and"][data-a="1"] .base-flow-a {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="and"][data-a="1"] .base-electron-a {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="and"][data-b="1"] .base-flow-b {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="and"][data-b="1"] .base-electron-b {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="or"][data-a="0"] .or-flow-off-a {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="or"][data-a="0"] .or-electron-off-a {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="or"][data-a="1"] .or-flow-on-a {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="or"][data-a="1"] .or-electron-on-a {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="or"][data-b="0"] .or-flow-off-b {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="or"][data-b="0"] .or-electron-off-b {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="or"][data-b="1"] .or-flow-on-b {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="or"][data-b="1"] .or-electron-on-b {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="or"][data-a="1"] .base-flow-a {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="or"][data-a="1"] .base-electron-a {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="or"][data-b="1"] .base-flow-b {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="or"][data-b="1"] .base-electron-b {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="not"][data-a="0"] .not-flow-high {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="not"][data-a="0"] .not-electron-high {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="not"][data-a="1"] .not-flow-low {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="not"][data-a="1"] .not-electron-low {
+    animation: logic-flow 2s linear infinite;
+}
+
+.logic-circuit[data-logic="not"][data-a="1"] .base-flow-a {
+    opacity: 0.35;
+}
+
+.logic-circuit[data-logic="not"][data-a="1"] .base-electron-a {
+    animation: logic-flow 2s linear infinite;
+}
+
+.and-electron-1 {
+    offset-path: path("M30 122 H85 L128 100");
+}
+
+.and-electron-2 {
+    offset-path: path("M30 122 H85 L128 100 H152 L195 122 H225 L268 100");
+}
+
+.and-electron-3 {
+    offset-path: path("M30 122 H85 L128 100 H152 L195 122 H225 L268 100 H292 L335 122 H360");
+}
+
+.or-electron-off-a {
+    offset-path: path("M30 97 H95 L138 75");
+}
+
+.or-electron-on-a {
+    offset-path: path("M30 97 H95 L138 75 H162 L205 97 H230 V130 H360");
+}
+
+.or-electron-off-b {
+    offset-path: path("M30 187 H95 L138 165");
+}
+
+.or-electron-on-b {
+    offset-path: path("M30 187 H95 L138 165 H162 L205 187 H230 V130 H360");
+}
+
+.not-electron-high {
+    offset-path: path("M30 100 H150 V70");
+}
+
+.not-electron-low {
+    offset-path: path("M30 100 H230 L257 78 H293 L320 100 H350 V140");
+}
+
+.logic-circuit[data-logic="and"] .base-electron-a {
+    offset-path: path("M140 60 V100");
+}
+
+.logic-circuit[data-logic="and"] .base-electron-b {
+    offset-path: path("M280 60 V100");
+}
+
+.logic-circuit[data-logic="or"] .base-electron-a {
+    offset-path: path("M150 35 V75");
+}
+
+.logic-circuit[data-logic="or"] .base-electron-b {
+    offset-path: path("M150 205 V165");
+}
+
+.logic-circuit[data-logic="not"] .base-electron-a {
+    offset-path: path("M275 38 V78");
+}
+
+@keyframes logic-flow {
+    0% {
+        offset-distance: 0%;
+        opacity: 0;
+    }
+    12% {
+        opacity: 1;
+    }
+    88% {
+        opacity: 1;
+    }
+    100% {
+        offset-distance: 100%;
+        opacity: 0;
+    }
+}
+
 .bits {
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -1746,7 +2593,11 @@ a:hover {
 @media print {
     .cards,
     .quiz,
-    .widget {
+    .widget,
+    .diagram__controls,
+    .diagram__out,
+    .logic-circuit__controls,
+    .logic-circuit__out {
         display: none;
     }
 }

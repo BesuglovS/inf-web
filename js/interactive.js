@@ -151,46 +151,6 @@
 
     /* ── Интерактивные модели ──────────────────────────────────────────── */
 
-    /* Логические операции: два входа, четыре результата. */
-    document.querySelectorAll('[data-widget="gates"]').forEach(function (root) {
-        var state = { a: 0, b: 0 };
-
-        function update() {
-            root.querySelectorAll(".switch").forEach(function (button) {
-                var key = button.getAttribute("data-input");
-                var value = state[key];
-                button.textContent = key.toUpperCase() + " = " + value;
-                button.setAttribute("aria-pressed", String(Boolean(value)));
-                button.classList.toggle("is-on", Boolean(value));
-            });
-
-            var out = function (key) {
-                return root.querySelector('[data-out="' + key + '"]');
-            };
-
-            out("and").textContent = state.a && state.b ? "1" : "0";
-            out("or").textContent = state.a || state.b ? "1" : "0";
-            out("xor").textContent = state.a !== state.b ? "1" : "0";
-            out("nota").textContent = state.a ? "0" : "1";
-
-            root.querySelectorAll(".widget__table td").forEach(function (cell) {
-                cell.classList.toggle("is-one", cell.textContent === "1");
-            });
-        }
-
-        root.addEventListener("click", function (event) {
-            var button = event.target.closest(".switch");
-            if (!button) {
-                return;
-            }
-            var key = button.getAttribute("data-input");
-            state[key] = state[key] ? 0 : 1;
-            update();
-        });
-
-        update();
-    });
-
     /* Восемь бит: десятичное и шестнадцатеричное значение. */
     document.querySelectorAll('[data-widget="bits"]').forEach(function (root) {
         var buttons = Array.prototype.slice.call(root.querySelectorAll(".bit"));
@@ -295,6 +255,164 @@
         }
 
         compress();
+    });
+
+    /* Интерактивные схемы: лампа и транзистор. */
+    document.querySelectorAll('[data-widget="lamp"], [data-widget="transistor"]').forEach(function (root) {
+        var widget = root.getAttribute("data-widget");
+        var buttons = Array.prototype.slice.call(root.querySelectorAll(".switch"));
+        var out = root.querySelector("[data-out]");
+        var messages = {
+            lamp: {
+                open: "Сетка открыта: электроны летят от катода к аноду.",
+                closed: "Сетка закрыта: отрицательное напряжение перекрывает поток электронов."
+            },
+            transistor: {
+                closed: "Тока базы нет: транзистор закрыт, ток коллектор — эмиттер не идёт.",
+                open: "Ток базы открывает транзистор: через коллектор и эмиттер идёт большой ток."
+            }
+        };
+        var state = root.getAttribute("data-state") || "open";
+
+        function setState(next) {
+            state = next;
+            root.setAttribute("data-state", state);
+            buttons.forEach(function (button) {
+                var active = button.getAttribute("data-state") === state;
+                button.classList.toggle("is-on", active);
+                button.setAttribute("aria-pressed", String(active));
+            });
+            if (out && messages[widget] && messages[widget][state]) {
+                out.textContent = messages[widget][state];
+            }
+        }
+
+        buttons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                setState(button.getAttribute("data-state"));
+            });
+        });
+
+        setState(state);
+    });
+
+    /* Логические элементы на транзисторах. */
+    document.querySelectorAll(".logic-circuit").forEach(function (root) {
+        var op = root.getAttribute("data-logic");
+        var buttons = Array.prototype.slice.call(root.querySelectorAll(".switch, .xor-switch"));
+        var out = root.querySelector("[data-out]");
+        var rows = Array.prototype.slice.call(root.querySelectorAll("tr[data-row]"));
+        var state = { a: 0, b: 0 };
+
+        function result() {
+            if (op === "not") {
+                return state.a ? 0 : 1;
+            }
+            if (op === "or") {
+                return state.a || state.b ? 1 : 0;
+            }
+            if (op === "xor") {
+                return state.a !== state.b ? 1 : 0;
+            }
+            return state.a && state.b ? 1 : 0;
+        }
+
+        function update() {
+            var value = result();
+            root.setAttribute("data-a", state.a);
+            root.setAttribute("data-b", state.b);
+            root.setAttribute("data-out", value);
+            if (out) {
+                out.textContent = value;
+            }
+
+            if (op === "xor") {
+                var orValue = state.a || state.b ? 1 : 0;
+                var andValue = state.a && state.b ? 1 : 0;
+                var notValue = andValue ? 0 : 1;
+                root.setAttribute("data-or", orValue);
+                root.setAttribute("data-and", andValue);
+                root.setAttribute("data-not", notValue);
+                root.querySelectorAll('[data-signal="or"]').forEach(function (node) {
+                    node.textContent = orValue;
+                });
+                root.querySelectorAll('[data-signal="and"]').forEach(function (node) {
+                    node.textContent = andValue;
+                });
+                root.querySelectorAll('[data-signal="not"]').forEach(function (node) {
+                    node.textContent = notValue;
+                });
+            }
+
+            buttons.forEach(function (button) {
+                var key = button.getAttribute("data-input");
+                var active = state[key] === 1;
+                button.classList.toggle("is-on", active);
+                button.setAttribute("aria-pressed", String(active));
+                var label = button.querySelector(".xor-switch__label");
+                if (label) {
+                    label.textContent = key.toUpperCase() + " = " + state[key];
+                } else {
+                    button.textContent = key.toUpperCase() + " = " + state[key];
+                }
+            });
+
+            var combo = op === "not" ? String(state.a) : String(state.a) + String(state.b);
+            rows.forEach(function (row) {
+                row.classList.toggle("is-active", row.getAttribute("data-row") === combo);
+            });
+        }
+
+        function toggle(button) {
+            var key = button.getAttribute("data-input");
+            state[key] = state[key] ? 0 : 1;
+            update();
+        }
+
+        buttons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                toggle(button);
+            });
+
+            if (button.classList.contains("xor-switch")) {
+                button.addEventListener("keydown", function (event) {
+                    if (event.key === " " || event.key === "Enter") {
+                        event.preventDefault();
+                        toggle(button);
+                    }
+                });
+            }
+        });
+
+        rows.forEach(function (row) {
+            var combo = row.getAttribute("data-row");
+            if (combo === null) {
+                return;
+            }
+            row.setAttribute("tabindex", "0");
+            row.setAttribute("title", "Переключить схему в это состояние");
+
+            function applyRow() {
+                if (op === "not") {
+                    state.a = combo === "1" ? 1 : 0;
+                    state.b = 0;
+                } else {
+                    state.a = combo.charAt(0) === "1" ? 1 : 0;
+                    state.b = combo.charAt(1) === "1" ? 1 : 0;
+                }
+                update();
+            }
+
+            row.addEventListener("click", applyRow);
+            row.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    applyRow();
+                }
+            });
+        });
+
+        update();
     });
 
     document.querySelectorAll(".quiz").forEach(initQuiz);
