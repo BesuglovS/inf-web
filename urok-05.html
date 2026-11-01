@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261031">
+    <link rel="stylesheet" href="css/styles.css?v=20261031-49">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -60,26 +60,6 @@
                 </figure>
 
                 <p class="lede">Складывать двоичные числа умеет схема из нескольких логических элементов. Собрав её на нужное число разрядов и добавив выбор операции, получают арифметико-логическое устройство — тот блок, который в процессоре отвечает за вычисления.</p>
-                <figure class="diagram">
-<svg viewBox="0 0 640 190" role="img" aria-label="Полусумматор: входы A и B, выходы сумма и перенос">
-  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
-    <path d="M60 50 H140 M60 130 H140"/>
-    <rect x="140" y="34" width="150" height="112"/>
-    <path d="M290 66 H430 M290 116 H430"/>
-    <path d="M430 66 l-10 -6 v12 z M430 116 l-10 -6 v12 z" fill="currentColor" stroke="none"/>
-  </g>
-  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
-    <text x="44" y="54">A</text>
-    <text x="44" y="134">B</text>
-    <text x="160" y="86">XOR → S</text>
-    <text x="160" y="112">AND → C</text>
-    <text x="446" y="62">сумма</text>
-    <text x="446" y="112">перенос</text>
-    <text x="140" y="24">полусумматор</text>
-  </g>
-</svg>
-                    <figcaption>Схема: полусумматор</figcaption>
-                </figure>
 
                 <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
                     <span class="chapter__num">01 · ориентиры</span>
@@ -99,11 +79,166 @@
                     <h3>Полусумматор</h3>
                     <p>Сложим два бита. Результат — тоже два бита: младший разряд суммы и перенос в следующий. Младший разряд ведёт себя как XOR, перенос — как AND. Двух элементов достаточно, чтобы сложить два однобитных числа.</p>
                     <p>Такая схема называется <strong>полусумматором</strong>. Её ограничение видно сразу: она не умеет принимать перенос от предыдущего разряда.</p>
+                    <article class="logic-circuit half-adder" data-logic="half" data-a="0" data-b="0" data-sum="0" data-carry="0">
+                        <div class="logic-circuit__main">
+                            <div class="half-scheme">
+                                <div class="half-head">
+                                    <p class="logic-circuit__formula">S = A XOR B — сумма (sum)<br>C = A AND B — перенос (carry)</p>
+                                    <p class="logic-circuit__out" role="status" aria-live="polite">S: <b data-out="sum">0</b> · C: <b data-out="carry">0</b></p>
+                                </div>
+                                <table class="widget__table logic-table half-table">
+                                    <caption>Таблица истинности</caption>
+                                    <thead>
+                                        <tr><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">S</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-row="00"><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                        <tr data-row="01"><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                                        <tr data-row="10"><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                                        <tr data-row="11"><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                                    </tbody>
+                                </table>
+                                <svg viewBox="-160 0 960 300" role="group" aria-label="Полусумматор: A и B подаются на XOR и AND; XOR даёт сумму, AND — перенос">
+                      <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <path class="half-wire half-wire-a" d="M30 70 H120 V65 H200"/>
+                        <path class="half-wire half-wire-a" d="M70 70 V195 H152 A8 8 0 0 1 168 195 H200"/>
+                        <path class="half-wire half-wire-b" d="M30 210 H160 V95 H200"/>
+                        <path class="half-wire half-wire-b" d="M100 210 V225 H200"/>
+                        <rect class="half-gate half-gate-xor" x="200" y="40" width="140" height="80"/>
+                        <rect class="half-gate half-gate-and" x="200" y="180" width="140" height="80"/>
+                        <path class="half-wire half-wire-sum" d="M340 80 H650"/>
+                        <path class="half-wire half-wire-carry" d="M340 220 H650"/>
+                      </g>
+                      <g class="half-dot-layer" fill="none" stroke-linecap="round">
+                        <path class="half-dot half-dot-a" d="M30 70 H120 V65 H200"/>
+                        <path class="half-dot half-dot-a" d="M70 70 V195 H152 A8 8 0 0 1 168 195 H200"/>
+                        <path class="half-dot half-dot-b" d="M30 210 H160 V95 H200"/>
+                        <path class="half-dot half-dot-b" d="M100 210 V225 H200"/>
+                        <path class="half-dot half-dot-sum" d="M340 80 H650"/>
+                        <path class="half-dot half-dot-carry" d="M340 220 H650"/>
+                      </g>
+                      <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="13">
+                        <text x="20" y="64">A</text>
+                        <text x="20" y="204">B</text>
+                        <text x="270" y="86" text-anchor="middle">XOR</text>
+                        <text x="270" y="226" text-anchor="middle">AND</text>
+                        <text x="660" y="84">S · сумма</text>
+                        <text x="660" y="224">C · перенос</text>
+                      </g>
+                      <g class="xor-switch" data-input="a" role="button" tabindex="0" aria-pressed="false" aria-label="Вход A" transform="translate(-140 52)">
+                        <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+                        <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+                        <text class="xor-switch__label" x="65" y="24" text-anchor="middle">A = 0</text>
+                      </g>
+                      <g class="xor-switch" data-input="b" role="button" tabindex="0" aria-pressed="false" aria-label="Вход B" transform="translate(-140 192)">
+                        <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+                        <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+                        <text class="xor-switch__label" x="65" y="24" text-anchor="middle">B = 0</text>
+                      </g>
+                    </svg>
+                            </div>
+                        </div>
+                    </article>
+
                     <h3>Полный сумматор</h3>
                     <p>Чтобы складывать многозначные числа, нужен блок с тремя входами: два бита и перенос из младшего разряда. Внутри — два полусумматора и элемент OR, который объединяет два возможных переноса.</p>
                     <p>Восемь таких блоков, соединённых цепочкой переносов, дают 8-разрядный сумматор. Он работает, но перенос идёт последовательно: каждый следующий разряд ждёт предыдущий. Отсюда берутся схемы ускоренного переноса, которые считают переносы параллельно.</p>
+                    <article class="logic-circuit full-adder" data-logic="full" data-a="0" data-b="0" data-cin="0" data-s1="0" data-c1="0" data-c2="0" data-sum="0" data-carry="0">
+                        <div class="logic-circuit__main">
+                            <div class="half-scheme">
+                                <div class="half-head">
+                                    <p class="logic-circuit__formula">S = A XOR B XOR Cin<br>Cout = (A AND B) OR (S1 AND Cin)</p>
+                                    <p class="logic-circuit__out" role="status" aria-live="polite">S: <b data-out="sum">0</b> · Cout: <b data-out="carry">0</b></p>
+                                </div>
+                                <table class="widget__table logic-table half-table">
+                                    <caption>Таблица истинности</caption>
+                                    <thead>
+                                        <tr><th scope="col">A</th><th scope="col">B</th><th scope="col">Cin</th><th scope="col">Cout</th><th scope="col">S</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-row="000"><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                        <tr data-row="001"><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                                        <tr data-row="010"><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                                        <tr data-row="011"><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                                        <tr data-row="100"><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                                        <tr data-row="101"><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                                        <tr data-row="110"><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                                        <tr data-row="111"><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                                    </tbody>
+                                </table>
+<svg viewBox="-180 0 1180 380" role="group" aria-label="Полный сумматор из двух полусумматоров и элемента OR">
+  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path class="full-wire full-wire-a" d="M30 70 H200"/>
+    <path class="full-wire full-wire-b" d="M30 150 H140 V110 H200"/>
+    <path class="full-wire full-wire-cin" d="M30 300 H372 A8 8 0 0 1 388 300 H440 V220 H450"/>
+    <path class="full-wire full-wire-s1" d="M350 70 H400 V180 H450"/>
+    <path class="full-wire full-wire-c1" d="M350 120 H380 V310 H650"/>
+    <path class="full-wire full-wire-c2" d="M610 220 H630 V270 H650"/>
+    <rect class="full-gate full-gate-hs1" x="200" y="40" width="150" height="100"/>
+    <rect class="full-gate full-gate-hs2" x="450" y="150" width="160" height="100"/>
+    <rect class="full-gate full-gate-or" x="650" y="250" width="140" height="80"/>
+    <path class="full-wire full-wire-sum" d="M610 180 H850"/>
+    <path class="full-wire full-wire-carry" d="M790 290 H880"/>
+  </g>
+  <g class="full-dot-layer" fill="none" stroke-linecap="round">
+    <path class="full-dot full-dot-a" d="M30 70 H200"/>
+    <path class="full-dot full-dot-b" d="M30 150 H140 V110 H200"/>
+    <path class="full-dot full-dot-cin" d="M30 300 H372 A8 8 0 0 1 388 300 H440 V220 H450"/>
+    <path class="full-dot full-dot-s1" d="M350 70 H400 V180 H450"/>
+    <path class="full-dot full-dot-c1" d="M350 120 H380 V310 H650"/>
+    <path class="full-dot full-dot-c2" d="M610 220 H630 V270 H650"/>
+    <path class="full-dot full-dot-sum" d="M610 180 H850"/>
+    <path class="full-dot full-dot-carry" d="M790 290 H880"/>
+  </g>
+  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="13">
+    <text x="20" y="64">A</text>
+    <text x="20" y="144">B</text>
+    <text x="20" y="294">Cin</text>
+    <text x="275" y="86" text-anchor="middle">HS1</text>
+    <text x="275" y="102" text-anchor="middle" font-size="10">полусумматор</text>
+    <text x="530" y="196" text-anchor="middle">HS2</text>
+    <text x="530" y="212" text-anchor="middle" font-size="10">полусумматор</text>
+    <text x="720" y="294" text-anchor="middle">OR</text>
+    <text x="360" y="64" font-size="12" font-weight="600">S</text>
+    <text x="360" y="114" font-size="12" font-weight="600">C</text>
+    <text x="620" y="174" font-size="12" font-weight="600">S</text>
+    <text x="620" y="214" font-size="12" font-weight="600">C</text>
+    <text x="860" y="184">S · сумма</text>
+    <text x="890" y="294">Cout · перенос</text>
+  </g>
+  <g class="xor-switch" data-input="a" role="button" tabindex="0" aria-pressed="false" aria-label="Вход A" transform="translate(-160 52)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+    <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+    <text class="xor-switch__label" x="65" y="24" text-anchor="middle">A = 0</text>
+  </g>
+  <g class="xor-switch" data-input="b" role="button" tabindex="0" aria-pressed="false" aria-label="Вход B" transform="translate(-160 132)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+    <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+    <text class="xor-switch__label" x="65" y="24" text-anchor="middle">B = 0</text>
+  </g>
+  <g class="xor-switch" data-input="cin" role="button" tabindex="0" aria-pressed="false" aria-label="Вход Cin" transform="translate(-160 282)">
+    <rect class="xor-switch__hit" x="-10" y="-10" width="150" height="56"/>
+    <rect class="xor-switch__bg" width="130" height="36" rx="4"/>
+    <text class="xor-switch__label" x="65" y="24" text-anchor="middle">Cin = 0</text>
+  </g>
+</svg>
+                            </div>
+                        </div>
+                    </article>
+
                     <h3>Вычитание как сложение</h3>
                     <p>Отдельную схему вычитания делать невыгодно. Вместо этого число, которое вычитают, переводят в дополнительный код и складывают: A − B превращается в A + (−B). Тот же сумматор, другая подготовка входа.</p>
+                    <aside class="concept-block" aria-labelledby="twos-code-title">
+                        <h4 id="twos-code-title">Дополнительный код</h4>
+                        <p>Чтобы получить −B, все биты числа B инвертируют и прибавляют единицу. Старший бит результата становится равным 1 — это признак отрицательного числа.</p>
+                        <div class="concept-block__example">
+                            <span>B = <b>0101₂</b> <em>(5)</em></span>
+                            <span>инверсия: <b>1010₂</b></span>
+                            <span>+ 1: <b>1011₂</b> <em>(−5)</em></span>
+                        </div>
+                        <p>В 4-битном дополнительном коде старший бит имеет вес −2³, поэтому 1011₂ = −8 + 2 + 1 = −5. Обратное преобразование такое же: инвертировать все биты и прибавить 1.</p>
+                        <p>Вычитание превращается в сложение: A − B = A + (NOT B + 1), а на вход переноса сумматора подаётся 1.</p>
+                    </aside>
                     <p>Именно поэтому в компьютере нет «вычитателя» как отдельного блока: есть инверторы на входе и управляющий сигнал, который выбирает режим.</p>
                     <h3>Флаги и выбор операции</h3>
                     <p>После операции важно не только число на выходе, но и её свойства: равен ли результат нулю, был ли перенос за старший разряд, не вышел ли результат за пределы разрядной сетки. Эти признаки — <strong>флаги</strong>, и по ним работают условные переходы в программах.</p>
@@ -124,24 +259,45 @@
                     <h2 id="ch-3-title">Попробуйте сами</h2>
 
                     <div class="widget" data-widget="adder">
-                        <p class="widget__hint">Соберите два четырёхбитных числа и посмотрите на сумму и перенос.</p>
-                        <div class="adder">
+                        <p class="widget__hint">Соберите два четырёхбитных числа — сумма и переносы появятся автоматически, как при сложении столбиком.</p>
+                        <div class="adder" role="group" aria-label="Сложение двух четырёхбитных чисел">
+                            <div class="adder__row adder__row--carry">
+                                <span class="adder__label">перенос</span>
+                                <span class="adder__cell" data-carry="4">0</span>
+                                <span class="adder__cell" data-carry="3">0</span>
+                                <span class="adder__cell" data-carry="2">0</span>
+                                <span class="adder__cell" data-carry="1">0</span>
+                                <span class="adder__cell adder__cell--blank" aria-hidden="true"></span>
+                                <span class="adder__decimal adder__decimal--blank" aria-hidden="true"></span>
+                            </div>
                             <div class="adder__row">
                                 <span class="adder__label">A</span>
+                                <span class="adder__cell adder__cell--blank" aria-hidden="true"></span>
                                 <button type="button" class="bit" data-row="a" data-idx="0" aria-pressed="false">0</button>
                                 <button type="button" class="bit" data-row="a" data-idx="1" aria-pressed="false">0</button>
                                 <button type="button" class="bit" data-row="a" data-idx="2" aria-pressed="false">0</button>
                                 <button type="button" class="bit" data-row="a" data-idx="3" aria-pressed="false">0</button>
+                                <span class="adder__decimal" data-dec="a">0</span>
                             </div>
-                            <div class="adder__row">
+                            <div class="adder__row adder__row--b">
                                 <span class="adder__label">B</span>
+                                <span class="adder__cell adder__cell--blank" aria-hidden="true"></span>
                                 <button type="button" class="bit" data-row="b" data-idx="0" aria-pressed="false">0</button>
                                 <button type="button" class="bit" data-row="b" data-idx="1" aria-pressed="false">0</button>
                                 <button type="button" class="bit" data-row="b" data-idx="2" aria-pressed="false">0</button>
                                 <button type="button" class="bit" data-row="b" data-idx="3" aria-pressed="false">0</button>
+                                <span class="adder__decimal" data-dec="b">0</span>
+                            </div>
+                            <div class="adder__row adder__row--sum">
+                                <span class="adder__label">сумма</span>
+                                <span class="adder__cell" data-sum="4">0</span>
+                                <span class="adder__cell" data-sum="3">0</span>
+                                <span class="adder__cell" data-sum="2">0</span>
+                                <span class="adder__cell" data-sum="1">0</span>
+                                <span class="adder__cell" data-sum="0">0</span>
+                                <span class="adder__decimal" data-dec="sum">0</span>
                             </div>
                         </div>
-                        <p class="widget__out">Сумма: <b data-out="sum">0</b> · в двоичном виде: <b data-out="bin">00000</b> <span data-out="flags"></span></p>
                     </div>
                 </section>
 
@@ -289,14 +445,14 @@
                     </ol>
                 </section>
 
-                <nav class="pager" aria-label="Навигация по занятиям">
+                                <nav class="pager" aria-label="Навигация по занятиям">
                     <a href="urok-04.html">
                         <span>предыдущее занятие</span>
                         ← Двоичное представление: числа и буквы
                     </a>
-                    <a class="pager__next" href="urok-10.html">
+                    <a class="pager__next" href="urok-06.html">
                         <span>следующее занятие</span>
-                        Раннее программирование →
+                        Регистры и память →
                     </a>
                 </nav>
             </div>
@@ -327,6 +483,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031" defer></script>
+    <script src="js/interactive.js?v=20261031-49" defer></script>
 </body>
 </html>

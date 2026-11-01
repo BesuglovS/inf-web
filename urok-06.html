@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261031">
+    <link rel="stylesheet" href="css/styles.css?v=20261031-75">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -60,23 +60,6 @@
                 </figure>
 
                 <p class="lede">Пока данных мало, их держат в регистрах — нескольких ячейках внутри процессора. Как только нужно больше, в дело вступает память: матрица ячеек, адрес и логика выбора.</p>
-                <figure class="diagram">
-<svg viewBox="0 0 640 180" role="img" aria-label="Схема выбора ячейки памяти">
-  <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
-    <rect x="20.0" y="60" width="120.0" height="56"/><text x="80.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">адрес</text>
-    <path d="M146.0 88 H168.0"/><path d="M168.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
-    <rect x="180.0" y="60" width="120.0" height="56"/><text x="240.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">дешифратор</text>
-    <path d="M306.0 88 H328.0"/><path d="M328.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
-    <rect x="340.0" y="60" width="120.0" height="56"/><text x="400.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">ячейка</text>
-    <path d="M466.0 88 H488.0"/><path d="M488.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
-    <rect x="500.0" y="60" width="120.0" height="56"/><text x="560.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">шина</text>
-  </g>
-  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
-    <text x="20" y="150">активен ровно один выход</text>
-  </g>
-</svg>
-                    <figcaption>Схема: путь от адреса к ячейке</figcaption>
-                </figure>
 
                 <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
                     <span class="chapter__num">01 · ориентиры</span>
@@ -95,6 +78,158 @@
                     <h3>Регистр — самая быстрая ячейка</h3>
                     <p>Регистр — несколько триггеров внутри процессора, обычно 8, 16, 32 или 64 бита. Обращение к нему стоит один такт и не требует обращений к внешней памяти.</p>
                     <p>Регистров мало: единицы или десятки. Поэтому они годятся для промежуточных значений, но не для данных целиком.</p>
+                    <h3>Как хранить один бит</h3>
+                    <p>Ячейка памяти должна не только принять значение, но и удержать его после того, как запись закончилась. Для этого выход замыкают обратно на вход: получается петля обратной связи.</p>
+
+                    <p>Электроны стартуют только на входе R или S, на развилке делятся на два, а элемент пропускает их по правилу AND или OR. Следите за потоком: если он оборвался, вернуть его нечем.</p>
+
+                    <div class="bit-cells" id="bitcells">
+
+                        <article class="bit-cell" data-widget="bitcell" data-mode="zero" data-q="1" data-hold="1" data-write="0" data-r="1">
+                            <h4>AND · хранит 0</h4>
+                            <p>На старте схема уже заполнена электронами — она хранит единицу. Пока R = 1, поток идёт по кругу. Уберите R и дождитесь, пока петля опустеет: единица исчезнет навсегда — вернуть её нечем.</p>
+                            <svg viewBox="0 0 360 256" role="group" aria-label="Ячейка памяти на элементе AND: выход соединён со вторым входом">
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M120 70 H160 A40 40 0 0 1 160 150 H120 Z"/>
+
+                                <path class="bitcell-wire bitcell-wire-r" data-edge="in" fill="none" stroke="currentColor" stroke-width="1.6" d="M16 94 H120"/>
+                                <path class="bitcell-wire bitcell-wire-loop" data-edge="loop" fill="none" stroke="currentColor" stroke-width="1.6" d="M214 110 V222 H64 V126 H120"/>
+                                <path class="bitcell-wire bitcell-wire-out" data-edge="out" fill="none" stroke="currentColor" stroke-width="1.6" d="M200 110 H214"/>
+                                <path class="bitcell-wire bitcell-wire-q" data-edge="q" fill="none" stroke="currentColor" stroke-width="1.6" d="M214 110 H260"/>
+                                <circle cx="214" cy="110" r="3.2" fill="currentColor"/>
+
+                                <rect class="bitcell-box" x="260" y="88" width="84" height="44" rx="6" fill="var(--paper)" stroke="currentColor" stroke-width="1.4"/>
+
+                                <g fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+                                    <text x="16" y="86">R</text>
+                                    <text x="157" y="115" text-anchor="middle" letter-spacing="0.06em">AND</text>
+                                    <text x="302" y="116" text-anchor="middle">Q = <tspan data-bitcell-graph-q>1</tspan></text>
+                                    <text x="139" y="244" text-anchor="middle" font-size="10" fill="var(--ink-faint)">обратная связь</text>
+                                </g>
+                            </svg>
+                            <p class="bit-cell__out" role="status" aria-live="polite">Q = <b data-bitcell-q>1</b> · <span data-bitcell-state>хранение</span></p>
+                            <div class="bit-cell__controls">
+                                <button class="switch is-on" type="button" data-bitcell-toggle="r" aria-pressed="true">R = 1</button>
+                            </div>
+                        </article>
+
+                        <article class="bit-cell" data-widget="bitcell" data-mode="one" data-q="0" data-hold="1" data-write="0" data-s="0">
+                            <h4>OR · хранит 1</h4>
+                            <p>Подайте S = 1: электроны пойдут через элемент, на развилке разделятся на выход и петлю. Отпустите вход — поток не остановится, петля сама будет поддерживать единицу.</p>
+                            <svg viewBox="0 0 360 256" role="group" aria-label="Ячейка памяти на элементе OR: выход соединён со вторым входом">
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M120 70 Q168 70 200 110 Q168 150 120 150 Q142 110 120 70 Z"/>
+
+                                <path class="bitcell-wire bitcell-wire-s" data-edge="in" fill="none" stroke="currentColor" stroke-width="1.6" d="M16 94 H130"/>
+                                <path class="bitcell-wire bitcell-wire-loop" data-edge="loop" fill="none" stroke="currentColor" stroke-width="1.6" d="M214 110 V222 H64 V126 H130"/>
+                                <path class="bitcell-wire bitcell-wire-out" data-edge="out" fill="none" stroke="currentColor" stroke-width="1.6" d="M200 110 H214"/>
+                                <path class="bitcell-wire bitcell-wire-q" data-edge="q" fill="none" stroke="currentColor" stroke-width="1.6" d="M214 110 H260"/>
+                                <circle cx="214" cy="110" r="3.2" fill="currentColor"/>
+
+                                <rect class="bitcell-box" x="260" y="88" width="84" height="44" rx="6" fill="var(--paper)" stroke="currentColor" stroke-width="1.4"/>
+
+                                <g fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+                                    <text x="16" y="86">S</text>
+                                    <text x="152" y="115" text-anchor="middle" letter-spacing="0.06em">OR</text>
+                                    <text x="302" y="116" text-anchor="middle">Q = <tspan data-bitcell-graph-q>0</tspan></text>
+                                    <text x="139" y="244" text-anchor="middle" font-size="10" fill="var(--ink-faint)">обратная связь</text>
+                                </g>
+                            </svg>
+                            <p class="bit-cell__out" role="status" aria-live="polite">Q = <b data-bitcell-q>0</b> · <span data-bitcell-state>хранение</span></p>
+                            <div class="bit-cell__controls">
+                                <button class="switch" type="button" data-bitcell-toggle="s" aria-pressed="false">S = 0</button>
+                            </div>
+                        </article>
+
+                        <article class="bit-cell bit-cell--wide" data-widget="bitcell" data-mode="latch" data-q="0" data-hold="0" data-write="0" data-s="0" data-r="0">
+                            <h4>AND-OR · защёлка</h4>
+                            <p>Выход возвращается на верхний вход OR, а R идёт через NOT. Подайте S = 1 — единица запишется и останется в петле, даже когда вход опустеет. Подержите R = 1, пока петля не опустеет: инвертор закроет AND, и ячейка запомнит 0.</p>
+                            <svg viewBox="0 0 600 280" role="group" aria-label="Защёлка AND-OR: выход через обратную связь подан на OR, R проходит через NOT на AND">
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M110 70 Q158 70 190 110 Q158 150 110 150 Q132 110 110 70 Z"/>
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M330 70 H370 A40 40 0 0 1 370 150 H330 Z"/>
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M215 180 L215 230 L265 205 Z"/>
+                                <circle class="bitcell-block" cx="273" cy="205" r="7" fill="var(--paper)" stroke="currentColor" stroke-width="1.6"/>
+
+                                <path class="bitcell-wire" data-edge="s" fill="none" stroke="currentColor" stroke-width="1.6" d="M20 126 H119"/>
+                                <path class="bitcell-wire" data-edge="r" fill="none" stroke="currentColor" stroke-width="1.6" d="M20 205 H215"/>
+                                <path class="bitcell-wire" data-edge="orOut" fill="none" stroke="currentColor" stroke-width="1.6" d="M190 110 H210 V94 H330"/>
+                                <path class="bitcell-wire" data-edge="notOut" fill="none" stroke="currentColor" stroke-width="1.6" d="M280 205 H300 V126 H330"/>
+                                <path class="bitcell-wire" data-edge="andOut" fill="none" stroke="currentColor" stroke-width="1.6" d="M410 110 H455"/>
+                                <path class="bitcell-wire" data-edge="q" fill="none" stroke="currentColor" stroke-width="1.6" d="M455 110 H490"/>
+                                <path class="bitcell-wire" data-edge="loop" fill="none" stroke="currentColor" stroke-width="1.6" d="M455 110 V40 H70 V94 H119"/>
+                                <circle cx="455" cy="110" r="3.2" fill="currentColor"/>
+
+                                <rect class="bitcell-box" x="490" y="88" width="84" height="44" rx="6" fill="var(--paper)" stroke="currentColor" stroke-width="1.4"/>
+
+                                <g fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+                                    <text x="20" y="118">S</text>
+                                    <text x="20" y="197">R</text>
+                                    <text x="150" y="116" text-anchor="middle" letter-spacing="0.06em">OR</text>
+                                    <text x="240" y="210" text-anchor="middle" font-size="10" letter-spacing="0.04em">NOT</text>
+                                    <text x="365" y="116" text-anchor="middle" letter-spacing="0.06em">AND</text>
+                                    <text x="530" y="116" text-anchor="middle">Q = <tspan data-bitcell-graph-q>0</tspan></text>
+                                    <text x="260" y="58" text-anchor="middle" font-size="10" fill="var(--ink-faint)">обратная связь</text>
+                                </g>
+                            </svg>
+                            <p class="bit-cell__out" role="status" aria-live="polite">Q = <b data-bitcell-q>0</b> · <span data-bitcell-state>хранение 0</span></p>
+                            <div class="bit-cell__controls">
+                                <button class="switch" type="button" data-bitcell-toggle="s" aria-pressed="false">S = 0</button>
+                                <button class="switch" type="button" data-bitcell-toggle="r" aria-pressed="false">R = 0</button>
+                            </div>
+                        </article>
+
+                        <article class="bit-cell bit-cell--wide" data-widget="bitcell" data-mode="gated" data-q="0" data-hold="0" data-write="0" data-d="0" data-we="0">
+                            <h4>GATED · D-защёлка</h4>
+                            <p>Разрешение записи WE открывает два AND: один пропускает D в OR, второй — инверсию D в сброс. Пока WE = 1, Q повторяет D. Отпустите WE — значение останется в петле.</p>
+                            <svg viewBox="0 0 820 290" role="group" aria-label="D-защёлка с разрешением записи: DATA и WRITE ENABLE через AND, NOT и OR управляют выходом Q с обратной связью">
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M230 50 H270 A40 40 0 0 1 270 130 H230 Z"/>
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M260 190 H300 A40 40 0 0 1 300 270 H260 Z"/>
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M580 100 H620 A40 40 0 0 1 620 180 H580 Z"/>
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M450 60 Q498 60 530 100 Q498 140 450 140 Q472 100 450 60 Z"/>
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M160 185 L160 235 L205 210 Z"/>
+                                <circle class="bitcell-block" cx="213" cy="210" r="7" fill="var(--paper)" stroke="currentColor" stroke-width="1.6"/>
+                                <path class="bitcell-block" fill="var(--paper)" stroke="currentColor" stroke-width="1.6" d="M370 205 L370 255 L415 230 Z"/>
+                                <circle class="bitcell-block" cx="423" cy="230" r="7" fill="var(--paper)" stroke="currentColor" stroke-width="1.6"/>
+
+                                <path class="bitcell-wire" data-edge="data" fill="none" stroke="currentColor" stroke-width="1.6" d="M20 70 H150"/>
+                                <path class="bitcell-wire" data-edge="dataTop" fill="none" stroke="currentColor" stroke-width="1.6" d="M150 70 H230"/>
+                                <path class="bitcell-wire" data-edge="dataNot" fill="none" stroke="currentColor" stroke-width="1.6" d="M150 70 V210 H160"/>
+                                <path class="bitcell-wire" data-edge="we" fill="none" stroke="currentColor" stroke-width="1.6" d="M20 250 H90"/>
+                                <path class="bitcell-wire" data-edge="weTop" fill="none" stroke="currentColor" stroke-width="1.6" d="M90 250 V110 H144 A6 6 0 0 1 156 110 H230"/>
+                                <path class="bitcell-wire" data-edge="weBottom" fill="none" stroke="currentColor" stroke-width="1.6" d="M90 250 H260"/>
+                                <path class="bitcell-wire" data-edge="sOut" fill="none" stroke="currentColor" stroke-width="1.6" d="M310 90 H400 V116 H459"/>
+                                <path class="bitcell-wire" data-edge="notData" fill="none" stroke="currentColor" stroke-width="1.6" d="M220 210 H260"/>
+                                <path class="bitcell-wire" data-edge="rOut" fill="none" stroke="currentColor" stroke-width="1.6" d="M340 230 H370"/>
+                                <path class="bitcell-wire" data-edge="notR" fill="none" stroke="currentColor" stroke-width="1.6" d="M430 230 H560 V156 H580"/>
+                                <path class="bitcell-wire" data-edge="orOut" fill="none" stroke="currentColor" stroke-width="1.6" d="M530 100 H555 V124 H580"/>
+                                <path class="bitcell-wire" data-edge="andOut" fill="none" stroke="currentColor" stroke-width="1.6" d="M660 140 H700"/>
+                                <path class="bitcell-wire" data-edge="q" fill="none" stroke="currentColor" stroke-width="1.6" d="M700 140 H720"/>
+                                <path class="bitcell-wire" data-edge="loop" fill="none" stroke="currentColor" stroke-width="1.6" d="M700 140 V40 H420 V84 H459"/>
+                                <circle cx="150" cy="70" r="3.2" fill="currentColor"/>
+                                <circle cx="90" cy="250" r="3.2" fill="currentColor"/>
+                                <circle cx="700" cy="140" r="3.2" fill="currentColor"/>
+
+                                <rect class="bitcell-box" x="720" y="118" width="84" height="44" rx="6" fill="var(--paper)" stroke="currentColor" stroke-width="1.4"/>
+
+                                <g fill="currentColor" font-family="JetBrains Mono, monospace" font-size="12">
+                                    <text x="20" y="62">D</text>
+                                    <text x="20" y="242">WE</text>
+                                    <text x="270" y="96" text-anchor="middle" letter-spacing="0.06em">AND</text>
+                                    <text x="183" y="215" text-anchor="middle" font-size="9" letter-spacing="0.02em">NOT</text>
+                                    <text x="300" y="236" text-anchor="middle" letter-spacing="0.06em">AND</text>
+                                    <text x="393" y="235" text-anchor="middle" font-size="9" letter-spacing="0.02em">NOT</text>
+                                    <text x="490" y="106" text-anchor="middle" letter-spacing="0.06em">OR</text>
+                                    <text x="620" y="146" text-anchor="middle" letter-spacing="0.06em">AND</text>
+                                    <text x="762" y="146" text-anchor="middle">Q = <tspan data-bitcell-graph-q>0</tspan></text>
+                                    <text x="560" y="32" text-anchor="middle" font-size="10" fill="var(--ink-faint)">обратная связь</text>
+                                </g>
+                            </svg>
+                            <p class="bit-cell__out" role="status" aria-live="polite">Q = <b data-bitcell-q>0</b> · <span data-bitcell-state>хранение 0</span></p>
+                            <div class="bit-cell__controls">
+                                <button class="switch" type="button" data-bitcell-toggle="d" aria-pressed="false">D = 0</button>
+                                <button class="switch" type="button" data-bitcell-toggle="we" aria-pressed="false">WE = 0</button>
+                            </div>
+                        </article>
+
+                    </div>
                     <h3>Адрес и выбор ячейки</h3>
                     <p>Память — массив ячеек, у каждой есть номер. Чтобы прочитать одну, процессор выставляет адрес, а схема выбора открывает нужную ячейку и отдаёт её содержимое на шину данных.</p>
                     <p>Дешифратор адреса превращает двоичный номер в один активный сигнал: для n бит адреса нужно 2ⁿ выходов, и активен ровно один.</p>
@@ -225,7 +360,7 @@
                     </ol>
                 </section>
 
-                <nav class="pager" aria-label="Навигация по занятиям">
+                                <nav class="pager" aria-label="Навигация по занятиям">
                     <a href="urok-05.html">
                         <span>предыдущее занятие</span>
                         ← АЛУ: как компьютер считает
@@ -262,6 +397,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031" defer></script>
+    <script src="js/interactive.js?v=20261031-75" defer></script>
 </body>
 </html>
