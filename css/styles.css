@@ -1883,6 +1883,129 @@ a:hover {
     transition: width 0.3s var(--ease);
 }
 
+/* ─── Код, таблицы, длинные разделы ────────────────────────────────────── */
+
+.chapter > h4 {
+    margin: 24px 0 8px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.chapter code {
+    padding: 1px 5px;
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+}
+
+.code {
+    max-width: var(--measure);
+    margin: 16px 0 0;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.65;
+    tab-size: 4;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--rule-strong);
+}
+
+.code code {
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    white-space: pre;
+}
+
+.code + p {
+    margin-top: 14px;
+}
+
+.spec-table {
+    width: 100%;
+    max-width: var(--measure);
+    margin: 18px 0 0;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.spec-table th {
+    padding: 8px 12px 8px 0;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border-bottom: 1px solid var(--rule-strong);
+}
+
+.spec-table td {
+    padding: 9px 12px 9px 0;
+    vertical-align: top;
+    border-bottom: 1px solid var(--rule);
+}
+
+.spec-table td:first-child {
+    width: 48px;
+    font-family: var(--font-mono);
+    color: var(--ink-soft);
+}
+
+.spec-table td:nth-child(2) {
+    width: 140px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.spec-table td:last-child {
+    color: var(--ink-soft);
+}
+
+.spec-table code {
+    padding: 0;
+    font-size: 1em;
+    background: none;
+    border: 0;
+}
+
+.spec-table--wide td:first-child,
+.spec-table--wide td:nth-child(2) {
+    width: auto;
+}
+
+.spec-table--wide td:first-child {
+    white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+    .code {
+        padding: 13px 14px;
+        font-size: 11.5px;
+    }
+
+    .spec-table td:nth-child(2) {
+        width: auto;
+    }
+}
+
+@media print {
+    .code {
+        white-space: pre-wrap;
+    }
+
+    .chapter.chapter--long {
+        break-inside: auto;
+    }
+}
+
 /* ─── Схемы и модели ───────────────────────────────────────────────────── */
 
 .diagram {

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект. Симулятор Simpletron на Python — Основы информационных технологий</title>
+    <meta name="description" content="Проект к занятию 07: симулятор Simpletron на Python и загрузка SML из файла. Система команд, заготовки без классов и тестовые программы.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=20261102">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span><a href="urok-07.html">Занятие 07</a><span>/</span>Проект
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">07</span>
+                <h1>Симулятор Simpletron на Python</h1>
+                <ul class="lesson-head__meta">
+                    <li>проект к занятию 07</li>
+                    <li>Python</li>
+                    <li>12 команд</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <p class="lede">Соберите учебную машину Simpletron и научите её читать SML из файла. Память — список, регистры — словарь, классы не нужны.</p>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · машина</span>
+                    <h2 id="ch-1-title">Устройство машины</h2>
+
+                    <p>Simpletron — учебная машина из книги Дейтелов «Как программировать на Си» (упражнения 7.27–7.28). Она понимает только машинный язык из двенадцати команд, но на нём уже можно считать, ветвиться и зацикливаться. Лучший способ убедиться, что в цикле процессора нет ничего таинственного, — написать его самостоятельно.</p>
+                    <p>Задание адаптировано под Python: память будет списком, регистры — словарём, а работа с ними — тремя функциями <code>load</code>, <code>execute</code> и <code>dump</code>. Классы не понадобятся.</p>
+
+
+                    <ul>
+                        <li>Память — 100 слов с адресами от <code>00</code> до <code>99</code>.</li>
+                        <li>Слово — знаковое четырёхзначное десятичное число от <code>-9999</code> до <code>+9999</code>.</li>
+                        <li>В слове-команде первые две цифры — <strong>код операции</strong>, последние две — <strong>операнд</strong>, то есть адрес ячейки, с которой работает команда.</li>
+                        <li>Программа всегда загружается начиная с адреса <code>00</code>; команды и данные лежат в одних и тех же 100 ячейках.</li>
+                        <li>Все вычисления идут через <strong>аккумулятор</strong>: арифметика читает слово из памяти, прибавляет его к аккумулятору (или вычитает, умножает, делит) и оставляет результат в аккумуляторе.</li>
+                    </ul>
+                    <p>Например, слово <code>+1007</code> — это команда <code>10</code> (READ) с операндом <code>07</code>: прочитать число с клавиатуры и положить его в ячейку 07.</p>
+
+                </section>
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02 · команды</span>
+                    <h2 id="ch-2-title">Система команд</h2>
+
+                    <table class="spec-table">
+                        <caption class="visually-hidden">Система команд Simpletron</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Код</th>
+                                <th scope="col">Команда</th>
+                                <th scope="col">Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>10</td><td><code>READ</code></td><td>прочитать слово с клавиатуры и положить в ячейку с адресом-операндом</td></tr>
+                            <tr><td>11</td><td><code>WRITE</code></td><td>напечатать слово из ячейки с адресом-операндом в формате <code>+0000</code></td></tr>
+                            <tr><td>20</td><td><code>LOAD</code></td><td>загрузить слово из памяти в аккумулятор</td></tr>
+                            <tr><td>21</td><td><code>STORE</code></td><td>записать аккумулятор в ячейку с адресом-операндом</td></tr>
+                            <tr><td>30</td><td><code>ADD</code></td><td>прибавить слово из памяти к аккумулятору</td></tr>
+                            <tr><td>31</td><td><code>SUBTRACT</code></td><td>вычесть слово из памяти из аккумулятора</td></tr>
+                            <tr><td>32</td><td><code>DIVIDE</code></td><td>разделить аккумулятор на слово из памяти (целочисленно, остаток отбрасывается)</td></tr>
+                            <tr><td>33</td><td><code>MULTIPLY</code></td><td>умножить аккумулятор на слово из памяти</td></tr>
+                            <tr><td>40</td><td><code>BRANCH</code></td><td>перейти на адрес-операнд</td></tr>
+                            <tr><td>41</td><td><code>BRANCHNEG</code></td><td>перейти на адрес-операнд, если аккумулятор отрицателен</td></tr>
+                            <tr><td>42</td><td><code>BRANCHZERO</code></td><td>перейти на адрес-операнд, если аккумулятор равен нулю</td></tr>
+                            <tr><td>43</td><td><code>HALT</code></td><td>остановиться и напечатать дамп</td></tr>
+                        </tbody>
+                    </table>
+
+                </section>
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03 · примеры</span>
+                    <h2 id="ch-3-title">Две готовые программы</h2>
+
+                    <p>Разберём две программы из книги. Первая читает два числа и печатает их сумму.</p>
+                    <pre class="code"><code>00  +1007   READ        прочитать A в ячейку 07
+01  +1008   READ        прочитать B в ячейку 08
+02  +2007   LOAD        A → аккумулятор
+03  +3008   ADD         аккумулятор + B
+04  +2109   STORE       результат → ячейку 09
+05  +1109   WRITE       напечатать ячейку 09
+06  +4300   HALT        остановиться
+07  +0000   A
+08  +0000   B
+09  +0000   C</code></pre>
+                    <p>Вторая программа читает два числа и печатает большее из них. Команда <code>41</code> здесь — машинный аналог <code>if</code>: переход выполняется только при отрицательном результате вычитания.</p>
+                    <pre class="code"><code>00  +1009   READ        прочитать A в ячейку 09
+01  +1010   READ        прочитать B в ячейку 10
+02  +2009   LOAD        A → аккумулятор
+03  +3110   SUBTRACT    аккумулятор − B
+04  +4107   BRANCHNEG   если A − B &lt; 0, перейти к 07
+05  +1109   WRITE       иначе печатаем A
+06  +4300   HALT
+07  +1110   WRITE       печатаем B
+08  +4300   HALT
+09  +0000   A
+10  +0000   B</code></pre>
+
+                </section>
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04 · задание</span>
+                    <h2 id="ch-4-title">Что должна уметь программа</h2>
+
+                    <ol>
+                        <li><strong>Загрузка.</strong> Функция <code>load(memory)</code> печатает приглашение <code>00 ? </code>, <code>01 ? </code> и так далее. Пользователь вводит слово; <code>-99999</code> — сигнал закончить ввод. Числа вне диапазона и нечисловой ввод отклоняются с сообщением и повторным приглашением. После ячейки 99 загрузка заканчивается.</li>
+                        <li><strong>Регистры.</strong> Состояние машины — словарь <code>registers</code> с ключами <code>accumulator</code>, <code>instruction_counter</code>, <code>instruction_register</code>, <code>operation_code</code> и <code>operand</code>. Список и словарь изменяемы, поэтому функции могут менять их без <code>global</code> — это замена указателям из Си.</li>
+                        <li><strong>Цикл выполнения.</strong> Функция <code>execute(memory, registers)</code> в цикле копирует <code>memory[instruction_counter]</code> в <code>instruction_register</code>, выделяет <code>operation_code = instruction // 100</code> и <code>operand = instruction % 100</code>, увеличивает счётчик на 1 и выполняет команду через <code>if/elif</code>. Команды всегда положительны, поэтому <code>//</code> и <code>%</code> дают то же, что деление и остаток в Си. Команды перехода просто записывают новое значение в счётчик. Команду из памяти напрямую не выполняем — сначала копируем её в регистр команды.</li>
+                        <li><strong>Ввод и вывод.</strong> <code>READ</code> печатает <code>? </code> и читает слово с такой же проверкой диапазона. <code>WRITE</code> печатает слово из памяти в формате <code>+0000</code>, например через <code>f"{value:+05d}"</code>.</li>
+                        <li><strong>Остановка и ошибки.</strong> <code>HALT</code> печатает <code>*** Выполнение Simpletron завершено ***</code> и возвращает управление. При делении на ноль, неизвестном коде операции и переполнении аккумулятора (результат больше <code>+9999</code> или меньше <code>-9999</code>) печатается сообщение об ошибке и строка <code>*** Работа Simpletron аварийно завершена ***</code>, после чего выполнение прекращается. И в случае <code>HALT</code>, и в случае ошибки <code>main</code> затем вызывает <code>dump</code>.</li>
+                        <li><strong>Дамп.</strong> Функция <code>dump(memory, registers)</code> печатает пять регистров, а затем все 100 ячеек по 10 в строке с адресами <code>00</code>, <code>10</code>, …, <code>90</code>. Числа — со знаком и ведущими нулями.</li>
+                        <li><strong>Ограничения.</strong> Без классов, без глобальных переменных и без <code>match</code>. Память — список, регистры — словарь, логика — функции <code>load</code>, <code>execute</code>, <code>dump</code> и <code>main</code>. Остальные встроенные средства Python разрешены.</li>
+                    </ol>
+
+                    <aside class="concept-block" aria-labelledby="division-title">
+                        <h4 id="division-title">Осторожно с делением</h4>
+                        <p>В Си деление целых чисел усекается к нулю, а Python <code>//</code> округляет вниз: <code>-7 // 2</code> даст <code>-4</code>, хотя нужно <code>-3</code>. Для аккумулятора используйте <code>int(acc / divisor)</code> — при четырёхзначных числах точности <code>float</code> хватает.</p>
+                    </aside>
+
+                </section>
+                <section class="chapter chapter--long" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · заготовка</span>
+                    <h2 id="ch-5-title">Заготовка</h2>
+
+                    <p>Скопируйте каркас в файл <code>simpletron.py</code> и допишите три функции. Всю логику цикла нужно написать самостоятельно.</p>
+                    <pre class="code"><code>MEMORY_SIZE = 100
+SENTINEL = -99999
+MIN_WORD = -9999
+MAX_WORD = 9999
+
+
+def load(memory):
+    """Читает программу с клавиатуры в память."""
+    # TODO: адрес 00..99, приглашение f"{address:02d} ? ",
+    # проверка диапазона и выход по SENTINEL.
+    pass
+
+
+def execute(memory, registers):
+    """Выполняет программу до HALT или фатальной ошибки."""
+    # TODO: цикл выборки-декодирования-исполнения.
+    # operation_code = instruction // 100
+    # operand = instruction % 100
+    pass
+
+
+def dump(memory, registers):
+    """Печатает регистры и все 100 ячеек памяти."""
+    # TODO: формат +0000 — f"{value:+05d}".
+    pass
+
+
+def main():
+    memory = [0] * MEMORY_SIZE
+    registers = {
+        "accumulator": 0,
+        "instruction_counter": 0,
+        "instruction_register": 0,
+        "operation_code": 0,
+        "operand": 0,
+    }
+
+    print("*** Добро пожаловать в Simpletron! ***")
+    print("*** Вводите программу по одной команде ***")
+    print("*** (или слову данных) за раз. ***")
+    print("*** Я печатаю номер ячейки и знак вопроса (?). ***")
+    print("*** Введите -99999, чтобы закончить ввод. ***")
+    load(memory)
+    print("*** Загрузка программы завершена ***")
+    print("*** Начало выполнения программы ***")
+    execute(memory, registers)
+    dump(memory, registers)
+
+
+if __name__ == "__main__":
+    main()</code></pre>
+
+                </section>
+                <section class="chapter chapter--long" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06 · проверка</span>
+                    <h2 id="ch-6-title">Проверьте себя</h2>
+
+                    <p>Прогоните симулятор на готовых программах. В стенограммах после приглашения показано то, что вводит пользователь.</p>
+
+                    <h4>Сумма двух чисел</h4>
+                    <pre class="code"><code>00 ? +1007
+01 ? +1008
+02 ? +2007
+03 ? +3008
+04 ? +2109
+05 ? +1109
+06 ? +4300
+07 ? +0000
+08 ? +0000
+09 ? +0000
+10 ? -99999
+*** Загрузка программы завершена ***
+*** Начало выполнения программы ***
+? +12
+? -5
++0007
+*** Выполнение Simpletron завершено ***
+РЕГИСТРЫ:
+accumulator           +0007
+instruction_counter   07
+instruction_register  +4300
+operation_code        43
+operand               00
+ПАМЯТЬ:
+        0      1      2      3      4      5      6      7      8      9
+00  +1007  +1008  +2007  +3008  +2109  +1109  +4300  +0012  -0005  +0007
+10  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000
+20  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000
+30  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000
+40  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000
+50  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000
+60  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000
+70  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000
+80  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000
+90  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000  +0000</code></pre>
+
+                    <h4>Большее из двух чисел</h4>
+                    <p>Для ввода <code>+3</code> и <code>+8</code> ответ — <code>+0008</code>; для <code>+8</code> и <code>+3</code> — тоже <code>+0008</code>.</p>
+                    <pre class="code"><code>...
+? +3
+? +8
++0008
+*** Выполнение Simpletron завершено ***</code></pre>
+
+                    <h4>Цикл: обратный отсчёт</h4>
+                    <p>Эта программа читает неотрицательное N и печатает N, N − 1, …, 1. Цикл держится на команде <code>42</code>: когда аккумулятор дошёл до нуля, управление уходит на <code>HALT</code>.</p>
+                    <pre class="code"><code>00  +1009   READ        прочитать N
+01  +2009   LOAD        N → аккумулятор
+02  +4207   BRANCHZERO  если N = 0, перейти к 07
+03  +1109   WRITE       напечатать N
+04  +3110   SUBTRACT    N − 1
+05  +2109   STORE       новое N → ячейку 09
+06  +4002   BRANCH      вернуться к проверке
+07  +4300   HALT
+08  +0000   не используется
+09  +0000   N
+10  +0001   единица</code></pre>
+                    <pre class="code"><code>...
+? +3
++0003
++0002
++0001
+*** Выполнение Simpletron завершено ***</code></pre>
+
+                    <h4>Фатальная ошибка</h4>
+                    <p>Программа <code>+1009, +2009, +3210, +4300</code> делит введённое число на содержимое ячейки 10, которое осталось нулевым. После сообщения об ошибке симулятор обязан напечатать дамп.</p>
+                    <pre class="code"><code>...
+? +5
+*** Попытка деления на ноль ***
+*** Работа Simpletron аварийно завершена ***</code></pre>
+
+                </section>
+                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
+                    <span class="chapter__num">07 · приёмка</span>
+                    <h2 id="ch-7-title">Критерии приёмки</h2>
+
+                    <ul class="checklist">
+                        <li><code>python simpletron.py</code> запускается без ошибок, классы не используются.</li>
+                        <li>Загрузка печатает приглашения <code>00 ? </code>, <code>01 ? </code> и останавливается по <code>-99999</code>.</li>
+                        <li>Нечисловой ввод и числа вне диапазона отклоняются с повторным приглашением.</li>
+                        <li>Программа «сумма» для <code>+12</code> и <code>-5</code> печатает <code>+0007</code>.</li>
+                        <li>Программа «максимум» для <code>+3</code> и <code>+8</code> печатает <code>+0008</code>.</li>
+                        <li>Программа обратного отсчёта для <code>+3</code> печатает <code>+0003</code>, <code>+0002</code>, <code>+0001</code>.</li>
+                        <li>Деление на ноль, неизвестный код операции и переполнение аккумулятора дают сообщение и дамп.</li>
+                        <li>Дамп содержит пять регистров и все 100 ячеек по 10 в строке.</li>
+                        <li>Код разбит на функции <code>load</code>, <code>execute</code>, <code>dump</code> и <code>main</code>, глобальных переменных нет.</li>
+                    </ul>
+
+                </section>
+                <section class="chapter" id="ch-8" aria-labelledby="ch-8-title">
+                    <span class="chapter__num">08 · файлы</span>
+                    <h2 id="ch-8-title">Загрузка программы из файла</h2>
+
+                    <p>Вводить SML вручную каждый раз долго, а одна неверная цифра ломает программу. Сохраните программу в текстовый файл и научите симулятор читать её оттуда — как настоящий загрузчик.</p>
+
+                    <h3>Формат файла</h3>
+                    <p>Одно слово в строке — команда или данные. Пустые строки и строки, начинающиеся с <code>#</code>, пропускаются. Слова идут подряд, начиная с адреса <code>00</code>; их не больше 100. Если слов меньше, остальные ячейки считаются нулевыми.</p>
+                    <pre class="code"><code># sum.sml — сумма двух чисел
++1007
++1008
++2007
++3008
++2109
++1109
++4300
++0000
++0000
++0000</code></pre>
+
+                    <h3>Что изменить</h3>
+                    <ol>
+                        <li><strong>Режим запуска.</strong> Если программе передали имя файла (<code>python simpletron.py sum.sml</code>), загружайте слова из файла. Без аргумента оставьте прежний ввод с клавиатуры.</li>
+                        <li><strong>Загрузчик.</strong> Функция <code>load_from_file(path, memory)</code> читает файл построчно, пропускает пустые строки и комментарии, проверяет диапазон <code>-9999…+9999</code> и сообщает номер плохой строки. При ошибке программа завершается до выполнения.</li>
+                        <li><strong>Вывод в файл.</strong> Те же сообщения, результаты и дамп запишите в <code>simpletron-out.txt</code>. Экранный вывод не меняется.</li>
+                        <li><strong>Без классов.</strong> Список строк <code>output</code>, функция <code>log(output, text)</code>, которая печатает строку и добавляет её в список; передайте <code>output</code> в <code>execute</code> и <code>dump</code>, а в конце <code>main</code> запишите список в файл.</li>
+                    </ol>
+                    <p>Приглашения <code>? </code> при вводе чисел можно оставить только на экране: в файле достаточно результатов, сообщений и дампа.</p>
+
+                    <h3>Проверка</h3>
+                    <p>Сохраните программу суммы в <code>sum.sml</code>, запустите <code>python simpletron.py sum.sml</code>, введите <code>+12</code> и <code>-5</code>. На экране и в <code>simpletron-out.txt</code> должно быть <code>+0007</code> и дамп. Затем испортите одну строку файла (например, <code>+10000</code>): симулятор должен указать номер строки и не начинать выполнение.</p>
+                </section>
+
+                <section class="chapter" id="ch-9" aria-labelledby="ch-9-title">
+                    <span class="chapter__num">09 · дальше</span>
+                    <h2 id="ch-9-title">Дальше: компилятор Simple</h2>
+                    <p>Симулятор готов — можно подняться на уровень выше. В проекте к занятию 08 вы напишете компилятор, который переводит программу на учебном языке Simple в SML и заставляет вашу машину выполнять её.</p>
+                    <p><a href="proekt-simple-compiler.html"><strong>Открыть проект: компилятор Simple →</strong></a></p>
+                </section>
+
+                <section class="chapter" id="ch-10" aria-labelledby="ch-10-title">
+                    <span class="chapter__num">10 · развитие</span>
+                    <h2 id="ch-10-title">Если хочется большего</h2>
+                    <ul>
+                        <li>Добавить пошаговый режим: после каждой команды печатать регистры и ждать Enter.</li>
+                        <li>Расширить систему команд: остаток от деления, возведение в степень, обмен значений двух ячеек.</li>
+                        <li>Защитить область команд: запретить <code>STORE</code> в ячейки, где лежит программа.</li>
+                        <li>Написать дизассемблер — печать листинга с мнемониками вместо чисел.</li>
+                    </ul>
+                </section>
+
+                                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-07.html">
+                        <span>задание к занятию</span>
+                        ← Процессор: дирижёр вычислений
+                    </a>
+                    <a class="pager__next" href="urok-08.html">
+                        <span>следующее занятие</span>
+                        Команды и программы →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Устройство</a></li>
+                    <li><a href="#ch-2">Команды</a></li>
+                    <li><a href="#ch-3">Программы</a></li>
+                    <li><a href="#ch-4">Задание</a></li>
+                    <li><a href="#ch-5">Заготовка</a></li>
+                    <li><a href="#ch-6">Проверка</a></li>
+                    <li><a href="#ch-7">Приёмка</a></li>
+                    <li><a href="#ch-8">Файлы</a></li>
+                    <li><a href="#ch-9">Дальше</a></li>
+                    <li><a href="#ch-10">Развитие</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Проект к занятию 07 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js?v=20261031" defer></script>
+</body>
+</html>

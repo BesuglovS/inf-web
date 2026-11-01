@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект. Компилятор Simple в SML — Основы информационных технологий</title>
+    <meta name="description" content="Проект к занятию 08: компилятор учебного языка Simple в SML на Python. Таблица символов, два прохода, выражения и переходы.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=20261102">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html" aria-current="page">Занятия</a>
+                <a href="index.html#how">Как заниматься</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span><a href="urok-08.html">Занятие 08</a><span>/</span>Проект
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">08</span>
+                <h1>Компилятор Simple в SML</h1>
+                <ul class="lesson-head__meta">
+                    <li>проект к занятию 08</li>
+                    <li>Python</li>
+                    <li>компилятор</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <p class="lede">Симулятор из занятия 07 понимает только машинные команды. Напишите компилятор, который переводит программу на языке Simple в SML — и она выполнится на вашей собственной машине.</p>
+
+                <aside class="concept-block" aria-labelledby="prereq-title">
+                    <h4 id="prereq-title">Что понадобится</h4>
+                    <p>Проект опирается на <a href="proekt-simpletron.html">симулятор Simpletron</a> из занятия 07 и его загрузчик SML из файла. Если симулятор ещё не готов, начните с него.</p>
+                </aside>
+
+                <section class="chapter chapter--long" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · simple</span>
+                    <h2 id="ch-1-title">Язык Simple</h2>
+                    <p>Simple — учебный язык высокого уровня из книги Дейтелов (специальный раздел «Building Your Own Compiler»; в разных изданиях — упражнения 12.25–12.29 или 12.26–12.30). Он похож на ранний BASIC: семь команд, целые числа и переменные из одной буквы. Этого хватает для циклов и ветвлений, а компилятор переводит программу в SML.</p>
+
+                    <h3>Команды</h3>
+                    <table class="spec-table spec-table--wide">
+                        <caption class="visually-hidden">Команды языка Simple</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Команда</th>
+                                <th scope="col">Пример</th>
+                                <th scope="col">Смысл</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>rem</code></td><td><code>50 rem сумма</code></td><td>комментарий, компилятор его пропускает</td></tr>
+                            <tr><td><code>input</code></td><td><code>30 input x</code></td><td>прочитать целое число и сохранить в переменную</td></tr>
+                            <tr><td><code>let</code></td><td><code>60 let c = a + b</code></td><td>присвоить переменной значение выражения</td></tr>
+                            <tr><td><code>print</code></td><td><code>80 print c</code></td><td>напечатать значение переменной</td></tr>
+                            <tr><td><code>goto</code></td><td><code>70 goto 45</code></td><td>перейти к строке 45</td></tr>
+                            <tr><td><code>if/goto</code></td><td><code>35 if i == z goto 80</code></td><td>перейти к строке 80, если условие истинно</td></tr>
+                            <tr><td><code>end</code></td><td><code>99 end</code></td><td>завершить выполнение</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Правила языка</h3>
+                    <ul>
+                        <li>Каждый оператор начинается с номера строки; номера идут по возрастанию.</li>
+                        <li>Программа записывается строчными буквами.</li>
+                        <li>Переменная — одна буква <code>a</code>…<code>z</code>. Все переменные целые и создаются при первом упоминании со значением 0.</li>
+                        <li>Выражения целочисленные: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, скобки и обычный приоритет. По правилам книги операнды и операции отделяются пробелами.</li>
+                        <li>В <code>if</code> допустимы сравнения <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code> и <code>!=</code>.</li>
+                        <li>Строк и массивов нет; повторение выражается через <code>goto</code> и <code>if</code>.</li>
+                    </ul>
+
+                    <h3>Память и адреса</h3>
+                    <p>Адреса распределяет компилятор: инструкции занимают ячейки с <code>00</code> вверх, а переменные, константы и временные ячейки — с <code>99</code> вниз. Номер строки тоже получает адрес: это адрес первой инструкции её оператора. На такие адреса ссылаются <code>goto</code> и <code>if</code>.</p>
+                    <p>Компилятор должен следить за встречей счётчиков: если очередная инструкция должна лечь дальше, чем начинается область данных, памяти не хватило — сообщите об ошибке.</p>
+
+                    <h3>Перевод простых команд</h3>
+                    <table class="spec-table spec-table--wide">
+                        <caption class="visually-hidden">Соответствие команд Simple и SML</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Simple</th>
+                                <th scope="col">SML</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>input x</code></td><td><code>READ</code>, операнд — адрес <code>x</code></td></tr>
+                            <tr><td><code>print x</code></td><td><code>WRITE</code>, операнд — адрес <code>x</code></td></tr>
+                            <tr><td><code>let x = y</code></td><td><code>LOAD</code> адрес <code>y</code>, затем <code>STORE</code> адрес <code>x</code></td></tr>
+                            <tr><td><code>goto N</code></td><td><code>BRANCH</code>, операнд — адрес строки <code>N</code></td></tr>
+                            <tr><td><code>rem …</code></td><td>ничего не генерируется</td></tr>
+                            <tr><td><code>end</code></td><td><code>HALT</code></td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Условия</h3>
+                    <p>Отдельной команды сравнения в SML нет. Компилятор вычитает одно значение из другого и смотрит на знак результата: если <code>a − b</code> равно нулю, то <code>a == b</code>; если отрицательно, то <code>a &lt; b</code>.</p>
+                    <table class="spec-table spec-table--wide">
+                        <caption class="visually-hidden">Как компилировать условия</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Условие</th>
+                                <th scope="col">Последовательность SML</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>a == b</code></td><td><code>LOAD a; SUBTRACT b; BRANCHZERO N</code></td></tr>
+                            <tr><td><code>a &lt; b</code></td><td><code>LOAD a; SUBTRACT b; BRANCHNEG N</code></td></tr>
+                            <tr><td><code>a &lt;= b</code></td><td><code>LOAD a; SUBTRACT b; BRANCHNEG N; BRANCHZERO N</code></td></tr>
+                            <tr><td><code>a &gt; b</code></td><td><code>LOAD a; SUBTRACT b; BRANCHNEG S; BRANCHZERO S; BRANCH N; S:</code></td></tr>
+                            <tr><td><code>a &gt;= b</code></td><td><code>LOAD a; SUBTRACT b; BRANCHNEG S; BRANCH N; S:</code></td></tr>
+                            <tr><td><code>a != b</code></td><td><code>LOAD a; SUBTRACT b; BRANCHZERO S; BRANCH N; S:</code></td></tr>
+                        </tbody>
+                    </table>
+                    <p>Здесь <code>N</code> — адрес строки из <code>goto</code>, а <code>S</code> — адрес команды сразу после проверки: на него переходят, чтобы пропустить ветку. Если строка <code>N</code> ещё не встречалась, её адрес неизвестен — все инструкции с такими операндами нужно запомнить и дополнить во втором проходе.</p>
+                    <p>Помните про четырёхзначную арифметику: разность должна помещаться в диапазон <code>-9999…+9999</code>. Поэтому сравнивать числа, отличающиеся больше чем на 9999, на этой машине нельзя — будет переполнение аккумулятора. В книге контрольное значение равно <code>-9999</code>; для теста ниже мы берём <code>-1</code>, чтобы разность оставалась в пределах разрядной сетки.</p>
+
+                    <h3>Выражения в let</h3>
+                    <p>Выражение удобно переводить в два шага: сначала из инфиксной записи в постфиксную, затем из постфиксной — в SML.</p>
+                    <ol>
+                        <li>Переведите выражение в постфиксную запись стеком операторов (алгоритм сортировочной станции).</li>
+                        <li>Идите по постфиксной записи со стеком адресов. Переменная или константа — положите её адрес. Оператор — снимите два адреса, сгенерируйте <code>LOAD left; OP right; STORE temp</code> и положите адрес <code>temp</code>.</li>
+                        <li>В конце на стеке останется адрес результата: сгенерируйте <code>LOAD result; STORE target</code>.</li>
+                    </ol>
+                    <p>Например, для <code>let u = 4 * ( j - 56 )</code> постфиксная запись — <code>4 j 56 - *</code>, а код получается такой:</p>
+                    <pre class="code"><code>LOAD j
+SUBTRACT 56
+STORE T1
+LOAD 4
+MULTIPLY T1
+STORE T2
+LOAD T2
+STORE u</code></pre>
+                    <p><code>T1</code> и <code>T2</code> — временные ячейки, которые компилятор выделяет из области данных. Пара <code>STORE T2; LOAD T2</code> выглядит лишней; её можно убрать отдельным шагом оптимизации, но для первой версии компилятора важнее простота.</p>
+
+                    <h3>Два прохода</h3>
+                    <ol>
+                        <li><strong>Первый проход.</strong> Читайте строки, разбивайте их на слова и заполняйте таблицу символов: номер строки → адрес, переменная → адрес, константа → адрес. Сразу генерируйте инструкции. Если цель перехода ещё неизвестна, оставьте операнд <code>00</code> и запишите номер строки в список <code>flags</code> под адресом этой инструкции.</li>
+                        <li><strong>Второй проход.</strong> Для каждой записи в <code>flags</code> найдите адрес строки в таблице символов и подставьте его в операнд. После этого выведите все инструкции в файл: по одной на строку в формате <code>+dddd</code>.</li>
+                    </ol>
+
+                    <h3>Полный пример</h3>
+                    <p>Программа из книги суммирует числа от 1 до <code>x</code>:</p>
+                    <pre class="code"><code>5 rem sum 1 to x
+10 input x
+15 rem check y == x
+20 if y == x goto 60
+25 rem increment y
+30 let y = y + 1
+35 rem add y to total
+40 let t = t + y
+45 rem loop y
+50 goto 20
+55 rem output result
+60 print t
+99 end</code></pre>
+                    <p>После двух проходов получается такой набор инструкций (адреса переменных: <code>x</code> — 99, <code>y</code> — 98, константа 1 — 97, <code>t</code> — 95, временные — 96 и 94):</p>
+                    <pre class="code"><code>+1099
++2098
++3199
++4215
++2098
++3097
++2196
++2096
++2198
++2095
++3098
++2194
++2094
++2195
++4001
++1195
++4300</code></pre>
+                    <p>Обратите внимание на инструкцию <code>+4215</code>: в первом проходе она была <code>+4200</code>, потому что строка 60 ещё не имела адреса; второй проход заменил операнд на 15.</p>
+                    <p>Это только инструкции. В полном файле после них обязаны идти данные: нули до ячейки 96, затем <code>+0001</code> в ячейке 97 (константа 1), <code>+0000</code> в 98 (<code>y</code>) и <code>+0000</code> в 99 (<code>x</code>). Если вывести одни инструкции, константа потеряется, <code>ADD 97</code> будет прибавлять ноль, и цикл никогда не закончится. Запустите готовый файл в симуляторе с <code>x = 3</code> — должно получиться <code>+0006</code>.</p>
+                </section>
+
+                <section class="chapter chapter--long" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02 · компилятор</span>
+                    <h2 id="ch-2-title">Компилятор: задание</h2>
+                    <p>Напишите компилятор <code>simple.py</code>, который читает файл на Simple и создаёт рядом файл SML. Готовый SML загружается в симулятор через загрузчик из проекта к занятию 07 — и программа на языке высокого уровня выполняется на вашей собственной машине.</p>
+
+                    <h3>Что должна делать программа</h3>
+                    <ol>
+                        <li><strong>Запуск.</strong> <code>python simple.py sum.simple</code> создаёт <code>sum.sml</code>. Если файла нет или в нём ошибка, компилятор печатает сообщение и не создаёт выходной файл.</li>
+                        <li><strong>Разбор.</strong> Номера строк идут по возрастанию; команда — второе слово строки. Для <code>if</code> разбирайте шаблон <code>if a OP b goto N</code>, для <code>let</code> — имя, знак <code>=</code> и выражение.</li>
+                        <li><strong>Таблица символов.</strong> Словарь <code>symbols</code>: ключ — пара «тип, имя» (например, <code>("L", 20)</code>, <code>("V", "x")</code>, <code>("C", 1)</code>), значение — адрес. Типы: <code>L</code> — строка, <code>V</code> — переменная, <code>C</code> — константа.</li>
+                        <li><strong>Два прохода.</strong> Первый строит таблицу и инструкции, второй дополняет переходы вперёд и пишет файл. Для незавершённых переходов используйте словарь <code>flags</code>: адрес инструкции → номер строки.</li>
+                        <li><strong>Полнота.</strong> Поддержите все семь команд, шесть сравнений, приоритет операций и скобки. Деление целочисленное.</li>
+                        <li><strong>Ошибки.</strong> Неизвестная команда, номер строки не по возрастанию, кончилась память, неизвестная строка в <code>goto</code>, лишние слова — всё это должно давать понятное сообщение с номером строки.</li>
+                        <li><strong>Формат результата.</strong> В файл выводятся все 100 слов памяти: сначала инструкции, затем нули и значения переменных и констант. Например, константа <code>1</code> попадёт в свою ячейку как <code>+0001</code> — без этого команда <code>ADD</code> прибавляла бы ноль. Одна инструкция в строке, знак и четыре цифры: <code>+1099</code>. Такой файл читает загрузчик симулятора.</li>
+                        <li><strong>Ограничения.</strong> Без классов и глобальных переменных. Состояние компилятора — словарь <code>state</code> с полями <code>memory</code>, <code>symbols</code>, <code>flags</code>, <code>code</code> и <code>data</code>; логика — функции.</li>
+                    </ol>
+
+                    <h3>Заготовка</h3>
+                    <p>Каркас задаёт структуру, но не решает задачу: разбор выражений, генерацию кода и проходы нужно написать самостоятельно.</p>
+                    <pre class="code"><code>import re
+import sys
+
+MEMORY_SIZE = 100
+
+
+def tokenize_expression(text):
+    """Числа, буквы-переменные, скобки и знаки операций."""
+    return re.findall(r"\d+|[a-z]|[()+\-*/]", text)
+
+
+def to_postfix(tokens):
+    """Инфиксная запись → постфиксная."""
+    # TODO: стек операторов и приоритеты.
+    pass
+
+
+def new_state():
+    return {
+        "memory": [0] * MEMORY_SIZE,
+        "symbols": {},
+        "flags": {},
+        "code": 0,
+        "data": MEMORY_SIZE - 1,
+    }
+
+
+def emit(state, instruction):
+    """Положить инструкцию в память и сдвинуть счётчик."""
+    # TODO: проверить, что code не столкнулся с data.
+    pass
+
+
+def compile_expression(tokens, state):
+    """Вернуть адрес ячейки с результатом выражения."""
+    # TODO: постфиксная запись и стек адресов.
+    pass
+
+
+def first_pass(lines):
+    """Первый проход: таблица символов и инструкции."""
+    state = new_state()
+    # TODO
+    return state
+
+
+def second_pass(state):
+    """Второй проход: переходы и подготовка файла."""
+    # TODO
+    return state
+
+
+def compile_file(path):
+    lines = open(path, encoding="utf-8").read().splitlines()
+    state = second_pass(first_pass(lines))
+    out_path = path.rsplit(".", 1)[0] + ".sml"
+    with open(out_path, "w", encoding="utf-8") as out:
+        # Вся память: инструкции и данные (переменные и константы).
+        for word in state["memory"]:
+            out.write(f"{word:+05d}\n")
+    print("готово:", out_path)
+
+
+if __name__ == "__main__":
+    compile_file(sys.argv[1])</code></pre>
+
+                    <h3>Проверка</h3>
+                    <p>Скомпилируйте три программы и выполните полученные SML-файлы в симуляторе. Помните про область данных: константа <code>1</code> и контрольное значение <code>-1</code> должны попасть в файл, иначе циклы не завершатся.</p>
+
+                    <h4>Сумма</h4>
+                    <pre class="code"><code>10 rem сумма двух чисел
+20 input a
+30 input b
+40 let c = a + b
+50 print c
+60 end</code></pre>
+                    <p>Ввод <code>+12</code> и <code>-5</code> → <code>+0007</code>.</p>
+
+                    <h4>Большее из двух</h4>
+                    <pre class="code"><code>10 input s
+20 input t
+30 if s &gt;= t goto 60
+40 print t
+50 goto 70
+60 print s
+70 end</code></pre>
+                    <p>Ввод <code>+3</code> и <code>+8</code> → <code>+0008</code>. Здесь проверка смотрит вперёд на строку 60, поэтому без второго прохода не обойтись.</p>
+
+                    <h4>Квадраты чисел</h4>
+                    <pre class="code"><code>10 input j
+20 if j == -1 goto 60
+30 let k = j * j
+40 print k
+50 goto 10
+60 end</code></pre>
+                    <p>Ввод <code>+3</code>, <code>-4</code>, <code>-1</code> → <code>+0009</code>, <code>+0016</code>, затем остановка.</p>
+
+                    <h3>Критерии приёмки</h3>
+                    <ul class="checklist">
+                        <li>Компилятор создаёт <code>.sml</code> с одной инструкцией <code>+dddd</code> в строке и областью данных — переменными и константами.</li>
+                        <li>Симулятор из раздела 08 загружает этот файл и выполняет программу.</li>
+                        <li>Работают все семь команд и все шесть сравнений.</li>
+                        <li>Выражения считаются с учётом приоритета и скобок.</li>
+                        <li>Переходы вперёд разрешаются вторым проходом.</li>
+                        <li>Ошибки сообщаются с номером строки, выходной файл не создаётся.</li>
+                        <li>Нет классов и глобальных переменных; состояние передаётся словарём.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03 · развитие</span>
+                    <h2 id="ch-3-title">Если хочется большего</h2>
+                    <ul>
+                        <li>Оптимизировать компилятор: убирать пары <code>STORE temp</code> и <code>LOAD temp</code>, идущие подряд.</li>
+                        <li>Разрешить <code>input x, y</code> и <code>print a, b</code> с несколькими переменными.</li>
+                        <li>Добавить в Simple <code>%</code> и <code>^</code>, а в SML — новые команды для них.</li>
+                        <li>Сделать <code>gosub</code>/<code>return</code>, циклы <code>for … next</code>, массивы и строки.</li>
+                        <li>Написать интерпретатор Simple — программу, которая выполняет операторы сразу, без компиляции в SML.</li>
+                    </ul>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-08.html">
+                        <span>задание к занятию</span>
+                        ← Команды и программы
+                    </a>
+                    <a class="pager__next" href="urok-09.html">
+                        <span>следующее занятие</span>
+                        Продвинутые схемы процессоров →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Язык Simple</a></li>
+                    <li><a href="#ch-2">Компилятор</a></li>
+                    <li><a href="#ch-3">Развитие</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px">Проект к занятию 08 из 40</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>
+                Видео —
+                <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank" rel="noopener">Crash Course Computer Science</a>
+            </span>
+        </div>
+    </footer>
+    <script src="js/interactive.js?v=20261031" defer></script>
+</body>
+</html>

@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Занятие 07. Центральный процессор — Основы информационных технологий</title>
-    <meta name="description" content="Разбор темы «Центральный процессор»: АЛУ, регистры и устройство управления, цикл выборки-декодирования-исполнения, счётчик команд и переходы.">
+    <meta name="description" content="Разбор темы «Центральный процессор»: АЛУ, регистры и устройство управления, цикл загрузки-декодирования-исполнения, счётчик команд и переходы. Проект — симулятор Simpletron на Python.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261031">
+    <link rel="stylesheet" href="css/styles.css?v=20261102">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -39,6 +39,7 @@
                     <li>видео 11:45</li>
                     <li>Crash Course Computer Science #07</li>
                     <li>процессор</li>
+                    <li>Python</li>
                 </ul>
             </header>
         </div>
@@ -59,20 +60,15 @@
                     </figcaption>
                 </figure>
 
-                <p class="lede">Процессор не «понимает» программу — он повторяет короткий цикл: взять команду, разобрать её, выполнить, перейти к следующей. Всё остальное вырастает из этих четырёх шагов.</p>
+                <p class="lede">Процессор не «понимает» программу — он повторяет короткий цикл: взять команду, разобрать её, выполнить, перейти к следующей. Всё остальное вырастает из этих шагов.</p>
                 <figure class="diagram">
-<svg viewBox="0 0 640 180" role="img" aria-label="Цикл работы процессора">
+<svg viewBox="0 0 480 136" role="img" aria-label="Цикл работы процессора">
   <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
-    <rect x="20.0" y="60" width="120.0" height="56"/><text x="80.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">выборка</text>
-    <path d="M146.0 88 H168.0"/><path d="M168.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
-    <rect x="180.0" y="60" width="120.0" height="56"/><text x="240.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">декодирование</text>
-    <path d="M306.0 88 H328.0"/><path d="M328.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
-    <rect x="340.0" y="60" width="120.0" height="56"/><text x="400.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">исполнение</text>
-    <path d="M466.0 88 H488.0"/><path d="M488.0 88 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
-    <rect x="500.0" y="60" width="120.0" height="56"/><text x="560.0" y="92.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">запись</text>
-  </g>
-  <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
-    <text x="20" y="150">переход меняет адрес следующей команды</text>
+    <rect x="20.0" y="40" width="120.0" height="56"/><text x="80.0" y="72.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">загрузка</text>
+    <path d="M146.0 68 H168.0"/><path d="M168.0 68 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="180.0" y="40" width="120.0" height="56"/><text x="240.0" y="72.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">декодирование</text>
+    <path d="M306.0 68 H328.0"/><path d="M328.0 68 l-8 -5 v10 z" fill="currentColor" stroke="none"/>
+    <rect x="340.0" y="40" width="120.0" height="56"/><text x="400.0" y="72.0" text-anchor="middle" font-size="11" font-family="JetBrains Mono, monospace">исполнение</text>
   </g>
 </svg>
                     <figcaption>Схема: цикл выполнения команды</figcaption>
@@ -96,8 +92,8 @@
                     <p>Внутри — арифметико-логическое устройство, набор регистров и устройство управления. АЛУ считает, регистры хранят промежуточные значения, управление читает команды и раздаёт сигналы.</p>
                     <p>Команда указывает, что сделать и с чем: например, сложить два регистра и положить результат в третий.</p>
                     <h3>Цикл выполнения</h3>
-                    <p>Сначала команда выбирается из памяти по адресу в счётчике команд, затем декодируется: опкод говорит, какая операция, операнды — где данные.</p>
-                    <p>После исполнения результат записывается, а счётчик увеличивается. Так программа продвигается вперёд, пока не встретит переход.</p>
+                    <p>Сначала команда загружается из памяти по адресу в счётчике команд, затем декодируется: опкод говорит, какая операция, операнды — где данные.</p>
+                    <p>В ходе исполнения результат записывается в регистр или память, а счётчик команд увеличивается. Так программа продвигается вперёд, пока не встретит переход.</p>
                     <h3>Переходы и ветвления</h3>
                     <p>Условный переход меняет счётчик команд, если выполнено условие. Из этого вырастают циклы и ветвления — основа любой программы.</p>
                     <p>Без переходов программа была бы просто длинной последовательностью операций над заранее известными данными.</p>
@@ -225,6 +221,15 @@
                     </ol>
                 </section>
 
+                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
+                    <span class="chapter__num">07 · проект</span>
+                    <h2 id="ch-7-title">Проект: симулятор Simpletron на Python</h2>
+                    <p>Соберите учебную машину из книги Дейтелов: 100 ячеек памяти, 12 команд и цикл «загрузка → декодирование → исполнение». Память — список, регистры — словарь, никаких классов.</p>
+                    <p>На отдельной странице — система команд SML, две готовые программы, заготовка кода и загрузка SML из файла.</p>
+                    <p><a href="proekt-simpletron.html"><strong>Открыть проект: симулятор Simpletron →</strong></a></p>
+                    <p>Компилятор языка Simple — <a href="proekt-simple-compiler.html">отдельный проект к занятию 08</a>.</p>
+                </section>
+
                                 <nav class="pager" aria-label="Навигация по занятиям">
                     <a href="urok-06.html">
                         <span>предыдущее занятие</span>
@@ -246,6 +251,7 @@
                     <li><a href="#ch-4">Карточки</a></li>
                     <li><a href="#ch-5">Квиз</a></li>
                     <li><a href="#ch-6">Практика</a></li>
+                    <li><a href="proekt-simpletron.html">Проект</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 07 из 40</p>
             </aside>
