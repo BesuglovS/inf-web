@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Занятие 15. Алан Тьюринг — Основы информационных технологий</title>
-    <meta name="description" content="Разбор темы «Алан Тьюринг»: машина Тьюринга, универсальная машина, проблема остановки и тест Тьюринга.">
+    <meta name="description" content="Разбор темы «Алан Тьюринг»: машина Тьюринга, описание исполнителя МТ в формате ЕГЭ, универсальная машина, проблема остановки и тест Тьюринга.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102">
+    <link rel="stylesheet" href="css/styles.css?v=20261102-15b">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -106,8 +106,97 @@
                 </section>
 
                 <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
-                    <span class="chapter__num">03</span>
-                    <h2 id="ch-3-title">Термины занятия</h2>
+                    <span class="chapter__num">03 · формат ЕГЭ</span>
+                    <h2 id="ch-3-title">Машина Тьюринга в формате ЕГЭ</h2>
+                    <p>В задании 12 ЕГЭ исполнитель МТ описан строго: у него есть лента, алфавит, состояния и таблица команд. Ниже — та же модель с расшифровкой каждого элемента.</p>
+
+                    <h3>Лента, алфавит и состояния</h3>
+                    <p>Исполнитель МТ — это читающая и записывающая головка, которая движется вдоль бесконечной горизонтальной ленты. Лента разделена на равные ячейки, в каждой лежит ровно один символ.</p>
+                    <ul>
+                        <li><strong>Алфавит</strong> — множество допустимых символов <code>A = {a<sub>0</sub>, a<sub>1</sub>, …, a<sub>n−1</sub>}</code>. Символ <code>a<sub>0</sub></code> — пустой; в задачах его часто обозначают <code>λ</code>.</li>
+                        <li><strong>Состояния</strong> — множество <code>Q = {q<sub>0</sub>, q<sub>1</sub>, …, q<sub>n−1</sub>}</code>. В начальный момент головка находится в состоянии <code>q<sub>0</sub></code>.</li>
+                        <li><strong>Текущая ячейка</strong> — та, которую головка обозревает на данном такте.</li>
+                    </ul>
+                    <p>Время работы делится на дискретные такты. На каждом такте головка читает символ в текущей ячейке, находит по таблице нужную команду и выполняет её: записывает символ, сдвигается и переходит в новое состояние или остаётся в прежнем.</p>
+
+                    <h3>Как устроена команда</h3>
+                    <p>Команда состоит из трёх элементов, разделённых запятыми:</p>
+                    <ol>
+                        <li>символ, который записывается в текущую ячейку (может совпадать с уже записанным);</li>
+                        <li>сдвиг головки — один из символов <code>L</code>, <code>R</code>, <code>N</code>, <code>S</code>;</li>
+                        <li>новое состояние головки после выполнения команды.</li>
+                    </ol>
+                    <p>Например, команда <code>0, L, q3</code> означает: записать в текущую ячейку <code>0</code>, сдвинуться на ячейку влево и перейти в состояние <code>q3</code>.</p>
+                    <table class="spec-table spec-table--wide">
+                        <thead>
+                            <tr>
+                                <th scope="col">Символ</th>
+                                <th scope="col">Действие головки</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>L</code></td><td>сдвиг влево</td></tr>
+                            <tr><td><code>R</code></td><td>сдвиг вправо</td></tr>
+                            <tr><td><code>N</code></td><td>остаться в текущей ячейке</td></tr>
+                            <tr><td><code>S</code></td><td>завершить работу после выполнения команды</td></tr>
+                        </tbody>
+                    </table>
+                    <p>Символ записывается до сдвига. При <code>S</code> головка тоже сначала записывает символ, а затем останавливается — сдвига при этом нет.</p>
+
+                    <h3>Таблица переходов</h3>
+                    <p>Программа МТ задаётся таблицей: в первой строке перечислены все символы алфавита, в первом столбце — все состояния. На пересечении строки и столбца стоит команда для пары «текущий символ — текущее состояние». Если такая пара невозможна, клетка остаётся пустой.</p>
+                    <div class="datasheet-wrap">
+                        <table class="algo__table mt-table">
+                            <caption>Программа МТ из демоверсии ЕГЭ 2026</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">λ</th>
+                                    <th scope="col">1</th>
+                                    <th scope="col">0</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">q<sub>0</sub></th>
+                                    <td>λ, L, q<sub>1</sub></td>
+                                    <td><span class="visually-hidden">нет команды</span></td>
+                                    <td><span class="visually-hidden">нет команды</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">q<sub>1</sub></th>
+                                    <td>λ, S, q<sub>1</sub></td>
+                                    <td>0, S, q<sub>1</sub></td>
+                                    <td>1, L, q<sub>1</sub></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Читать таблицу нужно по текущей паре: например, если головка в состоянии <code>q<sub>1</sub></code> и видит <code>0</code>, выполняется команда <code>1, L, q<sub>1</sub></code> — записать <code>1</code>, сдвинуться влево и остаться в состоянии <code>q<sub>1</sub></code>.</p>
+
+                    <h3>Пример выполнения</h3>
+                    <p>Пусть на ленте записано <code>101</code>, головка стоит в пустой ячейке справа от последовательности, состояние — <code>q<sub>0</sub></code>.</p>
+                    <ol>
+                        <li><code>q<sub>0</sub></code> видит <code>λ</code> → команда <code>λ, L, q<sub>1</sub></code>: записывает <code>λ</code>, сдвигается влево на последнюю <code>1</code> и переходит в <code>q<sub>1</sub></code>.</li>
+                        <li><code>q<sub>1</sub></code> видит <code>1</code> → команда <code>0, S, q<sub>1</sub></code>: записывает <code>0</code> и останавливается.</li>
+                    </ol>
+                    <p>Итоговая лента — <code>100</code>. Команда <code>S</code> завершила работу после записи, поэтому остальные символы остались без изменений.</p>
+
+                    <aside class="concept-block" aria-labelledby="mt-notation-title">
+                        <h4 id="mt-notation-title">Обозначения в разных задачах</h4>
+                        <p>Пустой символ могут записывать как <code>a<sub>0</sub></code> или <code>λ</code> — это одно и то же. Команды встречаются в трёх видах: <code>λ, R, q<sub>1</sub></code>, <code>λ R q<sub>1</sub></code> и <code>λRq<sub>1</sub></code>. Пустая клетка таблицы — не пропуск, а запрет: в такую ситуацию исполнитель попасть не должен.</p>
+                    </aside>
+
+                    <aside class="concept-block" aria-labelledby="mt-practice-title">
+                        <h4 id="mt-practice-title">Попробуйте сами</h4>
+                        <p>Загрузите свою последовательность, выполняйте команды по шагам и смотрите, как меняются лента, головка и состояние.</p>
+                        <p class="mt-cta"><a class="widget__btn" href="turing.html">Открыть интерактивную машину →</a></p>
+                    </aside>
+                </section>
+
+                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
+                    <span class="chapter__num">04</span>
+                    <h2 id="ch-4-title">Термины занятия</h2>
                     <dl class="terms">
                         <div>
                             <dt>Машина Тьюринга</dt>
@@ -136,9 +225,9 @@
                     </dl>
                 </section>
 
-                <section class="chapter" id="ch-4" aria-labelledby="ch-4-title">
-                    <span class="chapter__num">04 · интерактив</span>
-                    <h2 id="ch-4-title">Карточки терминов</h2>
+                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
+                    <span class="chapter__num">05 · интерактив</span>
+                    <h2 id="ch-5-title">Карточки терминов</h2>
                     <p class="chapter__hint">Прочитайте термин, вспомните определение, затем нажмите на карточку и проверьте себя.</p>
                     <div class="cards" data-cards="15">
                         <button class="card" type="button" aria-pressed="false">
@@ -168,9 +257,9 @@
                     </div>
                 </section>
 
-                <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
-                    <span class="chapter__num">05 · интерактив</span>
-                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
+                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
+                    <span class="chapter__num">06 · интерактив</span>
+                    <h2 id="ch-6-title">Квиз: проверьте себя</h2>
                     <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
                     <div class="quiz" data-quiz="15">
                         <ol class="quiz__list">
@@ -213,9 +302,9 @@
                     </div>
                 </section>
 
-                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
-                    <span class="chapter__num">06</span>
-                    <h2 id="ch-6-title">Мини-практика</h2>
+                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
+                    <span class="chapter__num">07</span>
+                    <h2 id="ch-7-title">Мини-практика</h2>
                     <ol>
                         <li>Объясните, почему универсальную машину можно считать прообразом компьютера с хранимой программой.</li>
                         <li>Сформулируйте своими словами, что означает неразрешимость проблемы остановки.</li>
@@ -239,10 +328,11 @@
                 <ol>
                     <li><a href="#ch-1">Что смотреть</a></li>
                     <li><a href="#ch-2">Конспект</a></li>
-                    <li><a href="#ch-3">Термины</a></li>
-                    <li><a href="#ch-4">Карточки</a></li>
-                    <li><a href="#ch-5">Квиз</a></li>
-                    <li><a href="#ch-6">Практика</a></li>
+                    <li><a href="#ch-3">Формат ЕГЭ</a></li>
+                    <li><a href="#ch-4">Термины</a></li>
+                    <li><a href="#ch-5">Карточки</a></li>
+                    <li><a href="#ch-6">Квиз</a></li>
+                    <li><a href="#ch-7">Практика</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 15 из 40</p>
             </aside>

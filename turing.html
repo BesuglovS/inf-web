@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная машина Тьюринга — Основы информационных технологий</title>
+    <meta name="description" content="Интерактивный исполнитель МТ: выберите стартовую ячейку, редактируйте таблицу переходов, добавляйте состояния и символы. Программы демоверсий ЕГЭ 2026 и 2027.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=20261102-turing10">
+</head>
+<body>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-head">
+        <div class="wrap site-head__inner">
+            <a class="brand" href="index.html">
+                <strong>Основы информационных технологий</strong>
+            </a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <a href="index.html">Занятия</a>
+                <a href="urok-15.html">Занятие 15</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <nav class="crumbs" aria-label="Хлебные крошки">
+                <a href="index.html">Курс</a><span>/</span><a href="urok-15.html">Занятие 15</a><span>/</span>Интерактив
+            </nav>
+
+            <header class="lesson-head">
+                <span class="lesson-head__num" aria-hidden="true">MT</span>
+                <h1>Машина Тьюринга: интерактивный исполнитель</h1>
+                <ul class="lesson-head__meta">
+                    <li>задание 12 ЕГЭ</li>
+                    <li>лента · головка · состояния</li>
+                    <li>демоверсии 2026 и 2027</li>
+                </ul>
+            </header>
+        </div>
+
+        <div class="wrap lesson-body">
+            <div class="lesson-main">
+                <p class="lede">Соберите ленту, нажмите на нужную ячейку, отредактируйте таблицу переходов и выполните программу по шагам. В таблице подсвечивается команда, которая будет выполнена следующей.</p>
+
+                <section class="chapter" id="ch-1" aria-labelledby="ch-1-title">
+                    <span class="chapter__num">01 · инструкция</span>
+                    <h2 id="ch-1-title">Как пользоваться</h2>
+                    <ul class="checklist">
+                        <li>Введите последовательность и нажмите «Загрузить».</li>
+                        <li>Нажмите на ячейку ленты, чтобы выбрать начальную позицию головки.</li>
+                        <li>«Шаг» выполняет одну команду, «Авто» запускает команды последовательно, «Сброс» возвращает исходную ленту.</li>
+                        <li>Список «Пауза» задаёт длительность интервала между командами в режиме «Авто».</li>
+                        <li>Редактируйте клетки таблицы, добавляйте состояния и символы, а кнопками «2026» и «2027» загружайте программы демоверсий.</li>
+                        <li>Под лентой смотрите десятичное значение двоичной последовательности, количество каждого символа, сумму по каждой цифре и общую сумму цифр; у <code>λ</code> стоит <code>∞</code>, потому что пустых ячеек на бесконечной ленте бесконечно много.</li>
+                        <li>Следите за подсветкой строки, столбца и клетки в таблице переходов.</li>
+                    </ul>
+                </section>
+
+                <section class="chapter" id="ch-2" aria-labelledby="ch-2-title">
+                    <span class="chapter__num">02 · интерактив</span>
+                    <h2 id="ch-2-title">Тренажёр</h2>
+                    <p>По умолчанию загружена программа демоверсии 2026: она движется влево, заменяя нули единицами, и останавливается на первой единице, записывая в неё <code>0</code>. Кнопка «2027» загружает программу с тремя состояниями и двоичной записью числа 2025 на ленте. Команды в таблице можно менять, а строки и столбцы — добавлять и удалять. Пустая клетка означает, что для такой пары «состояние — символ» команда не задана.</p>
+
+                    <div class="algo mt-widget" data-widget="turing">
+                        <div class="algo__head">
+                            <span class="algo__phase" data-mt-phase>состояние q0</span>
+                            <span class="algo__counter" data-mt-counter>0 шагов</span>
+                        </div>
+
+                        <div class="mt-toolbar">
+                            <label class="mt-field">
+                                <span class="mt-field__label">Начальная лента</span>
+                                <input class="widget__input" data-mt-input type="text" value="101" maxlength="24" autocomplete="off" spellcheck="false" aria-describedby="mt-input-hint">
+                                <span class="mt-field__hint" id="mt-input-hint">только 1, 0; до 24 символов</span>
+                            </label>
+                            <button type="button" class="switch" data-mt-load>Загрузить</button>
+                        </div>
+
+                        <div class="mt-tape-wrap" data-mt-tape-wrap>
+                            <div class="mt-tape" data-mt-tape role="group" aria-label="Лента машины Тьюринга"></div>
+                        </div>
+                        <p class="mt-stage-note">λ — пустая ячейка · нажмите на любую ячейку, чтобы выбрать начальную позицию головки</p>
+                        <noscript><p class="mt-stage-note">Для интерактивного тренажёра включите JavaScript.</p></noscript>
+
+                        <div class="mt-readout" role="group" aria-label="Состояние ленты">
+                            <div class="mt-decimal">
+                                <span class="mt-readout__label">Десятичное значение</span>
+                                <strong class="mt-decimal__value" data-mt-decimal>—</strong>
+                                <span class="mt-decimal__binary" data-mt-binary></span>
+                            </div>
+                            <div class="mt-counts-wrap">
+                                <span class="mt-readout__label">Символов на ленте</span>
+                                <div class="mt-counts" data-mt-counts aria-label="Количество символов на ленте"></div>
+                            </div>
+                            <div class="mt-sums-wrap">
+                                <span class="mt-readout__label">Суммы цифр</span>
+                                <div class="mt-sums" data-mt-sums aria-label="Суммы цифр на ленте"></div>
+                            </div>
+                        </div>
+
+                        <p class="algo__msg" data-mt-msg aria-live="polite"></p>
+
+                        <div class="algo__controls">
+                            <button type="button" class="widget__btn" data-mt-step>Шаг →</button>
+                            <button type="button" class="switch" data-mt-play aria-pressed="false">Авто</button>
+                            <label class="mt-delay">
+                                <span class="mt-field__label">Пауза</span>
+                                <select class="mt-select" data-mt-delay>
+                                    <option value="100">0,1 с</option>
+                                    <option value="250">0,25 с</option>
+                                    <option value="500" selected>0,5 с</option>
+                                    <option value="1000">1 с</option>
+                                    <option value="2000">2 с</option>
+                                </select>
+                            </label>
+                            <button type="button" class="switch" data-mt-reset>Сброс</button>
+                            <button type="button" class="switch" data-mt-random>Случайная лента</button>
+                        </div>
+
+                        <div class="mt-presets">
+                            <span class="mt-presets__label">Демоверсии:</span>
+                            <button type="button" class="switch" data-mt-preset="2026" aria-label="Загрузить демоверсию 2026">2026</button>
+                            <button type="button" class="switch" data-mt-preset="2027" aria-label="Загрузить демоверсию 2027">2027</button>
+                        </div>
+
+                        <div class="mt-program-tools">
+                            <div class="mt-program-group">
+                                <label class="mt-program-tool">
+                                    <span class="mt-field__label">Новое состояние</span>
+                                    <input class="widget__input mt-tool-input" data-mt-new-state value="q2" maxlength="12" autocomplete="off" spellcheck="false">
+                                </label>
+                                <button type="button" class="switch" data-mt-add-state>+ состояние</button>
+                            </div>
+                            <div class="mt-program-group">
+                                <label class="mt-program-tool">
+                                    <span class="mt-field__label">Новый символ</span>
+                                    <input class="widget__input mt-tool-input" data-mt-new-symbol value="2" maxlength="1" autocomplete="off" spellcheck="false">
+                                </label>
+                                <button type="button" class="switch" data-mt-add-symbol>+ символ</button>
+                            </div>
+                        </div>
+                        <p class="mt-program-hint">В клетке: записываемый символ, сдвиг и новое состояние — например, <code>0, L, q1</code>. Пустая клетка — команды нет. Символ <code>λ</code> и начальное состояние удалить нельзя.</p>
+
+                        <div class="datasheet-wrap">
+                            <table class="algo__table mt-table mt-program" data-mt-program>
+                                <caption>Программа МТ · таблица редактируется</caption>
+                                <thead></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="chapter" id="ch-3" aria-labelledby="ch-3-title">
+                    <span class="chapter__num">03 · практика</span>
+                    <h2 id="ch-3-title">Что попробовать</h2>
+                    <ol>
+                        <li>Загрузите демоверсию 2026 и нажмите «Шаг»: на ленте <code>101</code> через два шага останется <code>100</code>.</li>
+                        <li>Загрузите демоверсию 2027 и запустите программу: двоичная запись <code>11111101001</code> (2025) превратится в <code>111111101001</code> — это 4073.</li>
+                        <li>Добавьте новое состояние (например, <code>q2</code>) и символ <code>2</code>, заполните новую клетку командой и проверьте, как она работает.</li>
+                        <li>Нажмите на пустую ячейку слева или справа от последовательности — головка начнёт работу именно оттуда.</li>
+                        <li>Для 2026 попробуйте ленту <code>1000</code>: получится <code>0111</code>. А если поставить головку на первую <code>1</code>, машина сразу остановится: для пары <code>q<sub>0</sub></code> и <code>1</code> команды нет.</li>
+                    </ol>
+                    <p>Сравните результат на ленте с сообщением под тренажёром: там видно, какая команда выполнилась и почему работа закончилась.</p>
+                </section>
+
+                <nav class="pager" aria-label="Навигация по занятиям">
+                    <a href="urok-15.html">
+                        <span>вернуться в урок</span>
+                        ← Занятие 15
+                    </a>
+                    <a class="pager__next" href="index.html">
+                        <span>все занятия</span>
+                        Курс →
+                    </a>
+                </nav>
+            </div>
+
+            <aside class="toc" aria-labelledby="toc-title">
+                <h2 id="toc-title">На этой странице</h2>
+                <ol>
+                    <li><a href="#ch-1">Как пользоваться</a></li>
+                    <li><a href="#ch-2">Тренажёр</a></li>
+                    <li><a href="#ch-3">Что попробовать</a></li>
+                </ol>
+                <p class="player__note" style="margin-top:16px"><a href="urok-15.html">← Занятие 15</a></p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="wrap site-foot__inner">
+            <span>ГБНОУ СО «Академия для одаренных детей (Наяновой)»</span>
+            <span>основы информационных технологий · 2026</span>
+            <span>интерактив · задание 12 ЕГЭ</span>
+        </div>
+    </footer>
+    <script src="js/turing.js?v=20261102-8" defer></script>
+</body>
+</html>
