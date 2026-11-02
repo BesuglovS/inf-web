@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Занятие 08. Команды и программы — Основы информационных технологий</title>
-    <meta name="description" content="Разбор темы «Команды и программы»: формат команды, опкод и операнды, работа с регистрами и памятью, условные переходы и пример простой программы. Проект — компилятор Simple в SML на Python.">
+    <meta name="description" content="Разбор темы «Команды и программы»: формат команды, код операции и операнды, работа с регистрами и памятью, условные переходы и пример простой программы. Проект — компилятор Simple в SML на Python.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,15 +62,20 @@
 
                 <p class="lede">Программа — это последовательность чисел, которые процессор умеет читать как команды. Всё богатство поведения получается из небольшого набора операций и умения менять порядок.</p>
                 <figure class="diagram">
-<svg viewBox="0 0 640 180" role="img" aria-label="Разбиение команды на поля">
+<svg viewBox="0 0 640 190" role="img" aria-label="Разбиение команды на поля">
   <g class="dg-line" fill="none" stroke="currentColor" stroke-width="1.4">
-    <rect x="90" y="30" width="420" height="28"/><text x="300" y="49" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">опкод</text>
-    <rect x="90" y="64" width="420" height="28"/><text x="300" y="83" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">операнд 1</text>
-    <rect x="90" y="98" width="420" height="28"/><text x="300" y="117" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">операнд 2</text>
-    <rect x="90" y="132" width="420" height="28"/><text x="300" y="151" text-anchor="middle" font-size="12" font-family="JetBrains Mono, monospace">адрес</text>
+    <rect x="90" y="30" width="420" height="28"/>
+    <rect x="90" y="64" width="420" height="28"/>
+    <rect x="90" y="98" width="420" height="28"/>
+  </g>
+  <g fill="currentColor" stroke="none" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle" opacity="0.8">
+    <text x="300" y="49">код операции</text>
+    <text x="300" y="83">операнд 1</text>
+    <text x="300" y="117">операнд 2</text>
   </g>
   <g class="dg-text" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.7">
-    <text x="90" y="170">чем шире поле опкода, тем больше операций</text>
+    <text x="90" y="152">операнд — это число, регистр или адрес в памяти</text>
+    <text x="90" y="170">чем больше бит в поле кода операции, тем больше операций</text>
   </g>
 </svg>
                     <figcaption>Схема: поля команды</figcaption>
@@ -80,7 +85,7 @@
                     <span class="chapter__num">01 · ориентиры</span>
                     <h2 id="ch-1-title">На что смотреть в видео</h2>
                     <ul class="checklist">
-                        <li>Как устроена одна команда: опкод и операнды.</li>
+                        <li>Как устроена одна команда: код операции и операнды.</li>
                         <li>Чем команды с регистрами отличаются от команд с памятью.</li>
                         <li>Как записывается простая программа из нескольких команд.</li>
                         <li>Почему без переходов программа остаётся линейной.</li>
@@ -92,7 +97,7 @@
                     <h2 id="ch-2-title">Конспект</h2>
                     <h3>Формат команды</h3>
                     <p>Команда — число, разбитое на поля: код операции и один-два операнда. Поле операнда может означать номер регистра или адрес в памяти.</p>
-                    <p>Разрядность полей ограничивает возможности: чем больше бит отдано опкоду, тем больше разных операций, но меньше места остаётся на адреса.</p>
+                    <p>Разрядность полей ограничивает возможности: чем больше бит отдано коду операции, тем больше разных операций, но меньше места остаётся на адреса.</p>
                     <h3>Регистры и память</h3>
                     <p>Команды с регистрами работают быстро, но самих регистров мало. Команды с памятью позволяют обращаться к большим массивам данных, но каждое обращение медленнее.</p>
                     <p>Поэтому типичная программа держит счётчики и промежуточные результаты в регистрах, а большие данные — в памяти.</p>
@@ -115,8 +120,8 @@
                             <dd>Набор операций, которые понимает процессор.</dd>
                         </div>
                         <div>
-                            <dt>Опкод</dt>
-                            <dd>Поле команды с кодом операции.</dd>
+                            <dt>Код операции</dt>
+                            <dd>Поле команды, задающее выполняемую операцию.</dd>
                         </div>
                         <div>
                             <dt>Операнд</dt>
@@ -147,8 +152,8 @@
                             <span class="card__back">Набор операций, которые понимает процессор.</span>
                         </button>
                         <button class="card" type="button" aria-pressed="false">
-                            <span class="card__front">Опкод</span>
-                            <span class="card__back">Поле команды с кодом операции.</span>
+                            <span class="card__front">Код операции</span>
+                            <span class="card__back">Поле команды, задающее выполняемую операцию.</span>
                         </button>
                         <button class="card" type="button" aria-pressed="false">
                             <span class="card__front">Операнд</span>
@@ -183,7 +188,7 @@
                             <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Имя файла</button>
                             <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Адрес сайта</button>
                         </div>
-                        <p class="quiz__why" hidden>Команда разбита на поля: опкод говорит что делать, операнды — с чем.</p>
+                        <p class="quiz__why" hidden>Команда разбита на поля: код операции говорит что делать, операнды — с чем.</p>
                     </li>
                     <li class="quiz__item" data-answer="0">
                         <p class="quiz__q"><span class="quiz__num">2</span>Почему команды с памятью медленнее регистровых?</p>

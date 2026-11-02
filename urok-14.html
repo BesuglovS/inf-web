@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102">
+    <link rel="stylesheet" href="css/styles.css?v=20261102-23">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -95,9 +95,136 @@
                     <h3>Массив и список</h3>
                     <p>Массив хранит элементы подряд: доступ по индексу мгновенный, но вставка в середину требует сдвига. Связный список хранит элементы узлами со ссылками: вставка дешёвая, а поиск — последовательный.</p>
                     <p>Выбор зависит от того, что чаще: читать по номеру или менять структуру.</p>
+
+                    <div class="algo dsmodel" data-widget="ds-model">
+                        <div class="algo__head">
+                            <span class="algo__phase" data-algo-phase>доступ по индексу</span>
+                            <span class="algo__counter" data-algo-counter>1 / 1</span>
+                        </div>
+                        <div class="dsmodel__modebar" role="group" aria-label="Сценарий работы структуры">
+                            <button type="button" class="switch is-on" data-ds-mode="access" aria-pressed="true">Доступ по индексу</button>
+                            <button type="button" class="switch" data-ds-mode="insert" aria-pressed="false">Вставка в середину</button>
+                        </div>
+                        <p class="dsmodel__target" data-ds-target>Цель: элемент с индексом 3.</p>
+                        <div class="dsmodel__lanes">
+                            <div class="dsmodel__lane">
+                                <div class="dsmodel__lane-head">
+                                    <span class="dsmodel__lane-title">массив</span>
+                                    <span class="dsmodel__cost" data-ds-array-cost>O(1)</span>
+                                </div>
+                                <div class="dsmodel__array" data-ds-array role="group" aria-label="Массив: значения и индексы">
+                                    <div class="dscell"><span class="dscell__val">3</span><span class="dscell__idx">0</span></div>
+                                    <div class="dscell"><span class="dscell__val">7</span><span class="dscell__idx">1</span></div>
+                                    <div class="dscell"><span class="dscell__val">2</span><span class="dscell__idx">2</span></div>
+                                    <div class="dscell"><span class="dscell__val">9</span><span class="dscell__idx">3</span></div>
+                                    <div class="dscell"><span class="dscell__val">5</span><span class="dscell__idx">4</span></div>
+                                    <div class="dscell"><span class="dscell__val">4</span><span class="dscell__idx">5</span></div>
+                                </div>
+                                <p class="dsmodel__note" data-ds-array-note>адрес = начало + индекс × размер</p>
+                            </div>
+                            <div class="dsmodel__lane">
+                                <div class="dsmodel__lane-head">
+                                    <span class="dsmodel__lane-title">связный список</span>
+                                    <span class="dsmodel__cost" data-ds-list-cost>O(n)</span>
+                                </div>
+                                <div class="dsmodel__list" data-ds-list role="group" aria-label="Связный список: узлы и ссылки">
+                                    <div class="dsnode"><span class="dsnode__val">3</span><span class="dsnode__idx">0</span></div>
+                                    <span class="dslink" aria-hidden="true">→</span>
+                                    <div class="dsnode"><span class="dsnode__val">7</span><span class="dsnode__idx">1</span></div>
+                                    <span class="dslink" aria-hidden="true">→</span>
+                                    <div class="dsnode"><span class="dsnode__val">2</span><span class="dsnode__idx">2</span></div>
+                                    <span class="dslink" aria-hidden="true">→</span>
+                                    <div class="dsnode"><span class="dsnode__val">9</span><span class="dsnode__idx">3</span></div>
+                                    <span class="dslink" aria-hidden="true">→</span>
+                                    <div class="dsnode"><span class="dsnode__val">5</span><span class="dsnode__idx">4</span></div>
+                                    <span class="dslink" aria-hidden="true">→</span>
+                                    <div class="dsnode"><span class="dsnode__val">4</span><span class="dsnode__idx">5</span></div>
+                                    <span class="dslink dslink--null" aria-hidden="true">∅</span>
+                                </div>
+                                <p class="dsmodel__note" data-ds-list-note>нужно дойти от головы до нужного узла</p>
+                            </div>
+                        </div>
+                        <p class="algo__msg" data-algo-msg aria-live="polite"></p>
+                        <div class="algo__legend" aria-hidden="true">
+                            <span class="algo__chip algo__chip--compare">текущий узел</span>
+                            <span class="algo__chip algo__chip--swap">сдвиг / новая ссылка</span>
+                            <span class="algo__chip algo__chip--sorted">найдено / вставлено</span>
+                        </div>
+                        <div class="algo__controls">
+                            <button type="button" class="switch" data-algo-prev>← Назад</button>
+                            <button type="button" class="widget__btn" data-algo-next>Шаг →</button>
+                            <button type="button" class="switch" data-algo-play aria-pressed="false">Авто</button>
+                            <button type="button" class="switch" data-algo-reset>Сброс</button>
+                            <button type="button" class="switch" data-ds-random>Другой пример</button>
+                        </div>
+                    </div>
                     <h3>Стек и очередь</h3>
                     <p>Стек работает по принципу «последний пришёл — первый вышел»: так устроены вызовы функций и отмена действий.</p>
                     <p>Очередь работает наоборот: «первый пришёл — первый вышел». Её используют для задач, печати и обработки событий.</p>
+
+                    <div class="algo sqmodel" data-widget="stack-queue">
+                        <div class="algo__head">
+                            <span class="algo__phase" data-algo-phase>стек · пусто</span>
+                            <span class="algo__counter" data-algo-counter>операций: 0</span>
+                        </div>
+                        <div class="sqmodel__modebar" role="group" aria-label="Пример структуры данных">
+                            <button type="button" class="switch is-on" data-sq-mode="stack" aria-pressed="true">Стек: отмена действий</button>
+                            <button type="button" class="switch" data-sq-mode="queue" aria-pressed="false">Очередь: печать документов</button>
+                        </div>
+                        <p class="sqmodel__target" data-sq-target>История действий в редакторе: новое действие ложится на вершину, Ctrl+Z снимает верхнее.</p>
+
+                        <div class="sqmodel__stage" data-sq-stage="stack">
+                            <div class="dsmodel__lane">
+                                <div class="dsmodel__lane-head">
+                                    <span class="dsmodel__lane-title">стек действий · редактор</span>
+                                    <span class="dsmodel__cost" data-sq-stack-cost>элементов: 0</span>
+                                </div>
+                                <div class="sqstack" data-sq-stack role="group" aria-label="Стек действий редактора">
+                                    <div class="sqstack__empty">стек пуст</div>
+                                </div>
+                                <div class="sqpopped" data-sq-popped hidden>
+                                    <span class="sqpopped__label">снято с вершины</span>
+                                    <span class="sqpopped__val" data-sq-popped-val></span>
+                                </div>
+                                <p class="dsmodel__note" data-sq-stack-note>вершина — последнее действие</p>
+                            </div>
+                        </div>
+
+                        <div class="sqmodel__stage" data-sq-stage="queue" hidden>
+                            <div class="dsmodel__lane">
+                                <div class="dsmodel__lane-head">
+                                    <span class="dsmodel__lane-title">очередь печати · принтер</span>
+                                    <span class="dsmodel__cost" data-sq-queue-cost>документов: 0</span>
+                                </div>
+                                <div class="sqqueue-wrap">
+                                    <div class="sqqueue" data-sq-queue role="group" aria-label="Очередь документов на печать">
+                                        <span class="sqqueue__empty">очередь пуста</span>
+                                    </div>
+                                </div>
+                                <div class="sqprinter" data-sq-printer>
+                                    <span class="sqprinter__label">принтер</span>
+                                    <span class="sqprinter__doc" data-sq-printer-doc>ожидает документ</span>
+                                </div>
+                                <div class="sqprinted">
+                                    <span class="sqprinted__label">напечатано</span>
+                                    <span class="sqprinted__list" data-sq-printed>—</span>
+                                </div>
+                                <p class="dsmodel__note" data-sq-queue-note>документы ждут в порядке отправки</p>
+                            </div>
+                        </div>
+
+                        <p class="algo__msg" data-algo-msg aria-live="polite"></p>
+                        <div class="algo__legend" aria-hidden="true">
+                            <span class="algo__chip algo__chip--compare">вершина / начало</span>
+                            <span class="algo__chip algo__chip--swap">добавление</span>
+                            <span class="algo__chip algo__chip--sorted">извлечение / печать</span>
+                        </div>
+                        <div class="algo__controls">
+                            <button type="button" class="widget__btn" data-sq-add>Добавить</button>
+                            <button type="button" class="switch" data-sq-remove disabled>Убрать</button>
+                            <button type="button" class="switch" data-sq-reset>Сброс</button>
+                        </div>
+                    </div>
                     <h3>Деревья и хеш-таблицы</h3>
                     <p>Дерево поиска держит элементы упорядоченно и даёт логарифмический поиск. Хеш-таблица считает хеш ключа и обращается сразу к нужной ячейке — в среднем за постоянное время.</p>
                     <p>У хеш-таблиц есть цена: коллизии и отсутствие порядка. У деревьев — накладные расходы на балансировку.</p>
@@ -262,6 +389,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031" defer></script>
+    <script src="js/interactive.js?v=20261102-23" defer></script>
 </body>
 </html>

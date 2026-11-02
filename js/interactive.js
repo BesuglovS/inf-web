@@ -1154,5 +1154,1802 @@
         update();
     });
 
+    /* ── Пошаговые алгоритмы: сортировки и Дейкстра ────────────────────── */
+
+    function makeSortCell(value, index) {
+        var cell = document.createElement("div");
+        cell.className = "sortcell";
+
+        var valueEl = document.createElement("span");
+        valueEl.className = "sortcell__val";
+        valueEl.textContent = String(value);
+
+        var indexEl = document.createElement("span");
+        indexEl.className = "sortcell__idx";
+        indexEl.textContent = String(index);
+
+        cell.appendChild(valueEl);
+        cell.appendChild(indexEl);
+        return cell;
+    }
+
+    function makeSortRow(row, values, decorate) {
+        row.innerHTML = "";
+        values.forEach(function (value, index) {
+            var cell = makeSortCell(value, index);
+            if (decorate) {
+                decorate(cell, index);
+            }
+            row.appendChild(cell);
+        });
+    }
+
+    function paintMergeCells(container, values, options) {
+        container.innerHTML = "";
+
+        if (!values || !values.length) {
+            var empty = document.createElement("span");
+            empty.className = "merge-empty";
+            empty.textContent = options.empty || "пусто";
+            container.appendChild(empty);
+            return;
+        }
+
+        values.forEach(function (value, index) {
+            var cell = document.createElement("span");
+            cell.className = "merge-cell" + (options.out ? " merge-cell--out" : "");
+            cell.textContent = String(value);
+
+            if (options.head === index) {
+                cell.classList.add("is-head");
+            }
+            if (options.consumed !== undefined && index < options.consumed) {
+                cell.classList.add("is-consumed");
+            }
+            if (options.taken === index) {
+                cell.classList.add("is-taken");
+                cell.classList.remove("is-consumed");
+            }
+            if (options.fresh === index) {
+                cell.classList.add("is-fresh");
+            }
+
+            container.appendChild(cell);
+        });
+    }
+
+    var activeStepPlayer = null;
+
+    function isTextEntryTarget(target) {
+        if (!target || !target.tagName) {
+            return false;
+        }
+
+        var tag = target.tagName;
+        return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || target.isContentEditable;
+    }
+
+    document.addEventListener("keydown", function (event) {
+        if (!activeStepPlayer || event.defaultPrevented) {
+            return;
+        }
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
+            return;
+        }
+        if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+            return;
+        }
+        if (isTextEntryTarget(event.target)) {
+            return;
+        }
+
+        event.preventDefault();
+        activeStepPlayer.move(event.key === "ArrowLeft" ? -1 : 1);
+    });
+
+    document.addEventListener("pointerdown", function (event) {
+        if (activeStepPlayer && !activeStepPlayer.root.contains(event.target)) {
+            activeStepPlayer = null;
+        }
+    }, true);
+
+    document.addEventListener("focusin", function (event) {
+        if (activeStepPlayer && !activeStepPlayer.root.contains(event.target)) {
+            activeStepPlayer = null;
+        }
+    });
+
+    function createStepPlayer(root, renderStep) {
+        var steps = [];
+        var index = 0;
+        var timer = null;
+        var counter = root.querySelector("[data-algo-counter]");
+        var prevBtn = root.querySelector("[data-algo-prev]");
+        var nextBtn = root.querySelector("[data-algo-next]");
+        var playBtn = root.querySelector("[data-algo-play]");
+        var resetBtn = root.querySelector("[data-algo-reset]");
+
+        function stop() {
+            if (timer !== null) {
+                window.clearInterval(timer);
+                timer = null;
+            }
+            if (playBtn) {
+                playBtn.classList.remove("is-on");
+                playBtn.setAttribute("aria-pressed", "false");
+                playBtn.textContent = "Авто";
+            }
+        }
+
+        function render() {
+            if (!steps.length) {
+                return;
+            }
+
+            if (index < 0) {
+                index = 0;
+            }
+            if (index > steps.length - 1) {
+                index = steps.length - 1;
+            }
+
+            renderStep(steps[index], index);
+
+            if (counter) {
+                counter.textContent = (index + 1) + " / " + steps.length;
+            }
+            if (prevBtn) {
+                prevBtn.disabled = index === 0;
+            }
+            if (nextBtn) {
+                nextBtn.disabled = index === steps.length - 1;
+            }
+        }
+
+        function move(delta) {
+            stop();
+            index += delta;
+            render();
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener("click", function () {
+                move(-1);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener("click", function () {
+                move(1);
+            });
+        }
+
+        if (resetBtn) {
+            resetBtn.addEventListener("click", function () {
+                stop();
+                index = 0;
+                render();
+            });
+        }
+
+        if (playBtn) {
+            playBtn.addEventListener("click", function () {
+                if (timer !== null) {
+                    stop();
+                    return;
+                }
+
+                if (index >= steps.length - 1) {
+                    index = 0;
+                }
+
+                playBtn.classList.add("is-on");
+                playBtn.setAttribute("aria-pressed", "true");
+                playBtn.textContent = "Пауза";
+                render();
+
+                timer = window.setInterval(function () {
+                    if (index >= steps.length - 1) {
+                        stop();
+                        render();
+                        return;
+                    }
+                    index += 1;
+                    render();
+                }, 800);
+            });
+        }
+
+        var api = {
+            root: root,
+            setSteps: function (nextSteps) {
+                stop();
+                steps = nextSteps;
+                index = 0;
+                render();
+            },
+            move: move
+        };
+
+        root.addEventListener("pointerdown", function () {
+            activeStepPlayer = api;
+        });
+
+        root.addEventListener("focusin", function () {
+            activeStepPlayer = api;
+        });
+
+        return api;
+    }
+
+    function randomSet(count) {
+        var pool = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var values = [];
+
+        while (values.length < count && pool.length) {
+            values.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+        }
+
+        return values;
+    }
+
+    /* Пузырьковая сортировка: сравнение, обмен, граница отсортированной части. */
+    function buildBubbleSteps(values) {
+        var array = values.slice();
+        var count = array.length;
+        var steps = [];
+
+        steps.push({
+            array: array.slice(),
+            sortedFrom: count,
+            compare: [],
+            message: "Исходный массив. Сравниваем соседние элементы и меняем их, если левый больше.",
+            phase: "старт"
+        });
+
+        for (var pass = 0; pass < count - 1; pass++) {
+            var swaps = 0;
+
+            for (var i = 0; i < count - 1 - pass; i++) {
+                var left = array[i];
+                var right = array[i + 1];
+
+                steps.push({
+                    array: array.slice(),
+                    sortedFrom: count - pass,
+                    compare: [i, i + 1],
+                    message: "Сравниваем " + left + " и " + right + ". " +
+                        (left > right ? "Левый больше — нужен обмен." : "Порядок уже верный."),
+                    phase: "сравнение"
+                });
+
+                if (left > right) {
+                    array[i] = right;
+                    array[i + 1] = left;
+                    swaps += 1;
+
+                    steps.push({
+                        array: array.slice(),
+                        sortedFrom: count - pass,
+                        compare: [i, i + 1],
+                        swapped: true,
+                        message: "Меняем местами: " + left + " и " + right + " → " + right + ", " + left + ".",
+                        phase: "обмен"
+                    });
+                }
+            }
+
+            var sortedFrom = count - 1 - pass;
+            var finished = swaps === 0;
+
+            steps.push({
+                array: array.slice(),
+                sortedFrom: finished ? 0 : sortedFrom,
+                compare: [],
+                message: finished
+                    ? "За проход не было ни одного обмена — массив уже отсортирован."
+                    : "Проход " + (pass + 1) + " завершён: " + array[sortedFrom] + " занял своё место.",
+                phase: "конец прохода"
+            });
+
+            if (finished) {
+                break;
+            }
+        }
+
+        steps.push({
+            array: array.slice(),
+            sortedFrom: 0,
+            compare: [],
+            done: true,
+            message: "Готово: " + array.join(", ") + ".",
+            phase: "готово"
+        });
+
+        return steps;
+    }
+
+    document.querySelectorAll('[data-widget="bubble-sort"]').forEach(function (root) {
+        var row = root.querySelector("[data-sort-row]");
+        var phaseOut = root.querySelector("[data-algo-phase]");
+        var msgOut = root.querySelector("[data-algo-msg]");
+
+        var player = createStepPlayer(root, function (step) {
+            makeSortRow(row, step.array, function (cell, index) {
+                if (step.done || index >= step.sortedFrom) {
+                    cell.classList.add("is-sorted");
+                }
+                if (step.compare.indexOf(index) !== -1) {
+                    cell.classList.add(step.swapped ? "is-swap" : "is-compare");
+                }
+            });
+
+            if (phaseOut) {
+                phaseOut.textContent = step.phase;
+            }
+            if (msgOut) {
+                msgOut.textContent = step.message;
+            }
+        });
+
+        var newBtn = root.querySelector("[data-algo-new]");
+
+        player.setSteps(buildBubbleSteps([5, 1, 4, 2, 8, 3]));
+
+        if (newBtn) {
+            newBtn.addEventListener("click", function () {
+                player.setSteps(buildBubbleSteps(randomSet(6)));
+            });
+        }
+    });
+
+    /* Сортировка слиянием: деление отрезков и слияние двух отсортированных половин. */
+    function buildMergeSteps(values) {
+        var array = values.slice();
+        var steps = [];
+
+        function list(items) {
+            return items.join(", ");
+        }
+
+        function merge(lo, mid, hi) {
+            var left = array.slice(lo, mid + 1);
+            var right = array.slice(mid + 1, hi + 1);
+            var result = [];
+            var i = 0;
+            var j = 0;
+
+            steps.push({
+                type: "merge-start",
+                array: array.slice(),
+                lo: lo,
+                mid: mid,
+                hi: hi,
+                left: left.slice(),
+                right: right.slice(),
+                result: result.slice(),
+                i: i,
+                j: j,
+                message: "Половины " + lo + "…" + mid + " и " + (mid + 1) + "…" + hi +
+                    " уже отсортированы. Начинаем слияние.",
+                phase: "слияние"
+            });
+
+            while (i < left.length && j < right.length) {
+                steps.push({
+                    type: "compare",
+                    array: array.slice(),
+                    lo: lo,
+                    mid: mid,
+                    hi: hi,
+                    left: left.slice(),
+                    right: right.slice(),
+                    result: result.slice(),
+                    i: i,
+                    j: j,
+                    message: "Сравниваем головы: " + left[i] + " и " + right[j] + ".",
+                    phase: "сравнение"
+                });
+
+                var taken;
+                var side;
+
+                if (left[i] <= right[j]) {
+                    taken = left[i];
+                    result.push(taken);
+                    i += 1;
+                    side = "left";
+                } else {
+                    taken = right[j];
+                    result.push(taken);
+                    j += 1;
+                    side = "right";
+                }
+
+                steps.push({
+                    type: "take",
+                    array: array.slice(),
+                    lo: lo,
+                    mid: mid,
+                    hi: hi,
+                    left: left.slice(),
+                    right: right.slice(),
+                    result: result.slice(),
+                    i: i,
+                    j: j,
+                    taken: taken,
+                    side: side,
+                    message: "Берём " + taken + " из " + (side === "left" ? "левой" : "правой") + " части.",
+                    phase: "перенос"
+                });
+            }
+
+            while (i < left.length) {
+                var fromLeft = left[i];
+                result.push(fromLeft);
+                i += 1;
+
+                steps.push({
+                    type: "take",
+                    array: array.slice(),
+                    lo: lo,
+                    mid: mid,
+                    hi: hi,
+                    left: left.slice(),
+                    right: right.slice(),
+                    result: result.slice(),
+                    i: i,
+                    j: j,
+                    taken: fromLeft,
+                    side: "left",
+                    message: "Правая часть закончилась — переносим " + fromLeft + " из левой.",
+                    phase: "перенос"
+                });
+            }
+
+            while (j < right.length) {
+                var fromRight = right[j];
+                result.push(fromRight);
+                j += 1;
+
+                steps.push({
+                    type: "take",
+                    array: array.slice(),
+                    lo: lo,
+                    mid: mid,
+                    hi: hi,
+                    left: left.slice(),
+                    right: right.slice(),
+                    result: result.slice(),
+                    i: i,
+                    j: j,
+                    taken: fromRight,
+                    side: "right",
+                    message: "Левая часть закончилась — переносим " + fromRight + " из правой.",
+                    phase: "перенос"
+                });
+            }
+
+            for (var k = 0; k < result.length; k++) {
+                array[lo + k] = result[k];
+            }
+
+            steps.push({
+                type: "merged",
+                array: array.slice(),
+                lo: lo,
+                mid: mid,
+                hi: hi,
+                left: left.slice(),
+                right: right.slice(),
+                result: result.slice(),
+                i: left.length,
+                j: right.length,
+                message: "Записываем результат в массив: " + list(result) + ".",
+                phase: "слито"
+            });
+        }
+
+        function sort(lo, hi) {
+            if (lo >= hi) {
+                return;
+            }
+
+            var mid = Math.floor((lo + hi) / 2);
+
+            steps.push({
+                type: "split",
+                array: array.slice(),
+                lo: lo,
+                mid: mid,
+                hi: hi,
+                message: "Делим отрезок " + lo + "…" + hi + " на " + lo + "…" + mid +
+                    " и " + (mid + 1) + "…" + hi + ".",
+                phase: "деление"
+            });
+
+            sort(lo, mid);
+            sort(mid + 1, hi);
+            merge(lo, mid, hi);
+        }
+
+        steps.push({
+            type: "start",
+            array: array.slice(),
+            message: "Исходный массив. Сначала делим его на части, потом сливаем отсортированные половины.",
+            phase: "старт"
+        });
+
+        sort(0, array.length - 1);
+
+        steps.push({
+            type: "done",
+            array: array.slice(),
+            sortedAll: true,
+            message: "Готово: " + list(array) + ".",
+            phase: "готово"
+        });
+
+        return steps;
+    }
+
+    document.querySelectorAll('[data-widget="merge-sort"]').forEach(function (root) {
+        var row = root.querySelector("[data-merge-row]");
+        var panel = root.querySelector("[data-merge-panel]");
+        var leftOut = root.querySelector("[data-merge-left]");
+        var rightOut = root.querySelector("[data-merge-right]");
+        var resultOut = root.querySelector("[data-merge-out]");
+        var rangeOut = root.querySelector("[data-merge-range]");
+        var phaseOut = root.querySelector("[data-algo-phase]");
+        var msgOut = root.querySelector("[data-algo-msg]");
+
+        var player = createStepPlayer(root, function (step) {
+            var inRange = step.lo !== undefined;
+
+            makeSortRow(row, step.array, function (cell, index) {
+                if (step.type === "done" || step.sortedAll) {
+                    cell.classList.add("is-sorted");
+                } else if (inRange && index >= step.lo && index <= step.hi) {
+                    if (step.type === "merged") {
+                        cell.classList.add("is-sorted");
+                    } else if (index <= step.mid) {
+                        cell.classList.add("is-range-left");
+                    } else {
+                        cell.classList.add("is-range-right");
+                    }
+                }
+            });
+
+            if (rangeOut) {
+                rangeOut.textContent = step.type === "done"
+                    ? "готовый массив"
+                    : inRange ? "отрезок " + step.lo + "…" + step.hi : "исходный массив";
+            }
+
+            if (panel) {
+                panel.hidden = !(step.type === "merge-start" || step.type === "compare" ||
+                    step.type === "take" || step.type === "merged");
+            }
+
+            if (leftOut && rightOut && resultOut && step.left && step.right) {
+                paintMergeCells(leftOut, step.left, {
+                    consumed: step.i,
+                    head: step.i,
+                    taken: step.side === "left" ? step.i - 1 : -1
+                });
+                paintMergeCells(rightOut, step.right, {
+                    consumed: step.j,
+                    head: step.j,
+                    taken: step.side === "right" ? step.j - 1 : -1
+                });
+                paintMergeCells(resultOut, step.result || [], {
+                    out: true,
+                    fresh: step.type === "take" ? step.result.length - 1 : -1,
+                    empty: "пока пусто"
+                });
+            }
+
+            if (phaseOut) {
+                phaseOut.textContent = step.phase;
+            }
+            if (msgOut) {
+                msgOut.textContent = step.message;
+            }
+        });
+
+        var newBtn = root.querySelector("[data-algo-new]");
+
+        player.setSteps(buildMergeSteps([7, 3, 5, 1, 8, 2, 6, 4]));
+
+        if (newBtn) {
+            newBtn.addEventListener("click", function () {
+                player.setSteps(buildMergeSteps(randomSet(8)));
+            });
+        }
+    });
+
+    /* Алгоритм Дейкстры: выбор вершины и ослабление рёбер. */
+    var DIJKSTRA_NODES = ["A", "B", "C", "D", "E", "F"];
+    var DIJKSTRA_EDGES = [
+        { from: "A", to: "B", weight: 4 },
+        { from: "A", to: "C", weight: 2 },
+        { from: "B", to: "C", weight: 1 },
+        { from: "B", to: "D", weight: 5 },
+        { from: "C", to: "D", weight: 4 },
+        { from: "C", to: "E", weight: 10 },
+        { from: "D", to: "E", weight: 2 },
+        { from: "D", to: "F", weight: 6 },
+        { from: "E", to: "F", weight: 3 }
+    ];
+
+    function edgeKey(a, b) {
+        return a < b ? a + "-" + b : b + "-" + a;
+    }
+
+    function randomDijkstraEdges() {
+        return DIJKSTRA_EDGES.map(function (edge) {
+            return {
+                from: edge.from,
+                to: edge.to,
+                weight: Math.floor(Math.random() * 9) + 1
+            };
+        });
+    }
+
+    function buildDijkstraSteps(edges) {
+        var adjacency = {};
+        var distances = {};
+        var previous = {};
+        var visited = {};
+        var steps = [];
+        var graphEdges = edges || DIJKSTRA_EDGES;
+
+        DIJKSTRA_NODES.forEach(function (node) {
+            adjacency[node] = [];
+            distances[node] = Infinity;
+            previous[node] = null;
+            visited[node] = false;
+        });
+
+        graphEdges.forEach(function (edge) {
+            adjacency[edge.from].push({ to: edge.to, weight: edge.weight });
+            adjacency[edge.to].push({ to: edge.from, weight: edge.weight });
+        });
+
+        distances.A = 0;
+
+        function formatDistance(value) {
+            return value === Infinity ? "∞" : String(value);
+        }
+
+        function treeEdges() {
+            var tree = {};
+            DIJKSTRA_NODES.forEach(function (node) {
+                if (previous[node]) {
+                    tree[edgeKey(node, previous[node])] = true;
+                }
+            });
+            return tree;
+        }
+
+        function pathTo(target) {
+            var path = [];
+            var node = target;
+
+            while (node) {
+                path.unshift(node);
+                node = previous[node];
+            }
+
+            return path.join(" → ");
+        }
+
+        function pathEdges(target) {
+            var path = {};
+            var node = target;
+
+            while (previous[node]) {
+                path[edgeKey(node, previous[node])] = true;
+                node = previous[node];
+            }
+
+            return path;
+        }
+
+        function snapshot(extra) {
+            var step = {
+                distances: {},
+                previous: {},
+                visited: {},
+                tree: treeEdges(),
+                current: null,
+                edge: null
+            };
+
+            DIJKSTRA_NODES.forEach(function (node) {
+                step.distances[node] = distances[node];
+                step.previous[node] = previous[node];
+                step.visited[node] = visited[node];
+            });
+
+            Object.keys(extra).forEach(function (key) {
+                step[key] = extra[key];
+            });
+
+            return step;
+        }
+
+        steps.push(snapshot({
+            message: "Начинаем с вершины A: расстояние до неё равно 0, до остальных — ∞.",
+            phase: "старт"
+        }));
+
+        for (var round = 0; round < DIJKSTRA_NODES.length; round++) {
+            var current = null;
+
+            DIJKSTRA_NODES.forEach(function (node) {
+                if (!visited[node] && distances[node] !== Infinity &&
+                    (current === null || distances[node] < distances[current])) {
+                    current = node;
+                }
+            });
+
+            if (current === null) {
+                break;
+            }
+
+            visited[current] = true;
+
+            steps.push(snapshot({
+                current: current,
+                message: "Выбираем " + current + ": оценка " + formatDistance(distances[current]) +
+                    " — минимальная среди непосещённых.",
+                phase: "выбор вершины"
+            }));
+
+            adjacency[current].slice().sort(function (a, b) {
+                return a.to < b.to ? -1 : 1;
+            }).forEach(function (edge) {
+                var next = edge.to;
+
+                if (visited[next]) {
+                    return;
+                }
+
+                var candidate = distances[current] + edge.weight;
+                var old = distances[next];
+
+                if (candidate < distances[next]) {
+                    distances[next] = candidate;
+                    previous[next] = current;
+
+                    steps.push(snapshot({
+                        current: current,
+                        edge: [current, next],
+                        message: "Ребро " + current + "—" + next + ": " +
+                            formatDistance(old) + " → " + candidate + " через " + current +
+                            ". Обновляем оценку " + next + ".",
+                        phase: "ослабление ребра"
+                    }));
+                } else {
+                    steps.push(snapshot({
+                        current: current,
+                        edge: [current, next],
+                        message: "Ребро " + current + "—" + next + ": " +
+                            formatDistance(distances[current]) + " + " + edge.weight + " = " + candidate +
+                            ", это не меньше " + formatDistance(old) + ". Оставляем как есть.",
+                        phase: "проверка ребра"
+                    }));
+                }
+            });
+        }
+
+        steps.push(snapshot({
+            tree: pathEdges("F"),
+            message: "Готово. Кратчайшие расстояния от A: " +
+                DIJKSTRA_NODES.map(function (node) {
+                    return node + " — " + formatDistance(distances[node]);
+                }).join(", ") + ". Маршрут до F: " + pathTo("F") + ".",
+            phase: "готово"
+        }));
+
+        return steps;
+    }
+
+    document.querySelectorAll('[data-widget="dijkstra"]').forEach(function (root) {
+        var phaseOut = root.querySelector("[data-algo-phase]");
+        var msgOut = root.querySelector("[data-algo-msg]");
+        var nodeEls = Array.prototype.slice.call(root.querySelectorAll("[data-dnode]"));
+        var edgeEls = Array.prototype.slice.call(root.querySelectorAll("[data-edge]"));
+        var rowEls = Array.prototype.slice.call(root.querySelectorAll("[data-drow]"));
+        var descOut = root.querySelector("[data-dijkstra-desc]");
+        var newBtn = root.querySelector("[data-algo-new]");
+
+        var player = createStepPlayer(root, function (step) {
+            nodeEls.forEach(function (element) {
+                var node = element.getAttribute("data-dnode");
+                var distOut = element.querySelector("[data-dist]");
+
+                element.classList.toggle("is-visited", Boolean(step.visited[node]));
+                element.classList.toggle("is-current", step.current === node);
+
+                if (distOut) {
+                    distOut.textContent = step.distances[node] === Infinity
+                        ? "∞"
+                        : String(step.distances[node]);
+                }
+            });
+
+            var activeKey = step.edge ? edgeKey(step.edge[0], step.edge[1]) : null;
+
+            edgeEls.forEach(function (element) {
+                var key = element.getAttribute("data-edge");
+                element.classList.toggle("is-tree", Boolean(step.tree[key]));
+                element.classList.toggle("is-active", key === activeKey);
+            });
+
+            rowEls.forEach(function (element) {
+                var node = element.getAttribute("data-drow");
+                var isCurrent = step.current === node;
+                var isVisited = Boolean(step.visited[node]);
+                var distCell = element.querySelector('[data-dcell="dist"]');
+                var prevCell = element.querySelector('[data-dcell="prev"]');
+                var statusCell = element.querySelector('[data-dcell="status"]');
+
+                element.classList.toggle("is-current", isCurrent);
+                element.classList.toggle("is-visited", isVisited && !isCurrent);
+
+                if (distCell) {
+                    distCell.textContent = step.distances[node] === Infinity
+                        ? "∞"
+                        : String(step.distances[node]);
+                }
+                if (prevCell) {
+                    prevCell.textContent = step.previous[node] || "—";
+                }
+                if (statusCell) {
+                    statusCell.textContent = isCurrent
+                        ? "текущая"
+                        : isVisited
+                            ? "посещена"
+                            : step.distances[node] === Infinity ? "—" : "в очереди";
+                }
+            });
+
+            if (phaseOut) {
+                phaseOut.textContent = step.phase;
+            }
+            if (msgOut) {
+                msgOut.textContent = step.message;
+            }
+        });
+
+        function paintEdges(edges) {
+            edges.forEach(function (edge) {
+                var label = root.querySelector('[data-weight="' + edgeKey(edge.from, edge.to) + '"]');
+                if (label) {
+                    label.textContent = String(edge.weight);
+                }
+            });
+
+            if (descOut) {
+                descOut.textContent = "Рёбра: " + edges.map(function (edge) {
+                    return edge.from + "—" + edge.to + " вес " + edge.weight;
+                }).join(", ") + ".";
+            }
+        }
+
+        function load(edges) {
+            paintEdges(edges);
+            player.setSteps(buildDijkstraSteps(edges));
+        }
+
+        load(DIJKSTRA_EDGES);
+
+        if (newBtn) {
+            newBtn.addEventListener("click", function () {
+                load(randomDijkstraEdges());
+            });
+        }
+    });
+
+    /* ── Массив и связный список: доступ по индексу и вставка ─────────────── */
+
+    var DS_VALUES = [3, 7, 2, 9, 5, 4];
+
+    function dsMark(index, state) {
+        var marks = {};
+        marks[index] = state;
+        return marks;
+    }
+
+    function dsPlural(count, one, few, many) {
+        var mod10 = count % 10;
+        var mod100 = count % 100;
+
+        if (mod10 === 1 && mod100 !== 11) {
+            return one;
+        }
+        if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) {
+            return few;
+        }
+        return many;
+    }
+
+    function buildAccessSteps(values, index) {
+        var steps = [];
+        var arrayBase = {
+            values: values.slice(),
+            marks: dsMark(index, "aim"),
+            cost: "1 операция",
+            note: "адрес = начало + индекс × размер"
+        };
+        var arrayFound = {
+            values: values.slice(),
+            marks: dsMark(index, "found"),
+            cost: "O(1) · 1 операция",
+            note: "адрес = начало + " + index + " × размер → ячейка " + index
+        };
+
+        steps.push({
+            mode: "access",
+            phase: "старт",
+            index: index,
+            arrayState: arrayBase,
+            listState: {
+                pointer: -1,
+                inserted: null,
+                rewired: false,
+                cost: "0 переходов",
+                note: "начинаем с головы"
+            },
+            message: "Задача: получить элемент с индексом " + index +
+                ". Посмотрим, сколько шагов сделает каждая структура."
+        });
+
+        steps.push({
+            mode: "access",
+            phase: "доступ",
+            index: index,
+            arrayState: arrayFound,
+            listState: {
+                pointer: 0,
+                inserted: null,
+                rewired: false,
+                cost: "1 узел",
+                note: "узел 0: значение " + values[0]
+            },
+            message: "Массив: адрес вычисляется по формуле — нужная ячейка " + index +
+                " найдена сразу, за O(1). Список: начинаем с головы, узел 0."
+        });
+
+        for (var p = 1; p <= index; p++) {
+            var isTarget = p === index;
+
+            steps.push({
+                mode: "access",
+                phase: isTarget ? "нашли" : "переход по ссылке",
+                index: index,
+                arrayState: arrayFound,
+                listState: {
+                    pointer: p,
+                    inserted: null,
+                    rewired: false,
+                    cost: "переходов: " + p,
+                    note: "узел " + p + ": значение " + values[p]
+                },
+                message: isTarget
+                    ? "Список: дошли до узла " + p + " за " + p + " " +
+                        dsPlural(p, "переход", "перехода", "переходов") +
+                        ". Пришлось пройти все предыдущие узлы — доступ O(n)."
+                    : "Список: переходим по ссылке к узлу " + p +
+                        " (значение " + values[p] + ")."
+            });
+        }
+
+        steps.push({
+            mode: "access",
+            phase: "итог",
+            index: index,
+            arrayState: arrayFound,
+            listState: {
+                pointer: index,
+                inserted: null,
+                rewired: false,
+                cost: index === 0 ? "O(1)" : "O(n) · " + index + " " +
+                    dsPlural(index, "переход", "перехода", "переходов"),
+                note: index === 0 ? "нужный узел — голова списка" : "пройдено узлов: " + (index + 1)
+            },
+            message: index === 0
+                ? "Итог: для индекса 0 обе структуры справляются за один шаг. Чем дальше элемент, тем заметнее разница."
+                : "Итог: массив отвечает за O(1), список — за O(n): до нужного узла можно добраться только по цепочке ссылок."
+        });
+
+        return steps;
+    }
+
+    function buildInsertSteps(values, index, newValue) {
+        var array = values.slice();
+        var capacity = array.length + 1;
+        array.push(null);
+
+        var arrayStates = [];
+        var listStates = [];
+        var shiftCount = values.length - index;
+
+        arrayStates.push({
+            values: array.slice(),
+            marks: dsMark(index, "aim"),
+            cost: "свободных ячеек: 1",
+            note: "свободная ячейка справа — индекс " + (capacity - 1)
+        });
+
+        for (var i = values.length - 1; i >= index; i--) {
+            array[i + 1] = array[i];
+            array[i] = null;
+
+            var marks = {};
+            marks[i] = "source";
+            marks[i + 1] = "moving";
+
+            arrayStates.push({
+                values: array.slice(),
+                marks: marks,
+                cost: "сдвигов: " + (values.length - i),
+                note: array[i + 1] + " переезжает из ячейки " + i + " в " + (i + 1)
+            });
+        }
+
+        array = array.slice();
+        array[index] = newValue;
+        arrayStates.push({
+            values: array.slice(),
+            marks: dsMark(index, "inserted"),
+            cost: "сдвигов: " + shiftCount + " + запись",
+            note: newValue + " записано в ячейку " + index
+        });
+
+        listStates.push({
+            pointer: -1,
+            inserted: null,
+            rewired: false,
+            cost: "0 переходов",
+            note: "начинаем с головы"
+        });
+
+        for (var p = 0; p < index; p++) {
+            listStates.push({
+                pointer: p,
+                inserted: null,
+                rewired: false,
+                cost: "переходов: " + p,
+                note: p === index - 1
+                    ? "узел " + p + " (значение " + values[p] + "), следующий — " +
+                        values[p + 1] + ", место найдено"
+                    : "узел " + p + " (значение " + values[p] + "), идём дальше"
+            });
+        }
+
+        listStates.push({
+            pointer: index - 1,
+            inserted: newValue,
+            rewired: false,
+            cost: "поиск места завершён",
+            note: "создаём новый узел со значением " + newValue
+        });
+
+        listStates.push({
+            pointer: index - 1,
+            inserted: newValue,
+            rewired: true,
+            cost: "вставка O(1)",
+            note: "переставляем ссылки: " + values[index - 1] + " → " +
+                newValue + " → " + values[index]
+        });
+
+        var total = Math.max(arrayStates.length, listStates.length);
+        var steps = [{
+            mode: "insert",
+            phase: "старт",
+            index: index,
+            arrayState: arrayStates[0],
+            listState: listStates[0],
+            message: "Задача: вставить " + newValue + " на позицию " + index +
+                ". Массив сдвигает хвост вправо, список ищет место с головы."
+        }];
+        var prevArray = 0;
+        var prevList = 0;
+
+        for (var k = 1; k < total; k++) {
+            var arrayIndex = Math.min(k, arrayStates.length - 1);
+            var listIndex = Math.min(k, listStates.length - 1);
+            var parts = [];
+
+            if (arrayIndex !== prevArray) {
+                parts.push("Массив: " + arrayStates[arrayIndex].note + ".");
+            }
+            if (listIndex !== prevList) {
+                parts.push("Список: " + listStates[listIndex].note + ".");
+            }
+
+            prevArray = arrayIndex;
+            prevList = listIndex;
+
+            steps.push({
+                mode: "insert",
+                phase: "вставка",
+                index: index,
+                arrayState: arrayStates[arrayIndex],
+                listState: listStates[listIndex],
+                message: parts.join(" ")
+            });
+        }
+
+        steps.push({
+            mode: "insert",
+            phase: "итог",
+            index: index,
+            arrayState: arrayStates[arrayStates.length - 1],
+            listState: listStates[listStates.length - 1],
+            message: "Итог: в массиве пришлось сдвинуть " + shiftCount + " " +
+                dsPlural(shiftCount, "элемент", "элемента", "элементов") +
+                " — это O(n). В списке поиск места занял " + index + " " +
+                dsPlural(index, "переход", "перехода", "переходов") +
+                " (O(n)), зато перестановка ссылок — O(1)."
+        });
+
+        return steps;
+    }
+
+    function renderDsArray(out, state) {
+        if (!out) {
+            return;
+        }
+
+        out.innerHTML = "";
+
+        state.values.forEach(function (value, index) {
+            var cell = document.createElement("div");
+            var isEmpty = value === null || value === undefined;
+            cell.className = "dscell";
+
+            if (isEmpty) {
+                cell.classList.add("is-empty");
+            }
+            if (state.marks && state.marks[index]) {
+                cell.classList.add("is-" + state.marks[index]);
+            }
+
+            var valueEl = document.createElement("span");
+            valueEl.className = "dscell__val";
+            valueEl.textContent = isEmpty ? "" : String(value);
+
+            var indexEl = document.createElement("span");
+            indexEl.className = "dscell__idx";
+            indexEl.textContent = String(index);
+
+            cell.appendChild(valueEl);
+            cell.appendChild(indexEl);
+            cell.setAttribute("aria-label", "индекс " + index +
+                (isEmpty ? ", пусто" : ", значение " + value));
+            out.appendChild(cell);
+        });
+    }
+
+    function renderDsList(out, values, step) {
+        if (!out) {
+            return;
+        }
+
+        out.innerHTML = "";
+
+        var state = step.listState;
+        var nodes = values.map(function (value, index) {
+            return { value: value, index: index, inserted: false };
+        });
+        var insertedIndex = -1;
+
+        if (state.inserted !== null && state.inserted !== undefined) {
+            nodes.splice(step.index, 0, {
+                value: state.inserted,
+                index: step.index,
+                inserted: true
+            });
+            insertedIndex = step.index;
+        }
+
+        function addLink(extra) {
+            var link = document.createElement("span");
+            link.className = "dslink" + (extra ? " " + extra : "");
+            link.setAttribute("aria-hidden", "true");
+            link.textContent = "→";
+            out.appendChild(link);
+        }
+
+        nodes.forEach(function (node, position) {
+            if (position > 0) {
+                var adjacent = insertedIndex !== -1 &&
+                    (position === insertedIndex || position === insertedIndex + 1);
+                var linkClass = "";
+
+                if (adjacent) {
+                    linkClass = state.rewired ? "is-rewired" : "is-pending";
+                } else if (state.pointer >= position) {
+                    linkClass = "is-traversed";
+                }
+
+                addLink(linkClass);
+            }
+
+            var el = document.createElement("div");
+            el.className = "dsnode";
+
+            if (node.inserted) {
+                el.classList.add("is-inserted");
+                if (state.rewired) {
+                    el.classList.add("is-linked");
+                }
+            }
+
+            if (state.pointer === node.index && !node.inserted) {
+                el.classList.add("is-current");
+            } else if (state.pointer > node.index) {
+                el.classList.add("is-visited");
+            }
+
+            if (step.mode === "access" && state.pointer === step.index && node.index === step.index) {
+                el.classList.add("is-found");
+            }
+
+            var valueEl = document.createElement("span");
+            valueEl.className = "dsnode__val";
+            valueEl.textContent = String(node.value);
+
+            var indexEl = document.createElement("span");
+            indexEl.className = "dsnode__idx";
+            indexEl.textContent = String(position);
+
+            el.appendChild(valueEl);
+            el.appendChild(indexEl);
+            el.setAttribute("aria-label", "узел " + position + ", значение " + node.value);
+            out.appendChild(el);
+        });
+
+        var end = document.createElement("span");
+        end.className = "dslink dslink--null";
+        end.setAttribute("aria-hidden", "true");
+        end.textContent = "∅";
+        out.appendChild(end);
+    }
+
+    document.querySelectorAll('[data-widget="ds-model"]').forEach(function (root) {
+        var arrayOut = root.querySelector("[data-ds-array]");
+        var listOut = root.querySelector("[data-ds-list]");
+        var arrayNote = root.querySelector("[data-ds-array-note]");
+        var listNote = root.querySelector("[data-ds-list-note]");
+        var arrayCost = root.querySelector("[data-ds-array-cost]");
+        var listCost = root.querySelector("[data-ds-list-cost]");
+        var targetOut = root.querySelector("[data-ds-target]");
+        var phaseOut = root.querySelector("[data-algo-phase]");
+        var msgOut = root.querySelector("[data-algo-msg]");
+        var modeButtons = Array.prototype.slice.call(root.querySelectorAll("[data-ds-mode]"));
+        var randomBtn = root.querySelector("[data-ds-random]");
+
+        var values = DS_VALUES.slice();
+        var mode = "access";
+        var index = 3;
+        var insertValue = 8;
+
+        var player = createStepPlayer(root, function (step) {
+            renderDsArray(arrayOut, step.arrayState);
+            renderDsList(listOut, values, step);
+
+            if (arrayNote) {
+                arrayNote.textContent = step.arrayState.note;
+            }
+            if (listNote) {
+                listNote.textContent = step.listState.note;
+            }
+            if (arrayCost) {
+                arrayCost.textContent = step.arrayState.cost;
+            }
+            if (listCost) {
+                listCost.textContent = step.listState.cost;
+            }
+            if (phaseOut) {
+                phaseOut.textContent = step.phase;
+            }
+            if (msgOut) {
+                msgOut.textContent = step.message;
+            }
+        });
+
+        function load() {
+            if (targetOut) {
+                targetOut.textContent = mode === "access"
+                    ? "Цель: элемент с индексом " + index + "."
+                    : "Цель: вставить значение " + insertValue + " на позицию " + index + ".";
+            }
+
+            player.setSteps(mode === "access"
+                ? buildAccessSteps(values, index)
+                : buildInsertSteps(values, index, insertValue));
+        }
+
+        modeButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                mode = button.getAttribute("data-ds-mode");
+
+                modeButtons.forEach(function (other) {
+                    var isOn = other === button;
+                    other.classList.toggle("is-on", isOn);
+                    other.setAttribute("aria-pressed", isOn ? "true" : "false");
+                });
+
+                load();
+            });
+        });
+
+        if (randomBtn) {
+            randomBtn.addEventListener("click", function () {
+                var candidates = [1, 2, 3, 4].filter(function (candidate) {
+                    return candidate !== index;
+                });
+                index = candidates[Math.floor(Math.random() * candidates.length)];
+
+                if (mode === "insert") {
+                    var pool = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(function (candidate) {
+                        return values.indexOf(candidate) === -1;
+                    });
+                    var alternatives = pool.filter(function (candidate) {
+                        return candidate !== insertValue;
+                    });
+                    var options = alternatives.length ? alternatives : pool;
+                    insertValue = options[Math.floor(Math.random() * options.length)];
+                }
+
+                load();
+            });
+        }
+
+        load();
+    });
+
+    /* ── Стек и очередь: отмена действий и очередь печати ─────────────────── */
+
+    var SQ_STACK = [
+        "Открыть документ",
+        "Набрать текст",
+        "Вставить картинку",
+        "Выделить абзац"
+    ];
+    var SQ_QUEUE = ["Договор.pdf", "Отчёт.docx", "Смета.xlsx", "Письмо.pdf"];
+
+    function renderSqStack(out, state) {
+        if (!out) {
+            return;
+        }
+
+        out.innerHTML = "";
+
+        if (!state.values.length) {
+            var emptyEl = document.createElement("div");
+            emptyEl.className = "sqstack__empty";
+            emptyEl.textContent = "стек пуст";
+            out.appendChild(emptyEl);
+            return;
+        }
+
+        for (var i = state.values.length - 1; i >= 0; i--) {
+            var item = document.createElement("div");
+            var isTop = i === state.top;
+            item.className = "sqitem";
+
+            if (isTop) {
+                item.classList.add("is-top");
+            }
+            if (i === state.pushed) {
+                item.classList.add("is-pushed");
+            }
+
+            var levelEl = document.createElement("span");
+            levelEl.className = "sqitem__level";
+            levelEl.textContent = String(i);
+
+            var valueEl = document.createElement("span");
+            valueEl.className = "sqitem__val";
+            valueEl.textContent = state.values[i];
+
+            var badgeEl = document.createElement("span");
+            badgeEl.className = "sqitem__badge";
+            badgeEl.textContent = isTop ? "вершина" : "";
+
+            item.appendChild(levelEl);
+            item.appendChild(valueEl);
+            item.appendChild(badgeEl);
+            item.setAttribute("aria-label", "уровень " + i + ", действие: " +
+                state.values[i] + (isTop ? ", вершина" : ""));
+            out.appendChild(item);
+        }
+    }
+
+    function renderSqQueue(out, state) {
+        if (!out) {
+            return;
+        }
+
+        out.innerHTML = "";
+
+        if (!state.values.length) {
+            var emptyEl = document.createElement("span");
+            emptyEl.className = "sqqueue__empty";
+            emptyEl.textContent = "очередь пуста";
+            out.appendChild(emptyEl);
+            return;
+        }
+
+        state.values.forEach(function (doc, index) {
+            var last = state.values.length - 1;
+
+            if (index > 0) {
+                var arrowEl = document.createElement("span");
+                arrowEl.className = "sqarrow";
+                arrowEl.setAttribute("aria-hidden", "true");
+                arrowEl.textContent = "→";
+                out.appendChild(arrowEl);
+            }
+
+            var card = document.createElement("div");
+            card.className = "sqdoc";
+
+            if (index === 0) {
+                card.classList.add("is-head");
+            }
+            if (index === last) {
+                card.classList.add("is-tail");
+            }
+            if (index === state.added) {
+                card.classList.add("is-added");
+            }
+
+            var valueEl = document.createElement("span");
+            valueEl.className = "sqdoc__val";
+            valueEl.textContent = doc;
+
+            var tagEl = document.createElement("span");
+            tagEl.className = "sqdoc__tag";
+            tagEl.textContent = index === 0 && index === last
+                ? "начало и конец"
+                : index === 0 ? "начало" : index === last ? "конец" : "";
+
+            card.appendChild(valueEl);
+            card.appendChild(tagEl);
+            card.setAttribute("aria-label", "документ " + doc +
+                (index === 0 ? ", начало очереди" : "") +
+                (index === last ? ", конец очереди" : ""));
+            out.appendChild(card);
+        });
+    }
+
+    function renderSqPrinted(out, docs) {
+        if (!out) {
+            return;
+        }
+
+        out.innerHTML = "";
+
+        if (!docs.length) {
+            out.textContent = "—";
+            return;
+        }
+
+        docs.forEach(function (doc) {
+            var item = document.createElement("span");
+            item.className = "sqprinted__item";
+            item.textContent = "✓ " + doc;
+            out.appendChild(item);
+        });
+    }
+
+    document.querySelectorAll('[data-widget="stack-queue"]').forEach(function (root) {
+        var stackOut = root.querySelector("[data-sq-stack]");
+        var queueOut = root.querySelector("[data-sq-queue]");
+        var stackStage = root.querySelector('[data-sq-stage="stack"]');
+        var queueStage = root.querySelector('[data-sq-stage="queue"]');
+        var stackCost = root.querySelector("[data-sq-stack-cost]");
+        var stackNote = root.querySelector("[data-sq-stack-note]");
+        var queueCost = root.querySelector("[data-sq-queue-cost]");
+        var queueNote = root.querySelector("[data-sq-queue-note]");
+        var popped = root.querySelector("[data-sq-popped]");
+        var poppedVal = root.querySelector("[data-sq-popped-val]");
+        var printer = root.querySelector("[data-sq-printer]");
+        var printerDoc = root.querySelector("[data-sq-printer-doc]");
+        var printedOut = root.querySelector("[data-sq-printed]");
+        var targetOut = root.querySelector("[data-sq-target]");
+        var phaseOut = root.querySelector("[data-algo-phase]");
+        var counterOut = root.querySelector("[data-algo-counter]");
+        var msgOut = root.querySelector("[data-algo-msg]");
+        var modeButtons = Array.prototype.slice.call(root.querySelectorAll("[data-sq-mode]"));
+        var addBtn = root.querySelector("[data-sq-add]");
+        var removeBtn = root.querySelector("[data-sq-remove]");
+        var resetBtn = root.querySelector("[data-sq-reset]");
+
+        var mode = "stack";
+        var stack = [];
+        var stackAdded = 0;
+        var stackPushed = -1;
+        var stackPopped = null;
+        var stackOps = 0;
+        var queue = [];
+        var queueAdded = 0;
+        var queueAddedAt = -1;
+        var queuePrinting = null;
+        var queuePrinted = [];
+        var queueOps = 0;
+        var stackStatus = {
+            message: "Стек действий пуст. Нажмите «Добавить», чтобы выполнить первое действие.",
+            phase: "стек · пусто",
+            note: "стек пока пуст",
+            cost: "элементов: 0"
+        };
+        var queueStatus = {
+            message: "Очередь печати пуста. Нажмите «Добавить», чтобы отправить первый документ.",
+            phase: "очередь · пусто",
+            note: "очередь пока пуста",
+            cost: "документов: 0"
+        };
+
+        function paintStack() {
+            renderSqStack(stackOut, {
+                values: stack.slice(),
+                top: stack.length - 1,
+                pushed: stackPushed,
+                popped: stackPopped
+            });
+
+            if (stackCost) {
+                stackCost.textContent = stackStatus.cost;
+            }
+            if (stackNote) {
+                stackNote.textContent = stackStatus.note;
+            }
+            if (popped && poppedVal) {
+                popped.hidden = !stackPopped;
+                poppedVal.textContent = stackPopped || "";
+            }
+        }
+
+        function paintQueue() {
+            renderSqQueue(queueOut, {
+                values: queue.slice(),
+                added: queueAddedAt,
+                printing: queuePrinting,
+                printed: queuePrinted
+            });
+            renderSqPrinted(printedOut, queuePrinted);
+
+            if (queueCost) {
+                queueCost.textContent = queueStatus.cost;
+            }
+            if (queueNote) {
+                queueNote.textContent = queueStatus.note;
+            }
+            if (printer) {
+                printer.classList.toggle("is-printing", Boolean(queuePrinting));
+            }
+            if (printerDoc) {
+                printerDoc.textContent = queuePrinting || "ожидает документ";
+            }
+        }
+
+        function paintStatus() {
+            if (phaseOut) {
+                phaseOut.textContent = mode === "stack" ? stackStatus.phase : queueStatus.phase;
+            }
+            if (msgOut) {
+                msgOut.textContent = mode === "stack" ? stackStatus.message : queueStatus.message;
+            }
+            if (counterOut) {
+                counterOut.textContent = "операций: " + (mode === "stack" ? stackOps : queueOps);
+            }
+        }
+
+        function syncButtons() {
+            if (!addBtn || !removeBtn) {
+                return;
+            }
+
+            if (mode === "stack") {
+                addBtn.disabled = stackAdded >= SQ_STACK.length;
+                removeBtn.disabled = stack.length === 0;
+                addBtn.title = addBtn.disabled ? "Все действия из примера уже добавлены" : "";
+            } else {
+                addBtn.disabled = queueAdded >= SQ_QUEUE.length;
+                removeBtn.disabled = queue.length === 0;
+                addBtn.title = addBtn.disabled ? "Все документы из примера уже отправлены" : "";
+            }
+        }
+
+        function paint() {
+            if (mode === "stack") {
+                paintStack();
+            } else {
+                paintQueue();
+            }
+            paintStatus();
+            syncButtons();
+        }
+
+        function loadMode() {
+            var isStack = mode === "stack";
+
+            if (stackStage) {
+                stackStage.hidden = !isStack;
+            }
+            if (queueStage) {
+                queueStage.hidden = isStack;
+            }
+            if (targetOut) {
+                targetOut.textContent = isStack
+                    ? "История действий в редакторе: новое действие ложится на вершину, Ctrl+Z снимает верхнее."
+                    : "Очередь печати: документы печатаются в том порядке, в каком их отправили.";
+            }
+
+            paint();
+        }
+
+        function addItem() {
+            if (mode === "stack") {
+                if (stackAdded >= SQ_STACK.length) {
+                    return;
+                }
+
+                var action = SQ_STACK[stackAdded];
+                stackAdded += 1;
+                stack.push(action);
+                stackPushed = stack.length - 1;
+                stackPopped = null;
+                stackOps += 1;
+                stackStatus = {
+                    message: "Пользователь выполнил действие «" + action +
+                        "» — оно добавлено на вершину стека.",
+                    phase: "push · добавление",
+                    note: stack.length === 1
+                        ? "первое действие в стеке"
+                        : "новое действие добавлено на вершину",
+                    cost: "элементов: " + stack.length
+                };
+            } else {
+                if (queueAdded >= SQ_QUEUE.length) {
+                    return;
+                }
+
+                var doc = SQ_QUEUE[queueAdded];
+                queueAdded += 1;
+                queue.push(doc);
+                queueAddedAt = queue.length - 1;
+                queueOps += 1;
+                queueStatus = {
+                    message: "Пользователь отправил «" + doc +
+                        "» — документ встал в конец очереди.",
+                    phase: "enqueue · добавление",
+                    note: "новый документ добавлен в конец",
+                    cost: "документов: " + queue.length
+                };
+            }
+
+            paint();
+        }
+
+        function removeItem() {
+            if (mode === "stack") {
+                if (!stack.length) {
+                    return;
+                }
+
+                var removed = stack.pop();
+                stackPushed = -1;
+                stackPopped = removed;
+                stackOps += 1;
+                if (!stack.length) {
+                    stackAdded = 0;
+                }
+                stackStatus = {
+                    message: stack.length
+                        ? "Ctrl+Z снимает элемент с вершины: действие «" + removed +
+                            "» отменено. Предыдущие действия остались в стеке."
+                        : "Ctrl+Z снял последнее действие «" + removed +
+                            "» — стек снова пуст.",
+                    phase: "pop · Ctrl+Z",
+                    note: stack.length ? "Ctrl+Z снял верхнее действие" : "стек снова пуст",
+                    cost: "элементов: " + stack.length
+                };
+            } else {
+                if (!queue.length) {
+                    return;
+                }
+
+                var printed = queue.shift();
+                if (queuePrinting) {
+                    queuePrinted.push(queuePrinting);
+                }
+                queuePrinting = printed;
+                queueAddedAt = -1;
+                queueOps += 1;
+                if (!queue.length) {
+                    queueAdded = 0;
+                }
+                queueStatus = {
+                    message: "Принтер берёт «" + printed +
+                        "» из начала очереди. Остальные документы ждут своей очереди.",
+                    phase: "dequeue · печать",
+                    note: queue.length
+                        ? "печатается документ из начала"
+                        : "в очереди больше нет документов",
+                    cost: "в очереди: " + queue.length
+                };
+            }
+
+            paint();
+        }
+
+        function resetMode() {
+            if (mode === "stack") {
+                stack = [];
+                stackAdded = 0;
+                stackPushed = -1;
+                stackPopped = null;
+                stackOps = 0;
+                stackStatus = {
+                    message: "Стек действий пуст. Нажмите «Добавить», чтобы выполнить первое действие.",
+                    phase: "стек · пусто",
+                    note: "стек пока пуст",
+                    cost: "элементов: 0"
+                };
+            } else {
+                queue = [];
+                queueAdded = 0;
+                queueAddedAt = -1;
+                queuePrinting = null;
+                queuePrinted = [];
+                queueOps = 0;
+                queueStatus = {
+                    message: "Очередь печати пуста. Нажмите «Добавить», чтобы отправить первый документ.",
+                    phase: "очередь · пусто",
+                    note: "очередь пока пуста",
+                    cost: "документов: 0"
+                };
+            }
+
+            paint();
+        }
+
+        modeButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                mode = button.getAttribute("data-sq-mode");
+
+                modeButtons.forEach(function (other) {
+                    var isOn = other === button;
+                    other.classList.toggle("is-on", isOn);
+                    other.setAttribute("aria-pressed", isOn ? "true" : "false");
+                });
+
+                loadMode();
+            });
+        });
+
+        if (addBtn) {
+            addBtn.addEventListener("click", addItem);
+        }
+        if (removeBtn) {
+            removeBtn.addEventListener("click", removeItem);
+        }
+        if (resetBtn) {
+            resetBtn.addEventListener("click", resetMode);
+        }
+
+        loadMode();
+    });
+
     document.querySelectorAll(".quiz").forEach(initQuiz);
 })();
