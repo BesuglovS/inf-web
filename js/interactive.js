@@ -2676,12 +2676,10 @@
 
         var mode = "stack";
         var stack = [];
-        var stackAdded = 0;
         var stackPushed = -1;
         var stackPopped = null;
         var stackOps = 0;
         var queue = [];
-        var queueAdded = 0;
         var queueAddedAt = -1;
         var queuePrinting = null;
         var queuePrinted = [];
@@ -2698,6 +2696,24 @@
             note: "очередь пока пуста",
             cost: "документов: 0"
         };
+
+        function nextStackIndex() {
+            for (var i = 0; i < SQ_STACK.length; i++) {
+                if (stack.indexOf(SQ_STACK[i]) === -1) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        function nextQueueIndex() {
+            for (var i = 0; i < SQ_QUEUE.length; i++) {
+                if (queue.indexOf(SQ_QUEUE[i]) === -1) {
+                    return i;
+                }
+            }
+            return -1;
+        }
 
         function paintStack() {
             renderSqStack(stackOut, {
@@ -2760,11 +2776,11 @@
             }
 
             if (mode === "stack") {
-                addBtn.disabled = stackAdded >= SQ_STACK.length;
+                addBtn.disabled = nextStackIndex() === -1;
                 removeBtn.disabled = stack.length === 0;
                 addBtn.title = addBtn.disabled ? "Все действия из примера уже добавлены" : "";
             } else {
-                addBtn.disabled = queueAdded >= SQ_QUEUE.length;
+                addBtn.disabled = nextQueueIndex() === -1;
                 removeBtn.disabled = queue.length === 0;
                 addBtn.title = addBtn.disabled ? "Все документы из примера уже отправлены" : "";
             }
@@ -2800,12 +2816,12 @@
 
         function addItem() {
             if (mode === "stack") {
-                if (stackAdded >= SQ_STACK.length) {
+                var stackIndex = nextStackIndex();
+                if (stackIndex === -1) {
                     return;
                 }
 
-                var action = SQ_STACK[stackAdded];
-                stackAdded += 1;
+                var action = SQ_STACK[stackIndex];
                 stack.push(action);
                 stackPushed = stack.length - 1;
                 stackPopped = null;
@@ -2820,12 +2836,12 @@
                     cost: "элементов: " + stack.length
                 };
             } else {
-                if (queueAdded >= SQ_QUEUE.length) {
+                var queueIndex = nextQueueIndex();
+                if (queueIndex === -1) {
                     return;
                 }
 
-                var doc = SQ_QUEUE[queueAdded];
-                queueAdded += 1;
+                var doc = SQ_QUEUE[queueIndex];
                 queue.push(doc);
                 queueAddedAt = queue.length - 1;
                 queueOps += 1;
@@ -2851,9 +2867,6 @@
                 stackPushed = -1;
                 stackPopped = removed;
                 stackOps += 1;
-                if (!stack.length) {
-                    stackAdded = 0;
-                }
                 stackStatus = {
                     message: stack.length
                         ? "Ctrl+Z снимает элемент с вершины: действие «" + removed +
@@ -2876,9 +2889,6 @@
                 queuePrinting = printed;
                 queueAddedAt = -1;
                 queueOps += 1;
-                if (!queue.length) {
-                    queueAdded = 0;
-                }
                 queueStatus = {
                     message: "Принтер берёт «" + printed +
                         "» из начала очереди. Остальные документы ждут своей очереди.",
@@ -2896,7 +2906,6 @@
         function resetMode() {
             if (mode === "stack") {
                 stack = [];
-                stackAdded = 0;
                 stackPushed = -1;
                 stackPopped = null;
                 stackOps = 0;
@@ -2908,7 +2917,6 @@
                 };
             } else {
                 queue = [];
-                queueAdded = 0;
                 queueAddedAt = -1;
                 queuePrinting = null;
                 queuePrinted = [];
