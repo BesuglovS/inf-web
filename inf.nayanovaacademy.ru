@@ -25,10 +25,6 @@ server {
     add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()" always;
     add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-NRwVeOU+cD2bYBE/L1uBO0M2Jv+NX9am8i1VvFK/fb8=' 'sha256-h8/bCh96QyEvTD36tS3UveISbUYHmdVWmxJ6OSZwZU8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://auth.nayanovaacademy.ru; frame-src https://vk.com https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self' https://auth.nayanovaacademy.ru; frame-ancestors 'none'" always;
 
-    types {
-        application/manifest+json webmanifest;
-    }
-
     root /var/www/inf.nayanovaacademy.ru/public;
     index index.html index.htm;
     autoindex off;
@@ -89,6 +85,12 @@ server {
 
     location = /sys/sw.js {
         expires -1;
+    }
+
+    location = /sys/manifest.webmanifest {
+        default_type application/manifest+json;
+        expires -1;
+        try_files $uri =404;
     }
 
     location ^~ /sys/ {
