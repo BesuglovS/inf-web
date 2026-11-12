@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Перевод в десятичную систему — развёрнутая форма</title>
+<meta name="description" content="Как перевести число из двоичной, восьмеричной, шестнадцатеричной и любой другой системы в десятичную: развёрнутая форма, степени основания и схема Горнера.">
+<meta name="theme-color" content="#15223B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Системы счисления">
+<link rel="canonical" href="https://inf.nayanovaacademy.ru/sys/04-v-desyatichnuyu.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Системы счисления">
+<meta property="og:title" content="Перевод в десятичную систему — развёрнутая форма">
+<meta property="og:description" content="Как перевести число из двоичной, восьмеричной, шестнадцатеричной и любой другой системы в десятичную: развёрнутая форма, степени основания и схема Горнера.">
+<meta property="og:url" content="https://inf.nayanovaacademy.ru/sys/04-v-desyatichnuyu.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Перевод в десятичную систему — развёрнутая форма">
+<meta name="twitter:description" content="Как перевести число из двоичной, восьмеричной, шестнадцатеричной и любой другой системы в десятичную: развёрнутая форма, степени основания и схема Горнера.">
+<meta property="og:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta name="twitter:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css?v=20261111-5">
+<link rel="apple-touch-icon" href="assets/icon-192.png?v=20261111-5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315223B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23F2765F' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=20261111-5">
+</head>
+<body id="top">
+
+<a class="skip-link" href="#content">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">b</span>
+      <span class="brand-text">Системы счисления</span>
+    </a>
+    <div class="header-side">
+      <span class="header-chapter"><span class="sr-only">Глава </span>04 / 09</span>
+      <a class="header-contents" href="index.html#route">Содержание</a>
+    </div>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+
+<section class="chapter-open" aria-labelledby="ch-title">
+  <div class="chapter-open-inner">
+    <div class="chapter-open-copy">
+      <p class="chapter-kicker">Глава 04 · Перевод</p>
+      <h1 id="ch-title">Из любой системы — в десятичную</h1>
+      <p class="chapter-lead">Универсальный способ — развернуть запись в сумму. Никаких делений: только умножение и сложение, причём считается всё в привычной десятичной арифметике.</p>
+    </div>
+    <div class="chapter-watermark" aria-hidden="true">04</div>
+    <nav class="chapter-rail" aria-label="Главы курса">
+      <a href="01-osnovy.html" title="01 · Основы" aria-label="Глава 01 · Основы">01</a>
+      <a href="02-istoriya.html" title="02 · История" aria-label="Глава 02 · История">02</a>
+      <a href="03-vidy.html" title="03 · Виды систем" aria-label="Глава 03 · Виды систем">03</a>
+      <a href="04-v-desyatichnuyu.html" class="is-current" aria-current="page" title="04 · В десятичную" aria-label="Глава 04 · В десятичную">04</a>
+      <a href="05-iz-desyatichnoy.html" title="05 · Из десятичной" aria-label="Глава 05 · Из десятичной">05</a>
+      <a href="06-rodstvennye.html" title="06 · 2, 8, 16" aria-label="Глава 06 · 2, 8, 16">06</a>
+      <a href="07-slozhenie-vychitanie.html" title="07 · Столбиком" aria-label="Глава 07 · Столбиком">07</a>
+      <a href="08-umnozhenie-delenie.html" title="08 · Умножение и деление" aria-label="Глава 08 · Умножение и деление">08</a>
+      <a href="09-praktika.html" title="09 · Практика" aria-label="Глава 09 · Практика">09</a>
+    </nav>
+  </div>
+</section>
+
+<div class="chapter-body">
+  <aside class="rail" aria-label="Заметка к главе">
+    <div class="rail-num"><span>04</span><span class="total">/ 09</span></div>
+    <p class="rail-note">У крайнего правого разряда вес всегда <b>1</b>, а не основание. Не забудьте про нулевой разряд.</p>
+  </aside>
+
+  <article class="chapter-article">
+    <div class="prose">
+      <p>Перевод в десятичную — это чтение записи по правилам позиционной системы. Степень — это произведение одинаковых множителей: <span class="mono">10<sup>2</sup> = 10·10 = 100</span>, а <span class="mono">10<sup>3</sup> = 10·10·10 = 1000</span>. Показатель степени равен номеру разряда: <span class="mono">b<sup>n</sup></span> — произведение <span class="mono">n</span> множителей <span class="mono">b</span>, а <span class="mono">b<sup>0</sup> = 1</span>.</p>
+      <p>Теперь разряды. Они нумеруются справа налево, начиная с нуля. Цифра умножается на основание в степени номера разряда, результаты складываются. Все действия выполняются в десятичной арифметике, поэтому дополнительных правил не нужно.</p>
+    </div>
+
+    <h2 class="subhead">Развёрнутая форма</h2>
+
+    <div class="prose">
+      <p>Развёрнутая форма — запись числа в виде суммы «цифра × вес». Вес разряда — основание в степени его номера, считая справа налево с нуля. Начнём с двоичной системы: переведём <span class="mono">1101<sub>2</sub></span> в десятичную. В двоичной системе всего две цифры — 0 и 1 (в десятичной — десять), поэтому пример короткий и наглядный.</p>
+    </div>
+
+    <div class="formula">
+      <span class="label">Развёрнутая форма записи</span>
+      <p>N = a<sub>n</sub>·b<sup>n</sup> + … + a<sub>2</sub>·b<sup>2</sup> + a<sub>1</sub>·b<sup>1</sup> + a<sub>0</sub>·b<sup>0</sup></p>
+      <p><span class="accent">b</span> — основание, <span class="accent">a<sub>i</sub></span> — цифры, причём 0 ≤ a<sub>i</sub> &lt; b; <span class="accent">n</span> — номер старшего разряда.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="pv-table">
+        <caption>Запись 1101<sub>2</sub>, разобранная по разрядам</caption>
+        <thead>
+          <tr><th scope="col">Свойство</th><th scope="col">разряд 3</th><th scope="col">разряд 2</th><th scope="col">разряд 1</th><th scope="col">разряд 0</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Вес</th><td>2<sup>3</sup> = 8</td><td>2<sup>2</sup> = 4</td><td>2<sup>1</sup> = 2</td><td>2<sup>0</sup> = 1</td></tr>
+          <tr><th scope="row">Цифра</th><td class="big">1</td><td class="big">1</td><td class="big">0</td><td class="big">1</td></tr>
+          <tr><th scope="row">Вклад</th><td>8</td><td>4</td><td>0</td><td>1</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note table-note--calc">Развёрнутая форма: <span class="mono">1·2<sup>3</sup> + 1·2<sup>2</sup> + 0·2<sup>1</sup> + 1·2<sup>0</sup> = 8 + 4 + 0 + 1 = <b class="ans">13<sub>10</sub></b></span></p>
+    <p class="table-note">Для любого ненулевого основания <span class="mono">b<sup>0</sup> = 1</span>, поэтому <span class="mono">2<sup>0</sup> = 1</span>.</p>
+
+    <h2 class="subhead">Алгоритм</h2>
+    <ol class="steps">
+      <li>Пронумеруйте разряды <b>справа налево</b>, начиная с нуля.</li>
+      <li>Умножьте каждую цифру на основание в степени её разряда.</li>
+      <li>Сложите полученные произведения.</li>
+    </ol>
+
+    <h2 class="subhead">Примеры</h2>
+
+    <div class="examples">
+      <figure class="sheet">
+        <figcaption class="sheet-label">01 · из двоичной</figcaption>
+        <table class="example-table">
+          <caption class="sr-only">Перевод 1011 из двоичной системы в десятичную</caption>
+          <tbody>
+            <tr class="weight-row"><th scope="row">Вес</th><td>2<sup>3</sup> = 8</td><td>2<sup>2</sup> = 4</td><td>2<sup>1</sup> = 2</td><td>2<sup>0</sup> = 1</td></tr>
+            <tr class="rank-row"><th scope="row">Разряд</th><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+            <tr class="digit-row"><th scope="row">Цифра</th><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+            <tr class="contrib-row"><th scope="row">Вклад</th><td>8</td><td>0</td><td>2</td><td>1</td></tr>
+          </tbody>
+        </table>
+        <p class="example-result">8 + 0 + 2 + 1 = <b class="ans">11<sub>10</sub></b></p>
+        <p class="sheet-note">Нулевой вклад можно не писать: <span class="mono">0·4 = 0</span>.</p>
+      </figure>
+
+      <figure class="sheet">
+        <figcaption class="sheet-label">02 · из восьмеричной</figcaption>
+        <table class="example-table">
+          <caption class="sr-only">Перевод 745 из восьмеричной системы в десятичную</caption>
+          <tbody>
+            <tr class="weight-row"><th scope="row">Вес</th><td>8<sup>2</sup> = 64</td><td>8<sup>1</sup> = 8</td><td>8<sup>0</sup> = 1</td></tr>
+            <tr class="rank-row"><th scope="row">Разряд</th><td>2</td><td>1</td><td>0</td></tr>
+            <tr class="digit-row"><th scope="row">Цифра</th><td>7</td><td>4</td><td>5</td></tr>
+            <tr class="contrib-row"><th scope="row">Вклад</th><td>448</td><td>32</td><td>5</td></tr>
+          </tbody>
+        </table>
+        <p class="example-result">448 + 32 + 5 = <b class="ans">485<sub>10</sub></b></p>
+        <p class="sheet-note">Веса: <span class="mono">1 → 8 → 64</span>, если идти справа налево.</p>
+      </figure>
+
+      <figure class="sheet">
+        <figcaption class="sheet-label">03 · из пятеричной</figcaption>
+        <table class="example-table">
+          <caption class="sr-only">Перевод 104 из пятеричной системы в десятичную</caption>
+          <tbody>
+            <tr class="weight-row"><th scope="row">Вес</th><td>5<sup>2</sup> = 25</td><td>5<sup>1</sup> = 5</td><td>5<sup>0</sup> = 1</td></tr>
+            <tr class="rank-row"><th scope="row">Разряд</th><td>2</td><td>1</td><td>0</td></tr>
+            <tr class="digit-row"><th scope="row">Цифра</th><td>1</td><td>0</td><td>4</td></tr>
+            <tr class="contrib-row"><th scope="row">Вклад</th><td>25</td><td>0</td><td>4</td></tr>
+          </tbody>
+        </table>
+        <p class="example-result">25 + 0 + 4 = <b class="ans">29<sub>10</sub></b></p>
+        <p class="sheet-note">Правило работает для любого основания, не только для 2, 8 и 16.</p>
+      </figure>
+
+      <figure class="sheet">
+        <figcaption class="sheet-label">04 · из шестнадцатеричной</figcaption>
+        <table class="example-table">
+          <caption class="sr-only">Перевод 2F из шестнадцатеричной системы в десятичную</caption>
+          <tbody>
+            <tr class="weight-row"><th scope="row">Вес</th><td>16<sup>1</sup> = 16</td><td>16<sup>0</sup> = 1</td></tr>
+            <tr class="rank-row"><th scope="row">Разряд</th><td>1</td><td>0</td></tr>
+            <tr class="digit-row"><th scope="row">Цифра</th><td>2</td><td><span class="hex">F</span></td></tr>
+            <tr class="contrib-row"><th scope="row">Вклад</th><td>32</td><td>15</td></tr>
+          </tbody>
+        </table>
+        <p class="example-result">32 + 15 = <b class="ans">47<sub>10</sub></b></p>
+        <p class="sheet-note">Основание 16 больше 10: буквы-цифры разобраны ниже.</p>
+      </figure>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">Если основание больше 10</span>
+      <p>В системах с основанием больше 10 цифр от 0 до 9 не хватает. После 9 идут буквы: A = 10, B = 11, C = 12, D = 13, E = 14, F = 15. В записи <span class="mono">2F<sub>16</sub></span> символ F — такая же цифра со значением 15, а не множитель.</p>
+    </div>
+
+    <div class="callout callout--green">
+      <span class="callout-label">Второй способ · схема Горнера</span>
+      <p>Идите по записи слева направо: умножьте накопленное на основание и прибавьте следующую цифру. Для <span class="mono">745<sub>8</sub></span>: <span class="mono">((7·8 + 4)·8 + 5) = 485<sub>10</sub></span>. Для <span class="mono">2F<sub>16</sub></span>: <span class="mono">2·16 + 15 = 47<sub>10</sub></span>. Степени считать не нужно.</p>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">Частая ошибка</span>
+      <p>Умножать цифру на <span class="mono">10<sup>k</sup></span> вместо основания. В формуле всегда стоит основание <b>исходной</b> записи: для <span class="mono">2F<sub>16</sub></span> — шестнадцать, а не десять.</p>
+    </div>
+
+    <div class="callout callout--plain">
+      <span class="callout-label">Как проверить себя</span>
+      <p>Ответ не меньше каждого отдельного вклада и не больше <span class="mono">b<sup>n</sup> − 1</span> для n-значной записи. Для <span class="mono">1011<sub>2</sub></span> это диапазон от 8 до 15 включительно — 11 в него попадает.</p>
+    </div>
+  </article>
+</div>
+
+<nav class="pager" aria-label="Навигация по главам">
+  <a class="pager-link pager-prev" href="03-vidy.html">
+    <span class="pager-label">← Предыдущая глава</span>
+    <span class="pager-row"><span class="pager-num">03</span><span class="pager-title">Виды систем</span></span>
+  </a>
+  <a class="pager-link pager-next" href="05-iz-desyatichnoy.html">
+    <span class="pager-label">Следующая глава →</span>
+    <span class="pager-row"><span class="pager-num">05</span><span class="pager-title">Из десятичной</span></span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="site-footer site-footer--compact">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>Системы счисления · глава 04 из 09</span>
+      <a href="index.html#route">Содержание ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/numlib.js?v=20261111-5"></script>
+<script src="assets/app.js?v=20261111-5"></script>
+</body>
+</html>

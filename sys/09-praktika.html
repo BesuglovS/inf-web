@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Практика: ошибки и самопроверка — системы счисления</title>
+<meta name="description" content="Восемь задач по системам счисления с решениями, частые ошибки при переводе и сложении, чек-лист проверки ответа.">
+<meta name="theme-color" content="#15223B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Системы счисления">
+<link rel="canonical" href="https://inf.nayanovaacademy.ru/sys/09-praktika.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Системы счисления">
+<meta property="og:title" content="Практика: ошибки и самопроверка — системы счисления">
+<meta property="og:description" content="Восемь задач по системам счисления с решениями, частые ошибки при переводе и сложении, чек-лист проверки ответа.">
+<meta property="og:url" content="https://inf.nayanovaacademy.ru/sys/09-praktika.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Практика: ошибки и самопроверка — системы счисления">
+<meta name="twitter:description" content="Восемь задач по системам счисления с решениями, частые ошибки при переводе и сложении, чек-лист проверки ответа.">
+<meta property="og:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta name="twitter:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css?v=20261111-5">
+<link rel="apple-touch-icon" href="assets/icon-192.png?v=20261111-5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315223B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23F2765F' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=20261111-5">
+</head>
+<body id="top">
+
+<a class="skip-link" href="#content">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">b</span>
+      <span class="brand-text">Системы счисления</span>
+    </a>
+    <div class="header-side">
+      <span class="header-chapter"><span class="sr-only">Глава </span>09 / 09</span>
+      <a class="header-contents" href="index.html#route">Содержание</a>
+    </div>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+
+<section class="chapter-open" aria-labelledby="ch-title">
+  <div class="chapter-open-inner">
+    <div class="chapter-open-copy">
+      <p class="chapter-kicker">Глава 09 · Практика</p>
+      <h1 id="ch-title">Ошибки и самопроверка</h1>
+      <p class="chapter-lead">Шесть мест, где чаще всего теряются цифры и переносы, — и восемь задач, чтобы поймать себя за руку.</p>
+    </div>
+    <div class="chapter-watermark" aria-hidden="true">09</div>
+    <nav class="chapter-rail" aria-label="Главы курса">
+      <a href="01-osnovy.html" title="01 · Основы" aria-label="Глава 01 · Основы">01</a>
+      <a href="02-istoriya.html" title="02 · История" aria-label="Глава 02 · История">02</a>
+      <a href="03-vidy.html" title="03 · Виды систем" aria-label="Глава 03 · Виды систем">03</a>
+      <a href="04-v-desyatichnuyu.html" title="04 · В десятичную" aria-label="Глава 04 · В десятичную">04</a>
+      <a href="05-iz-desyatichnoy.html" title="05 · Из десятичной" aria-label="Глава 05 · Из десятичной">05</a>
+      <a href="06-rodstvennye.html" title="06 · 2, 8, 16" aria-label="Глава 06 · 2, 8, 16">06</a>
+      <a href="07-slozhenie-vychitanie.html" title="07 · Столбиком" aria-label="Глава 07 · Столбиком">07</a>
+      <a href="08-umnozhenie-delenie.html" title="08 · Умножение и деление" aria-label="Глава 08 · Умножение и деление">08</a>
+      <a href="09-praktika.html" class="is-current" aria-current="page" title="09 · Практика" aria-label="Глава 09 · Практика">09</a>
+    </nav>
+  </div>
+</section>
+
+<div class="chapter-body">
+  <aside class="rail" aria-label="Заметка к главе">
+    <div class="rail-num"><span>09</span><span class="total">/ 09</span></div>
+    <p class="rail-note">Проверяйте себя обратным переводом и сложением. Это ловит почти все ошибки с переносами.</p>
+  </aside>
+
+  <article class="chapter-article">
+    <h2 class="subhead">Что чаще всего ломается</h2>
+
+    <div class="check-grid">
+      <div class="check-col">
+        <h3>Ошибки</h3>
+        <ul class="check-list check-list--bad">
+          <li><b>Умножение на 10 вместо основания.</b> Для 2F<sub>16</sub> это 2·16 + 15, а не 2·10 + 15.</li>
+          <li><b>Остатки читают сверху вниз.</b> Тогда 156<sub>10</sub> превращается в перевёрнутое 00111001<sub>2</sub>.</li>
+          <li><b>Пишут цифру, равную основанию.</b> В двоичной 1 + 1 даёт 0 и перенос, а не цифру 2.</li>
+          <li><b>Забывают последний перенос.</b> В 1101<sub>2</sub> + 1011<sub>2</sub> старшая единица результата — тоже перенос.</li>
+          <li><b>Теряют индекс.</b> 10 — это десять только в десятичной; 10<sub>2</sub> — два, 10<sub>16</sub> — шестнадцать.</li>
+          <li><b>Думают, что A–F бывают только в 16-ричной.</b> В основании 11 цифра A = 10 допустима, а B = 11 — уже нет.</li>
+        </ul>
+      </div>
+
+      <div class="check-col">
+        <h3>Как проверять</h3>
+        <ul class="check-list check-list--good">
+          <li><b>Обратный перевод.</b> Переведите ответ в исходное основание — должно получиться условие.</li>
+          <li><b>Сложение и вычитание — взаимно.</b> Разность плюс вычитаемое равно уменьшаемому.</li>
+          <li><b>Оценка порядка.</b> Число из n цифр в основании b меньше b<sup>n</sup>. При сложении результат может быть длиннее слагаемых максимум на один разряд; если больше — ошибка.</li>
+          <li><b>Десятичный контроль.</b> Переведите оба числа, посчитайте на калькуляторе и сравните.</li>
+          <li><b>Проверка цифр.</b> В записи не может быть цифры со значением ≥ b.</li>
+          <li><b>Проверка длины.</b> При сложении результат длиннее слагаемых максимум на один разряд.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="subhead">Восемь задач</h2>
+    <p class="table-note">Сначала решите сами, потом открывайте разбор. Ответы спрятаны за знаком «+».</p>
+
+    <div class="practice">
+      <details class="task">
+        <summary><span class="task-no">01</span><span class="task-q">110101<sub>2</sub> → десятичная</span></summary>
+        <div class="task-a">
+          <p>32 + 16 + 4 + 1 = <b class="ans">53</b>.</p>
+          <p>Разряды: <span class="mono">2<sup>5</sup>, 2<sup>4</sup>, 2<sup>2</sup>, 2<sup>0</sup></span> — единицы стоят в позициях 5, 4, 2 и 0.</p>
+        </div>
+      </details>
+
+      <details class="task">
+        <summary><span class="task-no">02</span><span class="task-q">2A<sub>16</sub> → десятичная</span></summary>
+        <div class="task-a">
+          <p>2·16 + 10·1 = 32 + 10 = <b class="ans">42</b>.</p>
+          <p>A — это цифра со значением 10.</p>
+        </div>
+      </details>
+
+      <details class="task">
+        <summary><span class="task-no">03</span><span class="task-q">100<sub>10</sub> → двоичная</span></summary>
+        <div class="task-a">
+          <p>100 = 64 + 32 + 4, значит <b class="ans">1100100<sub>2</sub></b>.</p>
+          <p>Деления: 100 → 50 (0) → 25 (0) → 12 (1) → 6 (0) → 3 (0) → 1 (1) → 0 (1). Остатки снизу вверх: 1100100.</p>
+        </div>
+      </details>
+
+      <details class="task">
+        <summary><span class="task-no">04</span><span class="task-q">111<sub>2</sub> + 101<sub>2</sub></span></summary>
+        <div class="task-a">
+          <p>7 + 5 = 12, значит <b class="ans">1100<sub>2</sub></b>.</p>
+          <p>По разрядам: 1+1 = 10 (0, перенос 1); 1+0+1 = 10 (0, перенос 1); 1+1+1 = 11 (1, перенос 1); новый разряд — 1.</p>
+        </div>
+      </details>
+
+      <details class="task">
+        <summary><span class="task-no">05</span><span class="task-q">1000<sub>2</sub> − 11<sub>2</sub></span></summary>
+        <div class="task-a">
+          <p>8 − 3 = 5, значит <b class="ans">101<sub>2</sub></b>.</p>
+          <p>Заём идёт по цепочке: 0−1 → 1 (заём), 0−1−1 → 0 (заём), 0−0−1 → 1 (заём), 1−0−1 = 0.</p>
+        </div>
+      </details>
+
+      <details class="task">
+        <summary><span class="task-no">06</span><span class="task-q">3E<sub>16</sub> + 2B<sub>16</sub></span></summary>
+        <div class="task-a">
+          <p>E + B = 14<sub>10</sub> + 11<sub>10</sub> = 25<sub>10</sub> → пишем 9, переносим 1. Затем 3 + 2 + 1 = 6.</p>
+          <p>Ответ: <b class="ans">69<sub>16</sub></b> (105<sub>10</sub>).</p>
+        </div>
+      </details>
+
+      <details class="task">
+        <summary><span class="task-no">07</span><span class="task-q">745<sub>8</sub> − 267<sub>8</sub></span></summary>
+        <div class="task-a">
+          <p>5−7 → 5+8−7 = 6, заём; 4−6−1 → 4+8−(6+1) = 5, заём; 7−2−1 = 4.</p>
+          <p>Ответ: <b class="ans">456<sub>8</sub></b> (302<sub>10</sub>).</p>
+        </div>
+      </details>
+
+      <details class="task">
+        <summary><span class="task-no">08</span><span class="task-q">1011<sub>2</sub> · 101<sub>2</sub></span></summary>
+        <div class="task-a">
+          <p>11 · 5 = 55 = 32 + 16 + 4 + 2 + 1, значит <b class="ans">110111<sub>2</sub></b>.</p>
+          <p>Строки: 1011, 0000 со сдвигом, 1011 со сдвигом на два разряда; их сумма — 110111.</p>
+        </div>
+      </details>
+    </div>
+
+    <p class="table-note"><a class="route-start" href="trenazher.html">Открыть тренажёр: 4 типа заданий <span aria-hidden="true">→</span></a></p>
+
+    <div class="callout callout--green">
+      <span class="callout-label">Ориентир</span>
+      <p>Если ответ сходится при обратном переводе и проверке сложением — почти наверняка он верный. Если нет, ищите ошибку сначала в последнем переносе или в прочитанных не в ту сторону остатках.</p>
+    </div>
+
+    <div class="callout callout--plain">
+      <span class="callout-label">Курс закончен</span>
+      <p>Вы прошли путь от цифры и разряда до арифметики в основании 16. Вернитесь к маршруту, чтобы повторить нужную главу, или потренируйтесь: разбор числа — на главной, дробная часть — в главе 05, столбик — в главе 07, умножение и деление — в главе 08.</p>
+    </div>
+  </article>
+</div>
+
+<nav class="pager" aria-label="Навигация по главам">
+  <a class="pager-link pager-prev" href="08-umnozhenie-delenie.html">
+    <span class="pager-label">← Предыдущая глава</span>
+    <span class="pager-row"><span class="pager-num">08</span><span class="pager-title">Умножение и деление</span></span>
+  </a>
+  <a class="pager-link pager-next" href="index.html#route">
+    <span class="pager-label">К содержанию →</span>
+    <span class="pager-row"><span class="pager-title">Маршрут курса</span></span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="site-footer site-footer--compact">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>Системы счисления · глава 09 из 09</span>
+      <a href="index.html#route">Содержание ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/numlib.js?v=20261111-5"></script>
+<script src="assets/app.js?v=20261111-5"></script>
+</body>
+</html>

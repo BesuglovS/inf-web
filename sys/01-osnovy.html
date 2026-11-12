@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Число — это не только цифры — основы систем счисления</title>
+<meta name="description" content="Цифра, разряд, вес и основание — словарь и логика позиционных систем счисления. Начинаем с десятичной записи, затем переходим к другим основаниям.">
+<meta name="theme-color" content="#15223B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Системы счисления">
+<link rel="canonical" href="https://inf.nayanovaacademy.ru/sys/01-osnovy.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Системы счисления">
+<meta property="og:title" content="Число — это не только цифры — основы систем счисления">
+<meta property="og:description" content="Цифра, разряд, вес и основание — словарь и логика позиционных систем счисления. Начинаем с десятичной записи, затем переходим к другим основаниям.">
+<meta property="og:url" content="https://inf.nayanovaacademy.ru/sys/01-osnovy.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Число — это не только цифры — основы систем счисления">
+<meta name="twitter:description" content="Цифра, разряд, вес и основание — словарь и логика позиционных систем счисления. Начинаем с десятичной записи, затем переходим к другим основаниям.">
+<meta property="og:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta name="twitter:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css?v=20261111-5">
+<link rel="apple-touch-icon" href="assets/icon-192.png?v=20261111-5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315223B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23F2765F' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=20261111-5">
+</head>
+<body id="top">
+
+<a class="skip-link" href="#content">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">b</span>
+      <span class="brand-text">Системы счисления</span>
+    </a>
+    <div class="header-side">
+      <span class="header-chapter"><span class="sr-only">Глава </span>01 / 09</span>
+      <a class="header-contents" href="index.html#route">Содержание</a>
+    </div>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+
+<section class="chapter-open" aria-labelledby="ch-title">
+  <div class="chapter-open-inner">
+    <div class="chapter-open-copy">
+      <p class="chapter-kicker">Глава 01 · Теория</p>
+      <h1 id="ch-title">Число — это не только цифры</h1>
+      <p class="chapter-lead">Начнём с простого: чем число отличается от своей записи. По ходу главы введём слова, без которых не обойтись.</p>
+    </div>
+    <div class="chapter-watermark" aria-hidden="true">01</div>
+    <nav class="chapter-rail" aria-label="Главы курса">
+      <a href="01-osnovy.html" class="is-current" aria-current="page" title="01 · Основы" aria-label="Глава 01 · Основы">01</a>
+      <a href="02-istoriya.html" title="02 · История" aria-label="Глава 02 · История">02</a>
+      <a href="03-vidy.html" title="03 · Виды систем" aria-label="Глава 03 · Виды систем">03</a>
+      <a href="04-v-desyatichnuyu.html" title="04 · В десятичную" aria-label="Глава 04 · В десятичную">04</a>
+      <a href="05-iz-desyatichnoy.html" title="05 · Из десятичной" aria-label="Глава 05 · Из десятичной">05</a>
+      <a href="06-rodstvennye.html" title="06 · 2, 8, 16" aria-label="Глава 06 · 2, 8, 16">06</a>
+      <a href="07-slozhenie-vychitanie.html" title="07 · Столбиком" aria-label="Глава 07 · Столбиком">07</a>
+      <a href="08-umnozhenie-delenie.html" title="08 · Умножение и деление" aria-label="Глава 08 · Умножение и деление">08</a>
+      <a href="09-praktika.html" title="09 · Практика" aria-label="Глава 09 · Практика">09</a>
+    </nav>
+  </div>
+</section>
+
+<div class="chapter-body">
+  <aside class="rail" aria-label="Заметка к главе">
+    <div class="rail-num"><span>01</span><span class="total">/ 09</span></div>
+    <p class="rail-note">В этой главе — словарь и один пример. Переводы и другие основания начнутся с главы 04.</p>
+  </aside>
+
+  <article class="chapter-article">
+    <div class="prose">
+      <p>Возьмём число <span class="mono">2026</span>. Оно записано четырьмя знаками: 2, 0, 2 и 6. Каждый такой знак называется <b>цифрой</b>. Способ записывать числа с помощью цифр и правил их соединения называется <b>системой счисления</b>.</p>
+      <p>В десятичной системе значение цифры зависит от её места в записи. Такие системы называют <b>позиционными</b>. Место цифры называется <b>разрядом</b>. Разряды нумеруют справа налево, начиная с нуля: крайняя правая цифра стоит в разряде 0, следующая — в разряде 1, и так далее.</p>
+      <p>Сколько разных цифр доступно в системе, задаёт её <b>основание</b>. В десятичной системе основание 10, поэтому доступны цифры от 0 до 9. В двоичной основание 2, поэтому есть только 0 и 1.</p>
+      <p>У каждого разряда есть <b>вес</b>. У разряда 0 вес 1, у разряда 1 — основание, у разряда 2 — основание, умноженное само на себя, и так далее. Чем левее разряд, тем больше вес.</p>
+    </div>
+
+    <h2 class="subhead">Пример: 2026</h2>
+
+    <div class="prose">
+      <p>Число <span class="mono">2026</span> записано в десятичной системе. Его основание — 10, значит веса разрядов равны 1, 10, 100 и 1000. Эти разряды коротко называют по весу: единицы, десятки, сотни, тысячи.</p>
+      <p>Шестёрка стоит в разряде единиц и значит шесть. Двойка в разряде десятков значит двадцать. Ноль в разряде сотен ничего не добавляет. Двойка в разряде тысяч значит две тысячи. Вместе получается 2026.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="pv-table place-table">
+        <caption>Разряды и веса числа 2026</caption>
+        <tbody>
+          <tr><th scope="row">Вес</th><td>10<sup>3</sup> = 1000</td><td>10<sup>2</sup> = 100</td><td>10<sup>1</sup> = 10</td><td>10<sup>0</sup> = 1</td></tr>
+          <tr class="rank-row"><th scope="row">Разряд</th><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+          <tr><th scope="row">Цифра</th><td class="big">2</td><td class="big">0</td><td class="big">2</td><td class="big">6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>Если переписать одну и ту же величину в другом основании, изменятся и набор цифр, и веса разрядов, а сама величина останется той же. В двоичной системе цифр только две — 0 и 1, а веса растут медленнее: 1, 2, 4, 8, … Поэтому одна и та же величина в двоичной записи выглядит длиннее. Как переводить запись из одной системы в другую и как раскладывать её в сумму «цифра × вес», разберём в главах 04–06.</p>
+    </div>
+
+    <div class="callout callout--green">
+      <span class="callout-label">Проверьте себя</span>
+      <p>В записи <span class="mono">2026</span> основание 10, цифры — 2, 0, 2, 6. Крайняя левая цифра 2 стоит в разряде 3 и значит две тысячи.</p>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">Важно</span>
+      <p>Основание записывают маленьким индексом справа: <span class="mono">10<sub>2</sub></span>, <span class="mono">10<sub>8</sub></span>, <span class="mono">2026<sub>10</sub></span>. Без индекса запись <span class="mono">10</span> неоднозначна: в десятичной системе это десять, в двоичной — два, в восьмеричной — восемь.</p>
+    </div>
+
+    <h2 class="subhead">Словарь</h2>
+
+    <dl class="terms">
+      <div class="term"><dt>Цифра</dt><dd>Один символ записи. В системах, где цифр больше десяти, добавляются буквы; как именно — в главе 03.</dd></div>
+      <div class="term"><dt>Система счисления</dt><dd>Способ записывать числа с помощью цифр и правил их соединения, а также правила действий над числами.</dd></div>
+      <div class="term"><dt>Позиционная система</dt><dd>Значение цифры зависит от её места в записи. Примеры: десятичная и двоичная.</dd></div>
+      <div class="term"><dt>Разряд</dt><dd>Место цифры в записи. Разряды нумеруются справа налево, с нуля.</dd></div>
+      <div class="term"><dt>Основание</dt><dd>Число разных цифр, доступных в системе. Оно показывает, во сколько раз следующая позиция «дороже» предыдущей.</dd></div>
+      <div class="term"><dt>Вес разряда</dt><dd>Основание в степени, равной номеру разряда: <span class="mono">b<sup>n</sup></span>. Для разряда 0 вес равен 1, для разряда 1 — основанию, для разряда 2 — <span class="mono">b·b</span> и так далее.</dd></div>
+      <div class="term"><dt>Непозиционная система</dt><dd>Место цифры не задаёт вес. В римской записи IX = 10 − 1: значение I зависит от соседа, а не от фиксированного разряда.</dd></div>
+    </dl>
+
+    <div class="callout callout--green">
+      <span class="callout-label">Главное</span>
+      <p>Число задают цифры и веса разрядов: одна и та же цифра в разных позициях значит разное. Формальная запись суммы «цифра × вес» — в главе 04.</p>
+    </div>
+  </article>
+</div>
+
+<nav class="pager" aria-label="Навигация по главам">
+  <a class="pager-link pager-prev" href="index.html#route">
+    <span class="pager-label">← К содержанию</span>
+    <span class="pager-row"><span class="pager-title">Маршрут курса</span></span>
+  </a>
+  <a class="pager-link pager-next" href="02-istoriya.html">
+    <span class="pager-label">Следующая глава →</span>
+    <span class="pager-row"><span class="pager-num">02</span><span class="pager-title">От зарубок до компьютеров</span></span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="site-footer site-footer--compact">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>Системы счисления · глава 01 из 09</span>
+      <a href="index.html#route">Содержание ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/numlib.js?v=20261111-5"></script>
+<script src="assets/app.js?v=20261111-5"></script>
+</body>
+</html>

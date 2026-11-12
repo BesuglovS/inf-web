@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /sys/
+
+Sitemap: https://inf.nayanovaacademy.ru/sys/sitemap.xml

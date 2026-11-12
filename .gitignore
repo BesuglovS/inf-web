@@ -10,3 +10,7 @@ Thumbs.db
 /data/*.db-shm
 /data/*.db-wal
 /data/.ratelimit/
+
+# Модуль /sys: локальные зависимости и секреты
+/sys/node_modules/
+/sys/.env

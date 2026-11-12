@@ -19,6 +19,7 @@ admin-quiz/           # страница результатов квизов д�
 sandbox/              # PHP API: авторизация, квизы, админка, SQLite
 data/quizzes/         # по 10 вопросов к каждому занятию (01.json … 40.json)
 data/inf.db           # SQLite с результатами (создаётся на сервере, не в git)
+sys/                  # мини-курс «Системы счисления» — https://inf.nayanovaacademy.ru/sys/
 media/intro.mp4       # два вступительных ролика подряд (4:02, локально)
 media/intro-poster.jpg
 media/lessons/        # превью занятий — кадры из первого интро
@@ -122,6 +123,22 @@ docs/                 # официальные документы (в репоз
 
 Логика — `js/interactive.js` (без зависимостей). Стили — блоки «Схемы и модели» и «Интерактив»
 в `css/styles.css`; в печатной версии скрыты кнопки и статусы, а схемы и таблицы остаются.
+
+## Мини-курс «Системы счисления» (`/sys/`)
+
+В `sys/` лежит отдельный статический PWA-курс: теория, примеры, тренажёр и практика.
+Он публикуется по адресу `https://inf.nayanovaacademy.ru/sys/`.
+
+- `sys/index.html` — главная мини-курса.
+- `sys/01-osnovy.html` … `sys/09-praktika.html` — занятия.
+- `sys/trenazher.html` — тренажёр.
+- `sys/assets/` — стили, скрипты, шрифты и иконки.
+- `sys/sw.js` и `sys/manifest.webmanifest` — PWA с scope `/sys/`.
+- `sys/tests/` — Node/jsdom-тесты; запуск: `cd sys && npm install && npm test`.
+- `sys/package.json`, `sys/package-lock.json`, `sys/tests/` не попадают в деплой.
+
+Service worker основного сайта и `js/sw-cleanup.js` не удаляют кэши `sys-*`
+и не снимают регистрацию воркера `/sys/`.
 
 ## Локальный запуск
 

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Умножение и деление в разных системах счисления</title>
+<meta name="description" content="Умножение столбиком и деление уголком в разных основаниях: частичные произведения, сдвиг, переносы и самопроверка.">
+<meta name="theme-color" content="#15223B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Системы счисления">
+<link rel="canonical" href="https://inf.nayanovaacademy.ru/sys/08-umnozhenie-delenie.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Системы счисления">
+<meta property="og:title" content="Умножение и деление в разных системах счисления">
+<meta property="og:description" content="Умножение столбиком и деление уголком в разных основаниях: частичные произведения, сдвиг, переносы и самопроверка.">
+<meta property="og:url" content="https://inf.nayanovaacademy.ru/sys/08-umnozhenie-delenie.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Умножение и деление в разных системах счисления">
+<meta name="twitter:description" content="Умножение столбиком и деление уголком в разных основаниях: частичные произведения, сдвиг, переносы и самопроверка.">
+<meta property="og:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta name="twitter:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css?v=20261111-5">
+<link rel="apple-touch-icon" href="assets/icon-192.png?v=20261111-5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315223B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23F2765F' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=20261111-5">
+</head>
+<body id="top">
+
+<a class="skip-link" href="#content">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">b</span>
+      <span class="brand-text">Системы счисления</span>
+    </a>
+    <div class="header-side">
+      <span class="header-chapter"><span class="sr-only">Глава </span>08 / 09</span>
+      <a class="header-contents" href="index.html#route">Содержание</a>
+    </div>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+
+<section class="chapter-open" aria-labelledby="ch-title">
+  <div class="chapter-open-inner">
+    <div class="chapter-open-copy">
+      <p class="chapter-kicker">Глава 08 · Арифметика</p>
+      <h1 id="ch-title">Умножение и деление</h1>
+      <p class="chapter-lead">Новая таблица умножения не нужна. Достаточно помнить: произведение цифр тоже может переполнить разряд, и тогда внутри строки появляется перенос.</p>
+    </div>
+    <div class="chapter-watermark" aria-hidden="true">08</div>
+    <nav class="chapter-rail" aria-label="Главы курса">
+      <a href="01-osnovy.html" title="01 · Основы" aria-label="Глава 01 · Основы">01</a>
+      <a href="02-istoriya.html" title="02 · История" aria-label="Глава 02 · История">02</a>
+      <a href="03-vidy.html" title="03 · Виды систем" aria-label="Глава 03 · Виды систем">03</a>
+      <a href="04-v-desyatichnuyu.html" title="04 · В десятичную" aria-label="Глава 04 · В десятичную">04</a>
+      <a href="05-iz-desyatichnoy.html" title="05 · Из десятичной" aria-label="Глава 05 · Из десятичной">05</a>
+      <a href="06-rodstvennye.html" title="06 · 2, 8, 16" aria-label="Глава 06 · 2, 8, 16">06</a>
+      <a href="07-slozhenie-vychitanie.html" title="07 · Столбиком" aria-label="Глава 07 · Столбиком">07</a>
+      <a href="08-umnozhenie-delenie.html" class="is-current" aria-current="page" title="08 · Умножение и деление" aria-label="Глава 08 · Умножение и деление">08</a>
+      <a href="09-praktika.html" title="09 · Практика" aria-label="Глава 09 · Практика">09</a>
+    </nav>
+  </div>
+</section>
+
+<div class="chapter-body">
+  <aside class="rail" aria-label="Заметка к главе">
+    <div class="rail-num"><span>08</span><span class="total">/ 09</span></div>
+    <p class="rail-note">Умножение — это сложение сдвинутых копий. Деление — обратная операция, где на каждом шаге снова работает вычитание.</p>
+  </aside>
+
+  <article class="chapter-article">
+    <div class="prose">
+      <p>В умножении столбиком каждая цифра одного числа умножается на каждую цифру другого. Строки сдвигаются влево, как в десятичной системе, а затем складываются уже знакомым способом. В шестнадцатеричной <span class="mono">2F · 3</span> — это <span class="mono">47<sub>10</sub> · 3 = 141<sub>10</sub> = 8D<sub>16</sub></span>: <span class="mono">F·3 = 45<sub>10</sub> = 2·16 + 13</span>, поэтому пишем D и переносим 2.</p>
+    </div>
+
+    <h2 class="subhead">Умножение</h2>
+
+    <figure class="sheet">
+      <figcaption class="sheet-label">1011<sub>2</sub> × 101<sub>2</sub> в столбик</figcaption>
+      <pre class="longmath" aria-label="1011 умножить на 101 равно 110111 в двоичной системе">      1011
+   ×   101
+   ────────
+      1011
+     0000
+    1011
+   ────────
+    110111</pre>
+      <p class="sheet-note">11 · 5 = 55 = <b>32 + 16 + 4 + 2 + 1</b> = <span class="mono">110111<sub>2</sub></span>. Нулевую строку можно пропустить.</p>
+    </figure>
+
+    <div class="prose">
+      <p>В двоичной системе частичные произведения особенно просты: умножение на 1 повторяет число, на 0 — даёт строку нулей. Поэтому двоичное умножение сводится к сдвигам и сложению — именно так его и реализуют в схемах.</p>
+    </div>
+
+    <h2 class="subhead">Деление</h2>
+
+    <div class="prose">
+      <p>Деление уголком — это повторяющееся вычитание. На каждом шаге берём столько старших цифр делимого, чтобы получилось число не меньше делителя, подбираем цифру частного и вычитаем. Проверка универсальна: <span class="mono">частное · делитель + остаток = делимое</span>.</p>
+      <p>Пример: <span class="mono">110111<sub>2</sub> ÷ 101<sub>2</sub> = 1011<sub>2</sub></span>. В десятичной это <span class="mono">55 ÷ 5 = 11</span>; обратное умножение <span class="mono">1011<sub>2</sub> · 101<sub>2</sub> = 110111<sub>2</sub></span> подтверждает результат.</p>
+    </div>
+
+    <figure class="sheet">
+      <figcaption class="sheet-label">110111<sub>2</sub> ÷ 101<sub>2</sub> уголком</figcaption>
+      <pre class="longmath" aria-label="110111 разделить на 101 равно 1011, остаток 0">        1011
+101 ) 110111
+      101
+      ----
+       0111
+        101
+        ----
+         0101
+          101
+          ----
+             0</pre>
+      <p class="sheet-note">На каждом шаге из текущего остатка вычитаем делитель <span class="mono">101<sub>2</sub></span>; единица частного появляется там, где делитель помещается. Остаток 0 подтверждает деление нацело.</p>
+    </figure>
+
+    <div class="formula">
+      <span class="label">Проверка деления</span>
+      <p>делимое = делитель · частное + остаток</p>
+      <p>В любом основании: 110111<sub>2</sub> = 101<sub>2</sub> · 1011<sub>2</sub> + 0</p>
+    </div>
+
+    <div class="quiz" id="mulTrainer" role="region" aria-labelledby="mulTitle">
+      <p class="fraction-title" id="mulTitle">Проверьте себя · умножение и деление</p>
+      <div class="fraction-controls">
+        <label for="mulMode">Операция</label>
+        <select id="mulMode">
+          <option value="mul" selected>умножение</option>
+          <option value="div">деление</option>
+        </select>
+        <label for="mulBase">Основание</label>
+        <select id="mulBase">
+          <option value="2">2 — двоичная</option>
+          <option value="8">8 — восьмеричная</option>
+          <option value="10">10 — десятичная</option>
+          <option value="16" selected>16 — шестнадцатеричная</option>
+        </select>
+        <button class="btn" type="button" id="mulNew">Новый пример</button>
+      </div>
+      <p class="quiz-expr" id="mulExpr" aria-live="polite"></p>
+      <div class="fraction-controls">
+        <label for="mulAnswer">Ответ</label>
+        <input id="mulAnswer" type="text" inputmode="text" spellcheck="false" autocomplete="off" autocapitalize="characters" aria-describedby="mulStatus">
+        <button class="btn btn--primary" type="button" id="mulCheck">Проверить</button>
+      </div>
+      <p class="quiz-status" id="mulStatus" role="status"></p>
+    </div>
+    <p class="js-fallback">Интерактив умножения и деления недоступен. Статические примеры и правила выше работают без JavaScript.</p>
+
+    <div class="callout">
+      <span class="callout-label">Когда переводить в десятичную</span>
+      <p>Перевод — законная проверка, но не обязательный шаг. Если задание требует посчитать в основании 2, 8 или 16, выполняйте действия в нём: ответ должен быть записан в той же системе. Десятичные значения держите в уме только для контроля.</p>
+    </div>
+
+    <div class="callout callout--green">
+      <span class="callout-label">Что тренировать</span>
+      <p>Сначала — таблицу умножения одной цифры на одну в нужном основании. Для 16 это произведения до 225<sub>10</sub>; для 2 — всего четыре случая. Дальше работает обычный столбик: перенос внутри строки, сдвиг, сложение.</p>
+    </div>
+  </article>
+</div>
+
+<nav class="pager" aria-label="Навигация по главам">
+  <a class="pager-link pager-prev" href="07-slozhenie-vychitanie.html">
+    <span class="pager-label">← Предыдущая глава</span>
+    <span class="pager-row"><span class="pager-num">07</span><span class="pager-title">Сложение и вычитание</span></span>
+  </a>
+  <a class="pager-link pager-next" href="09-praktika.html">
+    <span class="pager-label">Следующая глава →</span>
+    <span class="pager-row"><span class="pager-num">09</span><span class="pager-title">Практика</span></span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="site-footer site-footer--compact">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>Системы счисления · глава 08 из 09</span>
+      <a href="index.html#route">Содержание ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/numlib.js?v=20261111-5"></script>
+<script src="assets/app.js?v=20261111-5"></script>
+</body>
+</html>

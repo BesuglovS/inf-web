@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Виды систем счисления — позиционные и непозиционные</title>
+<meta name="description" content="Классификация систем счисления: унарные, аддитивные, мультипликативные и позиционные; основания 2, 8, 10, 12, 16, 60; смешанные системы и примеры.">
+<meta name="theme-color" content="#15223B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Системы счисления">
+<link rel="canonical" href="https://inf.nayanovaacademy.ru/sys/03-vidy.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Системы счисления">
+<meta property="og:title" content="Виды систем счисления — позиционные и непозиционные">
+<meta property="og:description" content="Классификация систем счисления: унарные, аддитивные, мультипликативные и позиционные; основания 2, 8, 10, 12, 16, 60; смешанные системы и примеры.">
+<meta property="og:url" content="https://inf.nayanovaacademy.ru/sys/03-vidy.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Виды систем счисления — позиционные и непозиционные">
+<meta name="twitter:description" content="Классификация систем счисления: унарные, аддитивные, мультипликативные и позиционные; основания 2, 8, 10, 12, 16, 60; смешанные системы и примеры.">
+<meta property="og:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta name="twitter:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css?v=20261111-5">
+<link rel="apple-touch-icon" href="assets/icon-192.png?v=20261111-5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315223B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23F2765F' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=20261111-5">
+</head>
+<body id="top">
+
+<a class="skip-link" href="#content">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">b</span>
+      <span class="brand-text">Системы счисления</span>
+    </a>
+    <div class="header-side">
+      <span class="header-chapter"><span class="sr-only">Глава </span>03 / 09</span>
+      <a class="header-contents" href="index.html#route">Содержание</a>
+    </div>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+
+<section class="chapter-open" aria-labelledby="ch-title">
+  <div class="chapter-open-inner">
+    <div class="chapter-open-copy">
+      <p class="chapter-kicker">Глава 03 · Классификация</p>
+      <h1 id="ch-title">Позиционные и не только</h1>
+      <p class="chapter-lead">Системы различают по тому, зависит ли значение знака от позиции и как знаки соединяются. Позиционная запись — самый удобный, но не единственный способ считать.</p>
+    </div>
+    <div class="chapter-watermark" aria-hidden="true">03</div>
+    <nav class="chapter-rail" aria-label="Главы курса">
+      <a href="01-osnovy.html" title="01 · Основы" aria-label="Глава 01 · Основы">01</a>
+      <a href="02-istoriya.html" title="02 · История" aria-label="Глава 02 · История">02</a>
+      <a href="03-vidy.html" class="is-current" aria-current="page" title="03 · Виды систем" aria-label="Глава 03 · Виды систем">03</a>
+      <a href="04-v-desyatichnuyu.html" title="04 · В десятичную" aria-label="Глава 04 · В десятичную">04</a>
+      <a href="05-iz-desyatichnoy.html" title="05 · Из десятичной" aria-label="Глава 05 · Из десятичной">05</a>
+      <a href="06-rodstvennye.html" title="06 · 2, 8, 16" aria-label="Глава 06 · 2, 8, 16">06</a>
+      <a href="07-slozhenie-vychitanie.html" title="07 · Столбиком" aria-label="Глава 07 · Столбиком">07</a>
+      <a href="08-umnozhenie-delenie.html" title="08 · Умножение и деление" aria-label="Глава 08 · Умножение и деление">08</a>
+      <a href="09-praktika.html" title="09 · Практика" aria-label="Глава 09 · Практика">09</a>
+    </nav>
+  </div>
+</section>
+
+<div class="chapter-body">
+  <aside class="rail" aria-label="Заметка к главе">
+    <div class="rail-num"><span>03</span><span class="total">/ 09</span></div>
+    <p class="rail-note">Тип системы отвечает на вопрос «как читать знаки», а основание — «сколько цифр в алфавите». Это разные характеристики.</p>
+  </aside>
+
+  <article class="chapter-article">
+    <div class="prose">
+      <p>У всех систем одна задача: превратить набор знаков в число. Разница — в правиле сборки. В унарной системе число равно количеству знаков; в аддитивной — сумме значений; в мультипликативной — сумме «цифра × явно записанный множитель»; в позиционной — сумме цифр, умноженных на степени основания.</p>
+    </div>
+
+    <h2 class="subhead">Классификация</h2>
+
+    <div class="taxonomy">
+      <div class="taxonomy-col">
+        <h3>Непозиционные</h3>
+        <p class="taxonomy-sub">Значение знака не зависит от того, где он стоит.</p>
+        <ul class="taxonomy-list">
+          <li><b>Унарные</b><span>Один знак — одна единица. Зарубки, счётные палочки.</span></li>
+          <li><b>Аддитивные</b><span>Значения знаков складываются. Египетская, римская.</span></li>
+          <li><b>Мультипликативные</b><span>Цифра умножается на разрядный множитель. Китайская иероглифическая запись.</span></li>
+        </ul>
+      </div>
+      <div class="taxonomy-col">
+        <h3>Позиционные</h3>
+        <p class="taxonomy-sub">Значение цифры задаётся позицией в записи.</p>
+        <ul class="taxonomy-list">
+          <li><b>С целым основанием</b><span>Двоичная, восьмеричная, десятичная, шестнадцатеричная.</span></li>
+          <li><b>Смешанные</b><span>Разные основания в соседних разрядах: время, углы.</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="table-note">Границы между типами не всегда строгие: в китайской записи разряды названы словами, а не задаются одной позицией. Классификация описывает способ сборки числа, а не «правильность» системы.</p>
+
+    <h2 class="subhead">Четыре способа собрать число</h2>
+
+    <div class="type-grid">
+      <section class="type-card">
+        <span class="type-num">01 · УНАРНАЯ</span>
+        <h3>Сколько знаков — такое число</h3>
+        <p>Каждый предмет обозначается одной насечкой. Сложение сводится к добавлению знаков, вычитание — к удалению. Проще не придумать, но для больших чисел запись становится необозримой.</p>
+        <div class="type-ex">IIIIIII = 7 · зарубки · счётные палочки</div>
+      </section>
+
+      <section class="type-card">
+        <span class="type-num">02 · АДДИТИВНАЯ</span>
+        <h3>Значения складываются</h3>
+        <p>Для разных величин есть разные знаки, а число собирается суммой. Позиция не важна. В римской записи есть и вычитание: IV = 5 − 1, IX = 10 − 1.</p>
+        <div class="type-ex">XXIV = 10 + 10 + (5 − 1) = 24</div>
+      </section>
+
+      <section class="type-card">
+        <span class="type-num">03 · МУЛЬТИПЛИКАТИВНАЯ</span>
+        <h3>Цифра × разрядный множитель</h3>
+        <p>Разряд записывается отдельным словом или знаком. Число собирается из произведений: три сотни, две десятки, четыре единицы. Позиция сама по себе ничего не задаёт.</p>
+        <div class="type-ex"><span lang="zh-Hans">三百二十四</span> = 3·100 + 2·10 + 4 = 324</div>
+      </section>
+
+      <section class="type-card type-card--accent">
+        <span class="type-num">04 · ПОЗИЦИОННАЯ</span>
+        <h3>Цифра × степень основания</h3>
+        <p>Одна и та же цифра в разных разрядах значит разное. Достаточно b цифр, включая ноль для пустых разрядов. Алгоритмы сложения и умножения получаются одинаковыми для любого основания.</p>
+        <div class="type-ex">2F<sub>16</sub> = 2·16 + 15 = 47<sub>10</sub></div>
+      </section>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table stack-table">
+        <caption>Сравнение типов</caption>
+        <thead><tr><th scope="col">Тип</th><th scope="col">Как получается число</th><th scope="col">Пример</th><th scope="col">Слабое место</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Тип">Унарная</td><td data-label="Как получается">количество знаков</td><td data-label="Пример">IIIIIII = 7</td><td data-label="Слабое место">длина записи</td></tr>
+          <tr><td data-label="Тип">Аддитивная</td><td data-label="Как получается">сумма значений</td><td data-label="Пример">XXIV = 24</td><td data-label="Слабое место">громоздкая запись</td></tr>
+          <tr><td data-label="Тип">Мультипликативная</td><td data-label="Как получается">сумма «цифра × множитель»</td><td data-label="Пример"><span lang="zh-Hans">三百二十四</span> = 324</td><td data-label="Слабое место">нужно знать множители</td></tr>
+          <tr><td data-label="Тип">Позиционная</td><td data-label="Как получается">сумма «цифра × b<sup>разряд</sup>»</td><td data-label="Пример">2F<sub>16</sub> = 47<sub>10</sub></td><td data-label="Слабое место">нужен знак нуля и алфавит</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="subhead">Основания, которые встречаются</h2>
+
+    <div class="prose">
+      <p>В позиционной системе главный параметр — основание <b>b</b>. Оно задаёт, сколько цифр доступно и во сколько раз растёт вес следующего разряда. Основание не обязано быть степенью двойки: в истории и в быту встречаются 12 и 60.</p>
+      <p>Если основание больше десяти, привычных цифр не хватает. После 9 идут буквы: A = 10, B = 11, C = 12, D = 13, E = 14, F = 15. Поэтому запись 2F<sub>16</sub> читается как «два, пятнадцать», а не как число с буквой-множителем.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table stack-table">
+        <caption>Где встречаются разные основания</caption>
+        <thead><tr><th scope="col">b</th><th scope="col">Система</th><th scope="col">Где встречается</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Основание">2</td><td data-label="Система">двоичная</td><td data-label="Где встречается">компьютеры, логические схемы</td></tr>
+          <tr><td data-label="Основание">8</td><td data-label="Система">восьмеричная</td><td data-label="Где встречается">компактная запись битов, права доступа Unix</td></tr>
+          <tr><td data-label="Основание">10</td><td data-label="Система">десятичная</td><td data-label="Где встречается">повседневный счёт</td></tr>
+          <tr><td data-label="Основание">12</td><td data-label="Система">двенадцатеричная</td><td data-label="Где встречается">дюжины, 12 часов, 12 месяцев</td></tr>
+          <tr><td data-label="Основание">16</td><td data-label="Система">шестнадцатеричная</td><td data-label="Где встречается">адреса памяти, цвета <span class="mono">#FF8800</span></td></tr>
+          <tr><td data-label="Основание">60</td><td data-label="Система">шестидесятеричная</td><td data-label="Где встречается">минуты, секунды, углы</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Основание 12 не стало общей системой счёта, но оставило дюжину, гросс (144) и 12 часов на циферблате. Основание 60 — в делении часа и градуса.</p>
+
+    <h2 class="subhead">Смешанные системы</h2>
+
+    <div class="prose">
+      <p>Время записывают в смешанной системе: <span class="mono">2:30:15</span> — часы, минуты и секунды. Минуты и секунды считаются по основанию 60, а часы — по 24 (или 12 на циферблате). Вес разряда зависит от позиции, но единого основания нет: это не одна позиционная система, а набор согласованных.</p>
+      <p>Ранняя вавилонская система была позиционной по основанию 60, но без нуля: пустой разряд приходилось определять по контексту, позже появился знак-заполнитель. Майя использовали основание 20 и знак нуля; в календарных записях одна из позиций считалась по основанию 18. Позиционность и ноль — не одно и то же, хотя вместе они работают гораздо лучше.</p>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">Римская система: не позиционная</span>
+      <p>В записи <span class="mono">IV</span> значение I зависит от соседнего V, а не от фиксированного веса. Это аддитивная система с вычитанием. Она хорошо подходит для обозначения, но плохо — для вычислений.</p>
+    </div>
+
+    <div class="callout callout--green">
+      <span class="callout-label">Почему позиционная победила</span>
+      <p>Позиционная запись компактна: не нужно придумывать новый символ для каждой степени. Алгоритмы столбика получаются едиными для любого основания. Плата — необходимость знака нуля (или другого разделителя пустого разряда) для однозначной записи и строгого алфавита из b цифр.</p>
+    </div>
+
+    <div class="prose">
+      <p>Дальше в курсе — только позиционные системы с основаниями от 2 до 16. Но помнить о других типах полезно: они объясняют, почему привычная запись устроена именно так и что могло быть иначе.</p>
+    </div>
+  </article>
+</div>
+
+<nav class="pager" aria-label="Навигация по главам">
+  <a class="pager-link pager-prev" href="02-istoriya.html">
+    <span class="pager-label">← Предыдущая глава</span>
+    <span class="pager-row"><span class="pager-num">02</span><span class="pager-title">История</span></span>
+  </a>
+  <a class="pager-link pager-next" href="04-v-desyatichnuyu.html">
+    <span class="pager-label">Следующая глава →</span>
+    <span class="pager-row"><span class="pager-num">04</span><span class="pager-title">В десятичную</span></span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="site-footer site-footer--compact">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>Системы счисления · глава 03 из 09</span>
+      <a href="index.html#route">Содержание ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/numlib.js?v=20261111-5"></script>
+<script src="assets/app.js?v=20261111-5"></script>
+</body>
+</html>

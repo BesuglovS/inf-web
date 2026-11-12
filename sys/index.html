@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Системы счисления — короткий курс из 9 глав</title>
+<meta name="description" content="Курс по системам счисления: основы, история, перевод чисел, двоичная, восьмеричная и шестнадцатеричная системы, арифметика и практика.">
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css?v=20261111-5">
+<link rel="apple-touch-icon" href="assets/icon-192.png?v=20261111-5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315223B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23F2765F' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#15223B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Системы счисления">
+<link rel="canonical" href="https://inf.nayanovaacademy.ru/sys/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Системы счисления">
+<meta property="og:title" content="Системы счисления — короткий курс из 9 глав">
+<meta property="og:description" content="Курс по системам счисления: основы, история, перевод чисел, двоичная, восьмеричная и шестнадцатеричная системы, арифметика и практика.">
+<meta property="og:url" content="https://inf.nayanovaacademy.ru/sys/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:description" content="Курс по системам счисления: основы, история, перевод чисел, двоичная, восьмеричная и шестнадцатеричная системы, арифметика и практика.">
+<meta property="og:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta name="twitter:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<link rel="manifest" href="manifest.webmanifest">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Системы счисления",
+  "description": "Короткий курс из девяти глав: основы, история, виды систем, перевод чисел, арифметика в разных основаниях и практика.",
+  "inLanguage": "ru",
+  "url": "https://inf.nayanovaacademy.ru/sys/",
+  "isAccessibleForFree": true
+}
+</script>
+<link rel="stylesheet" href="assets/style.css?v=20261111-5">
+</head>
+<body id="top">
+
+<a class="skip-link" href="#route">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">b</span>
+      <span class="brand-text">Системы счисления</span>
+    </a>
+    <nav class="topnav" aria-label="Навигация">
+      <a href="#route">Маршрут</a>
+      <a href="02-istoriya.html">История</a>
+      <a href="03-vidy.html">Виды</a>
+      <a href="09-praktika.html">Практика</a>
+      <a href="trenazher.html">Тренажёр</a>
+    </nav>
+    <a class="header-contents home-contents-mobile" href="#route">Содержание</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">Курс · 9 глав · основания 2–16</p>
+      <h1 id="hero-title">Системы <br><span class="mark">счисления</span></h1>
+      <p class="hero-lead">От цифры и разряда — до перевода, истории и арифметики в любом основании до 16. Девять коротких глав, примеры и тренажёры: почему <span class="mono">10</span> не всегда десять.</p>
+
+      <div class="hero-actions">
+        <a class="hero-cta hero-cta--primary" href="01-osnovy.html">Начать с первой главы <span aria-hidden="true">→</span></a>
+        <a class="hero-cta" href="#route">Маршрут курса</a>
+      </div>
+
+      <div class="hero-eq-wrap">
+        <p class="eq-caption"><span>Одно число — четыре записи</span><span>нажмите на строку</span></p>
+        <div class="eq-table" id="heroEq" role="group" aria-label="Записи текущего числа в разных системах"></div>
+      </div>
+      <p class="js-fallback">Интерактив недоступен. Теория, маршрут и все девять глав работают без JavaScript.</p>
+    </div>
+
+    <section class="machine" aria-labelledby="machine-title">
+      <div class="machine-head">
+        <div>
+          <p class="machine-kicker">Интерактив · разбор числа</p>
+          <h2 class="machine-title" id="machine-title">По разрядам</h2>
+        </div>
+        <div class="machine-decimal">
+          <span>в десятичной</span>
+          <b id="machineValue">2 026</b>
+        </div>
+      </div>
+
+      <div class="field" id="numField">
+        <div class="field-top">
+          <label for="numInput">Запись числа</label>
+          <span class="field-base" id="baseName" aria-live="polite">десятичная</span>
+        </div>
+        <input id="numInput" type="text" inputmode="text" value="2026" spellcheck="false" autocomplete="off" autocapitalize="characters" aria-describedby="baseName machineError">
+      </div>
+
+      <div class="base-picker" id="basePicker" role="group" aria-label="Основание системы счисления"></div>
+
+      <div class="machine-tools">
+        <button class="machine-tool" type="button" id="machineRandom">Случайное число</button>
+        <button class="machine-tool" type="button" id="machineCopy">Копировать число</button>
+      </div>
+
+      <div class="cells" id="cells" aria-hidden="true"></div>
+      <div class="machine-sum" id="machineSum" aria-live="polite"></div>
+      <p class="machine-error" id="machineError" role="status"></p>
+    </section>
+  </div>
+</section>
+
+<section class="route" id="route" tabindex="-1" aria-labelledby="route-title">
+  <div class="route-inner">
+    <header class="route-head">
+      <p class="route-kicker">Маршрут · 9 глав</p>
+      <div>
+        <h2 id="route-title">От разряда до столбика в двоичной</h2>
+        <p class="route-lead">Каждая глава — одна тема и несколько экранов чтения. Сначала теория и история, затем перевод, арифметика и практика. В конце каждой главы есть переход к следующей.</p>
+      </div>
+    </header>
+
+    <div class="route-groups">
+      <section class="route-group" aria-labelledby="route-theory">
+        <h3 id="route-theory">Теория <span>01–03</span></h3>
+        <a class="route-item" href="01-osnovy.html">
+          <span class="route-num">01</span>
+          <span class="route-copy"><b>Основы</b><span>Цифра, разряд, вес и основание.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="route-item" href="02-istoriya.html">
+          <span class="route-num">02</span>
+          <span class="route-copy"><b>История</b><span>Зарубки, Вавилон, Рим, ноль и путь к двоичной системе.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="route-item" href="03-vidy.html">
+          <span class="route-num">03</span>
+          <span class="route-copy"><b>Виды систем</b><span>Унарные, аддитивные, мультипликативные и позиционные.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+      </section>
+
+      <section class="route-group" aria-labelledby="route-convert">
+        <h3 id="route-convert">Перевод <span>04–06</span></h3>
+        <a class="route-item" href="04-v-desyatichnuyu.html">
+          <span class="route-num">04</span>
+          <span class="route-copy"><b>В десятичную</b><span>Развёрнутая форма и схема Горнера для любого основания.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="route-item" href="05-iz-desyatichnoy.html">
+          <span class="route-num">05</span>
+          <span class="route-copy"><b>Из десятичной</b><span>Деление с остатком, порядок остатков, дробная часть и тренажёр.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="route-item" href="06-rodstvennye.html">
+          <span class="route-num">06</span>
+          <span class="route-copy"><b>2 · 8 · 16</b><span>Триады и тетрады: перевод между родственными основаниями.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+      </section>
+
+      <section class="route-group" aria-labelledby="route-math">
+        <h3 id="route-math">Арифметика <span>07–08</span></h3>
+        <a class="route-item" href="07-slozhenie-vychitanie.html">
+          <span class="route-num">07</span>
+          <span class="route-copy"><b>Столбиком</b><span>Перенос и заём в любом основании. Пошаговый тренажёр.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="route-item" href="08-umnozhenie-delenie.html">
+          <span class="route-num">08</span>
+          <span class="route-copy"><b>Умножение и деление</b><span>Частичные произведения, сдвиг, деление уголком и самопроверка.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+      </section>
+
+      <section class="route-group" aria-labelledby="route-practice">
+        <h3 id="route-practice">Практика <span>09</span></h3>
+        <a class="route-item" href="09-praktika.html">
+          <span class="route-num">09</span>
+          <span class="route-copy"><b>Ошибки и самопроверка</b><span>Восемь задач с разбором и чек-лист проверки ответа.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+      </section>
+
+      <section class="route-group" aria-labelledby="route-trainer">
+        <h3 id="route-trainer">Тренажёр <span>4 типа</span></h3>
+        <a class="route-item" href="trenazher.html">
+          <span class="route-num">4</span>
+          <span class="route-copy"><b>Генератор заданий</b><span>Перевод в обе стороны, сложение и вычитание с проверкой и подсказками.</span></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
+        </a>
+      </section>
+    </div>
+
+    <a class="route-start" href="01-osnovy.html">Начать с первой главы <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-quote">Основание — это не индекс.<br><span class="accent">Это смысл.</span></p>
+    <nav class="footer-nav" aria-label="Разделы курса">
+      <a href="01-osnovy.html">Основы</a>
+      <a href="02-istoriya.html">История</a>
+      <a href="03-vidy.html">Виды</a>
+      <a href="04-v-desyatichnuyu.html">Перевод</a>
+      <a href="07-slozhenie-vychitanie.html">Столбиком</a>
+      <a href="09-praktika.html">Практика</a>
+      <a href="trenazher.html">Тренажёр</a>
+    </nav>
+    <div class="footer-bottom">
+      <span>Учебный курс · информатика · 2026</span>
+      <a href="#top">Наверх ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/numlib.js?v=20261111-5"></script>
+<script src="assets/app.js?v=20261111-5"></script>
+</body>
+</html>

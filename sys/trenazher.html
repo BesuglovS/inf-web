@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Тренажёр: перевод и арифметика в системах счисления</title>
+<meta name="description" content="Генератор заданий по системам счисления: перевод в десятичную и обратно, сложение и вычитание столбиком в основаниях 2–16 с автоматической проверкой и подсказками.">
+<meta name="theme-color" content="#15223B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Системы счисления">
+<link rel="canonical" href="https://inf.nayanovaacademy.ru/sys/trenazher.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Системы счисления">
+<meta property="og:title" content="Тренажёр: перевод и арифметика в системах счисления">
+<meta property="og:description" content="Четыре типа заданий с генерацией, проверкой и подсказками: перевод в десятичную и обратно, сложение и вычитание столбиком в основаниях 2–16.">
+<meta property="og:url" content="https://inf.nayanovaacademy.ru/sys/trenazher.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Тренажёр: перевод и арифметика в системах счисления">
+<meta name="twitter:description" content="Четыре типа заданий с генерацией, проверкой и подсказками: перевод в десятичную и обратно, сложение и вычитание столбиком в основаниях 2–16.">
+<meta property="og:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta name="twitter:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css?v=20261111-5">
+<link rel="apple-touch-icon" href="assets/icon-192.png?v=20261111-5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315223B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23F2765F' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=20261111-5">
+</head>
+<body id="top">
+
+<a class="skip-link" href="#content">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">b</span>
+      <span class="brand-text">Системы счисления</span>
+    </a>
+    <div class="header-side">
+      <span class="header-chapter">Тренажёр</span>
+      <a class="header-contents" href="index.html#route">Содержание</a>
+    </div>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+
+<section class="chapter-open" aria-labelledby="ch-title">
+  <div class="chapter-open-inner">
+    <div class="chapter-open-copy">
+      <p class="chapter-kicker">Практика · генератор заданий</p>
+      <h1 id="ch-title">Тренажёр: четыре типа заданий</h1>
+      <p class="chapter-lead">Перевод в обе стороны, сложение и вычитание столбиком в любом основании от 2 до 16. Каждое задание проверяется автоматически, а подсказки открываются по одной.</p>
+    </div>
+    <div class="chapter-watermark" aria-hidden="true">4</div>
+  </div>
+</section>
+
+<div class="chapter-body">
+  <aside class="rail" aria-label="О тренажёре">
+    <div class="rail-num"><span>4</span><span class="total">/ 4</span></div>
+    <p class="rail-note">Задания генерируются заново. Выберите основание или оставьте случайное — счётчик сохраняется до сброса.</p>
+  </aside>
+
+  <article class="chapter-article">
+    <p class="js-fallback">Тренажёр недоступен. Статические задачи с разбором есть в <a href="09-praktika.html">главе 09</a>.</p>
+
+    <div class="trainer" id="trainer" role="region" aria-label="Тренажёр по системам счисления">
+      <div class="trainer-toolbar">
+        <label for="trainerBase">Основание для новых заданий</label>
+        <select id="trainerBase"></select>
+        <button class="btn btn--primary" type="button" id="trainerAll">Новые задания</button>
+        <button class="btn btn--quiet" type="button" id="trainerReset">Сбросить счёт</button>
+        <span class="trainer-score" id="trainerScore">Верно: 0 · Попыток: 0</span>
+      </div>
+      <div class="trainer-grid" id="trainerGrid"></div>
+    </div>
+  </article>
+</div>
+
+<nav class="pager" aria-label="Навигация по разделам">
+  <a class="pager-link pager-prev" href="09-praktika.html">
+    <span class="pager-label">← Предыдущая страница</span>
+    <span class="pager-row"><span class="pager-num">09</span><span class="pager-title">Практика</span></span>
+  </a>
+  <a class="pager-link pager-next" href="index.html#route">
+    <span class="pager-label">К содержанию →</span>
+    <span class="pager-row"><span class="pager-title">Маршрут курса</span></span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="site-footer site-footer--compact">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>Системы счисления · тренажёр</span>
+      <a href="index.html#route">Содержание ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/numlib.js?v=20261111-5"></script>
+<script src="assets/exercises.js?v=20261111-5"></script>
+<script src="assets/app.js?v=20261111-5"></script>
+</body>
+</html>

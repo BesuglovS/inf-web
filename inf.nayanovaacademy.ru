@@ -23,7 +23,11 @@ server {
     add_header X-Content-Type-Options "nosniff" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
     add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()" always;
-    add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://auth.nayanovaacademy.ru; frame-src https://vk.com https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self' https://auth.nayanovaacademy.ru; frame-ancestors 'none'" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-NRwVeOU+cD2bYBE/L1uBO0M2Jv+NX9am8i1VvFK/fb8=' 'sha256-h8/bCh96QyEvTD36tS3UveISbUYHmdVWmxJ6OSZwZU8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://auth.nayanovaacademy.ru; frame-src https://vk.com https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self' https://auth.nayanovaacademy.ru; frame-ancestors 'none'" always;
+
+    types {
+        application/manifest+json webmanifest;
+    }
 
     root /var/www/inf.nayanovaacademy.ru/public;
     index index.html index.htm;
@@ -76,6 +80,25 @@ server {
         deny all;
         access_log off;
         log_not_found off;
+    }
+
+    # Мини-курс «Системы счисления»: отдельный статический PWA в /sys/.
+    location = /sys {
+        return 301 /sys/;
+    }
+
+    location = /sys/sw.js {
+        expires -1;
+    }
+
+    location ^~ /sys/ {
+        try_files $uri $uri/ =404;
+        error_page 404 /sys/404.html;
+
+        location ~* ^/sys/assets/.*\.(css|js|woff2|png|svg)$ {
+            expires 30d;
+            access_log off;
+        }
     }
 
     # HTML не кэшируем: после обновления сайта пользователь получает свежую версию.

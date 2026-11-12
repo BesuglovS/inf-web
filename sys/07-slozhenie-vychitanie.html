@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Сложение и вычитание столбиком в разных системах</title>
+<meta name="description" content="Пошаговое сложение и вычитание столбиком в разных основаниях: перенос, заём и интерактивный тренажёр.">
+<meta name="theme-color" content="#15223B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Системы счисления">
+<link rel="canonical" href="https://inf.nayanovaacademy.ru/sys/07-slozhenie-vychitanie.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Системы счисления">
+<meta property="og:title" content="Сложение и вычитание столбиком в разных системах">
+<meta property="og:description" content="Пошаговое сложение и вычитание столбиком в разных основаниях: перенос, заём и интерактивный тренажёр.">
+<meta property="og:url" content="https://inf.nayanovaacademy.ru/sys/07-slozhenie-vychitanie.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Сложение и вычитание столбиком в разных системах">
+<meta name="twitter:description" content="Пошаговое сложение и вычитание столбиком в разных основаниях: перенос, заём и интерактивный тренажёр.">
+<meta property="og:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta name="twitter:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css?v=20261111-5">
+<link rel="apple-touch-icon" href="assets/icon-192.png?v=20261111-5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315223B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23F2765F' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=20261111-5">
+</head>
+<body id="top">
+
+<a class="skip-link" href="#content">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">b</span>
+      <span class="brand-text">Системы счисления</span>
+    </a>
+    <div class="header-side">
+      <span class="header-chapter"><span class="sr-only">Глава </span>07 / 09</span>
+      <a class="header-contents" href="index.html#route">Содержание</a>
+    </div>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+
+<section class="chapter-open" aria-labelledby="ch-title">
+  <div class="chapter-open-inner">
+    <div class="chapter-open-copy">
+      <p class="chapter-kicker">Глава 07 · Арифметика</p>
+      <h1 id="ch-title">Сложение и вычитание столбиком</h1>
+      <p class="chapter-lead">Столбик — поразрядный алгоритм. В десятичной системе мы переносим единицу после 9. В основании b это происходит после b − 1.</p>
+    </div>
+    <div class="chapter-watermark" aria-hidden="true">07</div>
+    <nav class="chapter-rail" aria-label="Главы курса">
+      <a href="01-osnovy.html" title="01 · Основы" aria-label="Глава 01 · Основы">01</a>
+      <a href="02-istoriya.html" title="02 · История" aria-label="Глава 02 · История">02</a>
+      <a href="03-vidy.html" title="03 · Виды систем" aria-label="Глава 03 · Виды систем">03</a>
+      <a href="04-v-desyatichnuyu.html" title="04 · В десятичную" aria-label="Глава 04 · В десятичную">04</a>
+      <a href="05-iz-desyatichnoy.html" title="05 · Из десятичной" aria-label="Глава 05 · Из десятичной">05</a>
+      <a href="06-rodstvennye.html" title="06 · 2, 8, 16" aria-label="Глава 06 · 2, 8, 16">06</a>
+      <a href="07-slozhenie-vychitanie.html" class="is-current" aria-current="page" title="07 · Столбиком" aria-label="Глава 07 · Столбиком">07</a>
+      <a href="08-umnozhenie-delenie.html" title="08 · Умножение и деление" aria-label="Глава 08 · Умножение и деление">08</a>
+      <a href="09-praktika.html" title="09 · Практика" aria-label="Глава 09 · Практика">09</a>
+    </nav>
+  </div>
+</section>
+
+<div class="chapter-body">
+  <aside class="rail" aria-label="Заметка к главе">
+    <div class="rail-num"><span>07</span><span class="total">/ 09</span></div>
+    <p class="rail-note">Правила те же, что в десятичной. Меняется только <b>порог переноса</b>: он равен основанию.</p>
+  </aside>
+
+  <article class="chapter-article">
+    <div class="prose">
+      <p>Складываем справа налево. Если сумма цифр в разряде дошла до основания, она «не помещается» в одну цифру: записываем <span class="mono">сумма − b</span>, а единицу переносим в следующий разряд. В вычитании всё наоборот: если верхняя цифра меньше, занимаем единицу старшего разряда — она стоит <span class="mono">b</span> единиц текущего.</p>
+    </div>
+
+    <h2 class="subhead">Правила</h2>
+
+    <div class="rule-grid">
+      <div class="rule">
+        <h3><span class="sign">+</span>Сложение</h3>
+        <ul>
+          <li>Запишите числа в столбик, выровняв по правому краю.</li>
+          <li>Складывайте разряды справа налево, не забывая про перенос.</li>
+          <li>Если сумма ≥ основания, запишите сумму минус основание и перенесите 1 влево.</li>
+          <li>Последний перенос становится новым старшим разрядом.</li>
+        </ul>
+        <div class="micro">1<sub>2</sub> + 1<sub>2</sub> = <b>10<sub>2</sub></b> · 7<sub>8</sub> + 1<sub>8</sub> = <b>10<sub>8</sub></b> · F<sub>16</sub> + 1<sub>16</sub> = <b>10<sub>16</sub></b></div>
+      </div>
+
+      <div class="rule">
+        <h3><span class="sign">−</span>Вычитание</h3>
+        <ul>
+          <li>Выравнивайте числа по правому краю, как при сложении.</li>
+          <li>Если верхняя цифра меньше нижней, займите 1 у старшего разряда.</li>
+          <li>Заём добавляет к текущей цифре основание b.</li>
+          <li>Если слева стоит 0, заём идёт дальше по цепочке нулей.</li>
+        </ul>
+        <div class="micro">10<sub>2</sub> − 1 = <b>1<sub>2</sub></b> · 10<sub>8</sub> − 1 = <b>7<sub>8</sub></b> · 10<sub>16</sub> − 1 = <b>F<sub>16</sub></b></div>
+      </div>
+    </div>
+
+    <div class="callout callout--plain">
+      <span class="callout-label">Полезное тождество</span>
+      <p>В любом основании <span class="mono">10<sub>b</sub> − 1 = (b − 1)</span>, то есть старшая цифра этой системы. Поэтому <span class="mono">10<sub>16</sub> − 1 = F</span>, а <span class="mono">10<sub>8</sub> − 1 = 7</span>.</p>
+    </div>
+
+    <h2 class="subhead">Тренажёр</h2>
+    <p class="table-note calc-intro">Выберите основание и операцию, затем нажимайте «Следующий шаг»: каждая колонка разбирается отдельно. «Другой пример» создаёт новое задание.</p>
+
+    <div class="calc" id="calc" role="region" aria-label="Тренажёр сложения и вычитания столбиком">
+      <div class="calc-head">
+        <div class="calc-tabs" role="group" aria-label="Операция">
+          <button class="calc-tab is-active" type="button" aria-pressed="true" data-mode="add" id="tabAdd">Сложение</button>
+          <button class="calc-tab" type="button" aria-pressed="false" data-mode="sub" id="tabSub">Вычитание</button>
+        </div>
+        <div class="calc-bases" role="group" aria-label="Основание примера" id="calcBases">
+          <span class="calc-bases-label">основание</span>
+          <button class="calc-base" type="button" data-base="2" aria-pressed="false" aria-label="Основание 2 — двоичная">2</button>
+          <button class="calc-base" type="button" data-base="3" aria-pressed="false" aria-label="Основание 3 — троичная">3</button>
+          <button class="calc-base" type="button" data-base="5" aria-pressed="false" aria-label="Основание 5 — пятеричная">5</button>
+          <button class="calc-base" type="button" data-base="8" aria-pressed="false" aria-label="Основание 8 — восьмеричная">8</button>
+          <button class="calc-base" type="button" data-base="10" aria-pressed="false" aria-label="Основание 10 — десятичная">10</button>
+          <button class="calc-base" type="button" data-base="12" aria-pressed="false" aria-label="Основание 12 — двенадцатеричная">12</button>
+          <button class="calc-base is-active" type="button" data-base="16" aria-pressed="true" aria-label="Основание 16 — шестнадцатеричная">16</button>
+        </div>
+      </div>
+
+      <div class="calc-body">
+        <div class="calc-board">
+          <div class="calc-expr">
+            <span class="expr" id="calcExpr" aria-live="polite">2F<sub>16</sub> + 7A<sub>16</sub></span>
+            <button class="calc-new" type="button" id="calcNew">другой пример ↻</button>
+          </div>
+          <div id="calcBoard"></div>
+        </div>
+        <div class="calc-side">
+          <p class="calc-progress" id="calcProgress">Разобрано 0 из 2</p>
+          <p class="calc-note" id="calcNote" aria-live="polite">Начинаем с младшего разряда — крайнего справа. Нажмите «Следующий шаг».</p>
+          <div class="calc-actions">
+            <button class="btn btn--primary" type="button" id="calcNext">Следующий шаг</button>
+            <button class="btn" type="button" id="calcAll">Показать всё</button>
+            <button class="btn btn--quiet" type="button" id="calcReset">Заново</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="js-fallback">Интерактив столбика недоступен. Правила и примеры выше работают без JavaScript; проверьте себя по статическому примеру <span class="mono">2F<sub>16</sub> + 7A<sub>16</sub> = A9<sub>16</sub></span>.</p>
+
+    <div class="callout callout--green">
+      <span class="callout-label">Как проверять</span>
+      <p>Вычитание проверяйте сложением: <span class="mono">разность + вычитаемое = уменьшаемое</span>. Сложение — вычитанием одного из слагаемых. Проверку можно делать в десятичной системе: результат должен совпасть с переводом.</p>
+    </div>
+  </article>
+</div>
+
+<nav class="pager" aria-label="Навигация по главам">
+  <a class="pager-link pager-prev" href="06-rodstvennye.html">
+    <span class="pager-label">← Предыдущая глава</span>
+    <span class="pager-row"><span class="pager-num">06</span><span class="pager-title">2, 8 и 16</span></span>
+  </a>
+  <a class="pager-link pager-next" href="08-umnozhenie-delenie.html">
+    <span class="pager-label">Следующая глава →</span>
+    <span class="pager-row"><span class="pager-num">08</span><span class="pager-title">Умножение и деление</span></span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="site-footer site-footer--compact">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>Системы счисления · глава 07 из 09</span>
+      <a href="index.html#route">Содержание ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/numlib.js?v=20261111-5"></script>
+<script src="assets/app.js?v=20261111-5"></script>
+</body>
+</html>

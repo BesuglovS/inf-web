@@ -122,7 +122,12 @@ $excludeArgs = @(
   '--exclude=data/inf.db',
   '--exclude=data/inf.db-shm',
   '--exclude=data/inf.db-wal',
-  '--exclude=data/.ratelimit'
+  '--exclude=data/.ratelimit',
+  '--exclude=sys/node_modules',
+  '--exclude=sys/tests',
+  '--exclude=sys/package.json',
+  '--exclude=sys/package-lock.json',
+  '--exclude=sys/.env'
 ) -join ' '
 
 $tarCmd   = "tar czf - $excludeArgs -C `"$srcPath`" . -C `"$markerDir`" version.json"

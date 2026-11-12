@@ -1,0 +1,16 @@
+{
+  "name": "sistemy-schisleniya",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Статический учебный курс «Системы счисления»",
+  "scripts": {
+    "test": "node --test tests/",
+    "check": "node --check assets/numlib.js && node --check assets/exercises.js && node --check assets/app.js && node --check sw.js && node --test tests/"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.3"
+  }
+}

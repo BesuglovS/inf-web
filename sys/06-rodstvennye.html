@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Двоичная, восьмеричная и шестнадцатеричная — триады и тетрады</title>
+<meta name="description" content="Связь систем 2, 8 и 16: группировка битов по три и четыре, таблица соответствия цифр, перевод без делений и примеры.">
+<meta name="theme-color" content="#15223B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Системы счисления">
+<link rel="canonical" href="https://inf.nayanovaacademy.ru/sys/06-rodstvennye.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Системы счисления">
+<meta property="og:title" content="Двоичная, восьмеричная и шестнадцатеричная — триады и тетрады">
+<meta property="og:description" content="Связь систем 2, 8 и 16: группировка битов по три и четыре, таблица соответствия цифр, перевод без делений и примеры.">
+<meta property="og:url" content="https://inf.nayanovaacademy.ru/sys/06-rodstvennye.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Двоичная, восьмеричная и шестнадцатеричная — триады и тетрады">
+<meta name="twitter:description" content="Связь систем 2, 8 и 16: группировка битов по три и четыре, таблица соответствия цифр, перевод без делений и примеры.">
+<meta property="og:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<meta name="twitter:image" content="https://inf.nayanovaacademy.ru/sys/assets/og-image.png?v=20261111-5">
+<meta name="twitter:image:alt" content="Системы счисления — короткий курс из 9 глав">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261111-5" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css?v=20261111-5">
+<link rel="apple-touch-icon" href="assets/icon-192.png?v=20261111-5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315223B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23F2765F' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=20261111-5">
+</head>
+<body id="top">
+
+<a class="skip-link" href="#content">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">b</span>
+      <span class="brand-text">Системы счисления</span>
+    </a>
+    <div class="header-side">
+      <span class="header-chapter"><span class="sr-only">Глава </span>06 / 09</span>
+      <a class="header-contents" href="index.html#route">Содержание</a>
+    </div>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+
+<section class="chapter-open" aria-labelledby="ch-title">
+  <div class="chapter-open-inner">
+    <div class="chapter-open-copy">
+      <p class="chapter-kicker">Глава 06 · Перевод</p>
+      <h1 id="ch-title">2, 8 и 16 — родственники</h1>
+      <p class="chapter-lead">Двоичная, восьмеричная и шестнадцатеричная системы связаны напрямую. Биты можно группировать и заменять цифрой — без делений и степеней.</p>
+    </div>
+    <div class="chapter-watermark" aria-hidden="true">06</div>
+    <nav class="chapter-rail" aria-label="Главы курса">
+      <a href="01-osnovy.html" title="01 · Основы" aria-label="Глава 01 · Основы">01</a>
+      <a href="02-istoriya.html" title="02 · История" aria-label="Глава 02 · История">02</a>
+      <a href="03-vidy.html" title="03 · Виды систем" aria-label="Глава 03 · Виды систем">03</a>
+      <a href="04-v-desyatichnuyu.html" title="04 · В десятичную" aria-label="Глава 04 · В десятичную">04</a>
+      <a href="05-iz-desyatichnoy.html" title="05 · Из десятичной" aria-label="Глава 05 · Из десятичной">05</a>
+      <a href="06-rodstvennye.html" class="is-current" aria-current="page" title="06 · 2, 8, 16" aria-label="Глава 06 · 2, 8, 16">06</a>
+      <a href="07-slozhenie-vychitanie.html" title="07 · Столбиком" aria-label="Глава 07 · Столбиком">07</a>
+      <a href="08-umnozhenie-delenie.html" title="08 · Умножение и деление" aria-label="Глава 08 · Умножение и деление">08</a>
+      <a href="09-praktika.html" title="09 · Практика" aria-label="Глава 09 · Практика">09</a>
+    </nav>
+  </div>
+</section>
+
+<div class="chapter-body">
+  <aside class="rail" aria-label="Заметка к главе">
+    <div class="rail-num"><span>06</span><span class="total">/ 09</span></div>
+    <p class="rail-note"><b>8 = 2³</b>, <b>16 = 2⁴</b>. Одна восьмеричная цифра — три бита, одна шестнадцатеричная — четыре.</p>
+  </aside>
+
+  <article class="chapter-article">
+    <div class="prose">
+      <p>Двоичная запись — это «сырые» биты. Восьмеричная цифра вмещает ровно три бита, потому что <span class="mono">2<sup>3</sup> = 8</span>; шестнадцатеричная — четыре, потому что <span class="mono">2<sup>4</sup> = 16</span>. Значит, двоичную запись можно резать на группы <b>справа налево</b> и заменять каждую группу одной цифрой.</p>
+      <p>Если длина не делится на 3 или 4, группы дополняют <b>слева</b>: <span class="mono">1011010</span> — это 7 бит, поэтому для восьмеричной записи получаем <span class="mono">001 011 010</span>. Ведущие нули не меняют значение.</p>
+    </div>
+
+    <h2 class="subhead">Группируем биты</h2>
+
+    <div class="examples">
+      <figure class="sheet">
+        <figcaption class="sheet-label">Двоичная → восьмеричная · по 3 бита</figcaption>
+        <div class="grouping">
+          <div class="group-expr">1011010<sub>2</sub> = 001 011 010</div>
+          <div class="chunks">
+            <span class="chunk"><span class="chunk-bits">001</span><span class="chunk-digit">1</span></span>
+            <span class="chunk"><span class="chunk-bits">011</span><span class="chunk-digit">3</span></span>
+            <span class="chunk"><span class="chunk-bits">010</span><span class="chunk-digit">2</span></span>
+          </div>
+          <p class="group-result">→ <b>132<sub>8</sub></b></p>
+          <p class="group-note">7 бит не делится на 3 — добавили два нуля слева.</p>
+        </div>
+      </figure>
+
+      <figure class="sheet">
+        <figcaption class="sheet-label">Двоичная → шестнадцатеричная · по 4 бита</figcaption>
+        <div class="grouping">
+          <div class="group-expr">1011010<sub>2</sub> = 0101 1010</div>
+          <div class="chunks">
+            <span class="chunk"><span class="chunk-bits">0101</span><span class="chunk-digit">5</span></span>
+            <span class="chunk"><span class="chunk-bits">1010</span><span class="chunk-digit">A</span></span>
+          </div>
+          <p class="group-result">→ <b>5A<sub>16</sub></b></p>
+          <p class="group-note">Один ведущий ноль слева: 1011010 — 7 бит, нужно 8.</p>
+        </div>
+      </figure>
+
+      <figure class="sheet">
+        <figcaption class="sheet-label">Обратно · цифра → группа бит</figcaption>
+        <div class="grouping">
+          <div class="group-expr">5A<sub>16</sub> = 0101 1010</div>
+          <div class="chunks">
+            <span class="chunk"><span class="chunk-bits">5 →</span><span class="chunk-digit">0101</span></span>
+            <span class="chunk"><span class="chunk-bits">A →</span><span class="chunk-digit">1010</span></span>
+          </div>
+          <p class="group-result">→ <b>1011010<sub>2</sub></b></p>
+          <p class="group-note">Ведущий ноль самой левой группы можно отбросить.</p>
+        </div>
+      </figure>
+
+      <figure class="sheet">
+        <figcaption class="sheet-label">Через двоичную · 16 → 8</figcaption>
+        <div class="grouping">
+          <div class="group-expr">5A<sub>16</sub> = 0101 1010 = 001 011 010</div>
+          <div class="chunks">
+            <span class="chunk"><span class="chunk-bits">0101 1010</span><span class="chunk-digit">5A</span></span>
+            <span class="arrow">→</span>
+            <span class="chunk"><span class="chunk-bits">001</span><span class="chunk-digit">1</span></span>
+            <span class="chunk"><span class="chunk-bits">011</span><span class="chunk-digit">3</span></span>
+            <span class="chunk"><span class="chunk-bits">010</span><span class="chunk-digit">2</span></span>
+          </div>
+          <p class="group-result">→ <b>132<sub>8</sub></b></p>
+          <p class="group-note">Промежуточная двоичная запись — общий «мост».</p>
+        </div>
+      </figure>
+    </div>
+
+    <h2 class="subhead">Таблица соответствия</h2>
+
+    <div class="table-split">
+      <div class="table-wrap">
+        <table class="data-table">
+          <caption>Цифры 0–7</caption>
+          <thead><tr><th scope="col">10</th><th scope="col">2</th><th scope="col">8</th><th scope="col">16</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td>0000</td><td>0</td><td>0</td></tr>
+            <tr><td>1</td><td>0001</td><td>1</td><td>1</td></tr>
+            <tr><td>2</td><td>0010</td><td>2</td><td>2</td></tr>
+            <tr><td>3</td><td>0011</td><td>3</td><td>3</td></tr>
+            <tr><td>4</td><td>0100</td><td>4</td><td>4</td></tr>
+            <tr><td>5</td><td>0101</td><td>5</td><td>5</td></tr>
+            <tr><td>6</td><td>0110</td><td>6</td><td>6</td></tr>
+            <tr><td>7</td><td>0111</td><td>7</td><td>7</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <caption>Цифры 8–15</caption>
+          <thead><tr><th scope="col">10</th><th scope="col">2</th><th scope="col">8</th><th scope="col">16</th></tr></thead>
+          <tbody>
+            <tr><td>8</td><td>1000</td><td>10</td><td>8</td></tr>
+            <tr><td>9</td><td>1001</td><td>11</td><td>9</td></tr>
+            <tr class="is-letter"><td>10</td><td>1010</td><td>12</td><td>A</td></tr>
+            <tr class="is-letter"><td>11</td><td>1011</td><td>13</td><td>B</td></tr>
+            <tr class="is-letter"><td>12</td><td>1100</td><td>14</td><td>C</td></tr>
+            <tr class="is-letter"><td>13</td><td>1101</td><td>15</td><td>D</td></tr>
+            <tr class="is-letter"><td>14</td><td>1110</td><td>16</td><td>E</td></tr>
+            <tr class="is-letter"><td>15</td><td>1111</td><td>17</td><td>F</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="table-note">Столбцы таблиц — основания систем: десятичная, двоичная, восьмеричная и шестнадцатеричная.</p>
+
+    <div class="callout callout--plain">
+      <span class="callout-label">Обозначения в тексте и коде</span>
+      <p>Основание записывают индексом: <span class="mono">1010<sub>2</sub></span>, <span class="mono">755<sub>8</sub></span>, <span class="mono">2F<sub>16</sub></span>. В программировании используют префиксы: <span class="mono">0b1010</span> — двоичная, <span class="mono">0o755</span> — восьмеричная, <span class="mono">0x2F</span> — шестнадцатеричная.</p>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">Почему с десяткой так нельзя</span>
+      <p><span class="mono">10 ≠ 2<sup>k</sup></span> ни для какого целого неотрицательного <span class="mono">k</span>, поэтому одной десятичной цифре не соответствует целое число бит. Для перевода в десятичную и обратно нужны степени или деление — группировка не поможет.</p>
+    </div>
+
+    <div class="callout callout--green">
+      <span class="callout-label">Как быстро проверить</span>
+      <p>Длина двоичной записи должна быть кратна 3 для восьмеричной и 4 для шестнадцатеричной после добавления ведущих нулей. Если групп получилось больше, чем цифр в ответе, — проверьте, не потерялся ли ноль в середине.</p>
+    </div>
+  </article>
+</div>
+
+<nav class="pager" aria-label="Навигация по главам">
+  <a class="pager-link pager-prev" href="05-iz-desyatichnoy.html">
+    <span class="pager-label">← Предыдущая глава</span>
+    <span class="pager-row"><span class="pager-num">05</span><span class="pager-title">Из десятичной</span></span>
+  </a>
+  <a class="pager-link pager-next" href="07-slozhenie-vychitanie.html">
+    <span class="pager-label">Следующая глава →</span>
+    <span class="pager-row"><span class="pager-num">07</span><span class="pager-title">Сложение и вычитание</span></span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="site-footer site-footer--compact">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>Системы счисления · глава 06 из 09</span>
+      <a href="index.html#route">Содержание ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/numlib.js?v=20261111-5"></script>
+<script src="assets/app.js?v=20261111-5"></script>
+</body>
+</html>
