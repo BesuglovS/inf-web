@@ -283,6 +283,8 @@ test('тренажёр: пошаговый ввод, проверка, подс�
   const newValue = nl.parseInBase(newSourceDigits, newSourceBase);
   for (let i = 0; i < newSourceDigits.length; i++) {
     const position = newSourceDigits.length - 1 - i;
+    setTrainerCell(toDecimal, 'rank', i, position);
+    setTrainerCell(toDecimal, 'exponent', i, position);
     setTrainerCell(toDecimal, 'term', i, nl.digitVal(newSourceDigits.charAt(i)) * Math.pow(newSourceBase, position));
   }
   setTrainerCell(toDecimal, 'sum', undefined, newValue);

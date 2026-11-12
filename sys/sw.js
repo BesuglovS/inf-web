@@ -2,7 +2,7 @@
    Версию кэша меняйте вместе с ?v= у assets в HTML. */
 'use strict';
 
-var VERSION = '20261112-1';
+var VERSION = '20261112-2';
 var CACHE = 'sys-' + VERSION;
 var SCOPE_ROOT = new URL('./', self.registration.scope).href;
 var SCOPE_PATH = new URL(SCOPE_ROOT).pathname;
@@ -24,21 +24,21 @@ var CORE = [
   'manifest.webmanifest',
   'robots.txt',
   'sitemap.xml',
-  'assets/style.css?v=20261112-1',
-  'assets/fonts.css?v=20261112-1',
-  'assets/numlib.js?v=20261112-1',
-  'assets/exercises.js?v=20261112-1',
-  'assets/app.js?v=20261112-1',
-  'assets/icon.svg?v=20261112-1',
-  'assets/icon-192.png?v=20261112-1',
-  'assets/icon-512.png?v=20261112-1',
-  'assets/og-image.png?v=20261112-1',
-  'assets/fonts/golos-text-400-cyrillic.woff2?v=20261112-1',
-  'assets/fonts/golos-text-400-latin.woff2?v=20261112-1',
-  'assets/fonts/jetbrains-mono-400-cyrillic.woff2?v=20261112-1',
-  'assets/fonts/jetbrains-mono-400-latin.woff2?v=20261112-1',
-  'assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261112-1',
-  'assets/fonts/yeseva-one-400-latin.woff2?v=20261112-1'
+  'assets/style.css?v=20261112-2',
+  'assets/fonts.css?v=20261112-2',
+  'assets/numlib.js?v=20261112-2',
+  'assets/exercises.js?v=20261112-2',
+  'assets/app.js?v=20261112-2',
+  'assets/icon.svg?v=20261112-2',
+  'assets/icon-192.png?v=20261112-2',
+  'assets/icon-512.png?v=20261112-2',
+  'assets/og-image.png?v=20261112-2',
+  'assets/fonts/golos-text-400-cyrillic.woff2?v=20261112-2',
+  'assets/fonts/golos-text-400-latin.woff2?v=20261112-2',
+  'assets/fonts/jetbrains-mono-400-cyrillic.woff2?v=20261112-2',
+  'assets/fonts/jetbrains-mono-400-latin.woff2?v=20261112-2',
+  'assets/fonts/yeseva-one-400-cyrillic.woff2?v=20261112-2',
+  'assets/fonts/yeseva-one-400-latin.woff2?v=20261112-2'
 ];
 
 function inScope(url) {

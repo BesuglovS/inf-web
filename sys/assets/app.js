@@ -794,7 +794,7 @@
       appReady = false;
     } else {
       var trainerSpecs = [
-        { type: 'to-decimal', title: 'В десятичную', rule: 'Заполните значения степеней и сумму.' },
+        { type: 'to-decimal', title: 'В десятичную', rule: 'Заполните номера разрядов, степени, значения и сумму.' },
         { type: 'from-decimal', title: 'Из десятичной', rule: 'Заполните частные и остатки, затем соберите ответ снизу вверх.' },
         { type: 'add', title: 'Сложение столбиком', rule: 'Заполните переносы и цифры результата по разрядам.' },
         { type: 'sub', title: 'Вычитание столбиком', rule: 'Заполните заёмы и цифры результата по разрядам.' }
@@ -883,18 +883,23 @@
       }
 
       function renderToDecimalWork(exercise) {
-        var digitGroups = exercise.terms.map(function (term) {
+        var digitGroups = exercise.terms.map(function (term, index) {
           return '<span class="trainer-expand-slot">' +
-            '<span class="trainer-expand-power">' + term.position + '</span>' +
+            '<span class="trainer-expand-power">' +
+              '<input class="trainer-cell trainer-cell--rank" data-cell="rank" data-index="' + index + '" type="text" inputmode="numeric" maxlength="2" aria-label="Номер разряда для цифры ' + NL.digitChar(term.digit) + '">' +
+            '</span>' +
             '<span class="trainer-expand-digit">' + NL.digitChar(term.digit) + '</span>' +
           '</span>';
         }).join('');
 
-        var formulaParts = exercise.terms.map(function (term) {
+        var formulaParts = exercise.terms.map(function (term, index) {
           return '<span class="trainer-expand-part">' +
             '<span class="mono">' + NL.digitChar(term.digit) + '</span>' +
             '<span class="trainer-expand-times">·</span>' +
-            '<span class="mono">' + exercise.base + '<sup>' + term.position + '</sup></span>' +
+            '<span class="mono">' + exercise.base + '</span>' +
+            '<span class="trainer-expand-exponent">' +
+              '<input class="trainer-cell trainer-cell--exponent" data-cell="exponent" data-index="' + index + '" type="text" inputmode="numeric" maxlength="2" aria-label="Степень основания для разряда с цифрой ' + NL.digitChar(term.digit) + '">' +
+            '</span>' +
           '</span>';
         }).join('<span class="trainer-expand-plus">+</span>');
 
@@ -907,14 +912,14 @@
 
         return '<div class="trainer-work-block trainer-work-block--to-decimal">' +
           '<p class="trainer-work-caption">Развёрнутая форма</p>' +
-          '<p class="sr-only">Переведите число ' + exercise.digits + ' из основания ' + exercise.base + ' в десятичную систему. Заполните значения каждой степени и сумму.</p>' +
+          '<p class="sr-only">Переведите число ' + exercise.digits + ' из основания ' + exercise.base + ' в десятичную систему. Заполните номера разрядов, степени, значения и сумму.</p>' +
           '<div class="trainer-expand" role="group" aria-label="Разложение числа ' + exercise.digits + ' по разрядам">' +
             '<div class="trainer-expand-line">' +
-              '<div class="trainer-expand-number" aria-hidden="true">' +
+              '<div class="trainer-expand-number">' +
                 digitGroups +
                 '<span class="trainer-expand-base">' + exercise.base + '</span>' +
               '</div>' +
-              '<div class="trainer-expand-formula" aria-hidden="true">' +
+              '<div class="trainer-expand-formula">' +
                 '<span class="trainer-expand-eq">=</span>' +
                 formulaParts +
                 '<span class="trainer-expand-eq">=</span>' +
@@ -1080,6 +1085,8 @@
 
         if (exercise.type === 'to-decimal') {
           exercise.terms.forEach(function (term, index) {
+            setValue('[data-cell="rank"][data-index="' + index + '"]', term.position);
+            setValue('[data-cell="exponent"][data-index="' + index + '"]', term.position);
             setValue('[data-cell="term"][data-index="' + index + '"]', term.product);
           });
           setValue('[data-cell="sum"]', exercise.value);
@@ -1118,11 +1125,18 @@
         var exercise = state.exercise;
         var all = true;
         exercise.terms.forEach(function (term, index) {
+          var rankInput = state.work.querySelector('[data-cell="rank"][data-index="' + index + '"]');
+          var exponentInput = state.work.querySelector('[data-cell="exponent"][data-index="' + index + '"]');
           var input = state.work.querySelector('[data-cell="term"][data-index="' + index + '"]');
-          var value = decimalCellValue(input.value);
-          var ok = value === term.product;
-          setCellState(input, ok);
-          all = all && ok;
+
+          var rankOk = decimalCellValue(rankInput.value) === term.position;
+          var exponentOk = decimalCellValue(exponentInput.value) === term.position;
+          var productOk = decimalCellValue(input.value) === term.product;
+
+          setCellState(rankInput, rankOk);
+          setCellState(exponentInput, exponentOk);
+          setCellState(input, productOk);
+          all = all && rankOk && exponentOk && productOk;
         });
         var sumInput = state.work.querySelector('[data-cell="sum"]');
         var sumValue = decimalCellValue(sumInput.value);
@@ -1131,7 +1145,7 @@
         all = all && sumOk;
         return {
           ok: all,
-          message: all ? 'Верно. Сумма: ' + exercise.answer + '.' : 'Пока неверно. Проверьте вклады разрядов и сумму.'
+          message: all ? 'Верно. Сумма: ' + exercise.answer + '.' : 'Пока неверно. Проверьте номера разрядов, степени, значения и сумму.'
         };
       }
 

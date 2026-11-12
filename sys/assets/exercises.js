@@ -88,8 +88,8 @@
     var n = digits.length - 1;
     var hints = [
       'Разряды нумеруются справа налево с нуля. Умножьте каждую цифру на основание в степени её разряда.',
-      'Старший разряд: <span class="mono">' + terms[0].digit + ' × ' + base + '<sup>' + terms[0].position + '</sup> = ' + NL.fmt(terms[0].product) + '</span>.',
-      'Следующий разряд: <span class="mono">' + terms[1].digit + ' × ' + base + '<sup>' + terms[1].position + '</sup> = ' + NL.fmt(terms[1].product) + '</span>.'
+      'Старший разряд: <span class="mono">' + NL.digitChar(terms[0].digit) + ' × ' + base + '<sup>' + terms[0].position + '</sup> = ' + NL.fmt(terms[0].product) + '</span>.',
+      'Следующий разряд: <span class="mono">' + NL.digitChar(terms[1].digit) + ' × ' + base + '<sup>' + terms[1].position + '</sup> = ' + NL.fmt(terms[1].product) + '</span>.'
     ];
 
     return {
