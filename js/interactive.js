@@ -1,29 +1,11 @@
 /**
- * Интерактив страниц занятий: карточки терминов и квиз.
+ * Интерактив страниц занятий: карточки терминов, самопроверка и модели.
  *
- * Без зависимостей и без запросов к серверу: результат квиза хранится
- * в localStorage под ключом inf-web-quiz.
+ * Вопросы самопроверки лежат в data/quizzes/NN.json и загружаются
+ * по одному: ответ → пояснение → следующий вопрос → результат.
  */
 (function () {
     "use strict";
-
-    var STORE_KEY = "inf-web-quiz";
-
-    function readStore() {
-        try {
-            return JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
-        } catch (error) {
-            return {};
-        }
-    }
-
-    function writeStore(data) {
-        try {
-            localStorage.setItem(STORE_KEY, JSON.stringify(data));
-        } catch (error) {
-            /* приватный режим — просто не сохраняем */
-        }
-    }
 
     /* ── Карточки терминов ─────────────────────────────────────────────── */
 
@@ -49,101 +31,296 @@
         });
     });
 
-    /* ── Квиз ──────────────────────────────────────────────────────────── */
+    /* ── Квиз: вопросы по одному, как в python-web ─────────────────────── */
+
+    var QUIZ_PATH = "data/quizzes/";
+    var QUIZ_LETTERS = ["A", "B", "C", "D"];
+
+    function loadQuiz(id) {
+        return fetch(QUIZ_PATH + id + ".json", { cache: "no-cache" }).then(function (response) {
+            if (!response.ok) {
+                throw new Error("HTTP " + response.status);
+            }
+            return response.json();
+        });
+    }
 
     function initQuiz(root) {
         var id = root.getAttribute("data-quiz");
-        var items = Array.prototype.slice.call(root.querySelectorAll(".quiz__item"));
-        var scoreEl = root.querySelector(".quiz__score");
-        var barEl = root.querySelector(".quiz__bar span");
-        var resetBtn = root.querySelector(".quiz__reset");
-        var store = readStore();
-        var state = store[id] || {};
-
-        function render() {
-            var answered = 0;
-            var right = 0;
-
-            items.forEach(function (item, index) {
-                var answer = parseInt(item.getAttribute("data-answer"), 10);
-                var picked = state[index];
-                var why = item.querySelector(".quiz__why");
-                var buttons = item.querySelectorAll(".quiz__opt");
-
-                item.classList.remove("is-right", "is-wrong");
-
-                buttons.forEach(function (button) {
-                    button.classList.remove("is-picked", "is-correct");
-                    button.setAttribute("aria-pressed", "false");
-                    button.disabled = picked !== undefined;
-                });
-
-                if (picked === undefined) {
-                    if (why) {
-                        why.hidden = true;
-                    }
-                    return;
-                }
-
-                answered++;
-
-                var pickedBtn = item.querySelector('.quiz__opt[data-opt="' + picked + '"]');
-                var rightBtn = item.querySelector('.quiz__opt[data-opt="' + answer + '"]');
-
-                if (pickedBtn) {
-                    pickedBtn.classList.add("is-picked");
-                    pickedBtn.setAttribute("aria-pressed", "true");
-                }
-                if (rightBtn) {
-                    rightBtn.classList.add("is-correct");
-                }
-
-                item.classList.add(picked === answer ? "is-right" : "is-wrong");
-                if (picked === answer) {
-                    right++;
-                }
-                if (why) {
-                    why.hidden = false;
-                }
-            });
-
-            if (scoreEl) {
-                scoreEl.textContent = right + " из " + items.length;
-            }
-            if (barEl) {
-                barEl.style.width = (items.length ? Math.round(answered / items.length * 100) : 0) + "%";
-            }
+        if (!id) {
+            return;
         }
 
-        root.addEventListener("click", function (event) {
-            var button = event.target.closest(".quiz__opt");
-            if (!button || button.disabled) {
+        root.setAttribute("role", "region");
+        root.setAttribute("aria-label", "Проверьте себя");
+        root.textContent = "";
+
+        var loading = document.createElement("p");
+        loading.className = "quiz__loading";
+        loading.textContent = "Загрузка вопросов…";
+        root.appendChild(loading);
+
+        loadQuiz(id)
+            .then(function (questions) {
+                if (!Array.isArray(questions) || questions.length === 0) {
+                    throw new Error("empty quiz");
+                }
+                startQuiz(root, questions);
+            })
+            .catch(function () {
+                root.textContent = "";
+                var error = document.createElement("p");
+                error.className = "quiz__error";
+                error.textContent = "Не удалось загрузить вопросы. Обновите страницу.";
+                root.appendChild(error);
+            });
+    }
+
+    function startQuiz(root, questions) {
+        var state = {
+            index: 0,
+            correct: 0,
+            selected: null,
+            answered: false,
+            answers: []
+        };
+        var firstRender = true;
+
+        function render() {
+            var total = questions.length;
+            var question = questions[state.index];
+            root.textContent = "";
+
+            var progress = document.createElement("p");
+            progress.className = "quiz__progress";
+            progress.setAttribute("role", "status");
+            progress.setAttribute("aria-live", "polite");
+            progress.textContent = "Вопрос " + (state.index + 1) + " из " + total;
+            root.appendChild(progress);
+
+            var bar = document.createElement("div");
+            bar.className = "quiz__bar";
+            bar.setAttribute("aria-hidden", "true");
+            var fill = document.createElement("span");
+            fill.style.width = Math.round((state.index / total) * 100) + "%";
+            bar.appendChild(fill);
+            root.appendChild(bar);
+
+            var q = document.createElement("p");
+            q.className = "quiz__q";
+            q.tabIndex = -1;
+            var num = document.createElement("span");
+            num.className = "quiz__num";
+            num.textContent = String(state.index + 1);
+            q.appendChild(num);
+            q.appendChild(document.createTextNode(question.question));
+            root.appendChild(q);
+
+            var opts = document.createElement("div");
+            opts.className = "quiz__opts";
+            opts.setAttribute("role", "radiogroup");
+            opts.setAttribute("aria-label", "Варианты ответа");
+
+            question.options.forEach(function (option, index) {
+                var button = document.createElement("button");
+                button.type = "button";
+                button.className = "quiz__opt";
+                button.setAttribute("role", "radio");
+                button.setAttribute("data-opt", String(index));
+                button.setAttribute("aria-checked", "false");
+
+                if (state.answered) {
+                    button.disabled = true;
+                    if (index === state.selected) {
+                        button.setAttribute("aria-checked", "true");
+                    }
+                    if (index === question.correct) {
+                        button.classList.add("is-correct");
+                    }
+                    if (index === state.selected && index !== question.correct) {
+                        button.classList.add("is-picked");
+                    }
+                }
+
+                var letter = document.createElement("span");
+                letter.className = "quiz__letter";
+                letter.textContent = QUIZ_LETTERS[index] || String(index + 1);
+
+                var text = document.createElement("span");
+                text.className = "quiz__opt-text";
+                text.textContent = option;
+
+                button.appendChild(letter);
+                button.appendChild(text);
+                opts.appendChild(button);
+            });
+
+            root.appendChild(opts);
+
+            var why = document.createElement("p");
+            why.className = "quiz__why";
+            why.setAttribute("role", "status");
+            why.setAttribute("aria-live", "polite");
+            why.hidden = !state.answered;
+            if (state.answered) {
+                why.textContent = question.explanation;
+                if (state.selected !== question.correct) {
+                    why.classList.add("is-wrong");
+                }
+            }
+            root.appendChild(why);
+
+            var next = document.createElement("button");
+            next.type = "button";
+            next.className = "quiz__next";
+            next.hidden = !state.answered;
+            next.textContent = state.index + 1 < total ? "Далее →" : "Показать результат";
+            root.appendChild(next);
+
+            if (state.answered) {
+                next.addEventListener("click", function () {
+                    if (state.index + 1 < total) {
+                        state.index += 1;
+                        state.selected = null;
+                        state.answered = false;
+                        render();
+                    } else {
+                        renderResult();
+                    }
+                });
+                next.focus({ preventScroll: true });
                 return;
             }
 
-            var item = button.closest(".quiz__item");
-            var index = items.indexOf(item);
-            if (index < 0 || state[index] !== undefined) {
-                return;
-            }
+            var buttons = Array.prototype.slice.call(opts.querySelectorAll(".quiz__opt"));
 
-            state[index] = parseInt(button.getAttribute("data-opt"), 10);
-
-            var saved = readStore();
-            saved[id] = state;
-            writeStore(saved);
-
-            render();
-        });
-
-        if (resetBtn) {
-            resetBtn.addEventListener("click", function () {
-                state = {};
-                var saved = readStore();
-                delete saved[id];
-                writeStore(saved);
+            opts.addEventListener("click", function (event) {
+                var button = event.target.closest(".quiz__opt");
+                if (!button || state.answered) {
+                    return;
+                }
+                var picked = parseInt(button.getAttribute("data-opt"), 10);
+                state.selected = picked;
+                state.answered = true;
+                if (picked === question.correct) {
+                    state.correct += 1;
+                }
+                state.answers.push({ index: state.index, picked: picked });
                 render();
             });
+
+            opts.addEventListener("keydown", function (event) {
+                if (event.key !== "ArrowDown" && event.key !== "ArrowRight" &&
+                    event.key !== "ArrowUp" && event.key !== "ArrowLeft") {
+                    return;
+                }
+                var current = document.activeElement;
+                if (!current || !current.classList.contains("quiz__opt")) {
+                    return;
+                }
+                event.preventDefault();
+                var pos = buttons.indexOf(current);
+                var dir = (event.key === "ArrowDown" || event.key === "ArrowRight") ? 1 : -1;
+                var target = buttons[(pos + dir + buttons.length) % buttons.length];
+                if (target) {
+                    target.focus({ preventScroll: true });
+                }
+            });
+
+            if (!firstRender) {
+                q.focus({ preventScroll: true });
+            }
+            firstRender = false;
+        }
+
+        function renderResult() {
+            var total = questions.length;
+            var percent = Math.round((state.correct / total) * 100);
+            var verdict = percent === 100
+                ? "Отлично! Все ответы верные."
+                : percent >= 60
+                    ? "Хороший результат! Есть над чем поработать."
+                    : "Стоит повторить материал и попробовать ещё раз.";
+
+            root.textContent = "";
+
+            var card = document.createElement("div");
+            card.className = "quiz__result";
+            card.setAttribute("role", "status");
+            card.setAttribute("aria-live", "polite");
+
+            var title = document.createElement("h3");
+            title.tabIndex = -1;
+            title.textContent = "Результат";
+            card.appendChild(title);
+
+            var score = document.createElement("p");
+            score.className = "quiz__score";
+            score.textContent = state.correct + " из " + total + " (" + percent + "%)";
+            card.appendChild(score);
+
+            var line = document.createElement("div");
+            line.className = "quiz__bar";
+            var fill = document.createElement("span");
+            fill.style.width = percent + "%";
+            line.appendChild(fill);
+            card.appendChild(line);
+
+            var verdictEl = document.createElement("p");
+            verdictEl.className = "quiz__verdict";
+            verdictEl.textContent = verdict;
+            card.appendChild(verdictEl);
+
+            var wrong = state.answers.filter(function (answer) {
+                return answer.picked !== questions[answer.index].correct;
+            });
+
+            if (wrong.length > 0) {
+                var list = document.createElement("div");
+                list.className = "quiz__wrong";
+                var heading = document.createElement("h4");
+                heading.textContent = "Разбор ошибок";
+                list.appendChild(heading);
+
+                wrong.forEach(function (answer) {
+                    var item = questions[answer.index];
+                    var wrongItem = document.createElement("div");
+                    wrongItem.className = "quiz__wrong-item";
+
+                    var wrongQuestion = document.createElement("p");
+                    wrongQuestion.className = "quiz__wrong-q";
+                    wrongQuestion.textContent = item.question;
+
+                    var wrongAnswer = document.createElement("p");
+                    wrongAnswer.className = "quiz__wrong-a";
+                    wrongAnswer.textContent = "Верно: " + item.options[item.correct];
+
+                    wrongItem.appendChild(wrongQuestion);
+                    wrongItem.appendChild(wrongAnswer);
+                    list.appendChild(wrongItem);
+                });
+
+                card.appendChild(list);
+            }
+
+            var retry = document.createElement("button");
+            retry.type = "button";
+            retry.className = "quiz__retry";
+            retry.textContent = "Пройти ещё раз";
+            retry.addEventListener("click", function () {
+                state = {
+                    index: 0,
+                    correct: 0,
+                    selected: null,
+                    answered: false,
+                    answers: []
+                };
+                render();
+            });
+            card.appendChild(retry);
+
+            root.appendChild(card);
+            title.focus({ preventScroll: true });
         }
 
         render();

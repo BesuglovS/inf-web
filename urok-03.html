@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102-37">
+    <link rel="stylesheet" href="css/styles.css?v=20261112-quiz4">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -703,67 +703,11 @@
 
                 <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
                     <span class="chapter__num">06 · интерактив</span>
-                    <h2 id="ch-6-title">Квиз: проверьте себя</h2>
-                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <h2 id="ch-6-title">Проверьте себя</h2>
+                    <p class="chapter__hint">10 вопросов, один верный вариант. После ответа — пояснение, в конце — результат и разбор ошибок.</p>
                     <div class="quiz" data-quiz="03">
-                        <ol class="quiz__list">
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">1</span>Когда результат операции AND истинен?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Когда истинен хотя бы один вход</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Только когда истинны оба входа</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Только когда оба входа ложны</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Всегда</button>
-                        </div>
-                        <p class="quiz__why" hidden>AND — конъюнкция: истина только при истинных обоих входах. Схемно это два ключа, включённых последовательно.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">2</span>Что делает операция NOT?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Меняет значение на противоположное</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Складывает два значения</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Сравнивает два значения</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Выбирает большее из двух</button>
-                        </div>
-                        <p class="quiz__why" hidden>NOT — инверсия: истина становится ложью, ложь — истиной. На транзисторе это один ключ, включённый «наоборот».</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">3</span>Чем XOR отличается от OR?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">XOR истинно только при разных входах</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">XOR истинно только при ложных входах</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">XOR — это то же самое, что OR</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">XOR работает только с тремя входами</button>
-                        </div>
-                        <p class="quiz__why" hidden>OR даёт истину и тогда, когда истинны оба входа. XOR в этом случае даёт ложь: ему нужны именно разные значения.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">4</span>Чему равно выражение (1 AND 0) OR 1?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">0</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">1</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Не определено</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Зависит от порядка операций</button>
-                        </div>
-                        <p class="quiz__why" hidden>Сначала скобки: 1 AND 0 = 0. Затем 0 OR 1 = 1.</p>
-                    </li>
-                        </ol>
-                        <div class="quiz__foot">
-                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
-                            <button type="button" class="quiz__reset">Пройти заново</button>
-                        </div>
-                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                        <p class="quiz__loading">Загрузка вопросов…</p>
                     </div>
-                </section>
-
-                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
-                    <span class="chapter__num">07</span>
-                    <h2 id="ch-7-title">Мини-практика</h2>
-                    <ol>
-                        <li>Постройте таблицу истинности для выражения (A AND NOT B) OR C и проверьте себя на всех восьми комбинациях.</li>
-                        <li>Объясните на схеме из двух ключей, почему последовательное включение даёт AND, а параллельное — OR.</li>
-                        <li>Придумайте бытовой пример, который ведёт себя как XOR: результат «сработало», когда условия разные.</li>
-                    </ol>
                 </section>
 
                                 <nav class="pager" aria-label="Навигация по занятиям">
@@ -786,8 +730,7 @@
                     <li><a href="#ch-3">Модель</a></li>
                     <li><a href="#ch-4">Термины</a></li>
                     <li><a href="#ch-5">Карточки</a></li>
-                    <li><a href="#ch-6">Квиз</a></li>
-                    <li><a href="#ch-7">Практика</a></li>
+                    <li><a href="#ch-6">Самопроверка</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 03 из 40</p>
             </aside>
@@ -804,6 +747,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031-37" defer></script>
+    <script src="js/interactive.js?v=20261112-quiz4" defer></script>
 </body>
 </html>

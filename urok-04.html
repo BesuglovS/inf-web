@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102-40">
+    <link rel="stylesheet" href="css/styles.css?v=20261112-quiz4">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -401,67 +401,11 @@
 
                 <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
                     <span class="chapter__num">06 · интерактив</span>
-                    <h2 id="ch-6-title">Квиз: проверьте себя</h2>
-                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <h2 id="ch-6-title">Проверьте себя</h2>
+                    <p class="chapter__hint">10 вопросов, один верный вариант. После ответа — пояснение, в конце — результат и разбор ошибок.</p>
                     <div class="quiz" data-quiz="04">
-                        <ol class="quiz__list">
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">1</span>Сколько различных значений можно записать в 8 битах?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">128</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">256</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">512</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">1024</button>
-                        </div>
-                        <p class="quiz__why" hidden>Каждый бит удваивает число комбинаций: 2⁸ = 256 значений, от 0 до 255 без знака.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">2</span>Зачем нужен дополнительный код?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Чтобы кодировать буквы</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Чтобы вычитание выполнялось сложением</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Чтобы сжимать данные</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Чтобы проверять чётность</button>
-                        </div>
-                        <p class="quiz__why" hidden>Отрицательное число записывают так, чтобы сумма с положительным давала правильную разность. Отдельная схема вычитания не нужна.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">3</span>Что произойдёт, если прочитать UTF-8 как Windows-1251?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Текст не изменится</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Появятся посторонние символы вместо букв</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Файл будет удалён</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Текст сожмётся</button>
-                        </div>
-                        <p class="quiz__why" hidden>Байты те же, но таблица другая: вместо русских букв появятся символы из другой кодировки. Данные целы, неверно выбрано соглашение о чтении.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">4</span>Сколько байт обычно занимает одна русская буква в UTF-8?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Один</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Два</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Четыре</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Восемь</button>
-                        </div>
-                        <p class="quiz__why" hidden>Кириллица в UTF-8 кодируется двумя байтами. Латиница — одним, а редкие символы — тремя-четырьмя.</p>
-                    </li>
-                        </ol>
-                        <div class="quiz__foot">
-                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
-                            <button type="button" class="quiz__reset">Пройти заново</button>
-                        </div>
-                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                        <p class="quiz__loading">Загрузка вопросов…</p>
                     </div>
-                </section>
-
-                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
-                    <span class="chapter__num">07</span>
-                    <h2 id="ch-7-title">Мини-практика</h2>
-                    <ol>
-                        <li>Переведите 45 и 200 в двоичную запись, затем сложите их в двоичном виде и проверьте результат.</li>
-                        <li>Запишите число −5 в 8-битном дополнительном коде и проверьте сложение с 7.</li>
-                        <li>Закодируйте слово из четырёх русских букв в UTF-8 и посчитайте, сколько байт оно занимает.</li>
-                    </ol>
                 </section>
 
                                 <nav class="pager" aria-label="Навигация по занятиям">
@@ -484,8 +428,7 @@
                     <li><a href="#ch-3">Модель</a></li>
                     <li><a href="#ch-4">Термины</a></li>
                     <li><a href="#ch-5">Карточки</a></li>
-                    <li><a href="#ch-6">Квиз</a></li>
-                    <li><a href="#ch-7">Практика</a></li>
+                    <li><a href="#ch-6">Самопроверка</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 04 из 40</p>
             </aside>
@@ -502,6 +445,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031-40" defer></script>
+    <script src="js/interactive.js?v=20261112-quiz4" defer></script>
 </body>
 </html>

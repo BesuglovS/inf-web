@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102">
+    <link rel="stylesheet" href="css/styles.css?v=20261112-quiz4">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -170,56 +170,11 @@
 
                 <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
                     <span class="chapter__num">05 · интерактив</span>
-                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
-                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <h2 id="ch-5-title">Проверьте себя</h2>
+                    <p class="chapter__hint">10 вопросов, один верный вариант. После ответа — пояснение, в конце — результат и разбор ошибок.</p>
                     <div class="quiz" data-quiz="19">
-                        <ol class="quiz__list">
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">1</span>Чем память отличается от хранения?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Память быстрая и энергозависимая</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Память хранит файлы годами</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Хранение быстрее памяти</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Разницы нет</button>
-                        </div>
-                        <p class="quiz__why" hidden>Оперативная память теряет данные без питания, накопитель — нет.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">2</span>Что ограничивает срок службы SSD?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Число перезаписей ячеек</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Размер экрана</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Скорость интернета</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Тип файловой системы</button>
-                        </div>
-                        <p class="quiz__why" hidden>Флеш-ячейки выдерживают ограниченное количество циклов записи.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">3</span>Что защищает от удаления файла по ошибке?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Резервная копия</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">RAID</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Более быстрый диск</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Больше оперативной памяти</button>
-                        </div>
-                        <p class="quiz__why" hidden>RAID дублирует диск, но удаление повторяется на всех копиях одновременно.</p>
-                    </li>
-                        </ol>
-                        <div class="quiz__foot">
-                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
-                            <button type="button" class="quiz__reset">Пройти заново</button>
-                        </div>
-                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                        <p class="quiz__loading">Загрузка вопросов…</p>
                     </div>
-                </section>
-
-                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
-                    <span class="chapter__num">06</span>
-                    <h2 id="ch-6-title">Мини-практика</h2>
-                    <ol>
-                        <li>Объясните, почему RAID не заменяет резервную копию.</li>
-                        <li>Сравните HDD и SSD по скорости, цене за гигабайт и устойчивости к ударам.</li>
-                    </ol>
                 </section>
 
                                 <nav class="pager" aria-label="Навигация по занятиям">
@@ -241,8 +196,7 @@
                     <li><a href="#ch-2">Конспект</a></li>
                     <li><a href="#ch-3">Термины</a></li>
                     <li><a href="#ch-4">Карточки</a></li>
-                    <li><a href="#ch-5">Квиз</a></li>
-                    <li><a href="#ch-6">Практика</a></li>
+                    <li><a href="#ch-5">Самопроверка</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 19 из 40</p>
             </aside>
@@ -259,6 +213,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031" defer></script>
+    <script src="js/interactive.js?v=20261112-quiz4" defer></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102">
+    <link rel="stylesheet" href="css/styles.css?v=20261112-quiz4">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -187,56 +187,11 @@
 
                 <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
                     <span class="chapter__num">05 · интерактив</span>
-                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
-                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
-                    <div class="quiz" data-quiz="25-pc-revolution">
-                        <ol class="quiz__list">
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">1</span>Какой процессор использовал Altair 8800?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Intel 4004</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Intel 8080</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">MOS 6502</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Zilog Z80</button>
-                        </div>
-                        <p class="quiz__why" hidden>Altair 8800 был построен на Intel 8080.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">2</span>Почему IBM PC стал стандартом?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Из-за открытой архитектуры и клонов</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Потому что выпускался только IBM</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Из-за отказа от операционной системы</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Потому что не поддерживал платы расширения</button>
-                        </div>
-                        <p class="quiz__why" hidden>Стандартные компоненты и клоны сделали платформу массовой.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">3</span>Что популяризировал Macintosh?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Графический интерфейс и мышь</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Перфокарты</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Локальную сеть</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Язык FORTRAN</button>
-                        </div>
-                        <p class="quiz__why" hidden>Macintosh сделал окна, значки и мышь массовыми.</p>
-                    </li>
-                        </ol>
-                        <div class="quiz__foot">
-                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
-                            <button type="button" class="quiz__reset">Пройти заново</button>
-                        </div>
-                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                    <h2 id="ch-5-title">Проверьте себя</h2>
+                    <p class="chapter__hint">10 вопросов, один верный вариант. После ответа — пояснение, в конце — результат и разбор ошибок.</p>
+                    <div class="quiz" data-quiz="25">
+                        <p class="quiz__loading">Загрузка вопросов…</p>
                     </div>
-                </section>
-
-                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
-                    <span class="chapter__num">06</span>
-                    <h2 id="ch-6-title">Мини-практика</h2>
-                    <ol>
-                        <li>Сравните Altair 8800 и Apple II: что каждый из них сделал доступным для покупателя.</li>
-                        <li>Объясните, как открытая архитектура IBM PC повлияла на цену и выбор компьютеров.</li>
-                    </ol>
                 </section>
 
                                 <nav class="pager" aria-label="Навигация по занятиям">
@@ -258,8 +213,7 @@
                     <li><a href="#ch-2">Конспект</a></li>
                     <li><a href="#ch-3">Термины</a></li>
                     <li><a href="#ch-4">Карточки</a></li>
-                    <li><a href="#ch-5">Квиз</a></li>
-                    <li><a href="#ch-6">Практика</a></li>
+                    <li><a href="#ch-5">Самопроверка</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 25 из 40</p>
             </aside>
@@ -276,6 +230,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031" defer></script>
+    <script src="js/interactive.js?v=20261112-quiz4" defer></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102-15">
+    <link rel="stylesheet" href="css/styles.css?v=20261112-quiz4">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -414,58 +414,11 @@
 
                 <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
                     <span class="chapter__num">06 · интерактив</span>
-                    <h2 id="ch-6-title">Квиз: проверьте себя</h2>
-                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <h2 id="ch-6-title">Проверьте себя</h2>
+                    <p class="chapter__hint">10 вопросов, один верный вариант. После ответа — пояснение, в конце — результат и разбор ошибок.</p>
                     <div class="quiz" data-quiz="13">
-                        <ol class="quiz__list">
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">1</span>Что отличает алгоритм от программы?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Алгоритм — это способ решения, программа — его запись</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Ничего</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Программа не требует шагов</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Алгоритм работает только с числами</button>
-                        </div>
-                        <p class="quiz__why" hidden>Алгоритм описывает последовательность действий, программа — конкретная реализация на языке.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">2</span>Когда работает бинарный поиск?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">В отсортированном массиве</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">В любом массиве</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Только в строках</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Только в файлах</button>
-                        </div>
-                        <p class="quiz__why" hidden>Он отбрасывает половину, опираясь на порядок элементов.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">3</span>Что означает O(n)?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Время растёт линейно с размером данных</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Время не зависит от данных</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Время растёт квадратично</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Память не используется</button>
-                        </div>
-                        <p class="quiz__why" hidden>Удвоение данных удваивает число операций.</p>
-                    </li>
-                        </ol>
-                        <div class="quiz__foot">
-                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
-                            <button type="button" class="quiz__reset">Пройти заново</button>
-                        </div>
-                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                        <p class="quiz__loading">Загрузка вопросов…</p>
                     </div>
-                </section>
-
-                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
-                    <span class="chapter__num">07</span>
-                    <h2 id="ch-7-title">Мини-практика</h2>
-                    <ol>
-                        <li>Оцените, сколько шагов сделает бинарный поиск в массиве из 1024 элементов.</li>
-                        <li>Объясните, почему бинарный поиск нельзя применить к неотсортированному массиву.</li>
-                        <li>Пройдите модель сортировки слиянием и объясните, почему при каждом делении число частей удваивается, а глубина получается около log₂ n.</li>
-                        <li>Найдите в модели Дейкстры кратчайший путь от A до F и сверьте его с таблицей оценок и предков.</li>
-                    </ol>
                 </section>
 
                                 <nav class="pager" aria-label="Навигация по занятиям">
@@ -488,8 +441,7 @@
                     <li><a href="#ch-3">Модели</a></li>
                     <li><a href="#ch-4">Термины</a></li>
                     <li><a href="#ch-5">Карточки</a></li>
-                    <li><a href="#ch-6">Квиз</a></li>
-                    <li><a href="#ch-7">Практика</a></li>
+                    <li><a href="#ch-6">Самопроверка</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 13 из 40</p>
             </aside>
@@ -506,6 +458,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261102-15" defer></script>
+    <script src="js/interactive.js?v=20261112-quiz4" defer></script>
 </body>
 </html>

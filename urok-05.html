@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102-49">
+    <link rel="stylesheet" href="css/styles.css?v=20261112-quiz4">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -382,67 +382,11 @@
 
                 <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
                     <span class="chapter__num">06 · интерактив</span>
-                    <h2 id="ch-6-title">Квиз: проверьте себя</h2>
-                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <h2 id="ch-6-title">Проверьте себя</h2>
+                    <p class="chapter__hint">10 вопросов, один верный вариант. После ответа — пояснение, в конце — результат и разбор ошибок.</p>
                     <div class="quiz" data-quiz="05">
-                        <ol class="quiz__list">
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">1</span>Из каких элементов состоит полусумматор?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">XOR и AND</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Два AND</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Два NOT</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">OR и NOT</button>
-                        </div>
-                        <p class="quiz__why" hidden>Сумма двух бит — это XOR, перенос — AND. Полусумматор не умеет принимать перенос из младшего разряда.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">2</span>Чем полный сумматор отличается от полусумматора?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">У него три входа, включая перенос</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Он умеет умножать</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Он не использует XOR</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Он работает только с одним битом</button>
-                        </div>
-                        <p class="quiz__why" hidden>Третий вход — перенос от предыдущего разряда. Без него нельзя складывать многозначные числа цепочкой.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">3</span>Как АЛУ выполняет вычитание?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Отдельной схемой вычитания</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Сложением с числом в дополнительном коде</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Через умножение</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Через сдвиг влево</button>
-                        </div>
-                        <p class="quiz__why" hidden>A − B превращается в A + (−B). Тот же сумматор, но на вход B подаётся инвертированное значение с добавленной единицей.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">4</span>Зачем нужен флаг переполнения?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Чтобы ускорить сложение</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Чтобы сообщить, что результат не помещается в разрядную сетку</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Чтобы сохранить результат на диск</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Чтобы выбрать язык программирования</button>
-                        </div>
-                        <p class="quiz__why" hidden>Переполнение означает, что ответ вышел за пределы разрядности и полученное число неверно. По этому флагу программа может обработать ситуацию.</p>
-                    </li>
-                        </ol>
-                        <div class="quiz__foot">
-                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
-                            <button type="button" class="quiz__reset">Пройти заново</button>
-                        </div>
-                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                        <p class="quiz__loading">Загрузка вопросов…</p>
                     </div>
-                </section>
-
-                <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
-                    <span class="chapter__num">07</span>
-                    <h2 id="ch-7-title">Мини-практика</h2>
-                    <ol>
-                        <li>Сложите 8-битные числа 10010110 и 01101101 вручную и определите, был ли перенос за старший разряд.</li>
-                        <li>Объясните, как изменится схема, если понадобится вычитать: что именно подаётся на вход B.</li>
-                        <li>Придумайте, какой флаг должен взводиться при сравнении двух чисел, чтобы работал переход «если A больше B».</li>
-                    </ol>
                 </section>
 
                                 <nav class="pager" aria-label="Навигация по занятиям">
@@ -465,8 +409,7 @@
                     <li><a href="#ch-3">Модель</a></li>
                     <li><a href="#ch-4">Термины</a></li>
                     <li><a href="#ch-5">Карточки</a></li>
-                    <li><a href="#ch-6">Квиз</a></li>
-                    <li><a href="#ch-7">Практика</a></li>
+                    <li><a href="#ch-6">Самопроверка</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 05 из 40</p>
             </aside>
@@ -483,6 +426,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031-49" defer></script>
+    <script src="js/interactive.js?v=20261112-quiz4" defer></script>
 </body>
 </html>

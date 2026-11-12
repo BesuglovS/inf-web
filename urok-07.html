@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102">
+    <link rel="stylesheet" href="css/styles.css?v=20261112-quiz4">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -169,56 +169,11 @@
 
                 <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
                     <span class="chapter__num">05 · интерактив</span>
-                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
-                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <h2 id="ch-5-title">Проверьте себя</h2>
+                    <p class="chapter__hint">10 вопросов, один верный вариант. После ответа — пояснение, в конце — результат и разбор ошибок.</p>
                     <div class="quiz" data-quiz="07">
-                        <ol class="quiz__list">
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">1</span>Что делает устройство управления?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Читает команды и раздаёт сигналы</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Хранит файлы</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Считает сумму</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Соединяет с интернетом</button>
-                        </div>
-                        <p class="quiz__why" hidden>Управление выбирает команду, декодирует её и говорит остальным блокам, что делать.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">2</span>Зачем нужен счётчик команд?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Хранит адрес следующей команды</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Считает такты</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Хранит результат</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Проверяет пароли</button>
-                        </div>
-                        <p class="quiz__why" hidden>Он указывает, откуда брать следующую команду; переходы меняют это значение.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">3</span>Когда выполняется условный переход?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Если условие истинно</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Всегда</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Только в конце программы</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Только при ошибке</button>
-                        </div>
-                        <p class="quiz__why" hidden>Если условие выполнено, счётчик команд получает новый адрес — так появляются циклы и ветвления.</p>
-                    </li>
-                        </ol>
-                        <div class="quiz__foot">
-                            <p class="quiz__score" role="status" aria-live="polite">0 из 3</p>
-                            <button type="button" class="quiz__reset">Пройти заново</button>
-                        </div>
-                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                        <p class="quiz__loading">Загрузка вопросов…</p>
                     </div>
-                </section>
-
-                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
-                    <span class="chapter__num">06</span>
-                    <h2 id="ch-6-title">Мини-практика</h2>
-                    <ol>
-                        <li>Запишите последовательность шагов выполнения команды «сложить R1 и R2».</li>
-                        <li>Объясните, как условный переход превращается в цикл.</li>
-                    </ol>
                 </section>
 
                 <section class="chapter" id="ch-7" aria-labelledby="ch-7-title">
@@ -249,8 +204,7 @@
                     <li><a href="#ch-2">Конспект</a></li>
                     <li><a href="#ch-3">Термины</a></li>
                     <li><a href="#ch-4">Карточки</a></li>
-                    <li><a href="#ch-5">Квиз</a></li>
-                    <li><a href="#ch-6">Практика</a></li>
+                    <li><a href="#ch-5">Самопроверка</a></li>
                     <li><a href="proekt-simpletron.html">Проект</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 07 из 40</p>
@@ -268,6 +222,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031" defer></script>
+    <script src="js/interactive.js?v=20261112-quiz4" defer></script>
 </body>
 </html>

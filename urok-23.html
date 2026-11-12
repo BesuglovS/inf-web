@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102">
+    <link rel="stylesheet" href="css/styles.css?v=20261112-quiz4">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -201,67 +201,11 @@
 
                 <section class="chapter" id="ch-5" aria-labelledby="ch-5-title">
                     <span class="chapter__num">05 · интерактив</span>
-                    <h2 id="ch-5-title">Квиз: проверьте себя</h2>
-                    <p class="chapter__hint">Один вариант на вопрос. Ответ проверяется сразу, результат сохраняется в браузере.</p>
+                    <h2 id="ch-5-title">Проверьте себя</h2>
+                    <p class="chapter__hint">10 вопросов, один верный вариант. После ответа — пояснение, в конце — результат и разбор ошибок.</p>
                     <div class="quiz" data-quiz="23">
-                        <ol class="quiz__list">
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">1</span>Чем векторное изображение отличается от растрового?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 1">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Оно хранит геометрию, а не точки</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Оно всегда чёрно-белое</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Оно не может масштабироваться</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Оно занимает больше места</button>
-                        </div>
-                        <p class="quiz__why" hidden>Векторное изображение задано линиями и кривыми, поэтому увеличивается без потери качества.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="1">
-                        <p class="quiz__q"><span class="quiz__num">2</span>Что такое разрешение экрана?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 2">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Физический размер в сантиметрах</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Количество пикселей в кадре</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Яркость подсветки</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Частота обновления</button>
-                        </div>
-                        <p class="quiz__why" hidden>Разрешение — это размер сетки пикселей, например 1920×1080. Оно не равно физическому размеру экрана.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">3</span>Зачем нужен альфа-канал?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 3">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Для прозрачности при наложении</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Для увеличения яркости</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Для сжатия</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Для звука</button>
-                        </div>
-                        <p class="quiz__why" hidden>Альфа задаёт долю прозрачности пикселя: при выводе цвет смешивается с тем, что нарисовано под ним.</p>
-                    </li>
-                    <li class="quiz__item" data-answer="0">
-                        <p class="quiz__q"><span class="quiz__num">4</span>Почему при увеличении растровой картинки видны квадраты?</p>
-                        <div class="quiz__opts" role="group" aria-label="Вопрос 4">
-                            <button type="button" class="quiz__opt" data-opt="0" aria-pressed="false">Пиксели имеют фиксированные значения</button>
-                            <button type="button" class="quiz__opt" data-opt="1" aria-pressed="false">Файл повреждён</button>
-                            <button type="button" class="quiz__opt" data-opt="2" aria-pressed="false">Не хватает оперативной памяти</button>
-                            <button type="button" class="quiz__opt" data-opt="3" aria-pressed="false">Сжатие с потерями включено</button>
-                        </div>
-                        <p class="quiz__why" hidden>Масштабирование повторяет исходные пиксели: границы становятся ступенчатыми, детали не появляются.</p>
-                    </li>
-                        </ol>
-                        <div class="quiz__foot">
-                            <p class="quiz__score" role="status" aria-live="polite">0 из 4</p>
-                            <button type="button" class="quiz__reset">Пройти заново</button>
-                        </div>
-                        <div class="quiz__bar" aria-hidden="true"><span></span></div>
+                        <p class="quiz__loading">Загрузка вопросов…</p>
                     </div>
-                </section>
-
-                <section class="chapter" id="ch-6" aria-labelledby="ch-6-title">
-                    <span class="chapter__num">06</span>
-                    <h2 id="ch-6-title">Мини-практика</h2>
-                    <ol>
-                        <li>Посчитайте, сколько данных занимает кадр 1920×1080 при 24 битах на пиксель, — и сравните с 8-битным.</li>
-                        <li>Объясните, почему значок, нарисованный в векторном редакторе, останется чётким на любом экране.</li>
-                        <li>Придумайте, как будет выглядеть текст без сглаживания на экране с низкой плотностью пикселей.</li>
-                    </ol>
                 </section>
 
                                 <nav class="pager" aria-label="Навигация по занятиям">
@@ -283,8 +227,7 @@
                     <li><a href="#ch-2">Конспект</a></li>
                     <li><a href="#ch-3">Термины</a></li>
                     <li><a href="#ch-4">Карточки</a></li>
-                    <li><a href="#ch-5">Квиз</a></li>
-                    <li><a href="#ch-6">Практика</a></li>
+                    <li><a href="#ch-5">Самопроверка</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 23 из 40</p>
             </aside>
@@ -301,6 +244,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031" defer></script>
+    <script src="js/interactive.js?v=20261112-quiz4" defer></script>
 </body>
 </html>

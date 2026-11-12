@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=20261102-9">
+    <link rel="stylesheet" href="css/styles.css?v=20261112-quiz4">
 </head>
 <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -381,38 +381,10 @@
                 <section class="chapter" id="ch-10" aria-labelledby="ch-10-title">
                     <span class="chapter__num">10</span>
                     <h2 id="ch-10-title">Проверьте себя</h2>
-                    <div class="questions">
-                        <details>
-                            <summary>Почему реле ограничивает скорость вычислений?</summary>
-                            <p>Потому что внутри него движется якорь: пока контакт не замкнётся физически, сигнал не пройдёт. Инерция и износ ограничивают и частоту переключений, и срок службы.</p>
-                        </details>
-                        <details>
-                            <summary>Что принципиально изменилось, когда программу стали хранить в памяти?</summary>
-                            <p>Перепрограммирование перестало быть переделкой схемы: достаточно записать другие числа. Машина стала универсальной, а команды — обычными данными, которые можно менять по ходу работы.</p>
-                        </details>
-                        <details>
-                            <summary>Почему лампы не годились для массовых компьютеров?</summary>
-                            <p>Они греются, много потребляют и часто выходят из строя. Чем больше ламп, тем чаще отказы, поэтому наращивать мощность ламповыми машинами было невозможно.</p>
-                        </details>
-                        <details>
-                            <summary>Назовите три преимущества транзистора перед лампой.</summary>
-                            <p>Меньше размер, ниже энергопотребление и нагрев, выше надёжность — плюс дешевле массовое производство. А ещё он работает при низком напряжении.</p>
-                        </details>
-                        <details>
-                            <summary>Закон Мура — это закон физики?</summary>
-                            <p>Нет, это наблюдение и отраслевое правило. Оно выполнялось, пока технологии и рынок позволяли уменьшать элементы; у него есть физические и экономические пределы.</p>
-                        </details>
+                    <p class="chapter__hint">10 вопросов, один верный вариант. После ответа — пояснение, в конце — результат и разбор ошибок.</p>
+                    <div class="quiz" data-quiz="02">
+                        <p class="quiz__loading">Загрузка вопросов…</p>
                     </div>
-                </section>
-
-                <section class="chapter" id="ch-11" aria-labelledby="ch-11-title">
-                    <span class="chapter__num">11</span>
-                    <h2 id="ch-11-title">Мини-практика</h2>
-                    <ol>
-                        <li>Задача из миллиона сложений: сколько времени займёт её решение на Mark I (3 сложения в секунду) и на ENIAC (5 000 в секунду)? Ответ выразите в часах.</li>
-                        <li>Объясните, почему у машины с программой в памяти появляются циклы и ветвления, а у машины с коммутационной панелью — почти нет.</li>
-                        <li>Сформулируйте одним предложением, что общего у реле, лампы и транзистора и чем они различаются.</li>
-                    </ol>
                 </section>
 
                                 <nav class="pager" aria-label="Навигация по занятиям">
@@ -439,8 +411,7 @@
                     <li><a href="#ch-7">Транзистор</a></li>
                     <li><a href="#ch-8">Интегральная схема</a></li>
                     <li><a href="#ch-9">Термины</a></li>
-                    <li><a href="#ch-10">Вопросы</a></li>
-                    <li><a href="#ch-11">Практика</a></li>
+                    <li><a href="#ch-10">Самопроверка</a></li>
                 </ol>
                 <p class="player__note" style="margin-top:16px">Занятие 02 из 40</p>
             </aside>
@@ -457,6 +428,6 @@
             </span>
         </div>
     </footer>
-    <script src="js/interactive.js?v=20261031-9" defer></script>
+    <script src="js/interactive.js?v=20261112-quiz4" defer></script>
 </body>
 </html>
