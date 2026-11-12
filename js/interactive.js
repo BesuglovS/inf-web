@@ -1,8 +1,9 @@
 /**
  * Интерактив страниц занятий: карточки терминов, самопроверка и модели.
  *
- * Вопросы самопроверки лежат в data/quizzes/NN.json и загружаются
- * по одному: ответ → пояснение → следующий вопрос → результат.
+ * Вопросы самопроверки отдаёт sandbox/quiz.php: браузер не получает
+ * правильные ответы заранее, а результат попытки сохраняется после
+ * входа через auth-web.
  */
 (function () {
     "use strict";
@@ -31,18 +32,78 @@
         });
     });
 
-    /* ── Квиз: вопросы по одному, как в python-web ─────────────────────── */
+    /* ── Квиз: вопросы по одному, результат сохраняется через auth-web ─── */
 
-    var QUIZ_PATH = "data/quizzes/";
+    var QUIZ_API = "sandbox/quiz.php";
+    var AUTH_API = "sandbox/auth_check.php";
+    var AUTH_LOGIN = "https://auth.nayanovaacademy.ru/index.php?page=login&redirect=";
     var QUIZ_LETTERS = ["A", "B", "C", "D"];
 
-    function loadQuiz(id) {
-        return fetch(QUIZ_PATH + id + ".json", { cache: "no-cache" }).then(function (response) {
-            if (!response.ok) {
-                throw new Error("HTTP " + response.status);
-            }
-            return response.json();
+    function apiRequest(url, options) {
+        return fetch(url, Object.assign({
+            credentials: "same-origin",
+            cache: "no-store",
+            headers: { "Content-Type": "application/json" }
+        }, options || {})).then(function (response) {
+            return response.json().catch(function () {
+                return {};
+            }).then(function (data) {
+                if (!response.ok) {
+                    var error = new Error(data.error || ("HTTP " + response.status));
+                    error.data = data;
+                    throw error;
+                }
+                return data;
+            });
         });
+    }
+
+    function loadQuiz(id) {
+        return apiRequest(QUIZ_API + "?lesson_number=" + encodeURIComponent(id));
+    }
+
+    function loadAuth() {
+        return apiRequest(AUTH_API).catch(function () {
+            return { authenticated: false, unavailable: true };
+        });
+    }
+
+    function postQuiz(payload) {
+        return apiRequest(QUIZ_API, {
+            method: "POST",
+            body: JSON.stringify(payload)
+        });
+    }
+
+    function authLine(root, auth) {
+        var previous = root.previousElementSibling;
+        if (previous && previous.classList.contains("quiz__auth")) {
+            previous.remove();
+        }
+
+        var line = document.createElement("p");
+        line.className = "quiz__auth";
+
+        if (auth && auth.authenticated && auth.user) {
+            line.textContent = "Вы вошли как " + (auth.user.display_name || auth.user.login) + ". Результаты сохраняются.";
+        } else if (auth && auth.unavailable) {
+            line.textContent = "Сохранение результатов временно недоступно.";
+        } else {
+            line.appendChild(document.createTextNode("Войдите, чтобы сохранить результат. "));
+            var link = document.createElement("a");
+            link.href = AUTH_LOGIN + encodeURIComponent(window.location.href);
+            link.textContent = "Войти через auth-web";
+            line.appendChild(link);
+        }
+
+        root.parentNode.insertBefore(line, root);
+    }
+
+    function loginLink() {
+        var link = document.createElement("a");
+        link.href = AUTH_LOGIN + encodeURIComponent(window.location.href);
+        link.textContent = "Войти через auth-web";
+        return link;
     }
 
     function initQuiz(root) {
@@ -60,28 +121,35 @@
         loading.textContent = "Загрузка вопросов…";
         root.appendChild(loading);
 
-        loadQuiz(id)
-            .then(function (questions) {
-                if (!Array.isArray(questions) || questions.length === 0) {
+        Promise.all([loadQuiz(id), loadAuth()])
+            .then(function (results) {
+                var data = results[0];
+                var auth = results[1];
+                if (!data || !Array.isArray(data.questions) || data.questions.length === 0) {
                     throw new Error("empty quiz");
                 }
-                startQuiz(root, questions);
+                authLine(root, auth);
+                startQuiz(root, data.questions, id, auth);
             })
             .catch(function () {
                 root.textContent = "";
                 var error = document.createElement("p");
                 error.className = "quiz__error";
-                error.textContent = "Не удалось загрузить вопросы. Обновите страницу.";
+                error.textContent = "Не удалось загрузить вопросы. Проверьте подключение и обновите страницу.";
                 root.appendChild(error);
             });
     }
 
-    function startQuiz(root, questions) {
+    function startQuiz(root, questions, lessonId, auth) {
         var state = {
             index: 0,
             correct: 0,
             selected: null,
+            correctAnswer: null,
+            explanation: "",
+            isCorrect: false,
             answered: false,
+            waiting: false,
             answers: []
         };
         var firstRender = true;
@@ -129,15 +197,15 @@
                 button.setAttribute("data-opt", String(index));
                 button.setAttribute("aria-checked", "false");
 
-                if (state.answered) {
+                if (state.answered || state.waiting) {
                     button.disabled = true;
                     if (index === state.selected) {
                         button.setAttribute("aria-checked", "true");
                     }
-                    if (index === question.correct) {
+                    if (state.answered && index === state.correctAnswer) {
                         button.classList.add("is-correct");
                     }
-                    if (index === state.selected && index !== question.correct) {
+                    if (state.answered && index === state.selected && index !== state.correctAnswer) {
                         button.classList.add("is-picked");
                     }
                 }
@@ -161,10 +229,12 @@
             why.className = "quiz__why";
             why.setAttribute("role", "status");
             why.setAttribute("aria-live", "polite");
-            why.hidden = !state.answered;
-            if (state.answered) {
-                why.textContent = question.explanation;
-                if (state.selected !== question.correct) {
+            why.hidden = !state.answered && !state.waiting;
+            if (state.waiting) {
+                why.textContent = "Проверка ответа…";
+            } else if (state.answered) {
+                why.textContent = state.explanation;
+                if (!state.isCorrect) {
                     why.classList.add("is-wrong");
                 }
             }
@@ -182,7 +252,11 @@
                     if (state.index + 1 < total) {
                         state.index += 1;
                         state.selected = null;
+                        state.correctAnswer = null;
+                        state.explanation = "";
+                        state.isCorrect = false;
                         state.answered = false;
+                        state.waiting = false;
                         render();
                     } else {
                         renderResult();
@@ -192,21 +266,54 @@
                 return;
             }
 
+            if (state.waiting) {
+                return;
+            }
+
             var buttons = Array.prototype.slice.call(opts.querySelectorAll(".quiz__opt"));
 
             opts.addEventListener("click", function (event) {
                 var button = event.target.closest(".quiz__opt");
-                if (!button || state.answered) {
+                if (!button || state.answered || state.waiting) {
                     return;
                 }
                 var picked = parseInt(button.getAttribute("data-opt"), 10);
                 state.selected = picked;
-                state.answered = true;
-                if (picked === question.correct) {
-                    state.correct += 1;
-                }
-                state.answers.push({ index: state.index, picked: picked });
+                state.waiting = true;
                 render();
+
+                postQuiz({
+                    action: "answer",
+                    lesson_number: lessonId,
+                    question_idx: state.index,
+                    selected: picked
+                }).then(function (result) {
+                    state.waiting = false;
+                    state.answered = true;
+                    state.correctAnswer = result.correct;
+                    state.explanation = result.explanation || "";
+                    state.isCorrect = !!result.is_correct;
+                    if (state.isCorrect) {
+                        state.correct += 1;
+                    }
+                    state.answers.push({
+                        index: state.index,
+                        picked: picked,
+                        correct: result.correct,
+                        isCorrect: !!result.is_correct
+                    });
+                    render();
+                }).catch(function () {
+                    state.waiting = false;
+                    state.selected = null;
+                    render();
+                    var error = root.querySelector(".quiz__why");
+                    if (error) {
+                        error.hidden = false;
+                        error.textContent = "Не удалось проверить ответ. Попробуйте ещё раз.";
+                        error.classList.add("is-wrong");
+                    }
+                });
             });
 
             opts.addEventListener("keydown", function (event) {
@@ -234,8 +341,39 @@
         }
 
         function renderResult() {
-            var total = questions.length;
-            var percent = Math.round((state.correct / total) * 100);
+            root.textContent = "";
+            var loading = document.createElement("p");
+            loading.className = "quiz__loading";
+            loading.textContent = "Проверка результата…";
+            root.appendChild(loading);
+
+            postQuiz({
+                action: "grade",
+                lesson_number: lessonId
+            }).then(function (grade) {
+                showResult(grade);
+            }).catch(function () {
+                var correctCount = state.answers.filter(function (answer) {
+                    return answer.isCorrect;
+                }).length;
+                showResult({
+                    score: Math.round((correctCount / questions.length) * 100),
+                    total: questions.length,
+                    correct_count: correctCount,
+                    saved: false,
+                    error: "Не удалось сохранить результат."
+                });
+            });
+        }
+
+        function showResult(grade) {
+            var total = grade && grade.total ? grade.total : questions.length;
+            var correctCount = grade && typeof grade.correct_count === "number"
+                ? grade.correct_count
+                : state.answers.filter(function (answer) { return answer.isCorrect; }).length;
+            var percent = grade && typeof grade.score === "number"
+                ? grade.score
+                : Math.round((correctCount / total) * 100);
             var verdict = percent === 100
                 ? "Отлично! Все ответы верные."
                 : percent >= 60
@@ -256,7 +394,7 @@
 
             var score = document.createElement("p");
             score.className = "quiz__score";
-            score.textContent = state.correct + " из " + total + " (" + percent + "%)";
+            score.textContent = correctCount + " из " + total + " (" + percent + "%)";
             card.appendChild(score);
 
             var line = document.createElement("div");
@@ -271,8 +409,24 @@
             verdictEl.textContent = verdict;
             card.appendChild(verdictEl);
 
+            var save = document.createElement("p");
+            save.className = "quiz__save";
+            if (grade && grade.saved) {
+                save.textContent = "Результат сохранён.";
+                if (grade.best_score !== null && grade.best_score !== undefined) {
+                    save.textContent += " Лучший результат: " + grade.best_score + "%.";
+                }
+            } else if (auth && auth.authenticated) {
+                save.textContent = (grade && grade.error) || "Не удалось сохранить результат.";
+                save.classList.add("is-error");
+            } else {
+                save.appendChild(document.createTextNode("Результат не сохранён: "));
+                save.appendChild(loginLink());
+            }
+            card.appendChild(save);
+
             var wrong = state.answers.filter(function (answer) {
-                return answer.picked !== questions[answer.index].correct;
+                return !answer.isCorrect;
             });
 
             if (wrong.length > 0) {
@@ -293,7 +447,7 @@
 
                     var wrongAnswer = document.createElement("p");
                     wrongAnswer.className = "quiz__wrong-a";
-                    wrongAnswer.textContent = "Верно: " + item.options[item.correct];
+                    wrongAnswer.textContent = "Верно: " + item.options[answer.correct];
 
                     wrongItem.appendChild(wrongQuestion);
                     wrongItem.appendChild(wrongAnswer);
@@ -308,14 +462,7 @@
             retry.className = "quiz__retry";
             retry.textContent = "Пройти ещё раз";
             retry.addEventListener("click", function () {
-                state = {
-                    index: 0,
-                    correct: 0,
-                    selected: null,
-                    answered: false,
-                    answers: []
-                };
-                render();
+                initQuiz(root);
             });
             card.appendChild(retry);
 

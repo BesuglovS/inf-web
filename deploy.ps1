@@ -118,11 +118,20 @@ $excludeArgs = @(
   '--exclude=*.log',
   '--exclude=.env',
   '--exclude=deploy.ps1',
-  '--exclude=inf.nayanovaacademy.ru'
+  '--exclude=inf.nayanovaacademy.ru',
+  '--exclude=data/inf.db',
+  '--exclude=data/inf.db-shm',
+  '--exclude=data/inf.db-wal',
+  '--exclude=data/.ratelimit'
 ) -join ' '
 
 $tarCmd   = "tar czf - $excludeArgs -C `"$srcPath`" . -C `"$markerDir`" version.json"
-$sshCmd   = "ssh $portArg $identityArg $remote `"rm -rf ${remotePath}/* ${remotePath}/.[!.]* 2>/dev/null; tar -xzf - -C $remotePath`""
+$remoteScript = "find `"$remotePath`" -mindepth 1 -maxdepth 1 ! -name 'data' -exec rm -rf {} + 2>/dev/null; " +
+  "mkdir -p `"$remotePath/data`" 2>/dev/null; " +
+  "find `"$remotePath/data`" -mindepth 1 -maxdepth 1 ! -name 'inf.db' ! -name 'inf.db-shm' ! -name 'inf.db-wal' -exec rm -rf {} + 2>/dev/null; " +
+  "tar -xzf - -C `"$remotePath`"; " +
+  "chmod -R a+rwX `"$remotePath/data`" 2>/dev/null || true"
+$sshCmd   = "ssh $portArg $identityArg $remote `"$remoteScript`""
 
 Write-Host "`n==> Deploying to ${remote}:${remotePath} ..." -ForegroundColor Cyan
 

@@ -4,3 +4,9 @@ Thumbs.db
 .DS_Store
 .vscode/
 .idea/
+
+# Runtime-данные: SQLite и rate-limit
+/data/*.db
+/data/*.db-shm
+/data/*.db-wal
+/data/.ratelimit/
