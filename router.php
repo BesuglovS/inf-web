@@ -50,13 +50,12 @@ if (strpos($path, '/sandbox/') === 0) {
     return true;
 }
 
-// Директории с index.html (например, /admin-quiz/).
+// Директории с index.php (например, /admin-quiz/).
 $filePath = safeResolve($projectDir, $path);
 if ($filePath !== null && is_dir($filePath)) {
-    $index = rtrim($filePath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'index.html';
+    $index = rtrim($filePath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'index.php';
     if (is_file($index)) {
-        header('Content-Type: text/html; charset=utf-8');
-        readfile($index);
+        require $index;
         return true;
     }
 }

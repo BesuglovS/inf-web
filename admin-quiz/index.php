@@ -1,3 +1,31 @@
+<?php
+require_once __DIR__ . '/../sandbox/config.php';
+require_once __DIR__ . '/../sandbox/AuthClient.php';
+
+header('X-Robots-Tag: noindex, nofollow');
+header('Cache-Control: no-store, no-cache, must-revalidate');
+
+$status = AuthClient::checkStatus();
+
+if ($status['status'] === 'unavailable') {
+    http_response_code(503);
+    header('Content-Type: text/html; charset=utf-8');
+    echo '<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><title>Авторизация недоступна</title></head><body><h1>Сервис авторизации недоступен</h1><p>Попробуйте обновить страницу позже.</p></body></html>';
+    exit;
+}
+
+if ($status['user'] === null) {
+    header('Location: ' . AuthClient::getLoginUrl(INF_BASE_URL . '/admin-quiz/'), true, 302);
+    exit;
+}
+
+if (empty($status['user']['is_admin'])) {
+    http_response_code(403);
+    header('Content-Type: text/html; charset=utf-8');
+    echo '<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><title>Доступ запрещён</title></head><body><h1>Доступ запрещён</h1><p>Страница доступна только администраторам.</p><p><a href="/">Вернуться на главную</a></p></body></html>';
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
