@@ -794,7 +794,7 @@
       appReady = false;
     } else {
       var trainerSpecs = [
-        { type: 'to-decimal', title: 'В десятичную', rule: 'Заполните вклад каждого разряда, затем сумму.' },
+        { type: 'to-decimal', title: 'В десятичную', rule: 'Заполните значения степеней и сумму.' },
         { type: 'from-decimal', title: 'Из десятичной', rule: 'Заполните частные и остатки, затем соберите ответ снизу вверх.' },
         { type: 'add', title: 'Сложение столбиком', rule: 'Заполните переносы и цифры результата по разрядам.' },
         { type: 'sub', title: 'Вычитание столбиком', rule: 'Заполните заёмы и цифры результата по разрядам.' }
@@ -883,26 +883,54 @@
       }
 
       function renderToDecimalWork(exercise) {
-        var rows = exercise.terms.map(function (term, index) {
-          return '<tr>' +
-            '<td class="trainer-term-digit"><span class="mono">' + term.digit + '</span></td>' +
-            '<td class="trainer-term-op">×</td>' +
-            '<td class="trainer-term-weight"><span class="mono">' + exercise.base + '<sup>' + term.position + '</sup></span></td>' +
-            '<td class="trainer-term-op">=</td>' +
-            '<td><input class="trainer-cell trainer-cell--number" data-cell="term" data-index="' + index + '" type="text" inputmode="numeric" maxlength="10" aria-label="Вклад разряда ' + term.position + '"></td>' +
-          '</tr>';
+        var digitGroups = exercise.terms.map(function (term) {
+          return '<span class="trainer-expand-slot">' +
+            '<span class="trainer-expand-power">' + term.position + '</span>' +
+            '<span class="trainer-expand-digit">' + NL.digitChar(term.digit) + '</span>' +
+          '</span>';
         }).join('');
 
-        return '<div class="trainer-work-block">' +
+        var formulaParts = exercise.terms.map(function (term) {
+          return '<span class="trainer-expand-part">' +
+            '<span class="mono">' + NL.digitChar(term.digit) + '</span>' +
+            '<span class="trainer-expand-times">·</span>' +
+            '<span class="mono">' + exercise.base + '<sup>' + term.position + '</sup></span>' +
+          '</span>';
+        }).join('<span class="trainer-expand-plus">+</span>');
+
+        var termInputs = exercise.terms.map(function (term, index) {
+          return '<span class="trainer-expand-term">' +
+            (index ? '<span class="trainer-expand-plus">+</span>' : '') +
+            '<input class="trainer-cell trainer-cell--number trainer-cell--term" data-cell="term" data-index="' + index + '" type="text" inputmode="numeric" maxlength="10" aria-label="Значение разряда со степенью ' + term.position + '">' +
+          '</span>';
+        }).join('');
+
+        return '<div class="trainer-work-block trainer-work-block--to-decimal">' +
           '<p class="trainer-work-caption">Развёрнутая форма</p>' +
-          '<div class="trainer-table-scroll">' +
-            '<table class="trainer-work-table">' +
-              '<caption class="sr-only">Разложение числа ' + exercise.digits + ' по разрядам</caption>' +
-              '<thead><tr><th scope="col">Цифра</th><th scope="col"><span class="sr-only">Умножение</span></th><th scope="col">Вес</th><th scope="col"><span class="sr-only">Равно</span></th><th scope="col">Вклад</th></tr></thead>' +
-              '<tbody>' + rows + '</tbody>' +
-            '</table>' +
+          '<p class="sr-only">Переведите число ' + exercise.digits + ' из основания ' + exercise.base + ' в десятичную систему. Заполните значения каждой степени и сумму.</p>' +
+          '<div class="trainer-expand" role="group" aria-label="Разложение числа ' + exercise.digits + ' по разрядам">' +
+            '<div class="trainer-expand-line">' +
+              '<div class="trainer-expand-number" aria-hidden="true">' +
+                digitGroups +
+                '<span class="trainer-expand-base">' + exercise.base + '</span>' +
+              '</div>' +
+              '<div class="trainer-expand-formula" aria-hidden="true">' +
+                '<span class="trainer-expand-eq">=</span>' +
+                formulaParts +
+                '<span class="trainer-expand-eq">=</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="trainer-expand-terms">' +
+              '<span class="trainer-expand-eq">=</span>' +
+              termInputs +
+              '<span class="trainer-expand-eq">=</span>' +
+            '</div>' +
+            '<label class="trainer-expand-total">' +
+              '<span class="trainer-expand-eq">=</span>' +
+              '<input class="trainer-cell trainer-cell--number" data-cell="sum" type="text" inputmode="numeric" maxlength="10" aria-label="Сумма в десятичной системе">' +
+              '<span class="trainer-expand-total-label">сумма в десятичной</span>' +
+            '</label>' +
           '</div>' +
-          '<label class="trainer-sum-row"><span>Сумма в десятичной</span><input class="trainer-cell trainer-cell--number" data-cell="sum" type="text" inputmode="numeric" maxlength="10" aria-label="Сумма в десятичной"></label>' +
         '</div>';
       }
 
