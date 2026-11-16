@@ -165,6 +165,7 @@ a:hover {
 .site-nav {
     display: flex;
     gap: 22px;
+    margin-left: auto;
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.08em;
@@ -178,6 +179,55 @@ a:hover {
 .site-nav a[aria-current="page"] {
     color: var(--ink);
     box-shadow: inset 0 -2px 0 var(--signal);
+}
+
+/* Учётная запись auth-web: имя ученика с выходом или кнопка входа. */
+
+.site-auth {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 28px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.site-auth a {
+    color: var(--ink-soft);
+}
+
+.site-auth a:hover {
+    color: var(--signal);
+    text-decoration: none;
+}
+
+.site-auth__login {
+    padding: 5px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink);
+    white-space: nowrap;
+}
+
+.site-auth__login:hover {
+    border-color: var(--signal);
+}
+
+.site-auth__user {
+    max-width: 22ch;
+    overflow: hidden;
+    color: var(--ink);
+    text-overflow: ellipsis;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.site-auth__logout {
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 /* ─── Первый экран ────────────────────────────────────────────────────────── */
@@ -1596,6 +1646,26 @@ a:hover {
     }
 }
 
+@media (max-width: 860px) {
+    /* Шапка в две строки: название курса, ниже — навигация и вход. */
+    .site-head__inner {
+        flex-wrap: wrap;
+        gap: 2px 14px;
+    }
+
+    .brand {
+        flex: 1 1 100%;
+    }
+
+    .site-nav {
+        margin-left: 0;
+    }
+
+    .site-auth {
+        margin-left: auto;
+    }
+}
+
 @media (max-width: 560px) {
     body {
         font-size: 16.5px;
@@ -1607,9 +1677,10 @@ a:hover {
 
     /* Длинное название курса: на телефоне шапка в две строки, а не в три. */
     .site-head__inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 2px 12px;
         padding-block: 10px;
     }
 
@@ -1624,12 +1695,35 @@ a:hover {
         white-space: nowrap;
     }
 
+    .site-auth {
+        gap: 8px;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+    }
+
+    .site-auth__user {
+        max-width: 12ch;
+    }
+
     .lesson-card__body {
         padding: 14px 16px 16px;
     }
 
     .lesson-card__title {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    /* Очень узкие телефоны: навигация переносится, вход остаётся справа. */
+    .site-nav {
+        flex-wrap: wrap;
+        gap: 2px 12px;
+        white-space: normal;
+    }
+
+    .site-auth__user {
+        max-width: 9ch;
     }
 }
 
